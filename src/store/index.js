@@ -11,7 +11,8 @@ export default new Vuex.Store({
 		drawer: state => { return state.drawer }
 	},
 	mutations: {
-		toggleDrawer (state) { state.drawer = !state.drawer }
+		toggleDrawer (state) { state.drawer = !state.drawer },
+		offDrawer (state) { state.drawer = false }
 	},
 	actions: {
 	},

@@ -2,7 +2,7 @@
 v-app
 	Drawer
 	v-app-bar(app collapse-on-scroll dark :color="color" clipped-left)
-		v-app-bar-nav-icon(@click="toggle")
+		v-app-bar-nav-icon(@click.stop="toggle")
 		.d-flex.lft
 			v-img( alt="Vuetify Logo" src="@/assets/img/logo-w.svg" transition="scale-transition" width="200" v-show="offsetTop")
 		v-spacer
