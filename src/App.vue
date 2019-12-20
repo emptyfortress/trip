@@ -1,7 +1,16 @@
 <template lang="pug">
 v-app
-	v-app-bar(app collapse-on-scroll dark flat :color="color" ).vio
-		v-app-bar-nav-icon
+	//- v-navigation-drawer(v-model="drawer" clipped app overflow dark :color="color")
+	//- 	v-list
+	//- 		v-list-item( v-for="([icon, text], i) in menu" :key="i" link )
+	//- 			v-list-item-icon
+	//- 				v-icon {{ icon }}
+	//- 			v-list-item-content
+	//- 				v-list-item-title {{ text }}
+
+	Drawer
+	v-app-bar(app collapse-on-scroll dark :color="color" clipped-left)
+		v-app-bar-nav-icon(@click="toggle")
 		.d-flex.lft
 			v-img( alt="Vuetify Logo" src="@/assets/img/logo-w.svg" transition="scale-transition" width="200" v-show="offsetTop")
 		v-spacer
@@ -19,18 +28,26 @@ v-app
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import Drawer from './components/Drawer'
 
 export default {
 	name: 'App',
 	components: {
-		HelloWorld
+		HelloWorld,
+		Drawer
 	},
 	data: () => ({
 		color: '#2C4159',
 		offsetTop: true
 		//
 	}),
+	computed: {
+		drawer () { return this.$store.getters.drawer }
+	},
 	methods: {
+		toggle () {
+			this.$store.commit('toggleDrawer')
+		},
 		handleScroll () {
 			if (window.pageYOffset > 0) {
 				this.offsetTop = false
@@ -43,9 +60,6 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
-.vio {
-	/* background: $dark !important; */
-}
 .test {
 	width: 100%;
 	padding: 1rem;
