@@ -1,13 +1,5 @@
 <template lang="pug">
 v-app
-	//- v-navigation-drawer(v-model="drawer" clipped app overflow dark :color="color")
-	//- 	v-list
-	//- 		v-list-item( v-for="([icon, text], i) in menu" :key="i" link )
-	//- 			v-list-item-icon
-	//- 				v-icon {{ icon }}
-	//- 			v-list-item-content
-	//- 				v-list-item-title {{ text }}
-
 	Drawer
 	v-app-bar(app collapse-on-scroll dark :color="color" clipped-left)
 		v-app-bar-nav-icon(@click="toggle")
@@ -18,12 +10,13 @@ v-app
 			span( class="mr-2" ) Nav
 			//- v-icon mdi-open-in-new
 	v-content(v-scroll="handleScroll" id="target")
-		HelloWorld
-		ul
-			li(v-for="n in 50") n
-		.test(v-stickto) This is header
-		ul
-			li(v-for="n in 50") n
+		v-container(fluid).gr
+			HelloWorld
+			ul
+				li(v-for="n in 50") n
+			.test(v-stickto) This is header
+			ul
+				li(v-for="n in 50") n
 </template>
 
 <script>
@@ -70,5 +63,8 @@ export default {
 }
 .v-toolbar.v-toolbar--collapsed {
 	max-width: 82px;
+}
+.gr {
+	background: #ccc;
 }
 </style>
