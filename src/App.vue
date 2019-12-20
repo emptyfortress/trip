@@ -16,8 +16,7 @@ v-app
 			ul
 				li(v-for="n in 50") n
 			.test(v-stickto) This is header
-			ul
-				li(v-for="n in 50") n
+			Grid
 	Footer
 </template>
 
@@ -25,12 +24,14 @@ v-app
 import HelloWorld from './components/HelloWorld'
 import Drawer from './components/Drawer'
 import Footer from './components/Footer'
+import Grid from './components/Grid'
 
 export default {
 	name: 'App',
 	components: {
 		HelloWorld,
 		Drawer,
+		Grid,
 		Footer
 	},
 	data: () => ({
