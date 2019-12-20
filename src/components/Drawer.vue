@@ -16,12 +16,12 @@ export default {
 		return {
 			color: '#2C4159',
 			menu: [
-				{ text: 'Главная' },
-				{ text: 'Входящие' },
-				{ text: 'Исходящие' },
-				{ text: 'Мои папки' },
-				{ text: 'Задания' },
-				{ text: 'Документы' }
+				{ icon: 'mdi-home-roof', text: 'Главная' },
+				{ icon: 'mdi-inbox-arrow-down-outline', text: 'Входящие' },
+				{ icon: 'mdi-inbox-arrow-up-outline', text: 'Исходящие' },
+				{ icon: 'mdi-folder-network-outline', text: 'Мои папки' },
+				{ icon: 'mdi-calendar-check', text: 'Задания' },
+				{ icon: 'mdi-file-document-box-multiple-outline', text: 'Документы' }
 			]
 		}
 	},
