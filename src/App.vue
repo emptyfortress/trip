@@ -1,14 +1,15 @@
 <template lang="pug">
 v-app
 	Drawer
-	v-app-bar(app collapse-on-scroll dark :color="color" clipped-left)
+	v-app-bar(app collapse-on-scroll dark :color="color" clipped-left :class="drawer ? '' : 'sm'")
 		v-app-bar-nav-icon(@click.stop="toggle")
 		.d-flex.lft
-			v-img( alt="Vuetify Logo" src="@/assets/img/logo-w.svg" transition="scale-transition" width="200" v-show="offsetTop")
+			v-img( alt="Vuetify Logo" src="@/assets/img/logo-w.svg" transition="scale-transition" width="150" v-show="logo")
 		v-spacer
-		v-btn( href=""  text v-show="offsetTop")
-			span( class="mr-2" ) Nav
-			//- v-icon mdi-open-in-new
+		v-btn( href="" icon  v-show="offsetTop")
+			i.icon-user
+		v-btn( href="" icon  v-show="offsetTop")
+			v-icon mdi-help-circle-outline
 	v-content(v-scroll="handleScroll" id="target")
 		v-container(fluid)
 			HelloWorld
@@ -34,7 +35,8 @@ export default {
 	},
 	data: () => ({
 		color: '#2C4159',
-		offsetTop: true
+		offsetTop: true,
+		logo: true
 		//
 	}),
 	computed: {
@@ -45,9 +47,16 @@ export default {
 			this.$store.commit('toggleDrawer')
 		},
 		handleScroll () {
-			if (window.pageYOffset > 0) {
+			if (window.pageYOffset > 0 && !this.drawer) {
 				this.offsetTop = false
-			} else this.offsetTop = true
+				this.logo = false
+			} else if (window.pageYOffset > 0 && this.drawer) {
+				this.offsetTop = false
+				this.logo = true
+			} else {
+				this.offsetTop = true
+				this.logo = true
+			}
 		}
 	}
 }
@@ -62,9 +71,16 @@ export default {
 	background: $yellow;
 }
 .lft {
-	margin-left: 2rem;
+	margin-left: 18px;
 }
 .v-toolbar.v-toolbar--collapsed {
-	max-width: 82px;
+	max-width: 260px;
+	&.sm {
+		max-width: 82px;
+	}
+}
+.icon-user {
+	font-size: 1.2rem;
+	margin-left: -4px;
 }
 </style>
