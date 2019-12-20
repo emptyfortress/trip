@@ -10,24 +10,27 @@ v-app
 			span( class="mr-2" ) Nav
 			//- v-icon mdi-open-in-new
 	v-content(v-scroll="handleScroll" id="target")
-		v-container(fluid).gr
+		v-container(fluid)
 			HelloWorld
 			ul
 				li(v-for="n in 50") n
 			.test(v-stickto) This is header
 			ul
 				li(v-for="n in 50") n
+	Footer
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
 import Drawer from './components/Drawer'
+import Footer from './components/Footer'
 
 export default {
 	name: 'App',
 	components: {
 		HelloWorld,
-		Drawer
+		Drawer,
+		Footer
 	},
 	data: () => ({
 		color: '#2C4159',
@@ -63,8 +66,5 @@ export default {
 }
 .v-toolbar.v-toolbar--collapsed {
 	max-width: 82px;
-}
-.gr {
-	background: #ccc;
 }
 </style>
