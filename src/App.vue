@@ -13,8 +13,8 @@ v-app
 	v-content(v-scroll="handleScroll" id="target")
 		v-container(fluid)
 			HelloWorld
-			ul
-				li(v-for="n in 50") n
+			//- ul
+			//- 	li(v-for="n in 50") n
 			.test(v-stickto) This is header
 			Grid
 	Footer
