@@ -6,9 +6,11 @@ import vuetify from './plugins/vuetify'
 import '@/assets/css/support.css'
 import '@/assets/css/main.scss'
 import VueStickto from 'vue-stickto'
+import VueDragDrop from 'vue-drag-drop'
 
 Vue.config.productionTip = false
 Vue.use(VueStickto)
+Vue.use(VueDragDrop)
 
 new Vue({
 	router,

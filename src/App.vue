@@ -12,10 +12,10 @@ v-app
 			v-icon mdi-help-circle-outline
 	v-content(v-scroll="handleScroll" id="target")
 		v-container(fluid)
-			HelloWorld
+			//- HelloWorld
 			//- ul
 			//- 	li(v-for="n in 50") n
-			.test(v-stickto) This is header
+			//- .test(v-stickto) This is header
 			Grid
 	Footer
 </template>
