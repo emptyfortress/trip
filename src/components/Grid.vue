@@ -2,22 +2,25 @@
 .grid
 	br
 	br
-	.zag(ref="table" @click="cal") Прототип грида
-	//- v-slide-y-transition(mode="out-in")
-	//- 	drop(@dragover="over = true" @dragleave="over = false" @drop="handleGroup" v-if="grouping" class="group-top" :class="{ over }")
-	//- 		.inf(v-if="len === 0") Перетащите сюда заголовок колонки для группировки
+	.zag Прототип грида
+	v-slide-y-transition(mode="out-in")
+		drop(@dragover="over = true" @dragleave="over = false" @drop="handleGroup" v-if="grouping" class="group-top" :class="{ over }")
+			.inf(v-if="len === 0") Перетащите сюда заголовок колонки для группировки
 			//- SlickList( :value="group" axis="x" @input="newGroup"  v-else).crumbs
 			//- 	SlickItem(v-for="(item, index) in group" :index="index" :key="index" :item="item")
 			//- 		.crumb(@contextmenu.prevent="$refs.menu.open($event, {name: item, index})") {{ item.text }}
 			//- 	.delete
 			//- 		v-icon(@click="reset") close
 
-	v-data-table(:headers="headers" :items="items" hide-default-footer :items-per-page="per" :show-select="showSelect" item-key="id").tab
+	v-data-table(:headers="headers" :items="items" hide-default-header hide-default-footer :items-per-page="per" :show-select="selectMode" item-key="id").tab
 
-		template(v-slot:header="{ props: {headers} }" )
+		template(v-slot:header="{ props: {headers}}")
 			thead
 				tr(v-stickto).test
-					th(v-for="header in headers" :width="header.width" ) {{ header.text }}
+					th(v-for="header in headers" :width="header.width")
+						drag(:transfer-data="header").drag1
+							span {{ header.text }}
+							//- v-icon( small v-if="header.sortable") mdi-arrow-down
 
 </template>
 
@@ -29,7 +32,7 @@ export default {
 	data () {
 		return {
 			items: data,
-			showSelect: false,
+			selectMode: false,
 			columnWidth: 400,
 			total: 0,
 			group: [],
@@ -67,8 +70,6 @@ export default {
 	components: {
 		SlickList,
 		SlickItem
-		// DataTable1,
-		// VueContext
 	}
 }
 
@@ -89,11 +90,15 @@ export default {
 .inf {
 	font-style: italic;
 	color: #666;
+	font-size: .9rem;
 }
 .zag {
 	font-size: 2.0rem;
 	color: #999;
 	text-align: center;
+}
+.test {
+	background: #eee;
 }
 .test.stickto-auto-generated-sticker {
 	background: $yellow;
@@ -101,5 +106,9 @@ export default {
 }
 .bold {
 	/* font-weight: bold; */
+}
+.drag1 {
+	display: inline;
+	padding: .2rem .5rem;
 }
 </style>
