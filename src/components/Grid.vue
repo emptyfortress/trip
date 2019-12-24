@@ -2,7 +2,7 @@
 .grid
 	br
 	br
-	.zag(ref="table") Прототип грида
+	.zag(ref="table" @click="cal") Прототип грида
 	//- v-slide-y-transition(mode="out-in")
 	//- 	drop(@dragover="over = true" @dragleave="over = false" @drop="handleGroup" v-if="grouping" class="group-top" :class="{ over }")
 	//- 		.inf(v-if="len === 0") Перетащите сюда заголовок колонки для группировки
@@ -15,11 +15,9 @@
 	v-data-table(:headers="headers" :items="items" hide-default-footer :items-per-page="per" :show-select="showSelect" item-key="id").tab
 
 		template(v-slot:header="{ props: {headers} }" )
-			thead(@click="cal")
+			thead
 				tr(v-stickto).test
 					th(v-for="header in headers" :width="header.width" ) {{ header.text }}
-	//- 	template(v-slot:item.title="{ item }")
-	//- 		span.bold {{ item.title }}
 
 </template>
 
@@ -39,8 +37,8 @@ export default {
 			per: 30,
 			grouping: true,
 			headers: [
-				{ text: '#', align: 'start', sortable: true, value: 'id', width: 20 },
-				{ text: 'Название', align: 'start', sortable: true, value: 'title', width: this.colW() },
+				// { text: '#', align: 'start', sortable: true, value: 'id', width: 20 },
+				{ text: 'Название', align: 'start', sortable: true, value: 'title' },
 				{ text: 'Исполнитель', align: 'start', sortable: true, value: 'executor', width: 145 },
 				{ text: 'Автор', align: 'start', sortable: true, value: 'author', width: 110 },
 				{ text: 'Срок', align: 'start', sortable: true, value: 'deadline', width: 105 },
@@ -54,15 +52,16 @@ export default {
 		len () {
 			return this.group.length
 		}
+		// colW () {
+		// 	return (this.totalWidth - 400)
+		// }
 	},
 	methods: {
 		cal () {
 			console.log(this.$refs.table.clientWidth)
 		},
-		colW () {
-			// let totalWidth = this.$refs.table.clientWidth
-			return 400
-			// return (totalWidth - 20 - 145 - 110 - 105 - 105 - 60 - 100)
+		totalWidth () {
+			return (this.$refs.table.clientWidth - 400)
 		}
 	},
 	components: {
@@ -98,6 +97,7 @@ export default {
 }
 .test.stickto-auto-generated-sticker {
 	background: $yellow;
+	width: 100%;
 }
 .bold {
 	/* font-weight: bold; */
