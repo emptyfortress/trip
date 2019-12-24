@@ -7,10 +7,12 @@ import '@/assets/css/support.css'
 import '@/assets/css/main.scss'
 import VueStickto from 'vue-stickto'
 import VueDragDrop from 'vue-drag-drop'
+import LiquorTree from 'liquor-tree'
 
 Vue.config.productionTip = false
 Vue.use(VueStickto)
 Vue.use(VueDragDrop)
+Vue.use(LiquorTree)
 
 new Vue({
 	router,

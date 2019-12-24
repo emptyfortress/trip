@@ -6,27 +6,34 @@
 	v-slide-y-transition(mode="out-in")
 		drop(@dragover="over = true" @dragleave="over = false" @drop="handleGroup" v-if="grouping" class="group-top" :class="{ over }")
 			.inf(v-if="len === 0") Перетащите сюда заголовок колонки для группировки
-			//- SlickList( :value="group" axis="x" @input="newGroup"  v-else).crumbs
-			//- 	SlickItem(v-for="(item, index) in group" :index="index" :key="index" :item="item")
-			//- 		.crumb(@contextmenu.prevent="$refs.menu.open($event, {name: item, index})") {{ item.text }}
-			//- 	.delete
-			//- 		v-icon(@click="reset") close
+			SlickList( :value="group" axis="x" @input="newGroup"  v-else).crumbs
+				SlickItem(v-for="(item, index) in group" :index="index" :key="index" :item="item")
+					.crumb(@contextmenu.prevent="$refs.menu.open($event, {name: item, index})") {{ item.text }}
+				.delete
+					v-icon(@click="reset") mdi-close
 
-	v-data-table(:headers="headers" :items="items" hide-default-header hide-default-footer :items-per-page="per" :show-select="selectMode" item-key="id").tab
-
-		template(v-slot:header="{ props: {headers}}")
-			thead
-				tr(v-stickto).test
-					th(v-for="header in headers" :width="header.width")
-						drag(:transfer-data="header").drag1
-							span {{ header.text }}
-							//- v-icon( small v-if="header.sortable") mdi-arrow-down
+	.d-flex
+		v-slide-x-transition(mode="out-in")
+			v-flex(xs2 v-if="group.length")
+				.group
+					h3(@click="removeFilter") Группы
+						span {{par}}
+						//- v-icon(@click="chart = !chart") insert_chart_outlined
+					tree(ref="tree" :data="list" :options="treeOptions" @node:selected="onNodeSelected").tree-group
+						span(slot-scope="{node}").treenode
+							span.text {{ node.text }}
+							span.num {{ node.data.number }}
+		v-flex(:class="group.length ? 'xs10' : 'xs12'").tabl
+			.canva
+				v-slide-y-transition(mode="out-in")
+					DataTable
 
 </template>
 
 <script>
 import { SlickList, SlickItem } from 'vue-slicksort'
 import data from '@/data.js'
+import DataTable from '@/components/DataTable'
 
 export default {
 	data () {
@@ -39,6 +46,16 @@ export default {
 			over: false,
 			per: 30,
 			grouping: true,
+			treeOptions: {
+				checkbox: false,
+				parentSelect: true,
+				dnd: true,
+				multiple: false,
+				filter: {
+					emptyText: 'Aaaaa! Где мои папки?!!',
+					plainList: 0
+				}
+			},
 			headers: [
 				// { text: '#', align: 'start', sortable: true, value: 'id', width: 20 },
 				{ text: 'Название', align: 'start', sortable: true, value: 'title' },
@@ -60,16 +77,51 @@ export default {
 		// }
 	},
 	methods: {
-		cal () {
-			console.log(this.$refs.table.clientWidth)
+		handleGroup (data) {
+			let obj = {}
+			obj.text = data.text
+			obj.children = []
+			this.group.push(obj)
+			this.handleItems(data)
+			setTimeout(() => this.$refs.tree.tree.setModel(this.list), 0)
+			this.hideColumn(data)
+			this.over = false
 		},
-		totalWidth () {
-			return (this.$refs.table.clientWidth - 400)
+		reset () {
+			this.group = []
+			this.list = []
+			this.list2 = []
+			this.filter = ''
+			// this.$store.dispatch('loadHeaders')
+		},
+		hideColumn (e) {
+			let col = this.headers.filter(item => item.text === e.text)[0]
+			col.active = false
+			console.log(col)
+		},
+		handleItems (data) {
+			if (this.group.length === 1) {
+				this.uniqList(data, this.list)
+			} else if (this.group.length === 2) {
+				let temp = this.uniqList(data, this.list2)
+				this.list.forEach(function (item) {
+					item.children = [...temp]
+					item.state = {}
+					// item.state.expanded = true
+				})
+				console.log(this.list)
+				this.list[0].state.expanded = true
+				this.$refs.tree.tree.setModel(this.list)
+			}
+		},
+		toggleGrouping () {
+			this.grouping = !this.grouping
 		}
 	},
 	components: {
 		SlickList,
-		SlickItem
+		SlickItem,
+		DataTable
 	}
 }
 
@@ -97,18 +149,71 @@ export default {
 	color: #999;
 	text-align: center;
 }
-.test {
+.stick {
 	background: #eee;
 }
-.test.stickto-auto-generated-sticker {
-	background: $yellow;
+.stick.stickto-auto-generated-sticker {
 	width: 100%;
+	box-shadow: 0 4px 5px #33333355;
+	border-bottom: 1px solid #fff;
 }
-.bold {
-	/* font-weight: bold; */
+
+.group {
+	margin-top: .6rem;
+	h3 {
+		background: white;
+		padding: .5rem 1rem;
+		cursor: pointer;
+		span {
+			margin-left: 1rem;
+			font-size: .9rem;
+			background: $info;
+			color: white;
+			padding: .1rem .5rem;
+			border-radius: 3rem;
+		}
+		.v-icon {
+			margin-left: 2rem;
+			vertical-align: bottom;
+			color: $info;
+		}
+	}
+}
+.group-top {
+	padding: 1rem;
+	border: 1px dashed $info;
+	&.over {
+		background: #D9F9FF;
+	}
 }
 .drag1 {
 	display: inline;
 	padding: .2rem .5rem;
+}
+.crumbs {
+	display: flex;
+	position: relative;
+	.crumb {
+		margin-right: 1rem;
+		&:after {
+			content: "\2192";
+			margin-left: 1rem;
+		}
+	}
+}
+.delete {
+	position: absolute;
+	right: 0
+}
+
+.canva {
+	margin-top: 8px;
+	background: #eee;
+}
+.treenode {
+	width: 100%;
+}
+.tabl {
+	transition: all .3s ease;
 }
 </style>
