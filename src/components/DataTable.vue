@@ -5,18 +5,20 @@ div
 		template(v-slot:header="{ props: {headers}}")
 			thead
 				tr(v-stickto).stick
+					th.zero
 					th(v-for="header in headers" v-if="header.active" )
 						drag(:transfer-data="header").drag1
 							span {{ header.text }}
 		template(v-slot:body="{ items }")
 			tbody
-				tr(v-for="item in items")
+				tr(v-for="item in items" :class="item.unread ? 'unread' : ''")
+					td(@click="item.unread = !item.unread").px-0.drag.zero
 					td {{ item.title }}
-					td {{ item.executor }}
+					td.text-no-wrap {{ item.executor }}
 					td {{ item.author }}
-					td {{ item.deadline }}
-					td {{ item.created }}
-					td {{ item.files }}
+					td.text-no-wrap {{ item.deadline }}
+					td.text-no-wrap {{ item.created }}
+					td.text-right {{ item.files }}
 					td {{ item.status }}
 
 </template>
@@ -40,6 +42,15 @@ export default {
 			return this.$store.getters.headers
 		}
 	},
+	methods: {
+		// setClass (e) {
+		// 	if (e.expanded === true) {
+		// 		return 'wide'
+		// 	} else if (e.item.unread) {
+		// 		return 'unread'
+		// 	}
+		// }
+	},
 	components: {
 		SlickList,
 		SlickItem
@@ -61,7 +72,24 @@ export default {
 }
 
 .drag1 {
-	display: inline !important;
+	/* display: inline; */
 	padding: .2rem .5rem;
+}
+.drag {
+	border-left: 8px solid transparent;
+}
+.v-data-table td.zero, .v-data-table th.zero {
+	padding: 0;
+	/* width: 20px; */
+}
+.unread {
+	td {
+		font-weight: bold;
+		color: darken($accent, 30%);
+		.v-btn .v-btn__content .v-icon { color: darken($accent, 30%); }
+		&.drag {
+			border-left: 8px solid darken($accent, 30%);
+		}
+	}
 }
 </style>
