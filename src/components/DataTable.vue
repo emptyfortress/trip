@@ -13,13 +13,8 @@ div
 			tbody
 				tr(v-for="item in items" :class="item.unread ? 'unread' : ''")
 					td(@click="item.unread = !item.unread").px-0.drag.zero
-					td {{ item.title }}
-					td.text-no-wrap {{ item.executor }}
-					td {{ item.author }}
-					td.text-no-wrap {{ item.deadline }}
-					td.text-no-wrap {{ item.created }}
-					td.text-right {{ item.files }}
-					td {{ item.status }}
+					td(v-for="header in headers" :key="header.value" v-if="header.active")
+						span {{ item[header.value] }}
 
 </template>
 

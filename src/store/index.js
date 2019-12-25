@@ -22,7 +22,8 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		toggleDrawer (state) { state.drawer = !state.drawer },
-		offDrawer (state) { state.drawer = false }
+		offDrawer (state) { state.drawer = false },
+		setHeaders (state, payload) { state.headers = payload }
 	},
 	actions: {
 	},

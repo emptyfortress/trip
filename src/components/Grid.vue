@@ -59,22 +59,15 @@ export default {
 					emptyText: 'Aaaaa! Где мои папки?!!',
 					plainList: 0
 				}
-			},
-			headers: [
-				// { text: '#', align: 'start', sortable: true, value: 'id', width: 20 },
-				{ text: 'Название', align: 'start', sortable: true, value: 'title' },
-				{ text: 'Исполнитель', align: 'start', sortable: true, value: 'executor', width: 145 },
-				{ text: 'Автор', align: 'start', sortable: true, value: 'author', width: 110 },
-				{ text: 'Срок', align: 'start', sortable: true, value: 'deadline', width: 105 },
-				{ text: 'Дата', align: 'start', sortable: true, value: 'created', width: 105 },
-				{ text: 'Файлы', align: 'start', sortable: true, value: 'files', width: 60 },
-				{ text: 'Статус', align: 'start', sortable: true, value: 'status', width: 100 }
-			]
+			}
 		}
 	},
 	computed: {
 		len () {
 			return this.group.length
+		},
+		headers () {
+			return this.$store.getters.headers
 		},
 		par () {
 			return this.list2.length ? this.list.length * this.list2.length : this.list.length
@@ -100,11 +93,20 @@ export default {
 			this.over = false
 		},
 		reset () {
+			const myheaders = [
+				{ value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
+				{ value: 'executor', width: '400', active: true, sortable: true, align: 'start', text: 'Исполнитель' },
+				{ value: 'author', width: '160', active: true, sortable: true, align: 'start', text: 'Автор' },
+				{ value: 'deadline', width: '150', active: true, sortable: true, align: 'start', text: 'Срок' },
+				{ value: 'created', width: '150', active: true, sortable: true, align: 'start', text: 'Дата' },
+				{ value: 'files', width: '90', active: true, sortable: true, align: 'end', text: 'Файлы' },
+				{ value: 'status', width: '130', active: true, sortable: true, align: 'start', text: 'Статус' }
+			]
 			this.group = []
 			this.list = []
 			this.list2 = []
 			this.filter = ''
-			// this.$store.dispatch('loadHeaders')
+			this.$store.commit('setHeaders', myheaders)
 		},
 		hideColumn (e) {
 			let col = this.headers.filter(item => item.text === e.text)[0]
