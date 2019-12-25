@@ -22,6 +22,14 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
+.theme--light.v-footer {
+	/* background: #fff; */
+	box-shadow: 0 -2px 4px #33333366;
+	background: $dark;
+	color: #fff;
+	border-left: 1px solid $info;
+	/* background: darken($dark, 30%); */
+}
 .copy {
 	font-size: .8rem;
 	.count {
@@ -32,6 +40,6 @@ export default {
 	}
 }
 .gr {
-	color: #999;
+	/* color: #999; */
 }
 </style>
