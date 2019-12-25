@@ -6,7 +6,8 @@
 	v-slide-y-transition(mode="out-in")
 		drop(@dragover="over = true" @dragleave="over = false" @drop="handleGroup" v-if="grouping" class="group-top" :class="{ over }")
 			.inf(v-if="len === 0") Перетащите сюда заголовок колонки для группировки
-			SlickList( :value="group" axis="x" @input="newGroup"  v-else).crumbs
+			//- SlickList( :value="group" axis="x" @input="newGroup"  v-else).crumbs
+			SlickList( :value="group" axis="x"  v-else).crumbs
 				SlickItem(v-for="(item, index) in group" :index="index" :key="index" :item="item")
 					.crumb(@contextmenu.prevent="$refs.menu.open($event, {name: item, index})") {{ item.text }}
 				.delete
@@ -18,15 +19,15 @@
 				.group
 					h3(@click="removeFilter") Группы
 						span {{par}}
-						//- v-icon(@click="chart = !chart") insert_chart_outlined
 					tree(ref="tree" :data="list" :options="treeOptions" @node:selected="onNodeSelected").tree-group
+					tree(ref="tree" :data="list" :options="treeOptions").tree-group
 						span(slot-scope="{node}").treenode
 							span.text {{ node.text }}
 							span.num {{ node.data.number }}
 		v-flex(:class="group.length ? 'xs10' : 'xs12'").tabl
 			.canva
 				v-slide-y-transition(mode="out-in")
-					DataTable
+					DataTable(:filter="filter")
 
 </template>
 
@@ -39,10 +40,13 @@ export default {
 	data () {
 		return {
 			items: data,
+			filter: '',
 			selectMode: false,
 			columnWidth: 400,
 			total: 0,
 			group: [],
+			list: [],
+			list2: [],
 			over: false,
 			per: 30,
 			grouping: true,
@@ -71,17 +75,25 @@ export default {
 	computed: {
 		len () {
 			return this.group.length
+		},
+		par () {
+			return this.list2.length ? this.list.length * this.list2.length : this.list.length
 		}
-		// colW () {
-		// 	return (this.totalWidth - 400)
-		// }
 	},
 	methods: {
+		removeFilter () {
+			this.filter = ''
+			let selection = this.$refs.tree.find({
+				state: { selected: true }
+			})
+			selection.unselect()
+		},
 		handleGroup (data) {
 			let obj = {}
 			obj.text = data.text
 			obj.children = []
 			this.group.push(obj)
+			console.log(this.group)
 			this.handleItems(data)
 			setTimeout(() => this.$refs.tree.tree.setModel(this.list), 0)
 			this.hideColumn(data)
@@ -98,6 +110,27 @@ export default {
 			let col = this.headers.filter(item => item.text === e.text)[0]
 			col.active = false
 			// console.log(col)
+		},
+		uniqList (data, arr) {
+			let child = []
+			let childs = []
+			this.items.forEach(function (item) {
+				let node = {}
+				node.text = item[data.name]
+				child.push(node)
+			})
+			let uniqChild = [ ...new Set(child.map(x => x.text)) ]
+			let that = this
+			uniqChild.forEach(function (item) {
+				let node = {}
+				node.text = item
+				node.data = {}
+				let num = that.items.filter(e => e[data.name] === item).length
+				node.data.number = num
+				childs.push(node)
+			})
+			arr.push(...childs)
+			return arr
 		},
 		handleItems (data) {
 			if (this.group.length === 1) {
@@ -116,7 +149,19 @@ export default {
 		},
 		toggleGrouping () {
 			this.grouping = !this.grouping
+		},
+		newGroup (e) {
+			this.group = e
+			this.list.map(item => { item.children = [] })
+			this.list2.map(item => { item.children = this.list })
+			this.$refs.tree.tree.setModel(this.list2)
+		},
+		onNodeSelected (node) {
+			this.filter = node.text
+			console.log(this.filter)
+			console.log(this.list)
 		}
+
 	},
 	components: {
 		SlickList,
@@ -149,14 +194,15 @@ export default {
 	color: #999;
 	text-align: center;
 }
-.stick {
-	background: #eee;
-}
-.stick.stickto-auto-generated-sticker {
-	width: 100%;
-	box-shadow: 0 4px 5px #33333355;
-	border-bottom: 1px solid #fff;
-}
+/* .stick { */
+/* 	/\* background: #eee; *\/ */
+/* } */
+/* .stick.stickto-auto-generated-sticker { */
+/* 	background: $yellow; */
+/* 	width: 100%; */
+/* 	box-shadow: 0 4px 5px #33333355; */
+/* 	border-bottom: 1px solid #fff; */
+/* } */
 
 .group {
 	margin-top: .6rem;
@@ -179,17 +225,10 @@ export default {
 		}
 	}
 }
-.group-top {
-	padding: 1rem;
-	border: 1px dashed $info;
-	&.over {
-		background: #D9F9FF;
-	}
-}
-.drag1 {
-	display: inline;
-	padding: .2rem .5rem;
-}
+/* .drag1 { */
+/* 	display: inline; */
+/* 	padding: .2rem .5rem; */
+/* } */
 .crumbs {
 	display: flex;
 	position: relative;

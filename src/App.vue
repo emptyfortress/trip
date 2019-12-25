@@ -17,10 +17,14 @@ v-app
 	v-content(v-scroll="handleScroll" id="target")
 		v-container(fluid)
 			//- HelloWorld
-			//- ul
-			//- 	li(v-for="n in 50") n
 			//- .test(v-stickto) This is header
 			Grid
+			br
+			br
+			br
+			.second(v-stickto) Это заголовок второго грида
+			ul
+				li(v-for="n in 50") Некоторый текст
 	Footer
 </template>
 
@@ -88,4 +92,16 @@ export default {
 	font-size: 1.2rem;
 	margin-left: -4px;
 }
+.second {
+	font-size: 1.2rem;
+	padding: .5rem;
+}
+.second.stickto-auto-generated-sticker {
+	color: #fff;
+	background: $info;
+	width: 100%;
+	box-shadow: 0 4px 5px #33333355;
+	border-bottom: 1px solid #fff;
+}
+
 </style>

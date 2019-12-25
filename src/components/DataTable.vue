@@ -43,13 +43,6 @@ export default {
 		}
 	},
 	methods: {
-		// setClass (e) {
-		// 	if (e.expanded === true) {
-		// 		return 'wide'
-		// 	} else if (e.item.unread) {
-		// 		return 'unread'
-		// 	}
-		// }
 	},
 	components: {
 		SlickList,
@@ -66,13 +59,14 @@ export default {
 	background: #eee;
 }
 .stick.stickto-auto-generated-sticker {
+	background: $yellow;
 	width: 100%;
 	box-shadow: 0 4px 5px #33333355;
 	border-bottom: 1px solid #fff;
 }
 
 .drag1 {
-	/* display: inline; */
+	display: inline;
 	padding: .2rem .5rem;
 }
 .drag {
