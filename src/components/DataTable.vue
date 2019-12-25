@@ -13,7 +13,7 @@ div
 			tbody
 				tr(v-for="item in items" :class="item.unread ? 'unread' : ''")
 					td(@click="item.unread = !item.unread").px-0.drag.zero
-					td(v-for="header in headers" :key="header.value" v-if="header.active")
+					td(v-for="header in headers" :key="header.value" v-if="header.active" :class="header.class" )
 						span {{ item[header.value] }}
 
 </template>

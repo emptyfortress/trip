@@ -2,7 +2,7 @@
 .grid
 	br
 	br
-	.zag Прототип грида
+	.zag(@click="pr") Прототип грида
 	v-slide-y-transition(mode="out-in")
 		drop(@dragover="over = true" @dragleave="over = false" @drop="handleGroup" v-if="grouping" class="group-top" :class="{ over }")
 			.inf(v-if="len === 0") Перетащите сюда заголовок колонки для группировки
@@ -20,14 +20,14 @@
 					h3(@click="removeFilter") Группы
 						span {{par}}
 					tree(ref="tree" :data="list" :options="treeOptions" @node:selected="onNodeSelected").tree-group
-					tree(ref="tree" :data="list" :options="treeOptions").tree-group
+					//- tree(ref="tree" :data="list" :options="treeOptions").tree-group
 						span(slot-scope="{node}").treenode
 							span.text {{ node.text }}
 							span.num {{ node.data.number }}
 		v-flex(:class="group.length ? 'xs10' : 'xs12'").tabl
 			.canva
 				v-slide-y-transition(mode="out-in")
-					DataTable(:filter="filter")
+					DataTable(:filter="filter" v-if="renderComponent")
 
 </template>
 
@@ -50,6 +50,7 @@ export default {
 			over: false,
 			per: 30,
 			grouping: true,
+			renderComponent: true,
 			treeOptions: {
 				checkbox: false,
 				parentSelect: true,
@@ -74,6 +75,9 @@ export default {
 		}
 	},
 	methods: {
+		pr () {
+			console.log(this.list)
+		},
 		removeFilter () {
 			this.filter = ''
 			let selection = this.$refs.tree.find({
@@ -82,57 +86,16 @@ export default {
 			selection.unselect()
 		},
 		handleGroup (data) {
+			console.log(data)
 			let obj = {}
 			obj.text = data.text
 			obj.children = []
 			this.group.push(obj)
 			console.log(this.group)
 			this.handleItems(data)
-			setTimeout(() => this.$refs.tree.tree.setModel(this.list), 0)
+			setTimeout(() => this.$refs.tree.tree.setModel(this.list), 200)
 			this.hideColumn(data)
 			this.over = false
-		},
-		reset () {
-			const myheaders = [
-				{ value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
-				{ value: 'executor', width: '400', active: true, sortable: true, align: 'start', text: 'Исполнитель' },
-				{ value: 'author', width: '160', active: true, sortable: true, align: 'start', text: 'Автор' },
-				{ value: 'deadline', width: '150', active: true, sortable: true, align: 'start', text: 'Срок' },
-				{ value: 'created', width: '150', active: true, sortable: true, align: 'start', text: 'Дата' },
-				{ value: 'files', width: '90', active: true, sortable: true, align: 'end', text: 'Файлы' },
-				{ value: 'status', width: '130', active: true, sortable: true, align: 'start', text: 'Статус' }
-			]
-			this.group = []
-			this.list = []
-			this.list2 = []
-			this.filter = ''
-			this.$store.commit('setHeaders', myheaders)
-		},
-		hideColumn (e) {
-			let col = this.headers.filter(item => item.text === e.text)[0]
-			col.active = false
-			// console.log(col)
-		},
-		uniqList (data, arr) {
-			let child = []
-			let childs = []
-			this.items.forEach(function (item) {
-				let node = {}
-				node.text = item[data.name]
-				child.push(node)
-			})
-			let uniqChild = [ ...new Set(child.map(x => x.text)) ]
-			let that = this
-			uniqChild.forEach(function (item) {
-				let node = {}
-				node.text = item
-				node.data = {}
-				let num = that.items.filter(e => e[data.name] === item).length
-				node.data.number = num
-				childs.push(node)
-			})
-			arr.push(...childs)
-			return arr
 		},
 		handleItems (data) {
 			if (this.group.length === 1) {
@@ -148,6 +111,52 @@ export default {
 				this.list[0].state.expanded = true
 				this.$refs.tree.tree.setModel(this.list)
 			}
+		},
+		reset () {
+			const myheaders = [
+				{ class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
+				{ class: 'text-no-wrap', value: 'executor', width: '400', active: true, sortable: true, align: 'start', text: 'Исполнитель' },
+				{ class: '', value: 'author', width: '160', active: true, sortable: true, align: 'start', text: 'Автор' },
+				{ class: 'text-no-wrap', value: 'deadline', width: '150', active: true, sortable: true, align: 'start', text: 'Срок' },
+				{ class: 'text-no-wrap', value: 'created', width: '150', active: true, sortable: true, align: 'start', text: 'Дата' },
+				{ class: 'text-right', value: 'files', width: '90', active: true, sortable: true, align: 'end', text: 'Файлы' },
+				{ class: 'text-no-wrap', value: 'status', width: '130', active: true, sortable: true, align: 'start', text: 'Статус' }
+			]
+			this.group = []
+			this.list = []
+			this.list2 = []
+			this.filter = ''
+			this.$store.commit('setHeaders', myheaders)
+			this.renderComponent = false
+			this.$nextTick(() => {
+				this.renderComponent = true
+			})
+		},
+		hideColumn (e) {
+			let col = this.headers.filter(item => item.text === e.text)[0]
+			col.active = false
+			// console.log(col)
+		},
+		uniqList (data, arr) {
+			let child = []
+			let childs = []
+			this.items.forEach(function (item) {
+				let node = {}
+				node.text = item[data.value]
+				child.push(node)
+			})
+			let uniqChild = [ ...new Set(child.map(x => x.text)) ]
+			let that = this
+			uniqChild.forEach(function (item) {
+				let node = {}
+				node.text = item
+				node.data = {}
+				let num = that.items.filter(e => e[data.name] === item).length
+				node.data.number = num
+				childs.push(node)
+			})
+			arr.push(...childs)
+			return arr
 		},
 		toggleGrouping () {
 			this.grouping = !this.grouping
