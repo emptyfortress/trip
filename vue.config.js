@@ -1,6 +1,6 @@
 module.exports = {
 	publicPath: process.env.NODE_ENV === 'production'
-		? '/amba/'
+		? '/trip/'
 		: '/',
 	chainWebpack: config => {
 		config.module.rule('eslint').use('eslint-loader').options({

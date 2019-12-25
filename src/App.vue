@@ -7,6 +7,10 @@ v-app
 			v-img( alt="Vuetify Logo" src="@/assets/img/logo-w.svg" transition="scale-transition" width="150" v-show="logo")
 		v-spacer
 		v-btn( href="" icon  v-show="offsetTop")
+			i.icon-search-scan
+		v-btn( href="" icon  v-show="offsetTop")
+			i.icon-search
+		v-btn( href="" icon  v-show="offsetTop")
 			i.icon-user
 		v-btn( href="" icon  v-show="offsetTop")
 			v-icon mdi-help-circle-outline
@@ -80,7 +84,7 @@ export default {
 		max-width: 82px;
 	}
 }
-.icon-user {
+.icon-user, .icon-search, .icon-search-scan {
 	font-size: 1.2rem;
 	margin-left: -4px;
 }

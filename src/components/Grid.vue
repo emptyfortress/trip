@@ -97,7 +97,7 @@ export default {
 		hideColumn (e) {
 			let col = this.headers.filter(item => item.text === e.text)[0]
 			col.active = false
-			console.log(col)
+			// console.log(col)
 		},
 		handleItems (data) {
 			if (this.group.length === 1) {
@@ -109,7 +109,7 @@ export default {
 					item.state = {}
 					// item.state.expanded = true
 				})
-				console.log(this.list)
+				// console.log(this.list)
 				this.list[0].state.expanded = true
 				this.$refs.tree.tree.setModel(this.list)
 			}
