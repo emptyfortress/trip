@@ -85,7 +85,7 @@ export default {
 .v-toolbar.v-toolbar--collapsed {
 	max-width: 260px;
 	&.sm {
-		max-width: 82px;
+		max-width: 48px;
 	}
 }
 .icon-user, .icon-search, .icon-search-scan {
@@ -95,6 +95,7 @@ export default {
 .second {
 	font-size: 1.2rem;
 	padding: .5rem;
+	background: #ccc;
 }
 .second.stickto-auto-generated-sticker {
 	color: #fff;
@@ -103,5 +104,7 @@ export default {
 	box-shadow: 0 4px 5px #33333355;
 	border-bottom: 1px solid #fff;
 }
-
+.leftmargin {
+	margin-left: 40px;
+}
 </style>

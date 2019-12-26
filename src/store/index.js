@@ -14,16 +14,19 @@ export default new Vuex.Store({
 			{ class: 'text-no-wrap', value: 'created', width: '150', active: true, sortable: true, align: 'start', text: 'Дата' },
 			{ class: 'text-right', value: 'files', width: '90', active: true, sortable: true, align: 'end', text: 'Файлы' },
 			{ class: 'text-no-wrap', value: 'status', width: '130', active: true, sortable: true, align: 'start', text: 'Статус' }
-		]
+		],
+		mini: false
 	},
 	getters: {
 		drawer: state => { return state.drawer },
-		headers: state => { return state.headers }
+		headers: state => { return state.headers },
+		mini: state => { return state.mini }
 	},
 	mutations: {
 		toggleDrawer (state) { state.drawer = !state.drawer },
 		offDrawer (state) { state.drawer = false },
-		setHeaders (state, payload) { state.headers = payload }
+		setHeaders (state, payload) { state.headers = payload },
+		setMini (state, payload) { state.mini = payload }
 	},
 	actions: {},
 	modules: {}
