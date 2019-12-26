@@ -270,4 +270,7 @@ export default {
 .tabl {
 	transition: all .3s ease;
 }
+.tree-node.selected {
+	background: $yellow !important;
+}
 </style>

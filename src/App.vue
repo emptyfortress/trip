@@ -1,7 +1,7 @@
 <template lang="pug">
 v-app
 	Drawer
-	v-app-bar(app collapse-on-scroll dark :color="color" clipped-left :class="drawer ? '' : 'sm'")
+	v-app-bar(app collapse-on-scroll dark :color="color" clipped-left :class="calcWidth()")
 		v-app-bar-nav-icon(@click.stop="toggle")
 		.d-flex.lft
 			v-img( alt="Vuetify Logo" src="@/assets/img/logo-w.svg" transition="scale-transition" width="150" v-show="logo")
@@ -15,9 +15,7 @@ v-app
 		v-btn( href="" icon  v-show="offsetTop")
 			v-icon mdi-help-circle-outline
 	v-content(v-scroll="handleScroll" id="target")
-		v-container(fluid)
-			//- HelloWorld
-			//- .test(v-stickto) This is header
+		v-container(fluid :class="drawer ? '' : 'leftmargin'")
 			Grid
 			br
 			br
@@ -49,14 +47,26 @@ export default {
 		//
 	}),
 	computed: {
-		drawer () { return this.$store.getters.drawer }
+		drawer () { return this.$store.getters.drawer },
+		mini () { return this.$store.getters.mini }
 	},
 	methods: {
+		calcWidth () {
+			let po = window.pageYOffset
+			if (this.drawer && !this.mini && po > 0) {
+				return 'drawer'
+			} else if (this.drawer && this.mini && po > 0) {
+				return 'mid'
+			} else return 'sm'
+		},
 		toggle () {
 			this.$store.commit('toggleDrawer')
 		},
 		handleScroll () {
 			if (window.pageYOffset > 0 && !this.drawer) {
+				this.offsetTop = false
+				this.logo = false
+			} else if (window.pageYOffset > 0 && !this.drawer && !this.mini) {
 				this.offsetTop = false
 				this.logo = false
 			} else if (window.pageYOffset > 0 && this.drawer) {
@@ -86,6 +96,9 @@ export default {
 	max-width: 260px;
 	&.sm {
 		max-width: 48px;
+	}
+	&.mid {
+		max-width: 82px;
 	}
 }
 .icon-user, .icon-search, .icon-search-scan {

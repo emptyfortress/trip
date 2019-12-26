@@ -1,7 +1,7 @@
 <template lang="pug">
 v-navigation-drawer(v-model="drawer" clipped app :mini-variant.sync="mini" dark :color="color" )
 	v-list
-		v-list-item( v-for="(item, i) in menu" :key="i" link @click.stop = "toggleMini")
+		v-list-item( v-for="(item, i) in menu" :key="i" link )
 			v-list-item-icon
 				v-icon {{ item.icon }}
 			v-list-item-content

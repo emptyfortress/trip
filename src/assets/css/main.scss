@@ -1,1 +1,25 @@
 @import '@/assets/css/colors';
+
+// tree styles **************************************** 
+.tree-highlights .tree-node.matched > .tree-content {
+  background: $yellow;
+}
+.tree-highlights .tree-node.selected > .tree-content {
+  background-color: #C2C6CC;
+}
+
+.tree > .tree-filter-empty {
+	margin: 1rem;
+	font-size: 1.1rem;
+	padding: .5rem 2rem;
+	border: 3px double #333;
+}
+
+// tree grouping styles * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+.tree-group .tree-node.selected > .tree-content {
+  background-color: $yellow;
+}
+.tree-group .tree-children .tree-node a {
+	// background: red;
+	margin-left: -30px !important;
+}
