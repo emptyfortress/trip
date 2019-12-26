@@ -12,6 +12,10 @@ div
 							span {{ header.text }}
 		template(v-slot:body="{ items }")
 			tbody
+				tr.grey
+					td.zero
+					td(v-show="selectMode")
+					td(v-for="header in headers" :key="header.value" v-if="header.active" :class="header.class") one
 				tr(v-for="item in items" :class="item.unread ? 'unread' : ''")
 					td(@click="item.unread = !item.unread").px-0.drag.zero
 					td(v-show="selectMode")
