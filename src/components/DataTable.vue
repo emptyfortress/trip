@@ -97,11 +97,11 @@ export default {
 	padding: .2rem .5rem;
 }
 .drag {
-	border-left: 8px solid transparent;
+	border-left: 9px solid transparent;
+	background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAIUlEQVQYV2Ns2vj/f50/IyMDAwMDmPj///9/RhAAcWAAAN0pCAS0Z2yqAAAAAElFTkSuQmCC) repeat;
 }
 .v-data-table td.zero, .v-data-table th.zero {
 	padding: 0;
-	/* width: 20px; */
 }
 .unread {
 	td {
@@ -109,7 +109,7 @@ export default {
 		color: darken($accent, 30%);
 		.v-btn .v-btn__content .v-icon { color: darken($accent, 30%); }
 		&.drag {
-			border-left: 8px solid darken($accent, 30%);
+			border-left: 9px solid darken($accent, 30%);
 		}
 	}
 }
