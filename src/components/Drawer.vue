@@ -6,25 +6,26 @@ v-navigation-drawer(v-model="drawer" clipped app :mini-variant.sync="mini" dark 
 				v-icon {{ item.icon }}
 			v-list-item-content
 				v-list-item-title {{ item.text }}
-	.mini
-		svg-transition(size="100")
-			Icon1(slot="initial")
-			Icon2
-
+	.mini(@click="toggleMini")
+		svg-transition(ref="transition" :size="size"  trigger="click")
+			svg(slot="initial")
+				use(href="#mini")
+			svg
+				use(href="#mini1")
+	icons
 </template>
 
 <script>
-import Vue from 'vue'
-import SvgTransition from 'vue-svg-transition'
-import Icon1 from '@/assets/img/mini.svg'
-import Icon2 from '@/assets/img/mini1.svg'
-
-Vue.use(SvgTransition)
+import icons from '@/components/svg.vue'
 
 export default {
 	data () {
 		return {
 			color: '#2C4159',
+			size: {
+				width: 50,
+				height: 24
+			},
 			menu: [
 				{ icon: 'mdi-home-roof', text: 'Главная' },
 				{ icon: 'mdi-inbox-arrow-down-outline', text: 'Входящие' },
@@ -52,8 +53,7 @@ export default {
 		mini () { return this.$store.getters.mini }
 	},
 	components: {
-		Icon1,
-		Icon2
+		icons
 	}
 }
 
@@ -65,5 +65,11 @@ export default {
 .theme--dark.v-list {
 	background: transparent;
 
+}
+.mini {
+	position: absolute;
+	bottom: 1rem;
+	left: 1rem;
+	cursor: pointer;
 }
 </style>

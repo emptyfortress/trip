@@ -35,6 +35,8 @@
 import { SlickList, SlickItem } from 'vue-slicksort'
 import data from '@/data.js'
 import DataTable from '@/components/DataTable'
+// import Icon from '@/assets/img/mini.svg'
+// import Icon1 from '@/assets/img/mini1.svg'
 
 export default {
 	data () {
@@ -178,6 +180,8 @@ export default {
 		SlickList,
 		SlickItem,
 		DataTable
+		// Icon,
+		// Icon1
 	}
 }
 
