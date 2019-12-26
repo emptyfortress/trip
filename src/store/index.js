@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		drawer: true,
+		drawer: false,
 		headers: [
 			{ class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
 			{ class: 'text-no-wrap', value: 'executor', width: '400', active: true, sortable: true, align: 'start', text: 'Исполнитель' },
