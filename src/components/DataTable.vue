@@ -5,7 +5,7 @@ div
 			thead(@contextmenu.prevent="$refs.ctxMenu.open")
 				tr(v-stickto).stick
 					th.zero
-					th
+					th(v-show="selectMode")
 						v-checkbox(v-model="selectAll" primary hide-details @click.native="toggleAll" :indeterminate="check").checkhd
 					th(v-for="header in headers" v-if="header.active" )
 						drag(:transfer-data="header").drag1
@@ -14,18 +14,30 @@ div
 			tbody
 				tr(v-for="item in items" :class="item.unread ? 'unread' : ''")
 					td(@click="item.unread = !item.unread").px-0.drag.zero
-					td
+					td(v-show="selectMode")
 						v-checkbox(v-model="item.selected" :value="item.selected" :id="item.id.toString()" @click.prevent="item.selected = !item.selected" @click="doNothing")
 					td(v-for="header in headers" :key="header.value" v-if="header.active" :class="header.class" )
 						span {{ item[header.value] }}
 
 	context-menu(ref="ctxMenu")
-		h3 this is test
-		li option
-		li option
-		li option
-		li option
-		li option
+		li
+			i.icon-refresh
+			span Обновить
+		li(@click="toggleSelect")
+			i.icon-check
+			span Выбрать
+		li
+			i.icon-filter
+			span Фильтры
+		li(@click="toggleGroup")
+			i.icon-multi
+			span Группы
+		li
+			i.icon-adjust
+			span Настройки
+		li
+			i.icon-empty
+			span Reset
 
 </template>
 
@@ -39,13 +51,15 @@ export default {
 		return {
 			selectAll: false,
 			items: data,
-			selectMode: true,
+			selectMode: false,
 			group: [],
-			per: 30,
-			grouping: true
+			per: 30
 		}
 	},
 	computed: {
+		grouping () {
+			return this.$store.getters.grouping
+		},
 		headers () {
 			return this.$store.getters.headers
 		},
@@ -61,6 +75,12 @@ export default {
 	methods: {
 		doNothing (evt) {
 			evt.stopPropagation()
+		},
+		toggleSelect () {
+			this.selectMode = !this.selectMode
+		},
+		toggleGroup () {
+			this.$store.commit('toggleGrouping')
 		},
 		toggleAll () {
 			if (this.selectAll) {

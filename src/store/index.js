@@ -15,15 +15,18 @@ export default new Vuex.Store({
 			{ class: 'text-right', value: 'files', width: '90', active: true, sortable: true, align: 'end', text: 'Файлы' },
 			{ class: 'text-no-wrap', value: 'status', width: '130', active: true, sortable: true, align: 'start', text: 'Статус' }
 		],
-		mini: false
+		mini: false,
+		grouping: false
 	},
 	getters: {
 		drawer: state => { return state.drawer },
 		headers: state => { return state.headers },
-		mini: state => { return state.mini }
+		mini: state => { return state.mini },
+		grouping: state => { return state.grouping }
 	},
 	mutations: {
 		toggleDrawer (state) { state.drawer = !state.drawer },
+		toggleGrouping (state) { state.grouping = !state.grouping },
 		offDrawer (state) { state.drawer = false },
 		setHeaders (state, payload) { state.headers = payload },
 		setMini (state, payload) { state.mini = payload }

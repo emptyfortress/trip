@@ -4,7 +4,7 @@
 	br
 	.zag(@click="pr") Прототип грида
 	v-slide-y-transition(mode="out-in")
-		drop(@dragover="over = true" @dragleave="over = false" @drop="handleGroup" v-if="grouping" class="group-top" :class="{ over }")
+		drop(@dragover="over = true" @dragleave="over = false" @drop="handleGroup" v-show="grouping" class="group-top" :class="{ over }")
 			.inf(v-if="len === 0") Перетащите сюда заголовок колонки для группировки
 			//- SlickList( :value="group" axis="x" @input="newGroup"  v-else).crumbs
 			SlickList( :value="group" axis="x"  v-else).crumbs
@@ -20,7 +20,6 @@
 					h3(@click="removeFilter") Группы
 						span {{par}}
 					tree(ref="tree" :data="list" :options="treeOptions" @node:selected="onNodeSelected").tree-group
-					//- tree(ref="tree" :data="list" :options="treeOptions").tree-group
 						span(slot-scope="{node}").treenode
 							span.text {{ node.text }}
 							span.num {{ node.data.number }}
@@ -35,8 +34,6 @@
 import { SlickList, SlickItem } from 'vue-slicksort'
 import data from '@/data.js'
 import DataTable from '@/components/DataTable'
-// import Icon from '@/assets/img/mini.svg'
-// import Icon1 from '@/assets/img/mini1.svg'
 
 export default {
 	data () {
@@ -51,7 +48,6 @@ export default {
 			list2: [],
 			over: false,
 			per: 30,
-			grouping: true,
 			renderComponent: true,
 			treeOptions: {
 				checkbox: false,
@@ -66,6 +62,9 @@ export default {
 		}
 	},
 	computed: {
+		grouping () {
+			return this.$store.getters.grouping
+		},
 		len () {
 			return this.group.length
 		},
@@ -191,10 +190,12 @@ export default {
 @import '@/assets/css/colors.scss';
 
 .group-top {
+	width: 100%;
 	display: block;
 	padding: 1rem;
 	border: 1px dashed $info;
 	margin-bottom: 1rem;
+	/* margin-right: 1rem; */
 	&.over {
 		background: #D9F9FF;
 	}
@@ -209,15 +210,6 @@ export default {
 	color: #999;
 	text-align: center;
 }
-/* .stick { */
-/* 	/\* background: #eee; *\/ */
-/* } */
-/* .stick.stickto-auto-generated-sticker { */
-/* 	background: $yellow; */
-/* 	width: 100%; */
-/* 	box-shadow: 0 4px 5px #33333355; */
-/* 	border-bottom: 1px solid #fff; */
-/* } */
 
 .group {
 	margin-top: .6rem;
@@ -240,10 +232,6 @@ export default {
 		}
 	}
 }
-/* .drag1 { */
-/* 	display: inline; */
-/* 	padding: .2rem .5rem; */
-/* } */
 .crumbs {
 	display: flex;
 	position: relative;

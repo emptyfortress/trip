@@ -25,9 +25,17 @@
 }
 
 // context menu ****************************************
-.ctx-menu {
-	// border: none;
-	background: $dark;
-	color: white;
-	// padding: 2rem;
+.v-application ul.ctx-menu {
+	padding-left: 0;
+	li {
+		padding: .3rem 1rem;
+		cursor: pointer;
+		&:hover {
+			background: #eee;
+		}
+		i {
+			font-size: 1.2rem;
+			margin-right: .5rem;
+		}
+	}
 }
