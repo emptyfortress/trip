@@ -27,15 +27,29 @@
 // context menu ****************************************
 .v-application ul.ctx-menu {
 	padding-left: 0;
+	width: 180px;
 	li {
 		padding: .3rem 1rem;
 		cursor: pointer;
 		&:hover {
 			background: #eee;
 		}
+		&:last-child {
+			border-top: 1px dotted #666;
+		}
 		i {
 			font-size: 1.2rem;
 			margin-right: .5rem;
+			&.next {
+				// font-size: 1.0rem;
+				float: right;
+				margin-right: -.5rem;
+			}
 		}
 	}
 }
+
+.shad .v-text-field.v-text-field--solo .v-input__control {
+	min-height: 0;
+}
+

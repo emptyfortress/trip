@@ -15,7 +15,7 @@
 
 	.d-flex
 		v-slide-x-transition(mode="out-in")
-			v-flex(xs2 v-if="group.length")
+			v-flex(xs2 v-show="group.length && grouping")
 				.group
 					h3(@click="removeFilter") Группы
 						span {{par}}

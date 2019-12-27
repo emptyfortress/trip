@@ -119,5 +119,8 @@ export default {
 }
 .leftmargin {
 	margin-left: 40px;
+	div {
+		margin-right: 40px;
+	}
 }
 </style>

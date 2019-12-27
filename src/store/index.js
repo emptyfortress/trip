@@ -16,7 +16,7 @@ export default new Vuex.Store({
 			{ class: 'text-no-wrap', value: 'status', width: '130', active: true, sortable: true, align: 'start', text: 'Статус' }
 		],
 		mini: false,
-		grouping: false
+		grouping: true
 	},
 	getters: {
 		drawer: state => { return state.drawer },
@@ -27,6 +27,7 @@ export default new Vuex.Store({
 	mutations: {
 		toggleDrawer (state) { state.drawer = !state.drawer },
 		toggleGrouping (state) { state.grouping = !state.grouping },
+		setGrouping (state, payload) { state.grouping = payload },
 		offDrawer (state) { state.drawer = false },
 		setHeaders (state, payload) { state.headers = payload },
 		setMini (state, payload) { state.mini = payload }

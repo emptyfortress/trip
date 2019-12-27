@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-	v-data-table(:headers="headers" :items="items" hide-default-header  hide-default-footer :items-per-page="per" :show-select="selectMode" item-key="id").tab
+	v-data-table(:headers="headers" :items="items" :search="search" hide-default-header  hide-default-footer :items-per-page="per" :show-select="selectMode" item-key="id").tab
 		template(v-slot:header="{ props: {headers}}")
 			thead(@contextmenu.prevent="$refs.ctxMenu.open")
 				tr(v-stickto).stick
@@ -12,36 +12,42 @@ div
 							span {{ header.text }}
 		template(v-slot:body="{ items }")
 			tbody
-				tr.grey
+				tr(v-show="filters").filter
 					td.zero
 					td(v-show="selectMode")
-					td(v-for="header in headers" :key="header.value" v-if="header.active" :class="header.class") one
+					td(v-for="header in headers" :key="header.value" v-if="header.active" ).shad
+						v-text-field(v-model="filter" placeholder="Фильтр" solo hide-details)
 				tr(v-for="item in items" :class="item.unread ? 'unread' : ''")
 					td(@click="item.unread = !item.unread").px-0.drag.zero
 					td(v-show="selectMode")
 						v-checkbox(v-model="item.selected" :value="item.selected" :id="item.id.toString()" @click.prevent="item.selected = !item.selected" @click="doNothing")
 					td(v-for="header in headers" :key="header.value" v-if="header.active" :class="header.class" )
 						span {{ item[header.value] }}
+		//- template(v-slot:footer v-if="items.length === 0")
+		//- 	v-alert(type="warning")
+		//- 		span Сорян, ничего подходящего не нашел :(
 
 	context-menu(ref="ctxMenu")
 		li
 			i.icon-refresh
 			span Обновить
+		li(@click="reset")
+			i.icon-empty
+			span Reset
 		li(@click="toggleSelect")
-			i.icon-check
+			i.icon-select
 			span Выбрать
-		li
+		li(@click="toggleFilters")
 			i.icon-filter
 			span Фильтры
 		li(@click="toggleGroup")
 			i.icon-multi
 			span Группы
+		//- hr
 		li
 			i.icon-adjust
 			span Настройки
-		li
-			i.icon-empty
-			span Reset
+			i.icon-next.next
 
 </template>
 
@@ -51,12 +57,14 @@ import { SlickList, SlickItem } from 'vue-slicksort'
 import contextMenu from 'vue-context-menu'
 
 export default {
+	props: [ 'filter' ],
 	data () {
 		return {
 			selectAll: false,
 			items: data,
 			selectMode: false,
 			group: [],
+			filters: false,
 			per: 30
 		}
 	},
@@ -66,6 +74,9 @@ export default {
 		},
 		headers () {
 			return this.$store.getters.headers
+		},
+		search () {
+			return this.filter
 		},
 		selectedItems () {
 			return this.items.filter(item => item.selected)
@@ -80,8 +91,19 @@ export default {
 		doNothing (evt) {
 			evt.stopPropagation()
 		},
+		reset () {
+			this.selectAll = false
+			this.selectMode = false
+			this.filters = false
+			this.group = []
+			this.$store.commit('setGrouping', false)
+			this.$store.commit('setHeaders', this.headers)
+		},
 		toggleSelect () {
 			this.selectMode = !this.selectMode
+		},
+		toggleFilters () {
+			this.filters = !this.filters
 		},
 		toggleGroup () {
 			this.$store.commit('toggleGrouping')
@@ -139,5 +161,9 @@ export default {
 }
 .checkhd {
 	margin-top: -.3rem;
+}
+.filter td.shad {
+	border: 1px solid #fff;
+	padding: 0 .3rem;
 }
 </style>
