@@ -24,6 +24,7 @@ v-app
 			ul
 				li(v-for="n in 50") Некоторый текст
 	Footer
+	Dialog
 </template>
 
 <script>
@@ -31,6 +32,7 @@ import HelloWorld from './components/HelloWorld'
 import Drawer from './components/Drawer'
 import Footer from './components/Footer'
 import Grid from './components/Grid'
+import Dialog from './components/Dialog'
 
 export default {
 	name: 'App',
@@ -38,7 +40,8 @@ export default {
 		HelloWorld,
 		Drawer,
 		Grid,
-		Footer
+		Footer,
+		Dialog
 	},
 	data: () => ({
 		color: '#2C4159',

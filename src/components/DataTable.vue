@@ -23,9 +23,9 @@ div
 						v-checkbox(v-model="item.selected" :value="item.selected" :id="item.id.toString()" @click.prevent="item.selected = !item.selected" @click="doNothing")
 					td(v-for="header in headers" :key="header.value" v-if="header.active" :class="header.class" )
 						span {{ item[header.value] }}
-		//- template(v-slot:footer v-if="items.length === 0")
-		//- 	v-alert(type="warning")
-		//- 		span Сорян, ничего подходящего не нашел :(
+		template(v-slot:no-data)
+			v-alert(type="warning")
+				span Сорян, ничего подходящего не нашел :(
 
 	context-menu(ref="ctxMenu")
 		li
@@ -44,7 +44,7 @@ div
 			i.icon-multi
 			span Группы
 		//- hr
-		li
+		li(@click="toggleDialog")
 			i.icon-adjust
 			span Настройки
 			i.icon-next.next
@@ -88,6 +88,9 @@ export default {
 		}
 	},
 	methods: {
+		toggleDialog () {
+			this.$store.commit('toggleDialog')
+		},
 		doNothing (evt) {
 			evt.stopPropagation()
 		},

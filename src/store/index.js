@@ -16,17 +16,20 @@ export default new Vuex.Store({
 			{ class: 'text-no-wrap', value: 'status', width: '130', active: true, sortable: true, align: 'start', text: 'Статус' }
 		],
 		mini: false,
-		grouping: true
+		grouping: false,
+		dialog: true
 	},
 	getters: {
 		drawer: state => { return state.drawer },
 		headers: state => { return state.headers },
 		mini: state => { return state.mini },
-		grouping: state => { return state.grouping }
+		grouping: state => { return state.grouping },
+		dialog: state => { return state.dialog }
 	},
 	mutations: {
 		toggleDrawer (state) { state.drawer = !state.drawer },
 		toggleGrouping (state) { state.grouping = !state.grouping },
+		toggleDialog (state) { state.dialog = !state.dialog },
 		setGrouping (state, payload) { state.grouping = payload },
 		offDrawer (state) { state.drawer = false },
 		setHeaders (state, payload) { state.headers = payload },
