@@ -17,11 +17,11 @@ div
 					td(v-show="selectMode")
 					td(v-for="header in headers" :key="header.value" v-if="header.active" ).shad
 						v-text-field(v-model="filter" placeholder="Фильтр" solo hide-details)
-				tr(v-for="item in items" :class="item.unread ? 'unread' : ''")
+				tr(v-for="item in items" :class="item.unread ? 'unread' : ''").sortableRow
 					td(@click="item.unread = !item.unread").px-0.drag.zero
 					td(v-show="selectMode")
-						v-checkbox(v-model="item.selected" :value="item.selected" :id="item.id.toString()" @click.prevent="item.selected = !item.selected" @click="doNothing")
-					td(v-for="header in headers" :key="header.value" v-if="header.active" :class="header.class" )
+						v-checkbox(v-model="item.selected" :value="item.selected" :id="item.id.toString()" @click.prevent="item.selected = !item.selected" @click="doNothing").sm
+					td(v-for="header in headers" :key="header.value" v-if="header.active" :class="header.class" @click="clickRow(props, $event)" )
 						span {{ item[header.value] }}
 		template(v-slot:no-data)
 			v-alert(type="warning")
@@ -48,6 +48,10 @@ div
 			i.icon-adjust
 			span Настройки
 			i.icon-next.next
+		li(@click="toggleGroup")
+			i.icon-excel
+			i.icon-next.next
+			span Экспорт в .xsl
 
 </template>
 
@@ -117,6 +121,16 @@ export default {
 			} else {
 				return this.items.map(item => { item.selected = false })
 			}
+		},
+		clickRow (e, i) {
+			if (i.shiftKey && !this.selectMode) {
+				this.selectMode = true
+				e.selected = true
+			} else if (i.shiftKey && this.selectMode) {
+				this.selectMode = false
+			} else {
+				e.item.unread = false
+			}
 		}
 	},
 	components: {
@@ -168,5 +182,12 @@ export default {
 .filter td.shad {
 	border: 1px solid #fff;
 	padding: 0 .3rem;
+}
+.v-input.sm {
+	margin-top: 0;
+	padding-top: .6rem;
+}
+.sortableRow {
+	user-select: none;
 }
 </style>

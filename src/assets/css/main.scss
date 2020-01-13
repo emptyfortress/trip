@@ -27,14 +27,14 @@
 // context menu ****************************************
 .v-application ul.ctx-menu {
 	padding-left: 0;
-	width: 180px;
+	width: 195px;
 	li {
 		padding: .3rem 1rem;
 		cursor: pointer;
 		&:hover {
 			background: #eee;
 		}
-		&:last-child {
+		&:nth-last-child(2) {
 			border-top: 1px dotted #666;
 		}
 		i {
@@ -61,3 +61,4 @@
 .sm.v-input--selection-controls:not(.v-input--hide-details) .v-input__slot {
 	margin-bottom: 0;
 }
+

@@ -23,7 +23,7 @@ div
 								v-radio( label="Постраничный просмотр" )
 							br
 							h3.mb-4 Строки:
-							v-radio-group( v-model="radioGroup" )
+							v-radio-group( v-model="radioGroup1" )
 								v-radio( label="Обрезаются" )
 								v-radio( label="Переносятся" )
 			v-card-actions
@@ -40,7 +40,8 @@ import { SlickList, SlickItem } from 'vue-slicksort'
 export default {
 	data () {
 		return {
-			radioGroup: 0
+			radioGroup: 0,
+			radioGroup1: 0
 		}
 	},
 	computed: {

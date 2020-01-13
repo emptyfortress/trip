@@ -2,7 +2,8 @@
 .grid
 	br
 	br
-	.zag(@click="pr") Прототип грида
+	.zag(@click="pr") VIP Premium Deluxe таблица
+	.txt настройки доступны по контекстному меню на заголовок. Shift-click переводит в режим Select
 	v-slide-y-transition(mode="out-in")
 		drop(@dragover="over = true" @dragleave="over = false" @drop="handleGroup" v-show="grouping" class="group-top" :class="{ over }")
 			.inf(v-if="len === 0") Перетащите сюда заголовок колонки для группировки
@@ -194,8 +195,6 @@ export default {
 	display: block;
 	padding: 1rem;
 	border: 1px dashed $info;
-	margin-bottom: 1rem;
-	/* margin-right: 1rem; */
 	&.over {
 		background: #D9F9FF;
 	}
@@ -260,5 +259,9 @@ export default {
 }
 .tree-node.selected {
 	background: $yellow !important;
+}
+.txt {
+	font-size: .8rem;
+	text-align: center;
 }
 </style>
