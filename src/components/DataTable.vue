@@ -66,13 +66,16 @@ export default {
 		return {
 			selectAll: false,
 			items: data,
-			selectMode: false,
+			// selectMode: false,
 			group: [],
 			filters: false,
 			per: 30
 		}
 	},
 	computed: {
+		selectMode () {
+			return this.$store.getters.selectMode
+		},
 		grouping () {
 			return this.$store.getters.grouping
 		},
@@ -100,14 +103,16 @@ export default {
 		},
 		reset () {
 			this.selectAll = false
-			this.selectMode = false
+			this.$store.commit('setSelectMode', false)
+			// this.selectMode = false
 			this.filters = false
 			this.group = []
 			this.$store.commit('setGrouping', false)
 			this.$store.commit('setHeaders', this.headers)
 		},
 		toggleSelect () {
-			this.selectMode = !this.selectMode
+			this.$store.commit('toggleSelectMode')
+			// this.selectMode = !this.selectMode
 		},
 		toggleFilters () {
 			this.filters = !this.filters
@@ -124,10 +129,12 @@ export default {
 		},
 		clickRow (e, i) {
 			if (i.shiftKey && !this.selectMode) {
-				this.selectMode = true
+				this.$store.commit('setSelectMode', true)
+				// this.selectMode = true
 				e.selected = true
 			} else if (i.shiftKey && this.selectMode) {
-				this.selectMode = false
+				this.$store.commit('setSelectMode', false)
+				// this.selectMode = false
 			} else {
 				e.item.unread = false
 			}

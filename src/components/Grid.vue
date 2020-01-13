@@ -5,6 +5,12 @@
 	.zag(@click="pr") VIP Premium Deluxe таблица
 	.txt настройки доступны по контекстному меню на заголовок. Shift-click переводит в режим Select
 	v-slide-y-transition(mode="out-in")
+		.btn-panel(v-show="selectMode")
+			v-btn(flat text).selection
+				i.icon-close
+				span 0
+			.text карточек выбрано
+	v-slide-y-transition(mode="out-in")
 		drop(@dragover="over = true" @dragleave="over = false" @drop="handleGroup" v-show="grouping" class="group-top" :class="{ over }")
 			.inf(v-if="len === 0") Перетащите сюда заголовок колонки для группировки
 			//- SlickList( :value="group" axis="x" @input="newGroup"  v-else).crumbs
@@ -41,7 +47,7 @@ export default {
 		return {
 			items: data,
 			filter: '',
-			selectMode: false,
+			// selectMode: false,
 			columnWidth: 400,
 			total: 0,
 			group: [],
@@ -63,6 +69,9 @@ export default {
 		}
 	},
 	computed: {
+		selectMode () {
+			return this.$store.getters.selectMode
+		},
 		grouping () {
 			return this.$store.getters.grouping
 		},
@@ -263,5 +272,14 @@ export default {
 .txt {
 	font-size: .8rem;
 	text-align: center;
+}
+.btn-panel {
+	margin-top: 1rem;
+	display: flex;
+	align-items: center;
+}
+.selection span {
+	font-size: 1.3rem;
+	margin-left: .6rem;
 }
 </style>

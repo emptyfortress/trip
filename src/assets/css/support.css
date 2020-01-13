@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'support';
-  src: url('../font/support.eot?26364611');
-  src: url('../font/support.eot?26364611#iefix') format('embedded-opentype'),
-       url('../font/support.woff2?26364611') format('woff2'),
-       url('../font/support.woff?26364611') format('woff'),
-       url('../font/support.ttf?26364611') format('truetype'),
-       url('../font/support.svg?26364611#support') format('svg');
+  src: url('../font/support.eot?59709997');
+  src: url('../font/support.eot?59709997#iefix') format('embedded-opentype'),
+       url('../font/support.woff2?59709997') format('woff2'),
+       url('../font/support.woff?59709997') format('woff'),
+       url('../font/support.ttf?59709997') format('truetype'),
+       url('../font/support.svg?59709997#support') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'support';
-    src: url('../font/support.svg?26364611#support') format('svg');
+    src: url('../font/support.svg?59709997#support') format('svg');
   }
 }
 */
@@ -65,6 +65,7 @@
 .icon-packet:before { content: '\e807'; } /* '' */
 .icon-search:before { content: '\e80c'; } /* '' */
 .icon-filter:before { content: '\e80d'; } /* '' */
+.icon-close:before { content: '\e80e'; } /* '' */
 .icon-arrow-down:before { content: '\e811'; } /* '' */
 .icon-eye1:before { content: '\e814'; } /* '' */
 .icon-book:before { content: '\e81c'; } /* '' */
