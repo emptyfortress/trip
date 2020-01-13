@@ -29,6 +29,9 @@ div
 
 	context-menu(ref="ctxMenu")
 		li
+			i.icon-read
+			span Прочитать все
+		li
 			i.icon-refresh
 			span Обновить
 		li(@click="reset")
@@ -104,7 +107,6 @@ export default {
 		reset () {
 			this.selectAll = false
 			this.$store.commit('setSelectMode', false)
-			// this.selectMode = false
 			this.filters = false
 			this.group = []
 			this.$store.commit('setGrouping', false)
@@ -112,7 +114,6 @@ export default {
 		},
 		toggleSelect () {
 			this.$store.commit('toggleSelectMode')
-			// this.selectMode = !this.selectMode
 		},
 		toggleFilters () {
 			this.filters = !this.filters
@@ -130,11 +131,9 @@ export default {
 		clickRow (e, i) {
 			if (i.shiftKey && !this.selectMode) {
 				this.$store.commit('setSelectMode', true)
-				// this.selectMode = true
 				e.selected = true
 			} else if (i.shiftKey && this.selectMode) {
 				this.$store.commit('setSelectMode', false)
-				// this.selectMode = false
 			} else {
 				e.item.unread = false
 			}

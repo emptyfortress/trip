@@ -6,10 +6,15 @@
 	.txt настройки доступны по контекстному меню на заголовок. Shift-click переводит в режим Select
 	v-slide-y-transition(mode="out-in")
 		.btn-panel(v-show="selectMode")
-			v-btn(flat text).selection
+			v-btn(flat text @click="toggleSelect").selection
 				i.icon-close
-				span 0
+				span {{ selectedItems.length }}
 			.text карточек выбрано
+			v-slide-x-transition
+				.d-flex(v-if="selectedItems.length > 0")
+					.to ⇒
+					v-btn(flat text color='primary') В работу
+					v-btn(flat text color='primary') Делегировать
 	v-slide-y-transition(mode="out-in")
 		drop(@dragover="over = true" @dragleave="over = false" @drop="handleGroup" v-show="grouping" class="group-top" :class="{ over }")
 			.inf(v-if="len === 0") Перетащите сюда заголовок колонки для группировки
@@ -81,11 +86,17 @@ export default {
 		headers () {
 			return this.$store.getters.headers
 		},
+		selectedItems () {
+			return this.items.filter(item => item.selected)
+		},
 		par () {
 			return this.list2.length ? this.list.length * this.list2.length : this.list.length
 		}
 	},
 	methods: {
+		toggleSelect () {
+			this.$store.commit('toggleSelectMode')
+		},
 		pr () {
 			console.log(this.list)
 		},
@@ -277,6 +288,10 @@ export default {
 	margin-top: 1rem;
 	display: flex;
 	align-items: center;
+	.to {
+		font-size: 1.6rem;
+		margin: 0 1rem;
+	}
 }
 .selection span {
 	font-size: 1.3rem;
