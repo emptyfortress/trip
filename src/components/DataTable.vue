@@ -73,17 +73,7 @@ export default {
 			form: {
 				filter: []
 			},
-			filter0: '',
-			filter1: '',
-			filter2: '',
-			filter3: '',
-			filter4: '',
-			filter5: '',
-			filter6: '',
-			filter7: '',
-			filter8: '',
 			search: '',
-			// selectMode: false,
 			group: [],
 			filters: false,
 			per: 30
@@ -109,14 +99,14 @@ export default {
 		}
 	},
 	methods: {
-		filter (e) {
-			switch (e) {
-			case 0:
-				return this.filter0
-			default:
-				return ''
-			}
-		},
+		// filter (e) {
+		// 	switch (e) {
+		// 	case 0:
+		// 		return this.filter0
+		// 	default:
+		// 		return ''
+		// 	}
+		// },
 		toggleDialog () {
 			this.$store.commit('toggleDialog')
 		},

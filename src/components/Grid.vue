@@ -9,7 +9,7 @@
 			v-btn(text @click="toggleSelect").selection
 				i.icon-close
 				span {{ selectedItems.length }}
-			.text карточек выбрано
+			.text выбрано
 			v-slide-x-transition
 				.d-flex(v-if="selectedItems.length > 0")
 					.to ⇒
@@ -53,7 +53,6 @@ export default {
 			items: data,
 			filter: '',
 			handleScroll: true,
-			// selectMode: false,
 			columnWidth: 400,
 			total: 0,
 			group: [],
