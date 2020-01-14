@@ -4,7 +4,7 @@ v-app
 	v-app-bar(app collapse-on-scroll dark :color="color" clipped-left :class="calcWidth()")
 		v-app-bar-nav-icon(@click.stop="toggle")
 		.d-flex.lft
-			v-img( alt="Vuetify Logo" src="@/assets/img/logo-w.svg" transition="scale-transition" width="150" v-show="logo")
+			v-img( src="@/assets/img/logo-w.svg" transition="scale-transition" width="150" v-show="logo")
 		v-spacer
 		v-btn( href="" icon  v-show="offsetTop")
 			i.icon-search-scan
@@ -25,6 +25,10 @@ v-app
 				li(v-for="n in 50") Некоторый текст
 	Footer
 	Dialog
+	v-btn(dark fab color="pink").plus
+		v-icon(dark) mdi-plus
+	v-btn(fab color="white" v-show="scroll" transition="scale-transition" @click="$vuetify.goTo(0)").up
+		v-icon(dark) mdi-arrow-up
 </template>
 
 <script>
@@ -46,6 +50,7 @@ export default {
 	data: () => ({
 		color: '#2C4159',
 		offsetTop: true,
+		scroll: false,
 		logo: true
 		//
 	}),
@@ -66,7 +71,9 @@ export default {
 			this.$store.commit('toggleDrawer')
 		},
 		handleScroll () {
-			if (window.pageYOffset > 0 && !this.drawer) {
+			if (window.pageYOffset > 300) {
+				this.scroll = true
+			} else if (window.pageYOffset > 0 && !this.drawer) {
 				this.offsetTop = false
 				this.logo = false
 			} else if (window.pageYOffset > 0 && !this.drawer && !this.mini) {
@@ -77,6 +84,7 @@ export default {
 				this.logo = true
 			} else {
 				this.offsetTop = true
+				this.scroll = false
 				this.logo = true
 			}
 		}
@@ -125,5 +133,16 @@ export default {
 	div {
 		margin-right: 40px;
 	}
+}
+.plus {
+	position: fixed;
+	bottom: 4rem;
+	right: 2rem;
+}
+.up {
+	position: fixed;
+	bottom: 4rem;
+	left: 50%;
+	display: block;
 }
 </style>

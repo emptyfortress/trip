@@ -18,7 +18,6 @@ div
 
 					td(v-for="header in headers" :key="header.id" v-if="header.active"  :class="form.filter[header.id] ? 'active' : ''").shad
 						v-text-field(placeholder="Фильтр" solo flat hide-details v-model="form.filter[header.id]" clearable)
-						//- input( placeholder="Фильтр" v-model="form.filter[header.id]").filt
 
 				tr(v-for="item in items" :class="item.unread ? 'unread' : ''").sortableRow
 					td(@click="item.unread = !item.unread").px-0.drag.zero
@@ -31,15 +30,15 @@ div
 				span Сорян, ничего подходящего не нашел :(
 
 	context-menu(ref="ctxMenu")
+		li(@click="reset")
+			i.icon-empty
+			span Reset
 		li
 			i.icon-read
 			span Прочитать все
 		li
 			i.icon-refresh
 			span Обновить
-		li(@click="reset")
-			i.icon-empty
-			span Reset
 		li(@click="toggleSelect")
 			i.icon-select
 			span Выбрать
@@ -118,9 +117,6 @@ export default {
 				return ''
 			}
 		},
-		// setFilter (e) {
-		// 	this.filter = ''
-		// },
 		toggleDialog () {
 			this.$store.commit('toggleDialog')
 		},
@@ -128,12 +124,19 @@ export default {
 			evt.stopPropagation()
 		},
 		reset () {
-			this.selectAll = false
-			this.$store.commit('setSelectMode', false)
-			this.filters = false
-			this.group = []
+			const myheaders = [
+				{ id: 0, class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
+				{ id: 1, class: 'text-no-wrap', value: 'executor', width: '400', active: true, sortable: true, align: 'start', text: 'Исполнитель' },
+				{ id: 2, class: '', value: 'author', width: '160', active: true, sortable: true, align: 'start', text: 'Автор' },
+				{ id: 3, class: 'text-no-wrap', value: 'deadline', width: '150', active: true, sortable: true, align: 'start', text: 'Срок' },
+				{ id: 4, class: 'text-no-wrap', value: 'created', width: '150', active: true, sortable: true, align: 'start', text: 'Дата' },
+				{ id: 5, class: 'text-right', value: 'files', width: '90', active: true, sortable: true, align: 'end', text: 'Файлы' },
+				{ id: 6, class: 'text-no-wrap', value: 'status', width: '130', active: true, sortable: true, align: 'start', text: 'Статус' }
+			]
 			this.$store.commit('setGrouping', false)
-			this.$store.commit('setHeaders', this.headers)
+			this.group = []
+			this.filters = false
+			this.$store.commit('setHeaders', myheaders)
 		},
 		toggleSelect () {
 			this.$store.commit('toggleSelectMode')
@@ -178,10 +181,13 @@ export default {
 	background: #eee;
 }
 .stick.stickto-auto-generated-sticker {
-	background: $yellow;
+	background: $info;
 	width: 100%;
 	box-shadow: 0 4px 5px #33333355;
 	border-bottom: 1px solid #fff;
+	th {
+		color: white;
+	}
 }
 
 .drag1 {

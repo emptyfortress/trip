@@ -6,15 +6,15 @@
 	.txt настройки доступны по контекстному меню на заголовок. Shift-click переводит в режим Select
 	v-slide-y-transition(mode="out-in")
 		.btn-panel(v-show="selectMode")
-			v-btn(flat text @click="toggleSelect").selection
+			v-btn(text @click="toggleSelect").selection
 				i.icon-close
 				span {{ selectedItems.length }}
 			.text карточек выбрано
 			v-slide-x-transition
 				.d-flex(v-if="selectedItems.length > 0")
 					.to ⇒
-					v-btn(flat text color='primary') В работу
-					v-btn(flat text color='primary') Делегировать
+					v-btn(text color='primary') В работу
+					v-btn(text color='primary') Делегировать
 	v-slide-y-transition(mode="out-in")
 		drop(@dragover="over = true" @dragleave="over = false" @drop="handleGroup" v-show="grouping" class="group-top" :class="{ over }")
 			.inf(v-if="len === 0") Перетащите сюда заголовок колонки для группировки
@@ -52,6 +52,7 @@ export default {
 		return {
 			items: data,
 			filter: '',
+			handleScroll: true,
 			// selectMode: false,
 			columnWidth: 400,
 			total: 0,
@@ -136,13 +137,13 @@ export default {
 		},
 		reset () {
 			const myheaders = [
-				{ class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
-				{ class: 'text-no-wrap', value: 'executor', width: '400', active: true, sortable: true, align: 'start', text: 'Исполнитель' },
-				{ class: '', value: 'author', width: '160', active: true, sortable: true, align: 'start', text: 'Автор' },
-				{ class: 'text-no-wrap', value: 'deadline', width: '150', active: true, sortable: true, align: 'start', text: 'Срок' },
-				{ class: 'text-no-wrap', value: 'created', width: '150', active: true, sortable: true, align: 'start', text: 'Дата' },
-				{ class: 'text-right', value: 'files', width: '90', active: true, sortable: true, align: 'end', text: 'Файлы' },
-				{ class: 'text-no-wrap', value: 'status', width: '130', active: true, sortable: true, align: 'start', text: 'Статус' }
+				{ id: 0, class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
+				{ id: 1, class: 'text-no-wrap', value: 'executor', width: '400', active: true, sortable: true, align: 'start', text: 'Исполнитель' },
+				{ id: 2, class: '', value: 'author', width: '160', active: true, sortable: true, align: 'start', text: 'Автор' },
+				{ id: 3, class: 'text-no-wrap', value: 'deadline', width: '150', active: true, sortable: true, align: 'start', text: 'Срок' },
+				{ id: 4, class: 'text-no-wrap', value: 'created', width: '150', active: true, sortable: true, align: 'start', text: 'Дата' },
+				{ id: 5, class: 'text-right', value: 'files', width: '90', active: true, sortable: true, align: 'end', text: 'Файлы' },
+				{ id: 6, class: 'text-no-wrap', value: 'status', width: '130', active: true, sortable: true, align: 'start', text: 'Статус' }
 			]
 			this.group = []
 			this.list = []

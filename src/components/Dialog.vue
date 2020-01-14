@@ -53,6 +53,9 @@ export default {
 		}
 	},
 	methods: {
+		newColumn (e) {
+			this.$store.commit('setHeaders', e)
+		},
 		close () {
 			this.$store.commit('toggleDialog')
 		}
@@ -73,5 +76,11 @@ export default {
 }
 .v-list {
 	padding: 0;
+}
+.moving {
+	z-index: 1000;
+	display: block;
+	font-family: Roboto;
+	line-height: 150%;
 }
 </style>
