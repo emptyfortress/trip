@@ -20,20 +20,25 @@ div
 						v-text-field(placeholder="Фильтр" solo flat hide-details v-model="form.filter[header.id]" clearable)
 
 				tr(v-for="item in items" :class="item.unread ? 'unread' : ''").sortableRow
-					td(@click="item.unread = !item.unread").px-0.drag.zero
+					td(@click="item.unread = !item.unread" @contextmenu.prevent="$refs.readMenu.open").px-0.drag.zero
 					td(v-show="selectMode")
 						v-checkbox(v-model="item.selected" :value="item.selected" :id="item.id.toString()" @click.prevent="item.selected = !item.selected" @click="doNothing").sm
 					td(v-for="header in headers" :key="header.id" v-if="header.active" :class="header.class" @click="clickRow(props, $event)" )
 						span {{ item[header.value] }}
-		template(v-slot:no-data)
-			v-alert(type="warning")
-				span Сорян, ничего подходящего не нашел :(
+		//- template(v-slot:no-data)
+		//- 	v-alert(type="warning")
+		//- 		span Сорян, ничего подходящего не нашел :(
+
+	context-menu(ref="readMenu")
+		li(@click="readAll")
+			i.icon-read
+			span Прочитать все
 
 	context-menu(ref="ctxMenu")
 		li(@click="reset")
 			i.icon-empty
 			span Reset
-		li
+		li(@click="readAll")
 			i.icon-read
 			span Прочитать все
 		li
@@ -107,6 +112,9 @@ export default {
 		// 		return ''
 		// 	}
 		// },
+		readAll () {
+			this.items.map(item => { item.unread = false })
+		},
 		toggleDialog () {
 			this.$store.commit('toggleDialog')
 		},

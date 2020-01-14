@@ -27,8 +27,9 @@ v-app
 	Dialog
 	v-btn(dark fab color="pink").plus
 		v-icon(dark) mdi-plus
-	v-btn(fab color="white" v-show="scroll" transition="scale-transition" @click="$vuetify.goTo(0)").up
-		v-icon(dark) mdi-arrow-up
+	v-alert(v-show="scroll" transition="scale-transition").up
+		v-btn(fab color="white" @click="$vuetify.goTo(0)")
+			v-icon(dark) mdi-arrow-up
 </template>
 
 <script>
@@ -141,8 +142,8 @@ export default {
 }
 .up {
 	position: fixed;
-	bottom: 4rem;
+	bottom: 2rem;
 	left: 50%;
-	display: block;
+	background: transparent;
 }
 </style>
