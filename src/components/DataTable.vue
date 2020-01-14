@@ -17,8 +17,8 @@ div
 					td(v-show="selectMode")
 
 					td(v-for="header in headers" :key="header.id" v-if="header.active"  :class="form.filter[header.id] ? 'active' : ''").shad
-						input( placeholder="Фильтр" v-model="form.filter[header.id]").filt
-						//- v-text-field(placeholder="Фильтр" solo hide-details v-model="form.filter[header.id]")
+						v-text-field(placeholder="Фильтр" solo flat hide-details v-model="form.filter[header.id]" clearable)
+						//- input( placeholder="Фильтр" v-model="form.filter[header.id]").filt
 
 				tr(v-for="item in items" :class="item.unread ? 'unread' : ''").sortableRow
 					td(@click="item.unread = !item.unread").px-0.drag.zero
@@ -221,13 +221,5 @@ export default {
 }
 .sortableRow {
 	user-select: none;
-}
-.filt {
-	width: 100%;
-	height: 32px;
-	border-bottom: 1px dotted black;
-	outline: none;
-	background: white;
-	padding: 0 .3rem;
 }
 </style>
