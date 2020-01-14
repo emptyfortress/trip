@@ -15,13 +15,16 @@ div
 				tr(v-show="filters").filter
 					td.zero
 					td(v-show="selectMode")
-					td(v-for="header in headers" :key="header.value" v-if="header.active" ).shad
-						v-text-field(v-model="filter" placeholder="Фильтр" solo hide-details)
+
+					td(v-for="header in headers" :key="header.id" v-if="header.active"  :class="form.filter[header.id] ? 'active' : ''").shad
+						input( placeholder="Фильтр" v-model="form.filter[header.id]").filt
+						//- v-text-field(placeholder="Фильтр" solo hide-details v-model="form.filter[header.id]")
+
 				tr(v-for="item in items" :class="item.unread ? 'unread' : ''").sortableRow
 					td(@click="item.unread = !item.unread").px-0.drag.zero
 					td(v-show="selectMode")
 						v-checkbox(v-model="item.selected" :value="item.selected" :id="item.id.toString()" @click.prevent="item.selected = !item.selected" @click="doNothing").sm
-					td(v-for="header in headers" :key="header.value" v-if="header.active" :class="header.class" @click="clickRow(props, $event)" )
+					td(v-for="header in headers" :key="header.id" v-if="header.active" :class="header.class" @click="clickRow(props, $event)" )
 						span {{ item[header.value] }}
 		template(v-slot:no-data)
 			v-alert(type="warning")
@@ -64,11 +67,23 @@ import { SlickList, SlickItem } from 'vue-slicksort'
 import contextMenu from 'vue-context-menu'
 
 export default {
-	props: [ 'filter' ],
 	data () {
 		return {
 			selectAll: false,
 			items: data,
+			form: {
+				filter: []
+			},
+			filter0: '',
+			filter1: '',
+			filter2: '',
+			filter3: '',
+			filter4: '',
+			filter5: '',
+			filter6: '',
+			filter7: '',
+			filter8: '',
+			search: '',
 			// selectMode: false,
 			group: [],
 			filters: false,
@@ -85,9 +100,6 @@ export default {
 		headers () {
 			return this.$store.getters.headers
 		},
-		search () {
-			return this.filter
-		},
 		selectedItems () {
 			return this.items.filter(item => item.selected)
 		},
@@ -98,6 +110,17 @@ export default {
 		}
 	},
 	methods: {
+		filter (e) {
+			switch (e) {
+			case 0:
+				return this.filter0
+			default:
+				return ''
+			}
+		},
+		// setFilter (e) {
+		// 	this.filter = ''
+		// },
 		toggleDialog () {
 			this.$store.commit('toggleDialog')
 		},
@@ -187,7 +210,10 @@ export default {
 }
 .filter td.shad {
 	border: 1px solid #fff;
-	padding: 0 .3rem;
+	padding: 0 .4rem;
+	&.active {
+		background: $yellow;
+	}
 }
 .v-input.sm {
 	margin-top: 0;
@@ -195,5 +221,13 @@ export default {
 }
 .sortableRow {
 	user-select: none;
+}
+.filt {
+	width: 100%;
+	height: 32px;
+	border-bottom: 1px dotted black;
+	outline: none;
+	background: white;
+	padding: 0 .3rem;
 }
 </style>

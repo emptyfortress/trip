@@ -38,7 +38,7 @@
 		v-flex(:class="group.length ? 'xs10' : 'xs12'").tabl
 			.canva
 				v-slide-y-transition(mode="out-in")
-					DataTable(:filter="filter" v-if="renderComponent")
+					DataTable( v-if="renderComponent" )
 
 </template>
 
