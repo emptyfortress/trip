@@ -19,13 +19,15 @@ v-app
 			v-icon mdi-help-circle-outline
 	v-content(v-scroll="handleScroll" id="target")
 		v-container(fluid :class="drawer ? '' : 'leftmargin'")
-			Grid
-			br
-			br
-			br
-			.second(v-stickto) Это заголовок второго грида
-			ul
-				li(v-for="n in 50") Некоторый текст
+			v-slide-y-reverse-transition
+				div(v-show="!searchMode")
+					Grid
+					br
+					br
+					br
+					.second(v-stickto) Это заголовок второго грида
+					ul
+						li(v-for="n in 50") Некоторый текст
 	Footer
 	Dialog
 	v-btn(dark fab color="pink").plus
