@@ -7,7 +7,7 @@ div
 					th.zero
 					th(v-show="selectMode")
 						v-checkbox(v-model="selectAll" primary hide-details @click.native="toggleAll" :indeterminate="check").checkhd
-					th(v-for="header in headers" v-if="header.active" )
+					th(v-for="header in headers" v-if="header.active")
 						drag(:transfer-data="header").drag1
 							span {{ header.text }}
 		template(v-slot:body="{ items }")
@@ -71,6 +71,7 @@ import { SlickList, SlickItem } from 'vue-slicksort'
 import contextMenu from 'vue-context-menu'
 
 export default {
+	props: ['filter'],
 	data () {
 		return {
 			selectAll: false,
@@ -78,13 +79,16 @@ export default {
 			form: {
 				filter: []
 			},
-			search: '',
+			// search: '',
 			group: [],
 			filters: false,
 			per: 30
 		}
 	},
 	computed: {
+		search () {
+			return this.filter
+		},
 		selectMode () {
 			return this.$store.getters.selectMode
 		},
