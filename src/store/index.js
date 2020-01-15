@@ -18,6 +18,7 @@ export default new Vuex.Store({
 		mini: false,
 		grouping: false,
 		selectMode: false,
+		searchMode: false,
 		dialog: false
 	},
 	getters: {
@@ -26,6 +27,7 @@ export default new Vuex.Store({
 		mini: state => { return state.mini },
 		grouping: state => { return state.grouping },
 		selectMode: state => { return state.selectMode },
+		searchMode: state => { return state.searchMode },
 		dialog: state => { return state.dialog }
 	},
 	mutations: {
@@ -35,6 +37,7 @@ export default new Vuex.Store({
 		setGrouping (state, payload) { state.grouping = payload },
 		setSelectMode (state, payload) { state.selectMode = payload },
 		toggleSelectMode (state) { state.selectMode = !state.selectMode },
+		toggleSearchMode (state) { state.searchMode = !state.searchMode },
 		offDrawer (state) { state.drawer = false },
 		setHeaders (state, payload) { state.headers = payload },
 		setMini (state, payload) { state.mini = payload }

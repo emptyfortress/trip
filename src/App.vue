@@ -6,9 +6,12 @@ v-app
 		.d-flex.lft
 			v-img( src="@/assets/img/logo-w.svg" transition="scale-transition" width="150" v-show="logo")
 		v-spacer
-		v-btn( href="" icon  v-show="offsetTop")
+		v-scale-transition(origin="center right")
+			v-card(v-show="searchMode").searchbox
+				input
+		v-btn( href="" icon  v-show="offsetTop && !searchMode")
 			i.icon-search-scan
-		v-btn( href="" icon  v-show="offsetTop")
+		v-btn( href="" icon  v-show="offsetTop" @click="toggleSearch")
 			i.icon-search
 		v-btn( href="" icon  v-show="offsetTop")
 			i.icon-user
@@ -57,9 +60,13 @@ export default {
 	}),
 	computed: {
 		drawer () { return this.$store.getters.drawer },
-		mini () { return this.$store.getters.mini }
+		mini () { return this.$store.getters.mini },
+		searchMode () { return this.$store.getters.searchMode }
 	},
 	methods: {
+		toggleSearch () {
+			this.$store.commit('toggleSearchMode')
+		},
 		calcWidth () {
 			let po = window.pageYOffset
 			if (this.drawer && !this.mini && po > 0) {
@@ -145,5 +152,20 @@ export default {
 	bottom: 2rem;
 	left: 50%;
 	background: transparent;
+}
+.searchbox {
+	box-shadow: none;
+	width: 100%;
+	/* display: flex; */
+	margin-left: 4rem;
+	input {
+		border: none;
+		outline: none;
+		background: white;
+		width: 100%;
+		height: 32px;
+		color: #000;
+		padding: 0 .5rem;
+	}
 }
 </style>
