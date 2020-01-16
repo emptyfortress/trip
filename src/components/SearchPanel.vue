@@ -24,12 +24,12 @@
 				v-col(cols="12" sm="6")
 					v-item(v-slot:default="{active, toggle}")
 						v-card(:color="active ? 'primary' : '' " height="42" @click="test").toggle
-							.txt Расширенный поиск по атрибутам
+							.txt Расширенный поиск
 							v-scroll-y-transition(mode="out-in")
 								.act(v-if="active")
 									v-icon(color="white" large) mdi-check-bold
 
-	.pan
+	.full
 		transition(name="slide-fade" mode="out-in")
 			.mx-5(v-if="!advanced" key="1")
 				.zag История
@@ -77,7 +77,7 @@ export default {
 	position: relative;
 }
 .pan {
-	width: 50%;
+	width: 45%;
 }
 .v-item--active {
 	color: #fff;
@@ -95,6 +95,10 @@ export default {
 .panel {
 	width: 100%;
 	height: 500px;
+	background: #eee;
+}
+.full {
+	width: 100%;
 }
 
 </style>
