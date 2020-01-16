@@ -32,24 +32,7 @@ v-app
 					.second(v-stickto) Это заголовок второго грида
 					ul
 						li(v-for="n in 50") Некоторый текст
-				.d-flex.justify-start.mt-5(v-else key="seach")
-					.mx-5
-						.zag История
-						ul
-							li(v-for="n in 10")
-								a(href="").reverse Текст запроса в поле поиска
-					v-container
-						.mx-5
-						.zag Настройки поиска
-						v-item-group(mandatory)
-							v-row
-								v-col(v-for="n in 3" :key="n" cols="12" md="4")
-									v-item(v-slot:default="{active, toggle}")
-										v-card(dark :color="active ? 'primary' : ''" height="50" @click="toggle")
-											v-scroll-y-transition(mode="out-in")
-												.flex-grow.text-center(v-if="active") Active
-											v-scroll-y-reverse-transition(mode="out-in")
-												.flex-grow.text-center() В текущей папке
+				SearchPanel(v-else key="search")
 	Footer
 	Dialog
 	v-btn(dark fab color="pink").plus
@@ -65,6 +48,7 @@ import Drawer from './components/Drawer'
 import Footer from './components/Footer'
 import Grid from './components/Grid'
 import Dialog from './components/Dialog'
+import SearchPanel from './components/SearchPanel'
 
 export default {
 	name: 'App',
@@ -73,7 +57,8 @@ export default {
 		Drawer,
 		Grid,
 		Footer,
-		Dialog
+		Dialog,
+		SearchPanel
 	},
 	data: () => ({
 		color: '#2C4159',
