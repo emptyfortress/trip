@@ -13,8 +13,6 @@ v-app
 			i.icon-search-scan
 		v-btn( href="" icon  v-show="offsetTop" @click="toggleSearch")
 			i.icon-search
-		//- v-btn( href="" icon  v-show="offsetTop")
-		//- 	i.icon-user
 		v-btn( href="" icon v-show="offsetTop")
 			.rel
 				img(src="@/assets/img/user.png" width="32")
