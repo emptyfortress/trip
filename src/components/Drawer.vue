@@ -8,9 +8,10 @@ v-navigation-drawer(v-model="drawer" clipped app :mini-variant.sync="mini" dark 
 				v-list-item-title Главная
 		v-list-item( v-for="(item, i) in menu" :key="i" link )
 			v-list-item-icon
-				i(v-if="!mini").icon-folder-o
-				v-avatar(v-else color="indigo" size="36")
-					span.min {{ item.mini }}
+				i(v-if="!mini" :class="item.icon")
+				span(v-else).min {{ item.mini }}
+				//- v-avatar(v-else color="indigo" size="36")
+				//- 	span.min {{ item.mini }}
 			v-list-item-content
 				v-list-item-title {{ item.text }}
 	.mini(@click="toggleMini")
@@ -35,11 +36,11 @@ export default {
 			},
 			menu: [
 				// { mini: 'mdi-home-roof', icon: 'mdi-home-roof', text: 'Главная' },
-				{ mini: 'Вх', icon: 'mdi-inbox-arrow-down-outline', text: 'Входящие' },
-				{ mini: 'Исх', icon: 'mdi-inbox-arrow-up-outline', text: 'Исходящие' },
-				{ mini: 'МП', icon: 'mdi-folder-network-outline', text: 'Мои папки' },
-				{ mini: 'Зад', icon: 'mdi-calendar-check', text: 'Задания' },
-				{ mini: 'Док', icon: 'mdi-file-document-box-multiple-outline', text: 'Документы' }
+				{ mini: 'Вход.', icon: 'icon-inbox', text: 'Входящие' },
+				{ mini: 'Исх.', icon: 'icon-oubox', text: 'Исходящие' },
+				{ mini: 'Папки', icon: 'icon-folders', text: 'Мои папки' },
+				{ mini: 'Зад.', icon: 'icon-tasks', text: 'Задания' },
+				{ mini: 'Док.', icon: 'icon-documents', text: 'Документы' }
 			]
 		}
 	},
@@ -80,6 +81,6 @@ export default {
 	cursor: pointer;
 }
 .min {
-	font-size: .8rem;
+	font-size: .9rem;
 }
 </style>
