@@ -31,6 +31,7 @@ v-app
 					ul
 						li(v-for="n in 50") Некоторый текст
 				SearchPanel(v-else key="search")
+
 	Footer
 	Dialog
 	v-btn(dark fab color="pink").plus

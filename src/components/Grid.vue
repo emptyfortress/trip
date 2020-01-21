@@ -2,7 +2,8 @@
 .grid
 	br
 	br
-	.zag(@click="pr") VIP Premium Deluxe таблица
+	.zag(@click="pr") Прототип грида
+	//- .zag(@click="pr") VIP Premium Deluxe таблица
 	.txt настройки доступны по контекстному меню на заголовок. Shift-click переводит в режим Select
 	v-slide-y-transition(mode="out-in")
 		.btn-panel(v-show="selectMode")

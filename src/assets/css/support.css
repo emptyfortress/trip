@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'support';
-  src: url('../font/support.eot?40414562');
-  src: url('../font/support.eot?40414562#iefix') format('embedded-opentype'),
-       url('../font/support.woff2?40414562') format('woff2'),
-       url('../font/support.woff?40414562') format('woff'),
-       url('../font/support.ttf?40414562') format('truetype'),
-       url('../font/support.svg?40414562#support') format('svg');
+  src: url('../font/support.eot?12189121');
+  src: url('../font/support.eot?12189121#iefix') format('embedded-opentype'),
+       url('../font/support.woff2?12189121') format('woff2'),
+       url('../font/support.woff?12189121') format('woff'),
+       url('../font/support.ttf?12189121') format('truetype'),
+       url('../font/support.svg?12189121#support') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'support';
-    src: url('../font/support.svg?40414562#support') format('svg');
+    src: url('../font/support.svg?12189121#support') format('svg');
   }
 }
 */
@@ -106,4 +106,5 @@
 .icon-oubox:before { content: '\e87c'; } /* '' */
 .icon-tasks:before { content: '\e87d'; } /* '' */
 .icon-documents:before { content: '\e87e'; } /* '' */
+.icon-airplane:before { content: '\e87f'; } /* '' */
 .icon-spread:before { content: '\f527'; } /* '' */

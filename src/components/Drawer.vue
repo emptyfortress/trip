@@ -1,7 +1,7 @@
 <template lang="pug">
 v-navigation-drawer(v-model="drawer" clipped app :mini-variant.sync="mini" dark :color="color" )
 	v-list
-		v-list-item
+		v-list-item(link)
 			v-list-item-icon
 				v-icon mdi-home-roof
 			v-list-item-content
@@ -40,7 +40,8 @@ export default {
 				{ mini: 'Исх.', icon: 'icon-oubox', text: 'Исходящие' },
 				{ mini: 'Папки', icon: 'icon-folders', text: 'Мои папки' },
 				{ mini: 'Зад.', icon: 'icon-tasks', text: 'Задания' },
-				{ mini: 'Док.', icon: 'icon-documents', text: 'Документы' }
+				{ mini: 'Док.', icon: 'icon-documents', text: 'Документы' },
+				{ mini: 'Ком.', icon: 'icon-airplane', text: 'Командировка' }
 			]
 		}
 	},
@@ -68,8 +69,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/css/colors.scss';
-
 .theme--dark.v-list {
 	background: transparent;
 
