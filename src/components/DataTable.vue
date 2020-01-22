@@ -25,9 +25,6 @@ div
 						v-checkbox(v-model="item.selected" :value="item.selected" :id="item.id.toString()" @click.prevent="item.selected = !item.selected" @click="doNothing").sm
 					td(v-for="header in headers" :key="header.id" v-if="header.active" :class="header.class" @click="clickRow(props, $event)" )
 						span {{ item[header.value] }}
-		//- template(v-slot:no-data)
-		//- 	v-alert(type="warning")
-		//- 		span Сорян, ничего подходящего не нашел :(
 
 	context-menu(ref="readMenu")
 		li(@click="readAll")
@@ -66,20 +63,17 @@ div
 </template>
 
 <script>
-import data from '@/data.js'
 import { SlickList, SlickItem } from 'vue-slicksort'
 import contextMenu from 'vue-context-menu'
 
 export default {
-	props: ['filter'],
+	props: [ 'filter', 'headers', 'items' ],
 	data () {
 		return {
 			selectAll: false,
-			items: data,
 			form: {
 				filter: []
 			},
-			// search: '',
 			group: [],
 			filters: false,
 			per: 30
@@ -95,9 +89,6 @@ export default {
 		grouping () {
 			return this.$store.getters.grouping
 		},
-		headers () {
-			return this.$store.getters.headers
-		},
 		selectedItems () {
 			return this.items.filter(item => item.selected)
 		},
@@ -108,14 +99,6 @@ export default {
 		}
 	},
 	methods: {
-		// filter (e) {
-		// 	switch (e) {
-		// 	case 0:
-		// 		return this.filter0
-		// 	default:
-		// 		return ''
-		// 	}
-		// },
 		readAll () {
 			this.items.map(item => { item.unread = false })
 		},
