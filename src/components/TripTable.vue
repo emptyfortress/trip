@@ -10,6 +10,7 @@ div
 					th(v-for="header in headers" v-if="header.active")
 						drag(:transfer-data="header").drag1
 							span {{ header.text }}
+					th
 		template(v-slot:body="{ items }")
 			tbody
 				tr(v-show="filters").filter
@@ -23,8 +24,13 @@ div
 					td(@click="item.unread = !item.unread" @contextmenu.prevent="$refs.readMenu.open").px-0.drag.zero
 					td(v-show="selectMode")
 						v-checkbox(v-model="item.selected" :value="item.selected" :id="item.id.toString()" @click.prevent="item.selected = !item.selected" @click="doNothing").sm
-					td(v-for="header in headers" :key="header.id" v-if="header.active" :class="header.class" @click="clickRow(props, $event)" )
-						span {{ item[header.value] }}
+					td(v-for="header in headers" :key="header.id" v-if="header.active" :class="header.class" @click="clickRow(props, $event)")
+						v-icon(v-show="header.id === 6 && item[header.value] === 1" color="green") mdi-check-bold
+						v-icon(v-show="header.id === 7 && item[header.value] === 1" color="green") mdi-check-bold
+						span(v-show="item[header.value] && item[header.value] !== 1") {{ item[header.value] }}
+
+					td
+						v-btn(depressed small) Копия
 
 	context-menu(ref="readMenu")
 		li(@click="readAll")
@@ -88,21 +94,21 @@ export default {
 		},
 		search () {
 			return this.filter
+		},
+		selectMode () {
+			return this.$store.getters.selectMode
+		},
+		grouping () {
+			return this.$store.getters.grouping
+		},
+		selectedItems () {
+			return this.trips.filter(item => item.selected)
+		},
+		check () {
+			if (this.selectedItems.length === 0 || this.selectedItems.length === this.items.length) {
+				return false
+			} else return true
 		}
-		// selectMode () {
-		// 	return this.$store.getters.selectMode
-		// },
-		// grouping () {
-		// 	return this.$store.getters.grouping
-		// },
-		// selectedItems () {
-		// 	return this.items.filter(item => item.selected)
-		// },
-		// check () {
-		// 	if (this.selectedItems.length === 0 || this.selectedItems.length === this.items.length) {
-		// 		return false
-		// 	} else return true
-		// }
 	},
 	methods: {
 		readAll () {
@@ -216,8 +222,5 @@ export default {
 .v-input.sm {
 	margin-top: 0;
 	padding-top: .6rem;
-}
-.sortableRow {
-	user-select: none;
 }
 </style>

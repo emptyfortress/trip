@@ -78,6 +78,9 @@ export default {
 		}
 	},
 	computed: {
+		tripheaders () {
+			return this.$store.getters.tripheaders
+		},
 		selectMode () {
 			return this.$store.getters.selectMode
 		},
@@ -131,6 +134,57 @@ export default {
 				this.list[0].state.expanded = true
 				this.$refs.tree.tree.setModel(this.list)
 			}
+		},
+		reset () {
+			this.group = []
+			this.list = []
+			this.list2 = []
+			this.filter = ''
+			// this.$store.commit('setHeaders', myheaders)
+			this.renderComponent = false
+			this.$nextTick(() => {
+				this.renderComponent = true
+			})
+		},
+		hideColumn (e) {
+			let col = this.tripheaders.filter(item => item.text === e.text)[0]
+			col.active = false
+			// console.log(col)
+		},
+		uniqList (data, arr) {
+			let child = []
+			let childs = []
+			this.trips.forEach(function (item) {
+				let node = {}
+				node.text = item[data.value]
+				child.push(node)
+			})
+			let uniqChild = [ ...new Set(child.map(x => x.text)) ]
+			let that = this
+			uniqChild.forEach(function (item) {
+				let node = {}
+				node.text = item
+				node.data = {}
+				let num = that.trips.filter(e => e[data.name] === item).length
+				node.data.number = num
+				childs.push(node)
+			})
+			arr.push(...childs)
+			return arr
+		},
+		toggleGrouping () {
+			this.grouping = !this.grouping
+		},
+		newGroup (e) {
+			this.group = e
+			this.list.map(item => { item.children = [] })
+			this.list2.map(item => { item.children = this.list })
+			this.$refs.tree.tree.setModel(this.list2)
+		},
+		onNodeSelected (node) {
+			this.filter = node.text
+			console.log(this.filter)
+			console.log(this.list)
 		}
 	}
 }
@@ -140,4 +194,87 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
+.group-top {
+	width: 100%;
+	display: block;
+	padding: 1rem;
+	border: 1px dashed $info;
+	&.over {
+		background: #D9F9FF;
+	}
+}
+.inf {
+	font-style: italic;
+	color: #666;
+	font-size: .9rem;
+}
+.inf {
+	font-style: italic;
+	color: #666;
+	font-size: .9rem;
+}
+
+.group {
+	margin-top: .6rem;
+	h3 {
+		background: white;
+		padding: .5rem 1rem;
+		cursor: pointer;
+		span {
+			margin-left: 1rem;
+			font-size: .9rem;
+			background: $info;
+			color: white;
+			padding: .1rem .5rem;
+			border-radius: 3rem;
+		}
+		.v-icon {
+			margin-left: 2rem;
+			vertical-align: bottom;
+			color: $info;
+		}
+	}
+}
+.crumbs {
+	display: flex;
+	position: relative;
+	.crumb {
+		margin-right: 1rem;
+		&:after {
+			content: "\2192";
+			margin-left: 1rem;
+		}
+	}
+}
+.delete {
+	position: absolute;
+	right: 0
+}
+/* ksd **************************************/
+.canva {
+	margin-top: 8px;
+	background: #eee;
+}
+.treenode {
+	width: 100%;
+}
+.tabl {
+	transition: all .3s ease;
+}
+.tree-node.selected {
+	background: $yellow !important;
+}
+.btn-panel {
+	margin-top: 1rem;
+	display: flex;
+	align-items: center;
+	.to {
+		font-size: 1.6rem;
+		margin: 0 1rem;
+	}
+}
+.selection span {
+	font-size: 1.3rem;
+	margin-left: .6rem;
+}
 </style>

@@ -8,8 +8,8 @@ const trips = [
 		'transport': 'Авиа',
 		'hotel': 'Radisson',
 		'budget': 'ДРП',
-		'approve': true,
-		'report': false,
+		'approve': 1,
+		'report': 0,
 		'title': 'Выполнение задания командования'
 	},
 	{
@@ -21,8 +21,8 @@ const trips = [
 		'transport': 'Жд',
 		'hotel': 'нет',
 		'budget': 'ДРП, Коммерция',
-		'approve': false,
-		'report': false,
+		'approve': 0,
+		'report': 0,
 		'title': 'Пресейл'
 	},
 	{
@@ -34,8 +34,8 @@ const trips = [
 		'transport': 'Жд',
 		'hotel': 'хостел',
 		'budget': 'ДРП',
-		'approve': true,
-		'report': true,
+		'approve': 1,
+		'report': 1,
 		'title': 'Пресейл'
 	},
 	{
@@ -47,8 +47,8 @@ const trips = [
 		'transport': 'Жд',
 		'hotel': 'нет',
 		'budget': 'ДРП',
-		'approve': true,
-		'report': true,
+		'approve': 1,
+		'report': 1,
 		'title': 'Пресейл'
 	},
 	{
@@ -60,8 +60,8 @@ const trips = [
 		'transport': 'Авиа',
 		'hotel': 'Алмаз',
 		'budget': 'ДРП',
-		'approve': true,
-		'report': true,
+		'approve': 1,
+		'report': 1,
 		'title': 'Пресейл'
 	},
 	{
@@ -73,8 +73,8 @@ const trips = [
 		'transport': 'Авиа',
 		'hotel': 'Орел',
 		'budget': 'ДРП, Коммерция',
-		'approve': true,
-		'report': true,
+		'approve': 1,
+		'report': 1,
 		'title': 'Пресейл'
 	}
 ]
