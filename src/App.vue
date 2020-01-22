@@ -23,14 +23,16 @@ v-app
 		v-container(fluid :class="drawer ? '' : 'leftmargin'")
 			transition(name="slide-fade" mode="out-in")
 				div(v-if="!searchMode" key="start")
-					Grid
-					br
-					br
-					br
-					.second(v-stickto) Это заголовок второго грида
-					ul
-						li(v-for="n in 50") Некоторый текст
+					router-view
 				SearchPanel(v-else key="search")
+				//- Home
+				//- 	Grid
+				//- 	br
+				//- 	br
+				//- 	br
+				//- 	.second(v-stickto) Это заголовок второго грида
+				//- 	ul
+				//- 		li(v-for="n in 50") Некоторый текст
 
 	Footer
 	Dialog
@@ -42,21 +44,23 @@ v-app
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+// import HelloWorld from './components/HelloWorld'
 import Drawer from './components/Drawer'
 import Footer from './components/Footer'
-import Grid from './components/Grid'
-import Dialog from './components/Dialog'
+// import Grid from './components/Grid'
+// import Dialog from './components/Dialog'
 import SearchPanel from './components/SearchPanel'
+// import Home from './views/Home.vue'
 
 export default {
 	name: 'App',
 	components: {
-		HelloWorld,
+		// Home,
+		// HelloWorld,
 		Drawer,
-		Grid,
+		// Grid,
 		Footer,
-		Dialog,
+		// Dialog,
 		SearchPanel
 	},
 	data: () => ({
@@ -111,11 +115,6 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
-.test {
-	width: 100%;
-	padding: 1rem;
-	background: $yellow;
-}
 .lft {
 	margin-left: 18px;
 }
@@ -131,18 +130,6 @@ export default {
 .icon-user, .icon-search, .icon-search-scan {
 	font-size: 1.2rem;
 	margin-left: -4px;
-}
-.second {
-	font-size: 1.2rem;
-	padding: .5rem;
-	background: #ccc;
-}
-.second.stickto-auto-generated-sticker {
-	color: #fff;
-	background: $info;
-	width: 100%;
-	box-shadow: 0 4px 5px #33333355;
-	border-bottom: 1px solid #fff;
 }
 .leftmargin {
 	margin-left: 40px;
@@ -176,9 +163,6 @@ export default {
 		padding: 0 .5rem;
 	}
 }
-.zag {
-	font-size: 1.3rem;
-}
 
 .status {
 	width: 13px;
@@ -189,12 +173,5 @@ export default {
 	bottom: 0;
 	border-radius: 10px;
 	border: 2px solid $dark;
-}
-.reverse {
-	text-decoration: none;
-	&:hover {
-		text-decoration: underline;
-	}
-
 }
 </style>

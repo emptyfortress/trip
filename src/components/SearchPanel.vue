@@ -71,7 +71,7 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
-.toggle {
+.theme--light.v-card.toggle {
 	box-shadow: none;
 	background: #ddd;
 	position: relative;
@@ -81,7 +81,9 @@ export default {
 }
 .v-item--active {
 	color: #fff;
-
+	.txt {
+		color: #fff;
+	}
 }
 .txt {
 	line-height: 42px;
@@ -101,4 +103,13 @@ export default {
 	width: 100%;
 }
 
+.reverse {
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+.zag {
+	font-size: 1.3rem;
+}
 </style>

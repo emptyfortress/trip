@@ -1,12 +1,12 @@
 <template lang="pug">
 v-navigation-drawer(v-model="drawer" clipped app :mini-variant.sync="mini" dark :color="color" )
 	v-list
-		v-list-item(link)
+		v-list-item(link href="/")
 			v-list-item-icon
 				v-icon mdi-home-roof
 			v-list-item-content
 				v-list-item-title Главная
-		v-list-item( v-for="(item, i) in menu" :key="i" link )
+		v-list-item( v-for="(item, i) in menu" :key="i" link  @click="goTo(item.url)")
 			v-list-item-icon
 				i(v-if="!mini" :class="item.icon")
 				span(v-else).min {{ item.mini }}
@@ -36,16 +36,20 @@ export default {
 			},
 			menu: [
 				// { mini: 'mdi-home-roof', icon: 'mdi-home-roof', text: 'Главная' },
-				{ mini: 'Вход.', icon: 'icon-inbox', text: 'Входящие' },
-				{ mini: 'Исх.', icon: 'icon-oubox', text: 'Исходящие' },
-				{ mini: 'Папки', icon: 'icon-folders', text: 'Мои папки' },
-				{ mini: 'Зад.', icon: 'icon-tasks', text: 'Задания' },
-				{ mini: 'Док.', icon: 'icon-documents', text: 'Документы' },
-				{ mini: 'Ком.', icon: 'icon-airplane', text: 'Командировка' }
+				{ url: '', mini: 'Вход.', icon: 'icon-inbox', text: 'Входящие' },
+				{ url: '', mini: 'Исх.', icon: 'icon-oubox', text: 'Исходящие' },
+				{ url: '', mini: 'Папки', icon: 'icon-folders', text: 'Мои папки' },
+				{ url: '', mini: 'Зад.', icon: 'icon-tasks', text: 'Задания' },
+				{ url: '', mini: 'Док.', icon: 'icon-documents', text: 'Документы' },
+				{ url: '/about', mini: 'Ком.', icon: 'icon-airplane', text: 'Командировка' }
 			]
 		}
 	},
 	methods: {
+		goTo (e) {
+			this.$router.push(e)
+			this.$store.commit('setSearchMode', false)
+		},
 		toggleMini () {
 			if (this.mini === true) {
 				this.$store.commit('setMini', false)

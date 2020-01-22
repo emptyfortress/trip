@@ -38,6 +38,7 @@ export default new Vuex.Store({
 		setSelectMode (state, payload) { state.selectMode = payload },
 		toggleSelectMode (state) { state.selectMode = !state.selectMode },
 		toggleSearchMode (state) { state.searchMode = !state.searchMode },
+		setSearchMode (state, payload) { state.searchMode = payload },
 		offDrawer (state) { state.drawer = false },
 		setHeaders (state, payload) { state.headers = payload },
 		setMini (state, payload) { state.mini = payload }
