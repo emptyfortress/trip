@@ -273,10 +273,6 @@ export default {
 .tree-node.selected {
 	background: $yellow !important;
 }
-.txt {
-	font-size: .8rem;
-	text-align: center;
-}
 .btn-panel {
 	margin-top: 1rem;
 	display: flex;

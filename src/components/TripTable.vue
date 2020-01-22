@@ -191,6 +191,7 @@ export default {
 }
 .v-data-table td.zero, .v-data-table th.zero {
 	padding: 0;
+	width: 9px;
 }
 .unread {
 	td {
