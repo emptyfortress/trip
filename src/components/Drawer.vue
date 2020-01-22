@@ -1,7 +1,7 @@
 <template lang="pug">
 v-navigation-drawer(v-model="drawer" clipped app :mini-variant.sync="mini" dark :color="color" )
 	v-list
-		v-list-item(link href="/")
+		v-list-item(link @click="goTo('/')")
 			v-list-item-icon
 				v-icon mdi-home-roof
 			v-list-item-content
@@ -35,13 +35,12 @@ export default {
 				height: 24
 			},
 			menu: [
-				// { mini: 'mdi-home-roof', icon: 'mdi-home-roof', text: 'Главная' },
 				{ url: '', mini: 'Вход.', icon: 'icon-inbox', text: 'Входящие' },
 				{ url: '', mini: 'Исх.', icon: 'icon-oubox', text: 'Исходящие' },
 				{ url: '', mini: 'Папки', icon: 'icon-folders', text: 'Мои папки' },
 				{ url: '', mini: 'Зад.', icon: 'icon-tasks', text: 'Задания' },
 				{ url: '', mini: 'Док.', icon: 'icon-documents', text: 'Документы' },
-				{ url: '/about', mini: 'Ком.', icon: 'icon-airplane', text: 'Командировка' }
+				{ url: '/trips', mini: 'Ком.', icon: 'icon-airplane', text: 'Командировка' }
 			]
 		}
 	},

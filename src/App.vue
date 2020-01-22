@@ -23,7 +23,8 @@ v-app
 		v-container(fluid :class="drawer ? '' : 'leftmargin'")
 			transition(name="slide-fade" mode="out-in")
 				div(v-if="!searchMode" key="start")
-					router-view
+					v-slide-y-transition(mode="out-in")
+						router-view
 				SearchPanel(v-else key="search")
 				//- Home
 				//- 	Grid
