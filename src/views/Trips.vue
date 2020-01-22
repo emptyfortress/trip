@@ -1,4 +1,7 @@
 <template lang="pug">
-	h1 Trips
+.trips
+	br
+	br
+	.zag Мои командировки
 
 </template>

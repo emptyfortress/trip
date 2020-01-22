@@ -2,7 +2,7 @@
 .grid
 	br
 	br
-	.zag(@click="pr") Прототип грида
+	.zag Прототип грида
 	//- .zag(@click="pr") VIP Premium Deluxe таблица
 	.txt настройки доступны по контекстному меню на заголовок. Shift-click переводит в режим Select
 	v-slide-y-transition(mode="out-in")
@@ -97,9 +97,6 @@ export default {
 	methods: {
 		toggleSelect () {
 			this.$store.commit('toggleSelectMode')
-		},
-		pr () {
-			console.log(this.list)
 		},
 		removeFilter () {
 			this.filter = ''
@@ -224,11 +221,6 @@ export default {
 	font-style: italic;
 	color: #666;
 	font-size: .9rem;
-}
-.zag {
-	font-size: 2.0rem;
-	color: #999;
-	text-align: center;
 }
 
 .group {
