@@ -60,8 +60,8 @@ const trips = [
 		'transport': 'Авиа',
 		'hotel': 'Алмаз',
 		'budget': 'ДРП',
-		'approve': 1,
-		'report': 1,
+		'approve': 2,
+		'report': null,
 		'title': 'Пресейл'
 	},
 	{
