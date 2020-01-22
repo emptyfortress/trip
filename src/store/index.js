@@ -15,6 +15,17 @@ export default new Vuex.Store({
 			{ id: 5, class: 'text-right', value: 'files', width: '90', active: true, sortable: true, align: 'end', text: 'Файлы' },
 			{ id: 6, class: 'text-no-wrap', value: 'status', width: '130', active: true, sortable: true, align: 'start', text: 'Статус' }
 		],
+		tripheaders: [
+			{ id: 0, class: '', value: 'to', width: '', active: true, sortable: true, align: 'start', text: 'Куда' },
+			{ id: 1, class: '', value: 'dates', width: '', active: true, sortable: true, align: 'start', text: 'Дата' },
+			{ id: 1, class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Цель' },
+			{ id: 2, class: '', value: 'transport', width: '', active: true, sortable: true, align: 'start', text: 'Транспорт' },
+			{ id: 3, class: '', value: 'hotel', width: '', active: true, sortable: true, align: 'start', text: 'Проживание' },
+			{ id: 6, class: '', value: 'budget', width: '', active: true, sortable: true, align: 'start', text: 'Бюджет' },
+			{ id: 4, class: '', value: 'approve', width: '', active: true, sortable: true, align: 'start', text: 'Согласовано' },
+			{ id: 5, class: '', value: 'report', width: '', active: true, sortable: true, align: 'start', text: 'Отчет' }
+
+		],
 		mini: false,
 		grouping: false,
 		selectMode: false,
@@ -24,6 +35,7 @@ export default new Vuex.Store({
 	getters: {
 		drawer: state => { return state.drawer },
 		headers: state => { return state.headers },
+		tripheaders: state => { return state.tripheaders },
 		mini: state => { return state.mini },
 		grouping: state => { return state.grouping },
 		selectMode: state => { return state.selectMode },
