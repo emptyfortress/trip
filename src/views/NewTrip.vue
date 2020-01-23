@@ -4,7 +4,6 @@
 	br
 	div trips: {{ trips }}
 	div trip: {{ trip }}
-	div {{ typeof($route.params.id) }}
 
 </template>
 
@@ -19,7 +18,8 @@ export default {
 	},
 	computed: {
 		trip () {
-			return this.trips.filter(item => item.id === 0)
+			let a = this.$route.params.id
+			return this.trips.filter(item => item.id === parseInt(a))
 		}
 	}
 }
