@@ -26,14 +26,6 @@ v-app
 					v-slide-y-transition(mode="out-in")
 						router-view
 				SearchPanel(v-else key="search")
-				//- Home
-				//- 	Grid
-				//- 	br
-				//- 	br
-				//- 	br
-				//- 	.second(v-stickto) Это заголовок второго грида
-				//- 	ul
-				//- 		li(v-for="n in 50") Некоторый текст
 
 	Footer
 	Dialog
@@ -45,23 +37,15 @@ v-app
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld'
 import Drawer from './components/Drawer'
 import Footer from './components/Footer'
-// import Grid from './components/Grid'
-// import Dialog from './components/Dialog'
 import SearchPanel from './components/SearchPanel'
-// import Home from './views/Home.vue'
 
 export default {
 	name: 'App',
 	components: {
-		// Home,
-		// HelloWorld,
 		Drawer,
-		// Grid,
 		Footer,
-		// Dialog,
 		SearchPanel
 	},
 	data: () => ({

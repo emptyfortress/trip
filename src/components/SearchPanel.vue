@@ -111,5 +111,7 @@ export default {
 }
 .zag {
 	font-size: 1.3rem;
+	text-align: left;
+	color: #000;
 }
 </style>

@@ -33,7 +33,7 @@ div
 						span(v-show="item[header.value] && item[header.value] !== 1 && item[header.value] !== 2") {{ item[header.value] }}
 
 					td
-						v-btn(depressed small) Копия
+						v-btn(depressed small color="primary" @click="goTo(item.id)") Копия
 
 	context-menu(ref="readMenu")
 		li(@click="readAll")
@@ -162,6 +162,10 @@ export default {
 			} else {
 				e.item.unread = false
 			}
+		},
+		goTo (e) {
+			console.log(e)
+			this.$router.push('/newtrip/' + e)
 		}
 	},
 	components: {
