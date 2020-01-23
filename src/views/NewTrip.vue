@@ -1,9 +1,17 @@
 <template lang="pug">
-.new
-	h1 New trip {{ $route.params.id }}
+v-container.new
 	br
-	div trips: {{ trips }}
-	div trip: {{ trip }}
+	br
+	.zag Заявка на командировку
+	br
+	form
+		v-row()
+			v-col().my
+				v-text-field(label="Сотрудник")
+			v-col().my
+				v-text-field(label="Город")
+			v-col().my
+				v-text-field(label="Организация")
 
 </template>
 
@@ -25,3 +33,14 @@ export default {
 }
 
 </script>
+
+<style scoped lang="scss">
+@import '@/assets/css/colors.scss';
+
+.new {
+	background: #ccc;
+}
+.my {
+	/* background: red; */
+}
+</style>
