@@ -40,7 +40,7 @@ export default {
 				{ url: '', mini: 'Папки', icon: 'icon-folders', text: 'Мои папки' },
 				{ url: '', mini: 'Зад.', icon: 'icon-tasks', text: 'Задания' },
 				{ url: '', mini: 'Док.', icon: 'icon-documents', text: 'Документы' },
-				{ url: '/trips', mini: 'Ком.', icon: 'icon-airplane', text: 'Командировка' }
+				{ url: '/trips', mini: 'Ком.', icon: 'icon-airplane', text: 'Командировки' }
 			]
 		}
 	},

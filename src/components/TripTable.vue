@@ -25,11 +25,11 @@ div
 					td(v-show="selectMode")
 						v-checkbox(v-model="item.selected" :value="item.selected" :id="item.id.toString()" @click.prevent="item.selected = !item.selected" @click="doNothing").sm
 					td(v-for="header in headers" :key="header.id" v-if="header.active" :class="header.class" @click="clickRow(props, $event)")
-						v-icon(v-show="header.id === 6 && item[header.value] === 1" color="green") mdi-check-bold
-						v-icon(v-show="header.id === 6 && item[header.value] === 2" color="red") mdi-do-not-disturb
-						v-icon(v-show="header.id === 6 && item[header.value] === 0" color="grey") mdi-timer-sand-empty
 						v-icon(v-show="header.id === 7 && item[header.value] === 1" color="green") mdi-check-bold
+						v-icon(v-show="header.id === 7 && item[header.value] === 2" color="red") mdi-do-not-disturb
 						v-icon(v-show="header.id === 7 && item[header.value] === 0" color="grey") mdi-timer-sand-empty
+						v-icon(v-show="header.id === 8 && item[header.value] === 1" color="green") mdi-check-bold
+						v-icon(v-show="header.id === 8 && item[header.value] === 0" color="grey") mdi-timer-sand-empty
 						span(v-show="item[header.value] && item[header.value] !== 1 && item[header.value] !== 2") {{ item[header.value] }}
 
 					td
@@ -77,7 +77,6 @@ import contextMenu from 'vue-context-menu'
 import trips from '@/trips.js'
 
 export default {
-	// props: [ 'filter', 'headers', 'items' ],
 	props: [ 'filter' ],
 	data () {
 		return {

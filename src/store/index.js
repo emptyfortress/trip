@@ -18,12 +18,13 @@ export default new Vuex.Store({
 		tripheaders: [
 			{ id: 0, class: '', value: 'to', width: '', active: true, sortable: true, align: 'start', text: 'Куда' },
 			{ id: 1, class: '', value: 'dates', width: '', active: true, sortable: true, align: 'start', text: 'Дата' },
-			{ id: 2, class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Цель' },
-			{ id: 3, class: '', value: 'transport', width: '', active: true, sortable: true, align: 'start', text: 'Транспорт' },
-			{ id: 4, class: '', value: 'hotel', width: '', active: true, sortable: true, align: 'start', text: 'Проживание' },
-			{ id: 5, class: '', value: 'budget', width: '', active: true, sortable: true, align: 'start', text: 'Бюджет' },
-			{ id: 6, class: '', value: 'approve', width: '', active: true, sortable: true, align: 'start', text: 'Согласовано' },
-			{ id: 7, class: '', value: 'report', width: '', active: true, sortable: true, align: 'start', text: 'Отчет' }
+			{ id: 2, class: '', value: 'org', width: '', active: true, sortable: true, align: 'start', text: 'Организация' },
+			{ id: 3, class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Цель' },
+			{ id: 4, class: '', value: 'transport', width: '', active: true, sortable: true, align: 'start', text: 'Транспорт' },
+			{ id: 5, class: '', value: 'hotel', width: '', active: true, sortable: true, align: 'start', text: 'Проживание' },
+			{ id: 6, class: '', value: 'budget', width: '', active: true, sortable: true, align: 'start', text: 'Бюджет' },
+			{ id: 7, class: '', value: 'approve', width: '', active: true, sortable: true, align: 'start', text: 'Согласовано' },
+			{ id: 8, class: '', value: 'report', width: '', active: true, sortable: true, align: 'start', text: 'Отчет' }
 
 		],
 		mini: false,
