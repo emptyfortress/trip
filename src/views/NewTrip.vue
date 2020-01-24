@@ -16,14 +16,37 @@ v-container.new
 		v-row
 			v-col
 				timeline(ref="timeline" :groups="groups" :items="items" :options="options" )
-		v-card(flat hover).form
-			v-row(justify="space-between").mx-5
-				v-card-title Транспорт
-				v-btn(color="success" small).mt-5 Посмотреть лимиты
-		v-card(flat hover).form.mt-5
-			v-row(justify="space-between").mx-5
-				v-card-title Проживание
-				v-btn(color="success" small).mt-5 Посмотреть лимиты
+		v-card(flat).form.mt-5
+			v-img(height="79" src="@/assets/img/sunset.jpg" class="white--text align-start")
+				v-row(justify="space-between").mx-5
+					v-card-title.headline Транспорт
+					v-btn(color="success" small depressed).mt-5 Посмотреть лимиты
+			v-row.mx-5
+				v-col(cols="6")
+					v-row
+						v-col
+							div Туда
+							v-radio-group(v-model="to")
+								v-radio(label="Самолет" value="A")
+								v-radio(label="Поезд" value="B")
+						v-col
+							div Обратно
+							v-radio-group(v-model="from")
+								v-radio(label="Самолет" value="A")
+								v-radio(label="Поезд" value="B")
+						v-col
+							div Заказ билетов
+							v-radio-group(v-model="ticket")
+								v-radio(label="Офис-менеджер" value="A")
+								v-radio(label="Самостоятельно" value="B")
+				v-col(cols="6")
+					v-textarea(outlined label="Комментарий по билетам" cols="12" value="").mt-3
+			div
+				img(src="@/assets/img/booking.png" width="140" height="50")
+				img(src="@/assets/img/airbnb.png" width="140" height="50")
+				img(src="@/assets/img/tripadvisor.png" width="205" height="50" )
+				img(src="@/assets/img/aviasales.png"  width="182" height="50")
+				img(src="@/assets/img/tutu.png"  width="151" height="50")
 
 </template>
 
@@ -37,6 +60,9 @@ export default {
 	data () {
 		return {
 			trips: trips,
+			to: 'A',
+			from: 'A',
+			ticket: 'A',
 			groups: [{
 				id: 0,
 				content: 'Срок командировки'

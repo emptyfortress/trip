@@ -33,7 +33,7 @@ div
 						span(v-show="item[header.value] && item[header.value] !== 1 && item[header.value] !== 2") {{ item[header.value] }}
 
 					td
-						v-btn(depressed small color="primary" @click="goTo(item.id)") Копия
+						v-btn(depressed small color="primary" @click="goTo(item.id)") Повтор
 
 	context-menu(ref="readMenu")
 		li(@click="readAll")
