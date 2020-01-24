@@ -16,6 +16,14 @@ v-container.new
 		v-row
 			v-col
 				timeline(ref="timeline" :groups="groups" :items="items" :options="options" )
+		v-card(flat hover).form
+			v-row(justify="space-between").mx-5
+				v-card-title Транспорт
+				v-btn(color="success" small).mt-5 Посмотреть лимиты
+		v-card(flat hover).form.mt-5
+			v-row(justify="space-between").mx-5
+				v-card-title Проживание
+				v-btn(color="success" small).mt-5 Посмотреть лимиты
 
 </template>
 
@@ -36,8 +44,8 @@ export default {
 			items: [{
 				id: 0,
 				group: 0,
-				start: moment().add(3, 'days'),
-				end: moment().add(4, 'days'),
+				start: moment('2020-01-24').add(3, 'days'),
+				end: moment('2020-01-24').add(4, 'days'),
 				content: '1 день'
 			}],
 			options: {
@@ -47,9 +55,6 @@ export default {
 		}
 	},
 	computed: {
-		test () {
-			return moment().startOf('day')
-		},
 		trip () {
 			let a = this.$route.params.id
 			return this.trips.filter(item => item.id === parseInt(a))[0]
@@ -62,7 +67,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 @import '@/assets/css/colors.scss';
+
+.form {
+	/* padding: 1rem; */
+	/* box-shadow: none; */
+	border: 1px solid #dedede
+
+}
 
 </style>
