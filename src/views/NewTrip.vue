@@ -10,13 +10,19 @@ v-container.new
 				v-text-field(label="Сотрудник" value="Орлов П.С")
 			v-col().my
 				v-text-field(label="Город" :value="trip.to")
+			v-col(cols="2").my
+				v-text-field(label="ИНН" value="4453214501")
 			v-col().my
 				v-text-field(label="Организация" :value="trip.org")
 		v-text-field(label="Цель командировки" :value="trip.title")
 		v-row
 			v-col
 				timeline(ref="timeline" :groups="groups" :items="items" :options="options" )
-		v-card(flat).form.mt-5
+		v-card(flat hover).form.mt-5
+			//- v-row(justify="space-between").mx-5
+			//- 	v-card-title.headline Транспорт
+			//- 	v-btn(color="success" small depressed).mt-5 Посмотреть лимиты
+
 			v-img(height="79" src="@/assets/img/sunset.jpg" class="white--text align-start")
 				v-row(justify="space-between").mx-5
 					v-card-title.headline Транспорт
@@ -25,29 +31,81 @@ v-container.new
 				v-col(cols="6")
 					v-row
 						v-col
-							div Туда
+							div.font-weight-bold  Туда
 							v-radio-group(v-model="to")
 								v-radio(label="Самолет" value="A")
 								v-radio(label="Поезд" value="B")
 						v-col
-							div Обратно
+							div.font-weight-bold  Обратно
 							v-radio-group(v-model="from")
 								v-radio(label="Самолет" value="A")
 								v-radio(label="Поезд" value="B")
 						v-col
-							div Заказ билетов
+							div.font-weight-bold  Заказ билетов
 							v-radio-group(v-model="ticket")
 								v-radio(label="Офис-менеджер" value="A")
 								v-radio(label="Самостоятельно" value="B")
 				v-col(cols="6")
 					v-textarea(outlined label="Комментарий по билетам" cols="12" value="").mt-3
-			div
-				img(src="@/assets/img/booking.png" width="140" height="50")
-				img(src="@/assets/img/airbnb.png" width="140" height="50")
-				img(src="@/assets/img/tripadvisor.png" width="205" height="50" )
-				img(src="@/assets/img/aviasales.png"  width="182" height="50")
-				img(src="@/assets/img/tutu.png"  width="151" height="50")
+			//- .mx-5
+			//- 	img(src="@/assets/img/booking.png" width="140" height="50")
+			//- 	img(src="@/assets/img/airbnb.png" width="140" height="50")
+			//- 	img(src="@/assets/img/tripadvisor.png" width="205" height="50" )
+			//- 	img(src="@/assets/img/aviasales.png"  width="182" height="50")
+			//- 	img(src="@/assets/img/tutu.png"  width="151" height="50")
 
+		v-card(flat hover).form.mt-5
+			//- v-row(justify="space-between").mx-5
+			//- 	v-card-title.headline Проживание
+			//- 	v-btn(color="success" small depressed).mt-5 Посмотреть лимиты
+			v-img(height="79" src="@/assets/img/hotel.jpg" class="white--text align-start")
+				v-row(justify="space-between").mx-5
+					v-card-title.headline Проживание
+					v-btn(color="success" small depressed).mt-5 Посмотреть лимиты
+			v-row.mx-5
+				v-col(cols="3")
+					v-checkbox(label="Проживание не требуется" v-model="living")
+				v-col(cols="3" v-show="!living").mt-5
+					.font-weight-bold Заказ отеля
+					v-radio-group(v-model="from")
+						v-radio(label="Офис-менеджер" value="A")
+						v-radio(label="Самостоятельно" value="B")
+				v-col(v-show="!living")
+					v-textarea(outlined label="Комментарий по отелю" cols="12" value="").mt-3
+			//- .mx-5
+			//- 	img(src="@/assets/img/ostrovok.png").mr-4
+			//- 	img(src="@/assets/img/trivago.png").mr-4
+			//- 	img(src="@/assets/img/guru.png").mr-4
+			//- 	img(src="@/assets/img/agoda.png")
+		v-card(flat hover).form.mt-5
+			v-row.mx-5
+				v-col(cols="2")
+					v-card-title.headline.mr-5 Бюджет
+				v-col
+					v-row
+						v-col(cols="5").mx-5
+							v-select(:items="departments" label="Отдел" value="ДРП")
+						v-col.mx-5
+							v-row.pr-4
+								v-slider(v-model="slider" hide-details step="10").align-end
+									template(v-slot:prepend)
+										v-text-field(v-model="slider" hide-details single-line type="number" style="width: 50px")
+									template(v-slot:append)
+										v-btn(text icon color="pink")
+											v-icon mdi-close
+					v-card-actions
+						v-btn(text color="primary") Добавить бюджет
+		v-card-actions.mt-5
+			v-spacer
+			v-btn(depressed color="lightgray") Отмена
+			v-btn(depressed color="primary") На согласование
+	br
+	br
+	br
+	br
+	br
+	br
+	br
 </template>
 
 <script>
@@ -60,9 +118,15 @@ export default {
 	data () {
 		return {
 			trips: trips,
+			living: false,
+			slider: 100,
 			to: 'A',
 			from: 'A',
 			ticket: 'A',
+
+			departments: [
+				'ДРП', 'Коммерческий отдел', 'Сервисы', 'Техподдержка', 'Бухгалтерия'
+			],
 			groups: [{
 				id: 0,
 				content: 'Срок командировки'
@@ -98,7 +162,7 @@ export default {
 .form {
 	/* padding: 1rem; */
 	/* box-shadow: none; */
-	border: 1px solid #dedede
+	border: 1px solid #ccc;
 
 }
 
