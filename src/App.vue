@@ -21,6 +21,7 @@ v-app
 			v-icon mdi-help-circle-outline
 	v-content(v-scroll="handleScroll" id="target")
 		v-container(fluid :class="drawer ? '' : 'leftmargin'")
+
 			transition(name="slide-fade" mode="out-in")
 				div(v-if="!searchMode" key="start")
 					v-slide-y-transition(mode="out-in")

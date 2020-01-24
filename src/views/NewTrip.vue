@@ -7,23 +7,23 @@ v-container.new
 	form
 		v-row()
 			v-col().my
-				v-text-field(label="Сотрудник")
+				v-text-field(label="Сотрудник" value="Орлов П.С")
 			v-col().my
-				v-text-field(label="Город")
+				v-text-field(label="Город" :value="trip.to")
 			v-col().my
-				v-text-field(label="Организация")
+				v-text-field(label="Организация" :value="trip.org")
+		v-text-field(label="Цель командировки" :value="trip.title")
 		v-row
 			v-col
-				timeline( ref="timeline" v-bind:items="items" v-bind:groups="groups" )
+				timeline(ref="timeline" :groups="groups" :items="items" :options="options" )
 
 </template>
 
 <script>
-import Vue from 'vue'
-import 'vue2vis/dist/vue2vis.css'
 import trips from '@/trips.js'
-import timeline from 'vue-visjs-timeline'
-Vue.component('timeline', timeline)
+import 'vue2vis/dist/vue2vis.css'
+import '@/assets/css/vis.scss'
+import moment from 'moment'
 
 export default {
 	data () {
@@ -31,23 +31,28 @@ export default {
 			trips: trips,
 			groups: [{
 				id: 0,
-				content: 'Group 1'
+				content: 'Срок командировки'
 			}],
 			items: [{
 				id: 0,
 				group: 0,
-				start: new Date(),
-				content: 'Item 1'
+				start: moment().add(3, 'days'),
+				end: moment().add(4, 'days'),
+				content: '1 день'
 			}],
 			options: {
-				editable: true
+				editable: true,
+				locale: 'ru'
 			}
 		}
 	},
 	computed: {
+		test () {
+			return moment().startOf('day')
+		},
 		trip () {
 			let a = this.$route.params.id
-			return this.trips.filter(item => item.id === parseInt(a))
+			return this.trips.filter(item => item.id === parseInt(a))[0]
 		}
 	},
 	components: {
@@ -60,10 +65,4 @@ export default {
 
 @import '@/assets/css/colors.scss';
 
-.new {
-	background: #ccc;
-}
-.my {
-	/* background: red; */
-}
 </style>
