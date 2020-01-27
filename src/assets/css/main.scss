@@ -93,3 +93,22 @@
   transform: translateY(10px);
   opacity: 0;
 }
+
+.mytab {
+	.v-tabs-slider-wrapper {
+		top: 0;
+		color: #000;
+	}
+	.v-tab {
+		font-weight: 400;
+	}
+	.v-tab.v-tab--active {
+		color: #000;
+		font-weight: 500;
+	}
+}
+.v-item-group.theme--light.v-slide-group {
+	background: transparent;
+	border-top: 1px solid #ccc;
+}
+

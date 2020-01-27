@@ -1,6 +1,14 @@
 <template lang="pug">
-.approve
-	h1 Approve
+v-row(justify="center").mx-3
+	v-col(md="12" lg="9")
+		.zag
+			span Согласование:
+			|  командировка
+		br
+		v-tabs.mytab
+			v-tab Главная
+			v-tab Подчиненные задания
+			v-tab История
 
 </template>
 
@@ -24,3 +32,16 @@ export default {
 }
 
 </script>
+
+<style scoped lang="scss">
+@import '@/assets/css/colors.scss';
+
+.zag {
+	color: black;
+	text-align: left;
+	font-size: 1.5rem;
+	span {
+		opacity: .5;
+	}
+}
+</style>
