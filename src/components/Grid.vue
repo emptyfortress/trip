@@ -290,4 +290,7 @@ export default {
 	font-size: 1.3rem;
 	margin-left: .6rem;
 }
+.zag {
+	/* color: red; */
+}
 </style>

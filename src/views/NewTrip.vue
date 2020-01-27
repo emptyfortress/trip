@@ -1,7 +1,6 @@
 <template lang="pug">
 v-container.new
 	br
-	br
 	.zag Заявка на командировку
 	br
 	form
@@ -26,7 +25,10 @@ v-container.new
 			v-img(height="79" src="@/assets/img/sunset.jpg" class="white--text align-start")
 				v-row(justify="space-between").mx-5
 					v-card-title.headline Транспорт
-					v-btn(color="success" small depressed).mt-5 Посмотреть лимиты
+					v-btn(color="info" small depressed dark).mt-5 Посмотреть лимиты
+			//- v-row(justify="space-between").mx-5
+			//- 	v-card-title.headline Транспорт
+			//- 	v-btn(color="success" small depressed).mt-5 Посмотреть лимиты
 			v-row.mx-5
 				v-col(cols="6")
 					v-row
@@ -47,21 +49,15 @@ v-container.new
 								v-radio(label="Самостоятельно" value="B")
 				v-col(cols="6")
 					v-textarea(outlined label="Комментарий по билетам" cols="12" value="").mt-3
-			//- .mx-5
-			//- 	img(src="@/assets/img/booking.png" width="140" height="50")
-			//- 	img(src="@/assets/img/airbnb.png" width="140" height="50")
-			//- 	img(src="@/assets/img/tripadvisor.png" width="205" height="50" )
-			//- 	img(src="@/assets/img/aviasales.png"  width="182" height="50")
-			//- 	img(src="@/assets/img/tutu.png"  width="151" height="50")
 
 		v-card(flat hover).form.mt-5
-			//- v-row(justify="space-between").mx-5
-			//- 	v-card-title.headline Проживание
-			//- 	v-btn(color="success" small depressed).mt-5 Посмотреть лимиты
-			v-img(height="79" src="@/assets/img/hotel.jpg" class="white--text align-start")
+			v-img(height="79" src="@/assets/img/city.jpg" class="white--text align-start" )
 				v-row(justify="space-between").mx-5
 					v-card-title.headline Проживание
-					v-btn(color="success" small depressed).mt-5 Посмотреть лимиты
+					v-btn(color="info" small dark).mt-5 Посмотреть лимиты
+			//- v-row(justify="space-between" ).mx-5
+			//- 	v-card-title.headline Проживание
+			//- 	v-btn(color="success" small depressed).mt-5 Посмотреть лимиты
 			v-row.mx-5
 				v-col(cols="3")
 					v-checkbox(label="Проживание не требуется" v-model="living")
@@ -72,11 +68,6 @@ v-container.new
 						v-radio(label="Самостоятельно" value="B")
 				v-col(v-show="!living")
 					v-textarea(outlined label="Комментарий по отелю" cols="12" value="").mt-3
-			//- .mx-5
-			//- 	img(src="@/assets/img/ostrovok.png").mr-4
-			//- 	img(src="@/assets/img/trivago.png").mr-4
-			//- 	img(src="@/assets/img/guru.png").mr-4
-			//- 	img(src="@/assets/img/agoda.png")
 		v-card(flat hover).form.mt-5
 			v-row.mx-5
 				v-col(cols="2")
@@ -101,6 +92,24 @@ v-container.new
 			v-btn(depressed color="primary") На согласование
 	br
 	br
+	v-row.white
+		v-col
+			img(src="@/assets/img/booking.png")
+		v-col
+			img(src="@/assets/img/airbnb.png" width="140" height="50")
+		v-col
+			img(src="@/assets/img/tripadvisor.png" width="205" height="50" )
+		v-col
+			img(src="@/assets/img/aviasales.png"  width="182" height="50")
+		v-col
+			img(src="@/assets/img/tutu.png"  width="151" height="50")
+		v-col
+			img(src="@/assets/img/ostrovok.png")
+		//- v-col
+		//- 	img(src="@/assets/img/trivago.png")
+		//- v-col
+		//- 	img(src="@/assets/img/guru.png")
+	br
 	br
 	br
 	br
@@ -120,6 +129,7 @@ export default {
 			trips: trips,
 			living: false,
 			slider: 100,
+			nnn: false,
 			to: 'A',
 			from: 'A',
 			ticket: 'A',
@@ -140,7 +150,8 @@ export default {
 			}],
 			options: {
 				editable: true,
-				locale: 'ru'
+				locale: 'ru',
+				timeAxis: { scale: 'day', step: 1 }
 			}
 		}
 	},
@@ -150,8 +161,10 @@ export default {
 			return this.trips.filter(item => item.id === parseInt(a))[0]
 		}
 	},
-	components: {
+	created () {
+		setTimeout(_ => this.$refs.timeline.setWindow('2020-01-22', '2020-01-31'))
 	}
+
 }
 
 </script>
@@ -160,10 +173,7 @@ export default {
 @import '@/assets/css/colors.scss';
 
 .form {
-	/* padding: 1rem; */
-	/* box-shadow: none; */
 	border: 1px solid #ccc;
-
 }
 
 </style>
