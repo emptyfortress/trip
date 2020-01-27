@@ -25,7 +25,7 @@ v-container.new
 			v-img(height="79" src="@/assets/img/sunset.jpg" class="white--text align-start")
 				v-row(justify="space-between").mx-5
 					v-card-title.headline Транспорт
-					v-btn(color="info" small depressed dark).mt-5 Посмотреть лимиты
+					v-btn(color="info" small depressed dark).mt-5 Смотреть лимиты
 			//- v-row(justify="space-between").mx-5
 			//- 	v-card-title.headline Транспорт
 			//- 	v-btn(color="success" small depressed).mt-5 Посмотреть лимиты
@@ -51,10 +51,10 @@ v-container.new
 					v-textarea(outlined label="Комментарий по билетам" cols="12" value="").mt-3
 
 		v-card(flat hover).form.mt-5
-			v-img(height="79" src="@/assets/img/city.jpg" class="white--text align-start" )
+			v-img(height="79" src="@/assets/img/room.jpg" class="white--text align-start" )
 				v-row(justify="space-between").mx-5
 					v-card-title.headline Проживание
-					v-btn(color="info" small dark).mt-5 Посмотреть лимиты
+					v-btn(color="info" small dark).mt-5 Смотреть лимиты
 			//- v-row(justify="space-between" ).mx-5
 			//- 	v-card-title.headline Проживание
 			//- 	v-btn(color="success" small depressed).mt-5 Посмотреть лимиты
