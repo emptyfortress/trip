@@ -1,6 +1,6 @@
 <template lang="pug">
 v-row(justify="center").mx-3
-	v-col(md="12" lg="8")
+	v-col(md="12" lg="9")
 		br
 		.zag Заявка на командировку
 		br

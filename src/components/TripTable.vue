@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-	v-data-table(:headers="headers" :items="trips" :search="search" hide-default-header  hide-default-footer :items-per-page="per" :show-select="selectMode" item-key="id").tab
+	v-data-table(:headers="headers" :items="items" :search="search" hide-default-header  hide-default-footer :items-per-page="per" :show-select="selectMode" item-key="id").tab
 		template(v-slot:header="{ props: {headers}}")
 			thead(@contextmenu.prevent="$refs.ctxMenu.open")
 				tr(v-stickto).stick
@@ -24,11 +24,11 @@ div
 					td(@click="item.unread = !item.unread" @contextmenu.prevent="$refs.readMenu.open").px-0.drag.zero
 					td(v-show="selectMode")
 						v-checkbox(v-model="item.selected" :value="item.selected" :id="item.id.toString()" @click.prevent="item.selected = !item.selected" @click="doNothing").sm
-					td(v-for="header in headers" :key="header.id" v-if="header.active" :class="header.class" @click="clickRow(props, $event)")
+					td(v-for="header in headers" :key="header.id" v-if="header.active" :class="header.class" @click="clickRow(item, $event)")
 						v-icon(v-show="header.id === 7 && item[header.value] === 1" color="green") mdi-check-bold
 						v-icon(v-show="header.id === 7 && item[header.value] === 2" color="red") mdi-do-not-disturb
 						v-icon(v-show="header.id === 7 && item[header.value] === 0" color="grey") mdi-timer-sand-empty
-						v-btn(v-show="header.id === 8 && item[header.value] === 0 && item.id === 0" depressed small color="primary") Отчет
+						v-btn(v-show="header.id === 8 && item[header.value] === 0 && item.id === 0" depressed small color="primary") + Отчет
 						v-icon(v-show="header.id === 8 && item[header.value] === 1" color="green") mdi-check-bold
 						span(v-show="item[header.value] && item[header.value] !== 1 && item[header.value] !== 2") {{ item[header.value] }}
 
@@ -81,7 +81,7 @@ export default {
 	data () {
 		return {
 			selectAll: false,
-			trips: trips,
+			items: trips,
 			form: {
 				filter: []
 			},
@@ -104,7 +104,7 @@ export default {
 			return this.$store.getters.grouping
 		},
 		selectedItems () {
-			return this.trips.filter(item => item.selected)
+			return this.items.filter(item => item.selected)
 		},
 		check () {
 			if (this.selectedItems.length === 0 || this.selectedItems.length === this.items.length) {
@@ -160,11 +160,12 @@ export default {
 			} else if (i.shiftKey && this.selectMode) {
 				this.$store.commit('setSelectMode', false)
 			} else {
-				e.item.unread = false
+				console.log('testtttt')
+
+				// e.item.unread = false
 			}
 		},
 		goTo (e) {
-			console.log(e)
 			this.$router.push('/newtrip/' + e)
 		}
 	},
