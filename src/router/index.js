@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Trips from '../views/Trips.vue'
 import NewTrip from '../views/NewTrip.vue'
+import Approve from '../views/Approve.vue'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,12 @@ const routes = [
 		path: '/trips',
 		name: 'trips',
 		component: Trips
+	},
+	{
+		path: '/approve/:id',
+		name: 'approve',
+		component: Approve,
+		props: true
 	},
 	{
 		path: '/newtrip/:id',

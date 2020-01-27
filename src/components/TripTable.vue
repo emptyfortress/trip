@@ -160,8 +160,7 @@ export default {
 			} else if (i.shiftKey && this.selectMode) {
 				this.$store.commit('setSelectMode', false)
 			} else {
-				console.log('testtttt')
-
+				this.$router.push('/approve/' + e.id.toString())
 				// e.item.unread = false
 			}
 		},
