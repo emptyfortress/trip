@@ -21,12 +21,19 @@
 					v-expansion-panel-content(value="true")
 						hr(color="#eee")
 						v-breadcrumbs(:items="crumbs")
-						.font-weight-medium Этап 1. Согласование (последовательно)
-						table(width="100%").mt-2
-							tr
-								th(v-for="item in headers").tdhead {{ item.text }}
-							tr(v-for="item in table")
-								td {{ item.fio }}
+						.etap Этап 1. Согласование (последовательно)
+						v-simple-table
+							template(v-slot:default)
+								thead
+									tr.myhead
+										th(v-for="item in headers").text-left {{ item.text}}
+								tbody
+									tr(v-for="item in table" :key="item.fio").my
+										td(width="130").nowrap {{ item.fio }}
+										td(width="150") {{ item.decision }}
+										td.nowrap {{ item.date }}
+										td {{ item.comment }}
+										td
 
 		v-col(cols="12" lg="3" md="4" sm="12")
 			v-card(flat hover).ful
@@ -60,16 +67,17 @@ export default {
 				{ text: '2 цикл', disabled: true, link: true }
 			],
 			headers: [
-				{ text: 'Согласующий' },
-				{ text: 'Решение' },
-				{ text: 'Дата' },
-				{ text: 'Комментарий' },
+				{ text: 'Согласующий', value: 'fio' },
+				{ text: 'Решение', value: 'decision' },
+				{ text: 'Дата', value: 'date' },
+				{ text: 'Комментарий', value: 'comment' },
 				{ text: 'Правки' }
 			],
 			table: [
-				{ fio: 'Дроздова С.П.', decision: '', date: '', comment: '' },
-				{ fio: 'Дроздова С.П.', decision: '', date: '', comment: '' },
-				{ fio: 'Дроздова С.П.', decision: '', date: '', comment: '' }
+				{ fio: 'Дроздова С.П.', decision: 'Добавить согласующих', date: '23.12.2020', comment: 'Требуется согласование юридического отдела. Указан доп.согласующий Петров Г.М.' },
+				{ fio: 'Петров Г.М.', decision: 'Согласовано с замечаниями', date: '23.12.2020', comment: '' },
+				{ fio: 'Синицына А.П.', decision: 'Отклонено', date: '23.12.2020', comment: '' },
+				{ fio: 'Орлов П.П.', decision: 'Ожидает решения', date: '', comment: '' }
 			]
 		}
 	},
@@ -153,6 +161,24 @@ table {
 		font-size: .9rem;
 		padding: .5rem;
 	}
+}
+.etap {
+	margin-bottom: .5rem;
+	font-weight: 500;
+}
+.nowrap {
+	white-space: nowrap;
+}
+.myhead {
+	th {
+		background: #eee;
+		height: 30px;
+		border: 1px solid white
+	}
+}
+.my td {
+	color: #666;
+	/* padding: 3px 5px; */
 }
 
 </style>
