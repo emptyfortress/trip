@@ -15,42 +15,52 @@
 				.ml-8
 					div Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
 					.link Карточка для согласования
-			v-expansion-panels(flat value="0").mt-5.fl
-				v-expansion-panel(value="true")
-					v-expansion-panel-header Ход согласования
-					v-expansion-panel-content(value="true")
-						hr(color="#eee")
-						v-breadcrumbs(:items="crumbs")
-						.etap Этап 1. Согласование (последовательно)
-						v-simple-table
-							template(v-slot:default)
-								thead
-									tr.myhead
-										th(v-for="item in headers").text-left {{ item.text}}
-								tbody
-									tr(v-for="item in table" :key="item.fio").my
-										td(width="130").nowrap {{ item.fio }}
-										td(width="150") {{ item.decision }}
-										td.nowrap {{ item.date }}
-										td {{ item.comment }}
-										td
 
 		v-col(cols="12" lg="3" md="4" sm="12")
 			v-card(flat hover).ful
 				v-row(justify="space-between").mx-1
 					.tit
 						i.icon-forum.mr-3
-						| Обсуждение
+						| Обсуждение (0)
 					v-btn(text icon)
 						i.icon-up
 				.action
 					v-text-field(label="Оставить комментарий")
-	v-card(flat).all
+
+	v-expansion-panels(flat value="0").mt-1.fl
+		v-expansion-panel(value="true")
+			v-expansion-panel-header Ход согласования
+			v-expansion-panel-content(value="true")
+				hr(color="#eee")
+				v-breadcrumbs(:items="crumbs" @click="doNothing")
+				.etap Этап 1. Согласование (последовательно)
+				v-simple-table
+					template(v-slot:default)
+						thead
+							tr.myhead
+								th(v-for="item in headers").text-left {{ item.text}}
+						tbody
+							tr(v-for="item in table" :key="item.fio").my
+								td(width="150").nowrap.bl {{ item.fio }}
+								td(width="250")
+									v-icon(small :color="item.color") {{ item.icon }}
+									span.ml-2 {{ item.decision }}
+								td.nowrap {{ item.date }}
+								td {{ item.comment }}
+								td
+
+	TripCard
+	br
+	br
+	br
+	br
+	br
 
 </template>
 
 <script>
 import trips from '@/trips.js'
+import TripCard from '@/components/TripCard'
 
 export default {
 	data () {
@@ -59,12 +69,14 @@ export default {
 			attr: [
 				{ id: 0, attr: 'Инициатор:', value: 'Волков А.В.' },
 				{ id: 1, attr: 'Исполнитель:', value: 'Пуцин С.В.' },
-				{ id: 2, attr: 'Срок:', value: '31.01.2020' }
+				{ id: 2, attr: 'Срок:', value: '31.01.2020' },
+				{ id: 3, attr: 'Аттрибут:', value: 'значение' },
+				{ id: 4, attr: 'Аттрибут:', value: 'значение' }
 			],
 			crumbs: [
 				{ text: 'Циклы согласования:', disabled: true, link: true },
-				{ text: '1 цикл', disabled: false, href: '/approve' },
-				{ text: '2 цикл', disabled: true, link: true }
+				{ text: '1 цикл', disabled: true, href: '' },
+				{ text: '2 цикл', disabled: false, link: true }
 			],
 			headers: [
 				{ text: 'Согласующий', value: 'fio' },
@@ -74,10 +86,10 @@ export default {
 				{ text: 'Правки' }
 			],
 			table: [
-				{ fio: 'Дроздова С.П.', decision: 'Добавить согласующих', date: '23.12.2020', comment: 'Требуется согласование юридического отдела. Указан доп.согласующий Петров Г.М.' },
-				{ fio: 'Петров Г.М.', decision: 'Согласовано с замечаниями', date: '23.12.2020', comment: '' },
-				{ fio: 'Синицына А.П.', decision: 'Отклонено', date: '23.12.2020', comment: '' },
-				{ fio: 'Орлов П.П.', decision: 'Ожидает решения', date: '', comment: '' }
+				{ icon: 'mdi-account-plus', color: 'primary', fio: 'Дроздова С.П.', decision: 'Добавить согласующих', date: '23.12.2020', comment: 'Требуется согласование юридического отдела. Указан доп.согласующий Петров Г.М.' },
+				{ icon: 'mdi-message-outline', color: 'primary', fio: 'Петров Г.М.', decision: 'Согласовано с замечаниями', date: '23.12.2020', comment: 'Нужно изменить акт' },
+				{ icon: 'mdi-do-not-disturb', color: 'red', fio: 'Синицына А.П.', decision: 'Отклонено', date: '23.12.2020', comment: 'Нужно переделать договор' },
+				{ icon: 'mdi-timer-sand-empty', color: 'grey', fio: 'Орлов П.П.', decision: 'Ожидает решения', date: '', comment: '' }
 			]
 		}
 	},
@@ -88,9 +100,12 @@ export default {
 		}
 	},
 	methods: {
-		test () {
-			console.log('alskdj')
+		doNothing (evt) {
+			evt.stopPropagation()
 		}
+	},
+	components: {
+		TripCard
 	}
 }
 
@@ -137,15 +152,12 @@ export default {
 	.action {
 		margin: 0 1rem;
 		position: absolute;
-		bottom: .5rem;
+		/* bottom: 35%; */
+		bottom: 1rem;
 		left: 0;
 		right: 0;
 		height: 50px;
 	}
-}
-.all {
-	background: #ccc;
-	height: 300px;
 }
 .tdhead {
 	font-size: .8rem;
@@ -178,7 +190,9 @@ table {
 }
 .my td {
 	color: #666;
-	/* padding: 3px 5px; */
+	padding: 6px 13px;
+	&.bl {
+		color: black;
+	}
 }
-
 </style>

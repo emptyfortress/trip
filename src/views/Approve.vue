@@ -14,9 +14,11 @@ v-row(justify="center").mx-3
 			v-tab-item(key="1")
 				ApproveTask
 			v-tab-item(key="2")
-				span two
+				div.big
+					i.icon-empty
+					span Задания отсутствуют
 			v-tab-item(key="3")
-				span three
+				span История
 
 </template>
 
@@ -61,7 +63,12 @@ export default {
 	font-size: 1.2rem;
 	text-align: right;
 	margin-top: .6rem;
-	/* width: 120px; */
-	/* background: #ccc; */
+}
+.big {
+	margin-top: 4rem;
+	i {
+		font-size: 3.0rem;
+		color: #888;
+	}
 }
 </style>

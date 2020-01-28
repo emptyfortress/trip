@@ -64,7 +64,7 @@ v-row(justify="center").mx-3
 						v-checkbox(label="Проживание не требуется" v-model="living")
 					v-col(cols="3" v-show="!living").mt-5
 						.font-weight-bold Заказ отеля
-						v-radio-group(v-model="from")
+						v-radio-group(v-model="hotel")
 							v-radio(label="Офис-менеджер" value="A")
 							v-radio(label="Самостоятельно" value="B")
 					v-col(v-show="!living")
@@ -134,6 +134,7 @@ export default {
 			to: 'A',
 			from: 'A',
 			ticket: 'A',
+			hotel: 'A',
 
 			departments: [
 				'ДРП', 'Коммерческий отдел', 'Сервисы', 'Техподдержка', 'Бухгалтерия'

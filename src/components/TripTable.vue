@@ -28,7 +28,7 @@ div
 						v-icon(v-show="header.id === 7 && item[header.value] === 1" color="green") mdi-check-bold
 						v-icon(v-show="header.id === 7 && item[header.value] === 2" color="red") mdi-do-not-disturb
 						v-icon(v-show="header.id === 7 && item[header.value] === 0" color="grey") mdi-timer-sand-empty
-						v-btn(v-show="header.id === 8 && item[header.value] === 0 && item.id === 0" depressed small color="primary") + Отчет
+						v-btn(v-show="header.id === 8 && item[header.value] === 0 && item.id === 0" depressed small color="primary" @click="doNothing") + Отчет
 						v-icon(v-show="header.id === 8 && item[header.value] === 1" color="green") mdi-check-bold
 						span(v-show="item[header.value] && item[header.value] !== 1 && item[header.value] !== 2") {{ item[header.value] }}
 
@@ -229,5 +229,8 @@ export default {
 .v-input.sm {
 	margin-top: 0;
 	padding-top: .6rem;
+}
+.sortableRow {
+	cursor: pointer;
 }
 </style>
