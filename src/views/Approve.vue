@@ -3,19 +3,26 @@ v-row(justify="center").mx-3
 	v-col(md="12" lg="9")
 		v-row(justify="space-between")
 			v-col
-				.zag.mb-2
+				.zag
 					span Согласование:
 					|  командировка
-			v-col(cols="2").status В работе
+			v-col(cols="2").status Не начато
 		v-tabs.mytab
 			v-tab Главная
 			v-tab Подчиненные задания
 			v-tab История
+			v-tab-item(key="1")
+				ApproveTask
+			v-tab-item(key="2")
+				span two
+			v-tab-item(key="3")
+				span three
 
 </template>
 
 <script>
 import trips from '@/trips.js'
+import ApproveTask from '@/components/ApproveTask'
 
 export default {
 	data () {
@@ -30,6 +37,9 @@ export default {
 		}
 	},
 	methods: {
+	},
+	components: {
+		ApproveTask
 	}
 }
 
