@@ -1,6 +1,7 @@
 <template lang="pug">
 v-app
 	Drawer
+	AddDrawer
 	v-app-bar(app collapse-on-scroll dark :color="color" clipped-left :class="calcWidth()")
 		v-app-bar-nav-icon(@click.stop="toggle")
 		.d-flex.lft
@@ -30,7 +31,7 @@ v-app
 
 	Footer
 	Dialog
-	v-btn(dark fab color="pink").plus
+	v-btn(dark fab color="pink" @click="toggleAdd").plus
 		v-icon(dark) mdi-plus
 	v-alert(v-show="scroll" transition="scale-transition").up
 		v-btn(fab color="white" @click="$vuetify.goTo(0)")
@@ -39,6 +40,7 @@ v-app
 
 <script>
 import Drawer from './components/Drawer'
+import AddDrawer from './components/AddDrawer'
 import Footer from './components/Footer'
 import SearchPanel from './components/SearchPanel'
 
@@ -46,6 +48,7 @@ export default {
 	name: 'App',
 	components: {
 		Drawer,
+		AddDrawer,
 		Footer,
 		SearchPanel
 	},
@@ -54,14 +57,21 @@ export default {
 		offsetTop: true,
 		scroll: false,
 		logo: true
+		// add: true
+
 		//
 	}),
 	computed: {
+		add () { return this.$store.getters.add },
 		drawer () { return this.$store.getters.drawer },
 		mini () { return this.$store.getters.mini },
 		searchMode () { return this.$store.getters.searchMode }
 	},
 	methods: {
+		toggleAdd () {
+			console.log('add')
+			this.$store.commit('toggleAdd')
+		},
 		toggleSearch () {
 			this.$store.commit('toggleSearchMode')
 		},
@@ -127,6 +137,7 @@ export default {
 	position: fixed;
 	bottom: 4rem;
 	right: 2rem;
+	z-index: 1000;
 }
 .up {
 	position: fixed;

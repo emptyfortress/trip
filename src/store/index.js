@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		drawer: true,
+		drawer: false,
+		add: false,
 		headers: [
 			{ id: 0, class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
 			{ id: 1, class: 'text-no-wrap', value: 'executor', width: '400', active: true, sortable: true, align: 'start', text: 'Исполнитель' },
@@ -35,6 +36,7 @@ export default new Vuex.Store({
 	},
 	getters: {
 		drawer: state => { return state.drawer },
+		add: state => { return state.add },
 		headers: state => { return state.headers },
 		tripheaders: state => { return state.tripheaders },
 		mini: state => { return state.mini },
@@ -45,6 +47,7 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		toggleDrawer (state) { state.drawer = !state.drawer },
+		toggleAdd (state) { state.add = !state.add },
 		toggleGrouping (state) { state.grouping = !state.grouping },
 		toggleDialog (state) { state.dialog = !state.dialog },
 		setGrouping (state, payload) { state.grouping = payload },
