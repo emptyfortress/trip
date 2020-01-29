@@ -160,4 +160,5 @@ export default {
 	border-radius: 10px;
 	border: 2px solid $dark;
 }
+
 </style>

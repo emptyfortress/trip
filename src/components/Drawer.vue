@@ -35,8 +35,8 @@ export default {
 				height: 24
 			},
 			menu: [
-				{ url: '', mini: 'Вход.', icon: 'icon-inbox', text: 'Входящие' },
-				{ url: '', mini: 'Исх.', icon: 'icon-oubox', text: 'Исходящие' },
+				{ url: '/folder', mini: 'Вход.', icon: 'icon-inbox', text: 'Входящие' },
+				{ url: '/folder', mini: 'Исх.', icon: 'icon-oubox', text: 'Исходящие' },
 				{ url: '', mini: 'Папки', icon: 'icon-folders', text: 'Мои папки' },
 				{ url: '', mini: 'Зад.', icon: 'icon-tasks', text: 'Задания' },
 				{ url: '', mini: 'Док.', icon: 'icon-documents', text: 'Документы' },

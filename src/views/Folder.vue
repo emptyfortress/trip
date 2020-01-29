@@ -1,6 +1,13 @@
 <template lang="pug">
 div
-	.headline.text-center.mt-9 Это дашборд
+	Grid
+	br
+	br
+	br
+	.second(v-stickto) Это заголовок второго грида
+	ul
+		li(v-for="n in 50") Некоторый текст
+	Dialog
 </template>
 
 <script>

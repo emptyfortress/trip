@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Trips from '../views/Trips.vue'
 import NewTrip from '../views/NewTrip.vue'
 import Approve from '../views/Approve.vue'
+import Folder from '../views/Folder.vue'
 
 Vue.use(VueRouter)
 
@@ -12,6 +13,11 @@ const routes = [
 		path: '/',
 		name: 'home',
 		component: Home
+	},
+	{
+		path: '/folder',
+		name: 'folder',
+		component: Folder
 	},
 	{
 		path: '/trips',
