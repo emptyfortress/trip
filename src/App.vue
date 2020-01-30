@@ -23,10 +23,12 @@ v-app
 			v-icon mdi-help-circle-outline
 	v-content(v-scroll="handleScroll" id="target")
 		v-container(fluid :class="drawer ? '' : 'leftmargin'").rel
-			v-btn(fab depressed color="#eee" small).back
-				v-icon(color="#aaa") mdi-arrow-left
-			v-btn(fab depressed color="#eee" small).forward
-				v-icon(color="#aaa") mdi-arrow-right
+			transition(name="fade" mode="out-in")
+				v-btn(fab depressed color="#eee" small v-show="$route.name === 'card'").back
+					v-icon(color="#aaa") mdi-arrow-left
+			transition(name="fade" mode="out-in")
+				v-btn(fab depressed color="#eee" small v-show="$route.name === 'card'").forward
+					v-icon(color="#aaa") mdi-arrow-right
 
 			transition(name="slide-fade" mode="out-in")
 				div(v-if="!searchMode" key="start")

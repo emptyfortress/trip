@@ -11,7 +11,7 @@ v-row(justify="center").mx-3.mt-5
 			v-tab Подчиненные задания
 			v-tab История
 			v-tab-item(key="1")
-				h1 Card id: {{ card.id }}
+				h1 Card id: {{ $route.name }}
 			v-tab-item(key="2")
 				span Задания
 			v-tab-item(key="3")
