@@ -1,5 +1,5 @@
 <template lang="pug">
-v-navigation-drawer(v-model="add" app right temporary width="60%")
+v-navigation-drawer(v-model="preview" app right width="50%" disable-resize-watcher)
 
 </template>
 
@@ -12,9 +12,9 @@ export default {
 		}
 	},
 	computed: {
-		add: {
+		preview: {
 			get () {
-				return this.$store.getters.add
+				return this.$store.getters.preview
 			},
 			set () {}
 		}

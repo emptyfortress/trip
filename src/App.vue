@@ -1,5 +1,6 @@
 <template lang="pug">
 v-app
+	Preview
 	Drawer
 	AddDrawer
 	v-app-bar(app collapse-on-scroll dark :color="color" clipped-left :class="calcWidth()")
@@ -21,7 +22,11 @@ v-app
 		v-btn( href="" icon  v-show="offsetTop")
 			v-icon mdi-help-circle-outline
 	v-content(v-scroll="handleScroll" id="target")
-		v-container(fluid :class="drawer ? '' : 'leftmargin'")
+		v-container(fluid :class="drawer ? '' : 'leftmargin'").rel
+			v-btn(fab depressed color="#eee" small).back
+				v-icon(color="#aaa") mdi-arrow-left
+			v-btn(fab depressed color="#eee" small).forward
+				v-icon(color="#aaa") mdi-arrow-right
 
 			transition(name="slide-fade" mode="out-in")
 				div(v-if="!searchMode" key="start")
@@ -31,7 +36,7 @@ v-app
 
 	Footer
 	Dialog
-	v-btn(dark fab color="pink" @click="toggleAdd").plus
+	v-btn(dark fab large color="pink" @click="toggleAdd" :class="add ? 'active' : '' ").plus
 		v-icon(dark) mdi-plus
 	v-alert(v-show="scroll" transition="scale-transition").up
 		v-btn(fab color="white" @click="$vuetify.goTo(0)")
@@ -39,6 +44,7 @@ v-app
 </template>
 
 <script>
+import Preview from './components/Preview'
 import Drawer from './components/Drawer'
 import AddDrawer from './components/AddDrawer'
 import Footer from './components/Footer'
@@ -47,6 +53,7 @@ import SearchPanel from './components/SearchPanel'
 export default {
 	name: 'App',
 	components: {
+		Preview,
 		Drawer,
 		AddDrawer,
 		Footer,
@@ -133,11 +140,27 @@ export default {
 		margin-right: 40px;
 	}
 }
+.forward {
+	position: absolute;
+	top: 1rem;
+	left: 3.6rem;
+	z-index: 1000;
+}
+.back {
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	z-index: 1000;
+}
 .plus {
 	position: fixed;
+	transition: all .2s ease;
 	bottom: 4rem;
 	right: 2rem;
 	z-index: 1000;
+	&.active {
+		transform: rotate(45deg);
+	}
 }
 .up {
 	position: fixed;

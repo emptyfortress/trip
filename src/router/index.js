@@ -5,6 +5,7 @@ import Trips from '../views/Trips.vue'
 import NewTrip from '../views/NewTrip.vue'
 import Approve from '../views/Approve.vue'
 import Folder from '../views/Folder.vue'
+import Card from '../views/Card.vue'
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,12 @@ const routes = [
 		path: '/folder',
 		name: 'folder',
 		component: Folder
+	},
+	{
+		path: '/cards/:id',
+		name: 'card',
+		component: Card,
+		props: true
 	},
 	{
 		path: '/trips',

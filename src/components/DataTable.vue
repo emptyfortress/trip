@@ -23,7 +23,7 @@ div
 					td(@click="item.unread = !item.unread" @contextmenu.prevent="$refs.readMenu.open").px-0.drag.zero
 					td(v-show="selectMode")
 						v-checkbox(v-model="item.selected" :value="item.selected" :id="item.id.toString()" @click.prevent="item.selected = !item.selected" @click="doNothing").sm
-					td(v-for="header in headers" :key="header.id" v-if="header.active" :class="header.class" @click="clickRow(props, $event)" )
+					td(v-for="header in headers" :key="header.id" v-if="header.active" :class="header.class" @click="clickRow(item, $event)" )
 						span {{ item[header.value] }}
 
 	context-menu(ref="readMenu")
@@ -146,7 +146,8 @@ export default {
 			} else if (i.shiftKey && this.selectMode) {
 				this.$store.commit('setSelectMode', false)
 			} else {
-				e.item.unread = false
+				this.$router.push('/cards/' + e.id.toString())
+				// e.item.unread = false
 			}
 		}
 	},
