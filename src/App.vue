@@ -38,8 +38,9 @@ v-app
 
 	Footer
 	Dialog
-	v-btn(dark fab large color="pink" @click="toggleAdd" :class="add ? 'active' : '' ").plus
-		v-icon(dark) mdi-plus
+	v-alert(v-show="!preview" transition="scale-transition").plus
+		v-btn(dark fab large color="pink" @click="toggleAdd" :class="add ? 'active' : '' ")
+			v-icon(dark) mdi-plus
 	v-alert(v-show="scroll" transition="scale-transition").up
 		v-btn(fab color="white" @click="$vuetify.goTo(0)")
 			v-icon(dark) mdi-arrow-up
@@ -74,7 +75,8 @@ export default {
 		add () { return this.$store.getters.add },
 		drawer () { return this.$store.getters.drawer },
 		mini () { return this.$store.getters.mini },
-		searchMode () { return this.$store.getters.searchMode }
+		searchMode () { return this.$store.getters.searchMode },
+		preview () { return this.$store.getters.preview }
 	},
 	methods: {
 		toggleAdd () {
@@ -155,12 +157,13 @@ export default {
 	z-index: 1000;
 }
 .plus {
+	background: transparent;
 	position: fixed;
 	transition: all .2s ease;
-	bottom: 4rem;
-	right: 2rem;
+	bottom: 2rem;
+	right: 1rem;
 	z-index: 1000;
-	&.active {
+	.active {
 		transform: rotate(45deg);
 	}
 }

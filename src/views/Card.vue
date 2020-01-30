@@ -12,37 +12,33 @@ v-row(justify="center").mx-3.mt-5
 			v-tab История
 			v-tab-item(key="1")
 				br
-				.buttonsrow
-					v-btn(depressed color="primary") В работу
-					v-btn(depressed color="primary") Согласовать
-					v-btn(depressed) Делегировать
-					v-btn(depressed) Отклонить
+				v-row(justify="start")
+					v-col
+						v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown") В работу
+						v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown") Согласовать
+						v-btn(outlined color="primary" :block="$vuetify.breakpoint.smAndDown") Делегировать
+						v-btn(outlined color="primary"  :block="$vuetify.breakpoint.smAndDown") Отклонить
 
-				v-row
-					v-col(cols="12" lg="3" md="6" sm="12" order="1").red
-					v-col(cols="12" lg="3" md="10" sm="12" order="12" offset-lg="0" offset-md="1").green
-					v-col(order="first" order-md="2").yellow
-				//- v-row
-				//- 	v-col
-				//- 		.ml-8
-				//- 			div Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
-				//- 			.link Карточка для согласования
+				v-row.layout
+					v-col(cols="12" lg="3" md="4" sm="12" order="1")
+						table(:class="$vuetify.breakpoint.smAndDown ? 'big' : '' ").attributes
+							tr(v-for="item in attr" :key="item.id")
+								td.attr {{ item.attr }}
+								td {{ item.value }}
 
-				//- 	v-col(order-md="first" cols="12" md="12" lg=4)
-				//- 		table.attributes
-				//- 			tr(v-for="item in attr" :key="item.id")
-				//- 				td.attr {{ item.attr }}
-				//- 				td {{ item.value }}
-				//- 	v-col(cols="12" lg="3" md="4" sm="12")
-				//- 		v-card(flat hover).ful
-				//- 			v-row(justify="space-between").mx-1
-				//- 				.tit
-				//- 					i.icon-forum.mr-3
-				//- 					| Обсуждение (0)
-				//- 				v-btn(text icon)
-				//- 					i.icon-up
-				//- 			.action
-				//- 				v-text-field(label="Оставить комментарий")
+					v-col(cols="12" lg="3" md="10" sm="12" order="12" offset-lg="0" offset-md="1")
+						v-card(flat hover).ful
+							v-row(justify="space-between").mx-1
+								.tit
+									i.icon-forum.mr-3
+									| Обсуждение (0)
+								v-btn(text icon)
+									i.icon-up
+							.action
+								v-text-field(label="Оставить комментарий")
+					v-col(order="first" order-md="2")
+						.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+						v-btn(@click="showPreview") test
 
 			v-tab-item(key="2")
 				span Задания
@@ -70,6 +66,15 @@ export default {
 		card () {
 			let a = this.$route.params.id
 			return this.items.filter(item => item.id === parseInt(a))[0]
+		},
+		preview () {
+			return this.$store.getters.preview
+		}
+	},
+	methods: {
+		showPreview () {
+			this.$store.commit('togglePreview')
+			this.$store.commit('setMini', true)
 		}
 	}
 
@@ -80,13 +85,13 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
-.buttonsrow {
-	margin-bottom: 2rem;
-	.v-btn {
-		margin-right: .5rem;
-		margin-top: .5rem;
-	}
-}
+/* .buttonsrow { */
+/* 	margin-bottom: 2rem; */
+/* 	.v-btn { */
+/* 		margin-right: .5rem; */
+/* 		margin-top: .5rem; */
+/* 	} */
+/* } */
 .zag {
 	color: black;
 	text-align: left;
@@ -103,11 +108,15 @@ export default {
 		transform: rotate(-3deg);
 		color: $info;
 		font-weight: 700;
-		border: 0.1rem solid $info;
+		/* border-top: 0.2rem solid $info; */
+		border-top: 4px double $info;
+		border-left: 1px solid $info;
+		border-right: 1px solid $info;
+		border-bottom: 0.2rem solid $info;
 		display: inline-block;
 		padding: 0.20rem 0.9rem;
 		text-transform: uppercase;
-		border-radius: .3rem;
+		/* border-radius: .3rem; */
 		font-family: 'Courier';
 		/* -webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png'); */
 		-webkit-mask-image: url('../assets/img/grunge.png');
@@ -124,14 +133,56 @@ export default {
 	}
 }
 .attributes {
+	width: 100%;
 	font-size: .9rem;
-	border-right: 1px solid #ccc;
+	margin: 0 auto;
+	&.big {
+		font-size: 1.1rem;
+	}
 	td {
 		padding: 0 0.9rem;
 		white-space: nowrap;
+		&.attr {
+			text-align: right;
+		}
 	}
 }
 .attr {
 	opacity: .6;
+}
+.v-btn {
+	margin-right: .25rem;
+	margin-bottom: .25rem;
+}
+.layout {
+}
+.layout > div:first-child {
+	min-width: 240px;
+	border-right: 1px solid #ccc;
+}
+.descr {
+	font-size: 1.1rem;
+}
+.ful {
+	height: 100%;
+	min-height: 120px;
+	min-width: 220px;
+	border: 1px solid #cdcdcd;
+	padding-top: 0;
+	position: relative;
+	.tit {
+		margin-top: .5rem;
+		margin-left: .5rem;
+		font-size: 1.1rem;
+	}
+	.action {
+		margin: 0 1rem;
+		position: absolute;
+		/* bottom: 35%; */
+		bottom: 1rem;
+		left: 0;
+		right: 0;
+		height: 50px;
+	}
 }
 </style>
