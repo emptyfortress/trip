@@ -11,7 +11,39 @@ v-row(justify="center").mx-3.mt-5
 			v-tab Подчиненные задания
 			v-tab История
 			v-tab-item(key="1")
-				h1 Card id: {{ $route.name }}
+				br
+				.buttonsrow
+					v-btn(depressed color="primary") В работу
+					v-btn(depressed color="primary") Согласовать
+					v-btn(depressed) Делегировать
+					v-btn(depressed) Отклонить
+
+				v-row
+					v-col(cols="12" lg="3" md="6" sm="12" order="1").red
+					v-col(cols="12" lg="3" md="10" sm="12" order="12" offset-lg="0" offset-md="1").green
+					v-col(order="first" order-md="2").yellow
+				//- v-row
+				//- 	v-col
+				//- 		.ml-8
+				//- 			div Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+				//- 			.link Карточка для согласования
+
+				//- 	v-col(order-md="first" cols="12" md="12" lg=4)
+				//- 		table.attributes
+				//- 			tr(v-for="item in attr" :key="item.id")
+				//- 				td.attr {{ item.attr }}
+				//- 				td {{ item.value }}
+				//- 	v-col(cols="12" lg="3" md="4" sm="12")
+				//- 		v-card(flat hover).ful
+				//- 			v-row(justify="space-between").mx-1
+				//- 				.tit
+				//- 					i.icon-forum.mr-3
+				//- 					| Обсуждение (0)
+				//- 				v-btn(text icon)
+				//- 					i.icon-up
+				//- 			.action
+				//- 				v-text-field(label="Оставить комментарий")
+
 			v-tab-item(key="2")
 				span Задания
 			v-tab-item(key="3")
@@ -24,7 +56,14 @@ import data from '@/data.js'
 export default {
 	data () {
 		return {
-			items: data
+			items: data,
+			attr: [
+				{ id: 0, attr: 'Инициатор:', value: 'Волков А.В.' },
+				{ id: 1, attr: 'Исполнитель:', value: 'Пуцин С.В.' },
+				{ id: 2, attr: 'Срок:', value: '31.01.2020' },
+				{ id: 3, attr: 'Аттрибут:', value: 'значение' },
+				{ id: 4, attr: 'Аттрибут:', value: 'значение' }
+			]
 		}
 	},
 	computed: {
@@ -41,6 +80,13 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
+.buttonsrow {
+	margin-bottom: 2rem;
+	.v-btn {
+		margin-right: .5rem;
+		margin-top: .5rem;
+	}
+}
 .zag {
 	color: black;
 	text-align: left;
@@ -76,5 +122,16 @@ export default {
 		font-size: 3.0rem;
 		color: #888;
 	}
+}
+.attributes {
+	font-size: .9rem;
+	border-right: 1px solid #ccc;
+	td {
+		padding: 0 0.9rem;
+		white-space: nowrap;
+	}
+}
+.attr {
+	opacity: .6;
 }
 </style>
