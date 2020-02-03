@@ -2,8 +2,6 @@
 v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 	v-col(md="12" lg="9")
 		v-row(justify="space-between")
-			//- v-col(cols="12" md="12" lg="2" order-lg="last").status.text-lg-right
-			//- v-col(:class="preview ? 'col-12' : 'col-2 order-lg-last' " cols="12" md="12" lg="2").status.text-lg-right
 			v-col(cols="12" :md="preview ? '12' : '2' " :lg="preview ? '12' : '2'" :class="preview ? 'order-md-first' : 'order-md-last text-right'" ).status
 				span {{ card.status }}
 			v-col
@@ -16,7 +14,7 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 				br
 				v-row(justify="start")
 					v-col
-						v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown || preview") В работу
+						//- v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown || preview") В работу
 						v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown || preview") Согласовать
 						v-btn(outlined color="primary" :block="$vuetify.breakpoint.smAndDown || preview") Делегировать
 						v-btn(outlined color="primary"  :block="$vuetify.breakpoint.smAndDown || preview") Отклонить
@@ -28,11 +26,11 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 								td.attr {{ item.attr }}
 								td {{ item.value }}
 
-					v-col(order="first" order-md="2")
+					v-col(order="first"  order-md="2")
 						.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
 						v-btn(@click="showPreview") test
 
-					v-col(cols="12" :md="preview ? '12' : '10' " :lg="preview ? '12' : '3'" :class="preview ? 'order-sm-last' : 'order-md-2 offset-md-1' ")
+					v-col(cols="12"  :lg="preview ? '12' : '3'" :class="preview ? 'order-sm-last' : 'order-md-2' ")
 						v-card(flat hover).ful
 							v-row(justify="space-between").mx-1
 								.tit
