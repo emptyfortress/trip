@@ -1,18 +1,26 @@
 <template lang="pug">
 div
 	.headline.text-center.mt-9 Это дашборд
+	br
+	br
+	br
+	br
+	Stamp
+
 </template>
 
 <script>
 // @ is an alias to /src
 import Grid from '@/components/Grid.vue'
 import Dialog from '@/components/Dialog.vue'
+import Stamp from '@/components/Stamp.vue'
 
 export default {
 	name: 'home',
 	components: {
 		Grid,
-		Dialog
+		Dialog,
+		Stamp
 	}
 }
 </script>

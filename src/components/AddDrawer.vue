@@ -1,5 +1,5 @@
 <template lang="pug">
-v-navigation-drawer(v-model="add" app right temporary width="60%")
+v-navigation-drawer(v-model="add" app right temporary width="40%" )
 
 </template>
 
