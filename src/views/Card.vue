@@ -14,7 +14,7 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 				br
 				v-row(justify="start")
 					v-col
-						//- v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown || preview") В работу
+						v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown || preview") В работу
 						v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown || preview") Согласовать
 						v-btn(outlined color="primary" :block="$vuetify.breakpoint.smAndDown || preview") Делегировать
 						v-btn(outlined color="primary"  :block="$vuetify.breakpoint.smAndDown || preview") Отклонить
