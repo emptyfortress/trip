@@ -20,7 +20,8 @@ v-app
 				img(src="@/assets/img/user.png" width="32")
 				.status
 		v-btn( href="" icon  v-show="offsetTop" @click="showPreview")
-			v-icon mdi-arrow-expand-left
+			v-icon(v-if="!preview") mdi-arrow-expand-left
+			v-icon(v-if="preview") mdi-arrow-expand-right
 			//- v-icon mdi-help-circle-outline
 	v-content(v-scroll="handleScroll" id="target")
 		v-container(fluid :class="drawer ? '' : 'leftmargin'").rel

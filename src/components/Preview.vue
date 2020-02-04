@@ -1,5 +1,9 @@
 <template lang="pug">
 v-navigation-drawer(v-model="preview" app right width="50%" disable-resize-watcher)
+	v-app-bar(dark :color="color").pr-2
+		v-spacer
+		v-btn( href="" icon @click="showPreview")
+			v-icon mdi-close
 
 </template>
 
@@ -8,6 +12,7 @@ v-navigation-drawer(v-model="preview" app right width="50%" disable-resize-watch
 export default {
 	data () {
 		return {
+			color: '#405e82'
 
 		}
 	},
@@ -17,6 +22,14 @@ export default {
 				return this.$store.getters.preview
 			},
 			set () {}
+		}
+	},
+	components: {
+	},
+	methods: {
+		showPreview () {
+			this.$store.commit('togglePreview')
+			this.$store.commit('setMini', true)
 		}
 
 	}
@@ -29,7 +42,10 @@ export default {
 
 .theme--light.v-navigation-drawer {
 	background: lighten($dark, 10%);
-	/* background: #657A76; */
 
+}
+.topbar {
+	height: 64px;
+	background: darken($dark, 5%);
 }
 </style>
