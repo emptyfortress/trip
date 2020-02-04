@@ -1,6 +1,6 @@
 <template lang="pug">
 v-row(justify="center" :key="$route.params.id").mx-3.mt-5
-	v-col(md="12" lg="9")
+	v-col(md="12" :lg="preview ? '12' : '9' ")
 		v-row(justify="space-between")
 			v-col(cols="12" :md="preview ? '12' : '2' " :lg="preview ? '12' : '2'" :class="preview ? 'order-md-first' : 'order-md-last text-right'" ).status
 				span {{ card.status }}
@@ -14,10 +14,14 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 				br
 				v-row(justify="start")
 					v-col
-						v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown || preview") В работу
-						v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown || preview") Согласовать
-						v-btn(outlined color="primary" :block="$vuetify.breakpoint.smAndDown || preview") Делегировать
-						v-btn(outlined color="primary"  :block="$vuetify.breakpoint.smAndDown || preview") Отклонить
+						v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown") В работу
+						v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown") Согласовать
+						v-btn(outlined color="primary" :block="$vuetify.breakpoint.smAndDown") Делегировать
+						v-btn(outlined color="primary"  :block="$vuetify.breakpoint.smAndDown") Отклонить
+						//- v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown || preview") В работу
+						//- v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown || preview") Согласовать
+						//- v-btn(outlined color="primary" :block="$vuetify.breakpoint.smAndDown || preview") Делегировать
+						//- v-btn(outlined color="primary"  :block="$vuetify.breakpoint.smAndDown || preview") Отклонить
 
 				v-row.layout
 					v-col(cols="12" lg="3" md="4" sm="12" order="1")

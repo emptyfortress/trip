@@ -3,7 +3,7 @@ v-app
 	Preview
 	Drawer
 	AddDrawer
-	v-app-bar(app collapse-on-scroll dark :color="color" clipped-left :class="calcWidth()")
+	v-app-bar(app collapse-on-scroll dark :color="color" clipped-left :class="calcWidth()").pr-2
 		v-app-bar-nav-icon(@click.stop="toggle")
 		.d-flex.lft
 			v-img( src="@/assets/img/logo-w.svg" transition="scale-transition" width="150" v-show="logo" )
@@ -19,8 +19,9 @@ v-app
 			.rel
 				img(src="@/assets/img/user.png" width="32")
 				.status
-		v-btn( href="" icon  v-show="offsetTop")
-			v-icon mdi-help-circle-outline
+		v-btn( href="" icon  v-show="offsetTop" @click="showPreview")
+			v-icon mdi-arrow-expand-left
+			//- v-icon mdi-help-circle-outline
 	v-content(v-scroll="handleScroll" id="target")
 		v-container(fluid :class="drawer ? '' : 'leftmargin'").rel
 			transition(name="fade" mode="out-in")
@@ -97,6 +98,10 @@ export default {
 		}
 	},
 	methods: {
+		showPreview () {
+			this.$store.commit('togglePreview')
+			this.$store.commit('setMini', true)
+		},
 		back () {
 			this.$router.push(this.pathback)
 		},
