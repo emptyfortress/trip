@@ -1,7 +1,7 @@
 <template lang="pug">
 v-app
 	Preview
-	Drawer
+	Drawer(v-if="!fullWindow")
 	AddDrawer
 	v-app-bar(app collapse-on-scroll dark :color="color" clipped-left :class="calcWidth()").pr-2
 		v-app-bar-nav-icon(@click.stop="toggle")
@@ -20,16 +20,17 @@ v-app
 				img(src="@/assets/img/user.png" width="32")
 				.status
 		v-btn( href="" icon  v-show="offsetTop" @click="showPreview")
-			v-icon(v-if="!preview") mdi-arrow-expand-left
-			v-icon(v-if="preview") mdi-arrow-expand-right
+			v-icon mdi-dock-right
+			//- v-icon(v-if="!preview") mdi-arrow-expand-left
+			//- v-icon(v-if="preview") mdi-arrow-expand-right
 			//- v-icon mdi-help-circle-outline
 	v-content(v-scroll="handleScroll" id="target")
 		v-container(fluid :class="drawer ? '' : 'leftmargin'").rel
 			transition(name="fade" mode="out-in")
-				v-btn(fab outlined color="#ccc" small v-show="$route.name === 'card' && !searchMode" @click="back").back
+				v-btn(fab outlined color="#ccc" small v-show="$route.name === 'card' && !searchMode && !fullWindow" @click="back").back
 					v-icon(color="#aaa") mdi-arrow-left
 			transition(name="fade" mode="out-in")
-				v-btn(fab outlined color="#ccc" small v-show="$route.name === 'card' && !searchMode" @click="forward").forward
+				v-btn(fab outlined color="#ccc" small v-show="$route.name === 'card' && !searchMode && !fullWindow" @click="forward").forward
 					v-icon(color="#aaa") mdi-arrow-right
 
 			transition(name="slide-fade" mode="out-in")
@@ -71,6 +72,9 @@ export default {
 		logo: true
 	}),
 	computed: {
+		fullWindow () {
+			return this.$store.getters.fullWindow
+		},
 		add () { return this.$store.getters.add },
 		drawer () { return this.$store.getters.drawer },
 		mini () { return this.$store.getters.mini },

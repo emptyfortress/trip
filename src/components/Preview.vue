@@ -1,5 +1,5 @@
 <template lang="pug">
-v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '50%'" disable-resize-watcher)
+v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '50%' " disable-resize-watcher)
 	v-app-bar(dark :color="color" absolute).pr-2
 		v-col
 			v-select(:items="files" value="Договор с ООО Ромашка.doc" dark).sel
@@ -13,7 +13,7 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 			v-icon mdi-download
 		v-btn(icon)
 			v-icon mdi-printer
-		v-btn(icon)
+		v-btn(icon @click="toggleFull" :disabled="fullWindow")
 			i.icon-up
 		v-btn( href="" icon @click="showPreview")
 			v-icon mdi-close
@@ -49,6 +49,9 @@ export default {
 		}
 	},
 	computed: {
+		fullWindow () {
+			return this.$store.getters.fullWindow
+		},
 		preview: {
 			get () {
 				return this.$store.getters.preview
@@ -61,9 +64,17 @@ export default {
 	methods: {
 		showPreview () {
 			this.$store.commit('togglePreview')
+			this.$store.commit('setFullWindow', false)
 			this.$store.commit('setMini', true)
+		},
+		toggleFull () {
+			if (this.fullWindow) {
+				// this.$store.commit('togglePreview')
+				this.$store.commit('setFullWindow', false)
+			} else {
+				this.$store.commit('setFullWindow', true)
+			}
 		}
-
 	}
 }
 

@@ -8,6 +8,7 @@ export default new Vuex.Store({
 		drawer: true,
 		add: false,
 		preview: false,
+		fullWindow: false,
 		headers: [
 			{ id: 0, class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
 			{ id: 1, class: 'text-no-wrap', value: 'executor', width: '400', active: true, sortable: true, align: 'start', text: 'Исполнитель' },
@@ -37,6 +38,7 @@ export default new Vuex.Store({
 	},
 	getters: {
 		preview: state => { return state.preview },
+		fullWindow: state => { return state.fullWindow },
 		drawer: state => { return state.drawer },
 		add: state => { return state.add },
 		headers: state => { return state.headers },
@@ -49,6 +51,8 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		togglePreview (state) { state.preview = !state.preview },
+		toggleFullWindow (state) { state.fullWindow = !state.fullWindow },
+		setFullWindow (state, payload) { state.fullWindow = payload },
 		toggleDrawer (state) { state.drawer = !state.drawer },
 		toggleAdd (state) { state.add = !state.add },
 		toggleGrouping (state) { state.grouping = !state.grouping },

@@ -1,6 +1,6 @@
 <template lang="pug">
 v-row(justify="center" :key="$route.params.id").mx-3.mt-5
-	v-col(md="12" :lg="preview ? '12' : '9' ")
+	v-col(md="12" :lg="preview ? '12' : '9' " v-if="!fullWindow")
 		v-row(justify="space-between")
 			v-col(cols="12" :md="preview ? '12' : '2' " :lg="preview ? '12' : '2'" :class="preview ? 'order-md-first' : 'order-md-last text-right'" ).status
 				span {{ card.status }}
@@ -74,6 +74,9 @@ export default {
 		},
 		preview () {
 			return this.$store.getters.preview
+		},
+		fullWindow () {
+			return this.$store.getters.fullWindow
 		}
 	},
 	methods: {
