@@ -1,10 +1,11 @@
 <template lang="pug">
-v-navigation-drawer(v-model="preview" app right width="50%" disable-resize-watcher)
-	v-app-bar(dark :color="color").pr-2
+v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '50%'" disable-resize-watcher)
+	v-app-bar(dark :color="color" absolute).pr-2
 		v-col
 			v-select(:items="files" value="Договор с ООО Ромашка.doc" dark).sel
-		input(type="text").page
-		span.pages / 5
+		v-spacer
+		input(type="text" value="1").page
+		span.pages / 3
 		v-spacer
 		v-btn(icon).ml-4
 			v-icon mdi-message-outline
@@ -12,8 +13,23 @@ v-navigation-drawer(v-model="preview" app right width="50%" disable-resize-watch
 			v-icon mdi-download
 		v-btn(icon)
 			v-icon mdi-printer
+		v-btn(icon)
+			i.icon-up
 		v-btn( href="" icon @click="showPreview")
 			v-icon mdi-close
+	br
+	br
+	br
+	.placeholder(v-for="n in 3")
+		br
+		br
+		br
+		.text Документик
+
+	v-btn(fab small depressed color="white").plus
+		v-icon mdi-plus
+	v-btn(fab small depressed color="white").minus
+		v-icon mdi-minus
 
 </template>
 
@@ -59,6 +75,9 @@ export default {
 .theme--light.v-navigation-drawer {
 	background: lighten($dark, 10%);
 }
+.rel {
+	position: relative;
+}
 .small {
 	font-size: 1.0rem;
 }
@@ -78,5 +97,26 @@ export default {
 }
 .sel {
 	transform: translateY(6px);
+}
+.placeholder {
+	width: 60%;
+	height: 80%;
+	background: #fff;
+	margin: 2rem auto;
+}
+.text {
+	font-size: 3.0rem;
+	text-align: center;
+	color: grey;
+}
+.plus {
+	position: absolute;
+	top: 12rem;
+	right: 2rem;
+}
+.minus {
+	position: absolute;
+	top: 9rem;
+	right: 2rem;
 }
 </style>
