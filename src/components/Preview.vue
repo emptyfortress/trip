@@ -1,8 +1,10 @@
 <template lang="pug">
 v-navigation-drawer(v-model="preview" app right width="50%" disable-resize-watcher)
 	v-app-bar(dark :color="color").pr-2
-		//- v-toolbar-title.small Файл:
-		v-select(:items="files" value="Договор с ООО Ромашка.doc" dark)
+		v-col
+			v-select(:items="files" value="Договор с ООО Ромашка.doc" dark).sel
+		input(type="text").page
+		span.pages / 5
 		v-spacer
 		v-btn(icon).ml-4
 			v-icon mdi-message-outline
@@ -10,7 +12,6 @@ v-navigation-drawer(v-model="preview" app right width="50%" disable-resize-watch
 			v-icon mdi-download
 		v-btn(icon)
 			v-icon mdi-printer
-		//- v-spacer
 		v-btn( href="" icon @click="showPreview")
 			v-icon mdi-close
 
@@ -60,5 +61,22 @@ export default {
 }
 .small {
 	font-size: 1.0rem;
+}
+.page {
+	background: lighten($dark, 10%);
+	color: white;
+	font-size: 1.0rem;
+	width: 40px;
+	margin-left: 2rem;
+	text-align: right;
+	&:focus {
+		background: $dark;
+	}
+}
+.pages {
+	margin-left: .3rem;
+}
+.sel {
+	transform: translateY(6px);
 }
 </style>
