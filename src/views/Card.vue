@@ -30,11 +30,7 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 								td.attr {{ item.attr }}
 								td {{ item.value }}
 
-					v-col(order="first"  order-md="2")
-						.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
-						v-btn(@click="showPreview") test
-
-					v-col(cols="12"  :lg="preview ? '12' : '3'" :class="preview ? 'order-sm-last' : 'order-md-2' ")
+					v-col(cols="12"  :lg="preview ? '8' : '3'" md="8" sm="12" :class="preview ? 'order-lg-2' : 'order-lg-last order-md-2 order-sm-last' ")
 						v-card(flat hover).ful
 							v-row(justify="space-between").mx-1
 								.tit
@@ -44,6 +40,10 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 									i.icon-up
 							.action
 								v-text-field(label="Оставить комментарий")
+
+					v-col(:order="preview ? 'last' : '2' ")
+						.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+						v-btn(@click="showPreview") test
 
 			v-tab-item(key="2")
 				span Задания
