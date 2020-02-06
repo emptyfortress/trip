@@ -7,7 +7,7 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 		input(type="text" value="1").page
 		span.pages / 3
 		v-spacer
-		v-btn(icon).ml-4
+		v-btn(icon @click="toggleChat").ml-4
 			v-icon mdi-message-outline
 		v-btn(icon)
 			v-icon mdi-download
@@ -20,7 +20,7 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 	br
 	br
 	br
-	.placeholder(v-for="n in 3")
+	.placeholder(v-for="n in 3" key="n" :class="chat ? 'comment' : '' ")
 		br
 		br
 		br
@@ -31,6 +31,9 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 	v-btn(fab small depressed color="white").minus
 		v-icon mdi-minus
 
+	v-scale-transition(origin="top right")
+		v-card(v-if="chat").commentbox
+
 </template>
 
 <script>
@@ -39,6 +42,7 @@ export default {
 	data () {
 		return {
 			color: '#405e82',
+			chat: false,
 			files: [
 				'Договор с ООО Ромашка.doc',
 				'Приложение к договору.doc',
@@ -62,6 +66,9 @@ export default {
 	components: {
 	},
 	methods: {
+		toggleChat () {
+			this.chat = !this.chat
+		},
 		showPreview () {
 			this.$store.commit('togglePreview')
 			this.$store.commit('setFullWindow', false)
@@ -113,7 +120,17 @@ export default {
 	width: 60%;
 	height: 80%;
 	background: #fff;
-	margin: 2rem auto;
+	margin-top: 1rem;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 2rem;
+	/* margin: 2rem auto; */
+	transition: .2s ease all;
+	&.comment {
+		margin-left: 1rem;
+		/* transform: translateX(-250px); */
+		/* margin: 2rem 1rem 2rem 1rem; */
+	}
 }
 .text {
 	font-size: 3.0rem;
@@ -122,12 +139,20 @@ export default {
 }
 .plus {
 	position: absolute;
-	top: 12rem;
+	bottom: 7rem;
 	right: 2rem;
 }
 .minus {
 	position: absolute;
-	top: 9rem;
+	bottom: 4rem;
+	right: 2rem;
+}
+.commentbox {
+	/* width: 300px; */
+	width: calc(40% - 3rem);
+	height: 300px;
+	position: absolute;
+	top: 90px;
 	right: 2rem;
 }
 </style>
