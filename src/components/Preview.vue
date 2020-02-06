@@ -7,7 +7,7 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 		input(type="text" value="1").page
 		span.pages / 3
 		v-spacer
-		v-btn(icon @click="toggleChat").ml-4
+		v-btn(icon @click="toggleChat" :color="chat ? '#00ff00' : 'white' ").ml-4
 			v-icon mdi-message-outline
 		v-btn(icon)
 			v-icon mdi-download
@@ -20,7 +20,7 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 	br
 	br
 	br
-	.placeholder(v-for="n in 3" key="n" :class="chat ? 'comment' : '' ")
+	.placeholder(v-for="n in 3" key="n")
 		br
 		br
 		br
@@ -31,12 +31,26 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 	v-btn(fab small depressed color="white").minus
 		v-icon mdi-minus
 
-	v-scale-transition(origin="top right")
-		v-card(v-if="chat").commentbox
+	v-scale-transition(origin="top left")
+		vue-draggable-resizable(:x="20" :y="75" :w="300" :h="280" @dragging="onDrag" @resizing="onResize" :parent="true" class-name="drag" v-if="chat" )
+			.overline Комментарии к файлу
+			v-list( three-line ).scr
+				template( v-for="(item, index) in comm" )
+					v-subheader( v-if="item.header" :key="item.header" v-text="item.header" ).hd
+					v-divider( v-else-if="item.divider" :key="index" :inset="item.inset" )
+					v-list-item( v-else :key="item.title" @click="" )
+						v-list-item-avatar.myavatar
+							v-img( src="@/assets/img/user0.svg" )
+						v-list-item-content
+							v-list-item-title( v-html="item.title" )
+							v-list-item-subtitle( v-html="item.subtitle" )
+				v-text-field(label="Комментировать" clearable hide-details)
 
 </template>
 
 <script>
+import VueDraggableResizable from 'vue-draggable-resizable'
+import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
 
 export default {
 	data () {
@@ -48,8 +62,23 @@ export default {
 				'Приложение к договору.doc',
 				'Расчет цены.xsl',
 				'План-график.xsl'
-			]
-
+			],
+			comm: [
+				{
+					title: 'Орлов П.С.',
+					subtitle: "<span class='text--primary'>Сегодня, 12:03</span> &mdash; Исследование латерально дает показатель адсорбируемости натрия."
+				},
+				{ divider: true, inset: false },
+				{
+					title: 'Синицын Г.К.',
+					subtitle: "<span class='text--primary'>Сегодня, 14:10</span> &mdash; При переходе к следующему уровню организации почвенного покрова желтозём стекает в почвенно-мелиоративный бурозём."
+				},
+				{ divider: true, inset: false }
+			],
+			width: 0,
+			height: 0,
+			x: 0,
+			y: 0
 		}
 	},
 	computed: {
@@ -64,6 +93,7 @@ export default {
 		}
 	},
 	components: {
+		VueDraggableResizable
 	},
 	methods: {
 		toggleChat () {
@@ -81,6 +111,16 @@ export default {
 			} else {
 				this.$store.commit('setFullWindow', true)
 			}
+		},
+		onResize: function (x, y, width, height) {
+			this.x = x
+			this.y = y
+			this.width = width
+			this.height = height
+		},
+		onDrag: function (x, y) {
+			this.x = x
+			this.y = y
 		}
 	}
 }
@@ -126,11 +166,6 @@ export default {
 	margin-bottom: 2rem;
 	/* margin: 2rem auto; */
 	transition: .2s ease all;
-	&.comment {
-		margin-left: 1rem;
-		/* transform: translateX(-250px); */
-		/* margin: 2rem 1rem 2rem 1rem; */
-	}
 }
 .text {
 	font-size: 3.0rem;
@@ -147,12 +182,24 @@ export default {
 	bottom: 4rem;
 	right: 2rem;
 }
-.commentbox {
-	/* width: 300px; */
-	width: calc(40% - 3rem);
-	height: 300px;
-	position: absolute;
-	top: 90px;
-	right: 2rem;
+.drag {
+	background: #fff;
+	border: 1px solid #ccc;
+	padding: 1rem;
+	border-radius: 5px;
+}
+.scr {
+	height: 100%;
+	overflow-y: auto;
+	/* width: 100%; */
+}
+.v-list-item {
+	padding: 0;
+}
+.myavatar {
+	background: #ccc;
+}
+.v-application--is-ltr .v-list-item__avatar:first-child {
+	margin-right: 10px;
 }
 </style>
