@@ -12,6 +12,13 @@
 	position: relative;
 }
 
+.blockhd {
+	text-transform: uppercase;
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: .2rem;
+}
+
 // tree styles **************************************** 
 .tree-highlights .tree-node.matched > .tree-content {
   background: $yellow;

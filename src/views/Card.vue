@@ -18,10 +18,6 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 						v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown") Согласовать
 						v-btn(outlined color="primary" :block="$vuetify.breakpoint.smAndDown") Делегировать
 						v-btn(outlined color="primary"  :block="$vuetify.breakpoint.smAndDown") Отклонить
-						//- v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown || preview") В работу
-						//- v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown || preview") Согласовать
-						//- v-btn(outlined color="primary" :block="$vuetify.breakpoint.smAndDown || preview") Делегировать
-						//- v-btn(outlined color="primary"  :block="$vuetify.breakpoint.smAndDown || preview") Отклонить
 
 				v-row.layout
 					v-col(cols="12" lg="3" md="4" sm="12" order="1")
@@ -32,7 +28,7 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 
 					v-col(cols="12"  :lg="preview ? '8' : '3'" md="8" sm="12" :class="preview ? 'order-lg-2' : 'order-lg-last order-md-2 order-sm-last' ")
 						v-card(flat hover).ful
-							v-row(justify="space-between").mx-1
+							v-row(justify="space-between").mx-2.pt-3
 								.tit
 									i.icon-forum.mr-3
 									| Обсуждение (0)
@@ -43,7 +39,8 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 
 					v-col(:order="preview ? 'last' : '2' ")
 						.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
-						v-btn(@click="showPreview") test
+						Files
+						//- v-btn(@click="showPreview") Preview
 
 			v-tab-item(key="2")
 				span Задания
@@ -53,6 +50,7 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 
 <script>
 import data from '@/data.js'
+import Files from '@/components/Files'
 
 export default {
 	data () {
@@ -84,6 +82,9 @@ export default {
 			this.$store.commit('togglePreview')
 			this.$store.commit('setMini', true)
 		}
+	},
+	components: {
+		Files
 	}
 }
 
