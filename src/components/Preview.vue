@@ -26,7 +26,6 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 			br
 			br
 			.text Документик
-
 	v-skeleton-loader(:loading="changing" transition="scale-transition" height="80%" width="60%" type="image" ).skel
 		.placeholder(v-for="n in 1" :key="n" )
 			br
@@ -170,14 +169,10 @@ export default {
 }
 .placeholder {
 	/* width: 60%; */
-	height: 80%;
+	/* height: 80%; */
 	height: 700px;
+	margin: 1rem auto;
 	background: #fff;
-	margin-top: 1rem;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 2rem;
-	/* margin: 2rem auto; */
 	transition: .2s ease all;
 }
 .text {
@@ -217,7 +212,7 @@ export default {
 }
 .skel {
 	width: 60%;
-	height: 80%;
-	margin: 2rem auto;
+	height: 700px;
+	margin: 1rem auto;
 }
 </style>
