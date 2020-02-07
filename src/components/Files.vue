@@ -18,7 +18,7 @@
 						tr(v-for="item in files" :key="item.name")
 							td
 								img(:src="iconPath(item.icon)")
-								.name {{ item.name }}
+								.name(@click="showPreview") {{ item.name }}
 							td {{ item.v }}
 							td(width="30").px-0
 								v-btn(small icon)
@@ -39,6 +39,15 @@ export default {
 		}
 	},
 	methods: {
+		showPreview () {
+			this.$store.commit('setChanging', true)
+			this.$store.commit('openPreview')
+			this.$store.commit('setMini', true)
+			let that = this
+			setTimeout(function () {
+				that.$store.commit('setChanging', false)
+			}, 1500)
+		},
 		iconPath (e) {
 			if (e === 'word') {
 				return require(`@/assets/img/files/file-ext-word.png`)
@@ -55,7 +64,6 @@ export default {
 @import '@/assets/css/colors.scss';
 
 .theme--light.v-expansion-panels .v-expansion-panel {
-	/* background: transparent; */
 	border-bottom: 1px solid #ccc;
 	&::before {
 		box-shadow: none;

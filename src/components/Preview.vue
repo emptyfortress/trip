@@ -20,11 +20,19 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 	br
 	br
 	br
-	.placeholder(v-for="n in 3" key="n")
-		br
-		br
-		br
-		.text Документик
+	v-skeleton-loader(:loading="changing" transition="scale-transition" height="80%" width="60%" type="image" ).skel
+		.placeholder(v-for="n in 1" :key="n" )
+			br
+			br
+			br
+			.text Документик
+
+	v-skeleton-loader(:loading="changing" transition="scale-transition" height="80%" width="60%" type="image" ).skel
+		.placeholder(v-for="n in 1" :key="n" )
+			br
+			br
+			br
+			.text Документик
 
 	v-btn(fab small depressed color="white").plus
 		v-icon mdi-plus
@@ -57,6 +65,7 @@ export default {
 		return {
 			color: '#405e82',
 			chat: false,
+			// changing: false,
 			files: [
 				'Договор с ООО Ромашка.doc',
 				'Приложение к договору.doc',
@@ -82,6 +91,9 @@ export default {
 		}
 	},
 	computed: {
+		changing () {
+			return this.$store.getters.changing
+		},
 		fullWindow () {
 			return this.$store.getters.fullWindow
 		},
@@ -157,8 +169,9 @@ export default {
 	transform: translateY(6px);
 }
 .placeholder {
-	width: 60%;
+	/* width: 60%; */
 	height: 80%;
+	height: 700px;
 	background: #fff;
 	margin-top: 1rem;
 	margin-left: auto;
@@ -201,5 +214,10 @@ export default {
 }
 .v-application--is-ltr .v-list-item__avatar:first-child {
 	margin-right: 10px;
+}
+.skel {
+	width: 60%;
+	height: 80%;
+	margin: 2rem auto;
 }
 </style>

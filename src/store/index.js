@@ -34,9 +34,11 @@ export default new Vuex.Store({
 		grouping: false,
 		selectMode: false,
 		searchMode: false,
-		dialog: false
+		dialog: false,
+		changing: false
 	},
 	getters: {
+		changing: state => { return state.changing },
 		preview: state => { return state.preview },
 		fullWindow: state => { return state.fullWindow },
 		drawer: state => { return state.drawer },
@@ -51,6 +53,7 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		togglePreview (state) { state.preview = !state.preview },
+		openPreview (state) { state.preview = true },
 		toggleFullWindow (state) { state.fullWindow = !state.fullWindow },
 		setFullWindow (state, payload) { state.fullWindow = payload },
 		toggleDrawer (state) { state.drawer = !state.drawer },
@@ -64,7 +67,8 @@ export default new Vuex.Store({
 		setSearchMode (state, payload) { state.searchMode = payload },
 		offDrawer (state) { state.drawer = false },
 		setHeaders (state, payload) { state.headers = payload },
-		setMini (state, payload) { state.mini = payload }
+		setMini (state, payload) { state.mini = payload },
+		setChanging (state, payload) { state.changing = payload }
 	},
 	actions: {},
 	modules: {}

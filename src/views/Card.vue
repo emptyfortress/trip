@@ -40,7 +40,6 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 					v-col(:order="preview ? 'last' : '2' ")
 						.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
 						Files
-						//- v-btn(@click="showPreview") Preview
 
 			v-tab-item(key="2")
 				span Задания
@@ -78,10 +77,10 @@ export default {
 		}
 	},
 	methods: {
-		showPreview () {
-			this.$store.commit('togglePreview')
-			this.$store.commit('setMini', true)
-		}
+		// showPreview () {
+		// 	this.$store.commit('togglePreview')
+		// 	this.$store.commit('setMini', true)
+		// }
 	},
 	components: {
 		Files
@@ -172,7 +171,7 @@ export default {
 	font-size: 1.1rem;
 }
 .ful {
-	height: 100%;
+	/* height: 100%; */
 	min-height: 120px;
 	min-width: 220px;
 	border: 1px solid #cdcdcd;
