@@ -40,6 +40,14 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 					v-col(:order="preview ? 'last' : '2' ")
 						.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
 						Files
+				Hod
+				br
+				br
+				br
+				br
+				br
+				br
+				br
 
 			v-tab-item(key="2")
 				span Задания
@@ -50,6 +58,7 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 <script>
 import data from '@/data.js'
 import Files from '@/components/Files'
+import Hod from '@/components/Hod'
 
 export default {
 	data () {
@@ -83,7 +92,8 @@ export default {
 		// }
 	},
 	components: {
-		Files
+		Files,
+		Hod
 	}
 }
 
@@ -171,7 +181,7 @@ export default {
 	font-size: 1.1rem;
 }
 .ful {
-	/* height: 100%; */
+	height: 100%;
 	min-height: 120px;
 	min-width: 220px;
 	border: 1px solid #cdcdcd;
