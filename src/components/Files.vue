@@ -40,6 +40,7 @@ export default {
 	},
 	methods: {
 		showPreview () {
+			this.$store.commit('setPreviewMode', 0)
 			this.$store.commit('setChanging', true)
 			this.$store.commit('openPreview')
 			this.$store.commit('setMini', true)

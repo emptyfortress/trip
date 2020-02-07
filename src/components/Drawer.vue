@@ -8,8 +8,11 @@ v-navigation-drawer(v-model="drawer" clipped app :mini-variant.sync="mini" dark 
 				v-list-item-title Главная
 		v-list-item( v-for="(item, i) in menu" :key="i" link  @click="goTo(item.url)")
 			v-list-item-icon
-				i(v-if="!mini" :class="item.icon")
-				span(v-else).min {{ item.mini }}
+				i(:class="item.icon")
+
+			//- v-list-item-icon
+			//- 	i(v-if="!mini" :class="item.icon")
+			//- 	span(v-else).min {{ item.mini }}
 				//- v-avatar(v-else color="indigo" size="36")
 				//- 	span.min {{ item.mini }}
 			v-list-item-content
@@ -37,7 +40,7 @@ export default {
 			menu: [
 				{ url: '/folder', mini: 'Вход.', icon: 'icon-inbox', text: 'Входящие' },
 				{ url: '/folder', mini: 'Исх.', icon: 'icon-oubox', text: 'Исходящие' },
-				{ url: '', mini: 'Папки', icon: 'icon-folders', text: 'Мои папки' },
+				{ url: '', mini: 'Папки', icon: 'icon-folder-o', text: 'Мои папки' },
 				{ url: '', mini: 'Зад.', icon: 'icon-tasks', text: 'Задания' },
 				{ url: '', mini: 'Док.', icon: 'icon-documents', text: 'Документы' },
 				{ url: '/trips', mini: 'Ком.', icon: 'icon-airplane', text: 'Командировки' }

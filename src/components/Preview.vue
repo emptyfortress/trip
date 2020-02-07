@@ -1,57 +1,74 @@
 <template lang="pug">
 v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '50%' " disable-resize-watcher)
-	v-app-bar(dark :color="color" absolute).pr-2
-		v-col
-			v-select(:items="files" value="Договор с ООО Ромашка.doc" dark).sel
-		v-spacer
-		input(type="text" value="1").page
-		span.pages / 3
-		v-spacer
-		v-btn(icon @click="toggleChat" :color="chat ? '#00ff00' : 'white' ").ml-4
-			v-icon mdi-message-outline
-		v-btn(icon)
-			v-icon mdi-download
-		v-btn(icon)
-			v-icon mdi-printer
-		v-btn(icon @click="toggleFull" :disabled="fullWindow")
-			i.icon-up
-		v-btn( href="" icon @click="showPreview")
-			v-icon mdi-close
-	br
-	br
-	br
-	v-skeleton-loader(:loading="changing" transition="scale-transition" height="80%" width="60%" type="image" ).skel
-		.placeholder(v-for="n in 1" :key="n" )
-			br
-			br
-			br
-			.text Документик
-	v-skeleton-loader(:loading="changing" transition="scale-transition" height="80%" width="60%" type="image" ).skel
-		.placeholder(v-for="n in 1" :key="n" )
-			br
-			br
-			br
-			.text Документик
+	div(v-if="previewMode === 1")
+		v-app-bar(dark :color="color" absolute).pr-2
+			v-spacer
+			.subtitle-1 Выберите контент для показа
+			v-spacer
+			v-btn( href="" icon @click="showPreview")
+				v-icon mdi-close
+		br
+		v-col(cols="6" offset="3").mt-8
+			v-card(hover v-for="item in content").cardselect
+				v-list-item
+					v-list-item-content
+						v-list-item-title.tit {{ item.title }}
+					v-list-item-avatar
+						v-icon(dark) {{ item.icon }}
 
-	v-btn(fab small depressed color="white").plus
-		v-icon mdi-plus
-	v-btn(fab small depressed color="white").minus
-		v-icon mdi-minus
+	div(v-else)
+		v-app-bar(dark :color="color" absolute).pr-2
+			v-col
+				v-select(:items="files" value="Договор с ООО Ромашка.doc" dark).sel
+			v-spacer
+			input(type="text" value="1").page
+			span.pages / 3
+			v-spacer
+			v-btn(icon @click="toggleChat" :color="chat ? '#00ff00' : 'white' ").ml-4
+				v-icon mdi-message-outline
+			v-btn(icon)
+				v-icon mdi-download
+			v-btn(icon)
+				v-icon mdi-printer
+			v-btn(icon @click="toggleFull" :disabled="fullWindow")
+				i.icon-up
+			v-btn( href="" icon @click="showPreview")
+				v-icon mdi-close
+		br
+		br
+		br
+		v-skeleton-loader(:loading="changing" transition="scale-transition" height="80%" width="60%" type="image" ).skel
+			.placeholder(v-for="n in 1" :key="n" )
+				br
+				br
+				br
+				.text Документик
+		v-skeleton-loader(:loading="changing" transition="scale-transition" height="80%" width="60%" type="image" ).skel
+			.placeholder(v-for="n in 1" :key="n" )
+				br
+				br
+				br
+				.text Документик
 
-	v-scale-transition(origin="top left")
-		vue-draggable-resizable(:x="20" :y="75" :w="300" :h="280" @dragging="onDrag" @resizing="onResize" :parent="true" class-name="drag" v-if="chat" )
-			.overline Комментарии к файлу
-			v-list( three-line ).scr
-				template( v-for="(item, index) in comm" )
-					v-subheader( v-if="item.header" :key="item.header" v-text="item.header" ).hd
-					v-divider( v-else-if="item.divider" :key="index" :inset="item.inset" )
-					v-list-item( v-else :key="item.title" @click="" )
-						v-list-item-avatar.myavatar
-							v-img( src="@/assets/img/user0.svg" )
-						v-list-item-content
-							v-list-item-title( v-html="item.title" )
-							v-list-item-subtitle( v-html="item.subtitle" )
-				v-text-field(label="Комментировать" clearable hide-details)
+		v-btn(fab small depressed color="white").plus
+			v-icon mdi-plus
+		v-btn(fab small depressed color="white").minus
+			v-icon mdi-minus
+
+		v-scale-transition(origin="top left")
+			vue-draggable-resizable(:x="20" :y="75" :w="300" :h="280" @dragging="onDrag" @resizing="onResize" :parent="true" class-name="drag" v-if="chat" )
+				.overline Комментарии к файлу
+				v-list( three-line ).scr
+					template( v-for="(item, index) in comm" )
+						v-subheader( v-if="item.header" :key="item.header" v-text="item.header" ).hd
+						v-divider( v-else-if="item.divider" :key="index" :inset="item.inset" )
+						v-list-item( v-else :key="item.title" @click="" )
+							v-list-item-avatar.myavatar
+								v-img( src="@/assets/img/user0.svg" )
+							v-list-item-content
+								v-list-item-title( v-html="item.title" )
+								v-list-item-subtitle( v-html="item.subtitle" )
+					v-text-field(label="Комментировать" clearable hide-details)
 
 </template>
 
@@ -64,7 +81,15 @@ export default {
 		return {
 			color: '#405e82',
 			chat: false,
-			// changing: false,
+			content: [
+				{ title: 'Справочник сотрудников', icon: 'mdi-account-tie' },
+				{ title: 'Справочник контрагентов', icon: 'mdi-account-details' },
+				{ title: 'Папка', icon: 'mdi-folder-open-outline' },
+				{ title: 'Календарь', icon: 'mdi-calendar-month' },
+				{ title: 'Командировки', icon: 'mdi-airplane' },
+				{ title: 'Цели', icon: 'mdi-bullseye-arrow' }
+
+			],
 			files: [
 				'Договор с ООО Ромашка.doc',
 				'Приложение к договору.doc',
@@ -90,6 +115,9 @@ export default {
 		}
 	},
 	computed: {
+		previewMode () {
+			return this.$store.getters.previewMode
+		},
 		changing () {
 			return this.$store.getters.changing
 		},
@@ -214,5 +242,17 @@ export default {
 	width: 60%;
 	height: 700px;
 	margin: 1rem auto;
+}
+.theme--light.v-card.cardselect {
+	background: $dark;
+	margin-top: 1rem;
+	padding: 0 1rem;
+	/* color: #ffffffaa; */
+	/* border: 1px dotted blue; */
+	.tit {
+		color: #ffffffaa;
+		font-size: 1.2rem;
+		font-weight: 300;
+	}
 }
 </style>
