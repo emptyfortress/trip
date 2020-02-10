@@ -19,14 +19,14 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 						v-btn(outlined color="primary" :block="$vuetify.breakpoint.smAndDown") Делегировать
 						v-btn(outlined color="primary"  :block="$vuetify.breakpoint.smAndDown") Отклонить
 
-				v-row.layout
+				v-row.lay
 					v-col(cols="12" lg="3" md="4" sm="12" order="1")
 						table(:class="$vuetify.breakpoint.smAndDown ? 'big' : '' ").attributes
 							tr(v-for="item in attr" :key="item.id")
 								td.attr {{ item.attr }}
 								td {{ item.value }}
 
-					v-col(cols="12"  :lg="preview ? '8' : '3'" md="8" sm="12" :class="preview ? 'order-lg-2' : 'order-lg-last order-md-2 order-sm-last' ")
+					v-col(cols="12"  :lg="preview ? '7' : '3'" md="8" sm="12" :class="preview ? 'order-lg-2' : 'order-lg-last order-md-2 order-sm-last' ")
 						v-card(flat hover).ful
 							v-row(justify="space-between").mx-2.pt-3
 								.tit
@@ -171,9 +171,7 @@ export default {
 	margin-right: .25rem;
 	margin-bottom: .25rem;
 }
-.layout {
-}
-.layout > div:first-child {
+.lay > div:first-child {
 	min-width: 240px;
 	border-right: 1px solid #ccc;
 }

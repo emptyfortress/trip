@@ -9,7 +9,7 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 				v-icon mdi-close
 		br
 		v-col(cols="6" offset="3").mt-8
-			v-card(hover v-for="item in content").cardselect
+			v-card(hover v-for="item in content" :key="item.title").cardselect
 				v-list-item
 					v-list-item-content
 						v-list-item-title.tit {{ item.title }}

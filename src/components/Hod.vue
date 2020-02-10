@@ -1,7 +1,7 @@
 <template lang="pug">
 v-expansion-panels(flat value="0").mt-1.fl
 	v-expansion-panel(value="true")
-		v-expansion-panel-header Ход согласования
+		v-expansion-panel-header.blockhd Ход согласования
 		v-expansion-panel-content(value="true")
 			hr(color="#eee")
 			v-breadcrumbs(:items="crumbs" @click="doNothing")
