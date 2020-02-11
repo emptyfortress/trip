@@ -1,29 +1,27 @@
 <template lang="pug">
-v-col(cols="12" lg="12" md="12" ).grey
-	v-col(cols="12" col="12")
-		v-row(justify="space-between")
-			v-col(cols="12" :sm="12" :md="2" :lg="2" class="order-md-last text-md-right" ).status
-				span В работе
-			v-col
-				.zag {{ item[0].title }}
-	.newcard
-		.my
-		.attr one
-		.right
-			v-btn(color="primary" block depressed) В работу
-			v-btn(color="primary" block depressed) Согласовать
-			v-btn(color="primary" block depressed) Делегировать
-			v-btn(color="primary" block depressed) Отказать
+.newcard
+	v-scale-transition(mode="out-in")
+		v-skeleton-loader(v-if="lo" height="700" width="500" type="image" ).skel
+		.doc(v-if="!lo")
+	.attr
+		.btgroup
+			v-btn(color="primary" depressed) В работу
+			v-btn(color="primary" depressed) Согласовать
+			v-btn(color="primary" depressed) Делегировать
+			v-btn(color="primary" depressed) Отказать
+		.status
+			span {{ item[0].status }}
+		br
+		.zag {{ item[0].title }}
 
 </template>
 
 <script>
-import VueDraggableResizable from 'vue-draggable-resizable'
-import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
 
 export default {
 	data () {
 		return {
+			lo: true,
 			item: [
 				{
 					'id': 0,
@@ -43,7 +41,12 @@ export default {
 		}
 	},
 	components: {
-		VueDraggableResizable
+	},
+	created () {
+		let that = this
+		setTimeout(function () {
+			that.lo = false
+		}, 1000)
 	}
 }
 
@@ -54,29 +57,42 @@ export default {
 
 .newcard {
 	display: flex;
-	justify-content: space-between;
+	margin-top: 2rem;
+	align-items: flex-start;
 	div {
 		background: #eee;
-		/* height: 300px; */
-	}
-	div:not(:last-child), div:not(:first-child) {
-		margin: 0 .5rem;
 	}
 	.attr {
-		min-width: 400px;
 		flex-grow: 1;
+		min-width: 300px;
+		width: 300px;
+		height: 333px;
+		margin-left: 1rem;
 	}
 	.right {
 		width: 150px;
-		margin: 0 1rem;
 		.v-btn {
 			margin-bottom: .3rem;
 		}
 	}
-	.my {
+	.doc {
+		min-width: 400px;
 		width: 500px;
+		height: 700px;
 		resize: both;
 		overflow: auto;
+		background: #fff;
+		box-shadow: 0px 0px 3px #333333aa;
+	}
+	.btgroup {
+		margin-bottom: 1.5rem;
+		.v-btn {
+			margin-bottom: .25rem;
+
+		}
+		.v-btn:not(:last-child) {
+			margin-right: .25rem;
+		}
 	}
 }
 
@@ -84,9 +100,11 @@ export default {
 	color: black;
 	text-align: left;
 	font-size: 1.5rem;
-	span {
-		opacity: .5;
-	}
 }
 
+.skel {
+	width: 500px;
+	height: 700px;
+	/* margin: 1rem auto; */
+}
 </style>
