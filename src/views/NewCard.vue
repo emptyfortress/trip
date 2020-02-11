@@ -11,7 +11,7 @@
 				v-btn(icon small).ml-3
 					v-icon mdi-chevron-right
 				v-spacer
-				v-btn(icon @click="toggleChat" :color="chat ? '#00ff00' : '' ").ml-4
+				v-btn(icon @click="toggleChat" :color="chat ? 'pink' : '' ").ml-4
 					v-icon mdi-message-outline
 				v-btn(icon)
 					v-icon mdi-download
@@ -33,15 +33,19 @@
 		br
 		.zag {{ item[0].title }}
 
+	v-scale-transition(origin="top left")
+		Comments(v-if="chat" x="0" y="50")
 </template>
 
 <script>
+import Comments from '@/components/Comments'
 
 export default {
 	data () {
 		return {
 			lo: true,
-			color: '#ccc',
+			color: '#dedede',
+			chat: false,
 			files: [
 				'Договор с ООО Ромашка.doc',
 				'Приложение к договору.doc',
@@ -67,12 +71,18 @@ export default {
 		}
 	},
 	components: {
+		Comments
 	},
 	created () {
 		let that = this
 		setTimeout(function () {
 			that.lo = false
 		}, 600)
+	},
+	methods: {
+		toggleChat () {
+			this.chat = !this.chat
+		}
 	}
 }
 
@@ -82,6 +92,7 @@ export default {
 @import '@/assets/css/colors.scss';
 
 .newcard {
+	position: relative;
 	display: flex;
 	margin-top: 2rem;
 	align-items: flex-start;

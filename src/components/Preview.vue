@@ -56,25 +56,12 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 			v-icon mdi-minus
 
 		v-scale-transition(origin="top left")
-			vue-draggable-resizable(:x="20" :y="75" :w="300" :h="280" @dragging="onDrag" @resizing="onResize" :parent="true" class-name="drag" v-if="chat" :draggable="false")
-				.overline Комментарии к файлу
-				v-list( three-line ).scr
-					template( v-for="(item, index) in comm" )
-						v-subheader( v-if="item.header" :key="item.header" v-text="item.header" ).hd
-						v-divider( v-else-if="item.divider" :key="index" :inset="item.inset" )
-						v-list-item( v-else :key="item.title" @click="" )
-							v-list-item-avatar.myavatar
-								v-img( src="@/assets/img/user0.svg" )
-							v-list-item-content
-								v-list-item-title( v-html="item.title" )
-								v-list-item-subtitle( v-html="item.subtitle" )
-					v-text-field(label="Комментировать" clearable hide-details)
+			Comments(v-if="chat" x="20" y="75")
 
 </template>
 
 <script>
-import VueDraggableResizable from 'vue-draggable-resizable'
-import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
+import Comments from '@/components/Comments'
 
 export default {
 	data () {
@@ -132,7 +119,7 @@ export default {
 		}
 	},
 	components: {
-		VueDraggableResizable
+		Comments
 	},
 	methods: {
 		toggleChat () {
@@ -217,26 +204,6 @@ export default {
 	position: absolute;
 	bottom: 4rem;
 	right: 2rem;
-}
-.drag {
-	background: #fff;
-	border: 1px solid #ccc;
-	padding: 1rem;
-	border-radius: 5px;
-}
-.scr {
-	height: 100%;
-	overflow-y: auto;
-	/* width: 100%; */
-}
-.v-list-item {
-	padding: 0;
-}
-.myavatar {
-	background: #ccc;
-}
-.v-application--is-ltr .v-list-item__avatar:first-child {
-	margin-right: 10px;
 }
 .skel {
 	width: 60%;
