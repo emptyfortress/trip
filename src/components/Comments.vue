@@ -1,5 +1,5 @@
 <template lang="pug">
-	vue-draggable-resizable(:x="x" :y="y" :w="300" :h="280" @dragging="onDrag" @resizing="onResize" :parent="true" class-name="drag" )
+	vue-draggable-resizable(:x="myx" :y="myy" :w="300" :h="280" @dragging="onDrag" @resizing="onResize" :parent="true" class-name="drag" )
 		.overline Комментарии к файлу
 		v-list( three-line ).scr
 			template( v-for="(item, index) in comm" )
@@ -20,9 +20,11 @@ import VueDraggableResizable from 'vue-draggable-resizable'
 import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
 
 export default {
-	props: [ 'x', 'y' ],
+	props: [ 'myx', 'myy' ],
 	data () {
 		return {
+			x: this.myx,
+			y: this.myy,
 			comm: [
 				{
 					title: 'Орлов П.С.',

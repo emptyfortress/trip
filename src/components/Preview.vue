@@ -56,7 +56,7 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 			v-icon mdi-minus
 
 		v-scale-transition(origin="top left")
-			Comments(v-if="chat" :x="20" :y="75")
+			Comments(v-if="chat" :myx="20" :myy="75")
 
 </template>
 

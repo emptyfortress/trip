@@ -66,7 +66,12 @@ export default {
 			},
 			set () {}
 		},
-		mini () { return this.$store.getters.mini }
+		mini: {
+			get () {
+				return this.$store.getters.mini
+			},
+			set () {}
+		}
 	},
 	components: {
 		icons

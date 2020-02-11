@@ -34,7 +34,7 @@
 		.zag {{ item[0].title }}
 
 	v-scale-transition(origin="top left")
-		Comments(v-if="chat" :x="0" :y="50")
+		Comments(v-if="chat" :myx="0" :myy="50")
 </template>
 
 <script>
