@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+v-col(cols="12" lg="12" md="12" ).grey
 	v-col(cols="12" col="12")
 		v-row(justify="space-between")
 			v-col(cols="12" :sm="12" :md="2" :lg="2" class="order-md-last text-md-right" ).status
@@ -7,8 +7,8 @@ div
 			v-col
 				.zag {{ item[0].title }}
 	.newcard
-		.my one
-		.col-3 one
+		.my
+		.attr one
 		.right
 			v-btn(color="primary" block depressed) В работу
 			v-btn(color="primary" block depressed) Согласовать
@@ -18,6 +18,8 @@ div
 </template>
 
 <script>
+import VueDraggableResizable from 'vue-draggable-resizable'
+import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
 
 export default {
 	data () {
@@ -39,6 +41,9 @@ export default {
 			]
 
 		}
+	},
+	components: {
+		VueDraggableResizable
 	}
 }
 
@@ -47,27 +52,31 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
-.cont {
-	margin-top: 3rem;
-}
-
 .newcard {
 	display: flex;
-	position: relative;
 	justify-content: space-between;
 	div {
 		background: #eee;
-		height: 300px;
+		/* height: 300px; */
+	}
+	div:not(:last-child), div:not(:first-child) {
+		margin: 0 .5rem;
+	}
+	.attr {
+		min-width: 400px;
+		flex-grow: 1;
 	}
 	.right {
 		width: 150px;
+		margin: 0 1rem;
 		.v-btn {
 			margin-bottom: .3rem;
 		}
 	}
 	.my {
-		flex-grow: 1;
-		margin: 0 1rem;
+		width: 500px;
+		resize: both;
+		overflow: auto;
 	}
 }
 
