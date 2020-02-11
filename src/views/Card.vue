@@ -117,31 +117,6 @@ export default {
 		opacity: .5;
 	}
 }
-.status {
-	font-size: 1.1rem;
-	/* text-align: left; */
-	white-space: nowrap;
-	span {
-		transform: rotate(-3deg);
-		color: $info;
-		font-weight: 700;
-		/* border-top: 0.2rem solid $info; */
-		border-top: 4px double $info;
-		border-left: 1px solid $info;
-		border-right: 1px solid $info;
-		border-bottom: 0.2rem solid $info;
-		display: inline-block;
-		padding: 0.20rem 0.9rem;
-		text-transform: uppercase;
-		/* border-radius: .3rem; */
-		font-family: 'Courier';
-		/* -webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png'); */
-		-webkit-mask-image: url('../assets/img/grunge.png');
-		-webkit-mask-size: 944px 604px;
-		mix-blend-mode: multiply;
-		margin-top: .6rem;
-	}
-}
 .big {
 	margin-top: 4rem;
 	i {

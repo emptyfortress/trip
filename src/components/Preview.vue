@@ -56,7 +56,7 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 			v-icon mdi-minus
 
 		v-scale-transition(origin="top left")
-			vue-draggable-resizable(:x="20" :y="75" :w="300" :h="280" @dragging="onDrag" @resizing="onResize" :parent="true" class-name="drag" v-if="chat" )
+			vue-draggable-resizable(:x="20" :y="75" :w="300" :h="280" @dragging="onDrag" @resizing="onResize" :parent="true" class-name="drag" v-if="chat" :draggable="false")
 				.overline Комментарии к файлу
 				v-list( three-line ).scr
 					template( v-for="(item, index) in comm" )

@@ -43,7 +43,8 @@ export default {
 				{ url: '', mini: 'Папки', icon: 'icon-folder-o', text: 'Мои папки' },
 				{ url: '', mini: 'Зад.', icon: 'icon-tasks', text: 'Задания' },
 				{ url: '', mini: 'Док.', icon: 'icon-documents', text: 'Документы' },
-				{ url: '/trips', mini: 'Ком.', icon: 'icon-airplane', text: 'Командировки' }
+				{ url: '/trips', mini: 'Ком.', icon: 'icon-airplane', text: 'Командировки' },
+				{ url: '/newcard', mini: 'Ком.', icon: 'icon-document', text: 'Preview' }
 			]
 		}
 	},
