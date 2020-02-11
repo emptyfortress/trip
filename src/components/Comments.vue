@@ -35,11 +35,22 @@ export default {
 				},
 				{ divider: true, inset: false }
 			]
-
 		}
 	},
 	components: {
 		VueDraggableResizable
+	},
+	methods: {
+		onResize: function (x, y, width, height) {
+			this.x = x
+			this.y = y
+			this.width = width
+			this.height = height
+		},
+		onDrag: function (x, y) {
+			this.x = x
+			this.y = y
+		}
 	}
 }
 

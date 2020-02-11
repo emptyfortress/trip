@@ -17,7 +17,7 @@
 					v-icon mdi-download
 				v-btn(icon)
 					v-icon mdi-printer
-				v-btn(icon @click="toggleFull" :disabled="fullWindow")
+				v-btn(icon @click="" )
 					i.icon-up
 			.doc
 				.pull-tab
@@ -34,7 +34,7 @@
 		.zag {{ item[0].title }}
 
 	v-scale-transition(origin="top left")
-		Comments(v-if="chat" x="0" y="50")
+		Comments(v-if="chat" :x="0" :y="50")
 </template>
 
 <script>

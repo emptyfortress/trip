@@ -56,7 +56,7 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 			v-icon mdi-minus
 
 		v-scale-transition(origin="top left")
-			Comments(v-if="chat" x="20" y="75")
+			Comments(v-if="chat" :x="20" :y="75")
 
 </template>
 
@@ -137,17 +137,17 @@ export default {
 			} else {
 				this.$store.commit('setFullWindow', true)
 			}
-		},
-		onResize: function (x, y, width, height) {
-			this.x = x
-			this.y = y
-			this.width = width
-			this.height = height
-		},
-		onDrag: function (x, y) {
-			this.x = x
-			this.y = y
 		}
+		// onResize: function (x, y, width, height) {
+		// 	this.x = x
+		// 	this.y = y
+		// 	this.width = width
+		// 	this.height = height
+		// },
+		// onDrag: function (x, y) {
+		// 	this.x = x
+		// 	this.y = y
+		// }
 	}
 }
 

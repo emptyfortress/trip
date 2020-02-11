@@ -47,6 +47,11 @@ export default {
 				{ icon: 'mdi-timer-sand-empty', color: 'grey', fio: 'Орлов П.П.', decision: 'Ожидает решения', date: '', comment: '' }
 			]
 		}
+	},
+	methods: {
+		doNothing (evt) {
+			evt.stopPropagation()
+		}
 	}
 }
 
