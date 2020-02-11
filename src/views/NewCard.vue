@@ -1,8 +1,27 @@
 <template lang="pug">
 .newcard
-	v-scale-transition(mode="out-in")
+	v-slide-y-transition(mode="out-in")
 		v-skeleton-loader(v-if="lo" height="700" width="500" type="image" ).skel
-		.doc(v-if="!lo")
+		div(v-if="!lo")
+			v-app-bar(dense flat :color="color").mb-1
+				v-btn(icon small)
+					v-icon mdi-chevron-left
+				input(type="text" value="1").page
+				span.pages / 3
+				v-btn(icon small).ml-3
+					v-icon mdi-chevron-right
+				v-spacer
+				v-btn(icon @click="toggleChat" :color="chat ? '#00ff00' : '' ").ml-4
+					v-icon mdi-message-outline
+				v-btn(icon)
+					v-icon mdi-download
+				v-btn(icon)
+					v-icon mdi-printer
+				v-btn(icon @click="toggleFull" :disabled="fullWindow")
+					i.icon-up
+			.doc
+				.pull-tab
+				img(src="@/assets/img/img3.jpg")
 	.attr
 		.btgroup
 			v-btn(color="primary" depressed) В работу
@@ -22,6 +41,13 @@ export default {
 	data () {
 		return {
 			lo: true,
+			color: '#ccc',
+			files: [
+				'Договор с ООО Ромашка.doc',
+				'Приложение к договору.doc',
+				'Расчет цены.xsl',
+				'План-график.xsl'
+			],
 			item: [
 				{
 					'id': 0,
@@ -46,7 +72,7 @@ export default {
 		let that = this
 		setTimeout(function () {
 			that.lo = false
-		}, 1000)
+		}, 600)
 	}
 }
 
@@ -60,7 +86,7 @@ export default {
 	margin-top: 2rem;
 	align-items: flex-start;
 	div {
-		background: #eee;
+		/* background: #eee; */
 	}
 	.attr {
 		flex-grow: 1;
@@ -76,13 +102,18 @@ export default {
 		}
 	}
 	.doc {
+		position: relative;
 		min-width: 400px;
+		padding: .5rem;
 		width: 500px;
 		height: 700px;
 		resize: both;
+		box-shadow: 0px 0px 1px #777777aa;
 		overflow: auto;
 		background: #fff;
-		box-shadow: 0px 0px 3px #333333aa;
+		img {
+			width: 100%;
+		}
 	}
 	.btgroup {
 		margin-bottom: 1.5rem;
@@ -95,16 +126,41 @@ export default {
 		}
 	}
 }
+.pull-tab {
+		height: 0px;
+		width: 0px;
+		border-top: 20px solid $dark;
+		border-left: 20px solid transparent;
+		border-right: 20px solid transparent;
+		-webkit-transform: rotate(-45deg);
+		position: absolute;
+		bottom: -3px;
+		right: -15px;
+		pointer-events: none;
+		z-index: 2;
+}
 
 .zag {
 	color: black;
 	text-align: left;
-	font-size: 1.5rem;
+	font-size: 1.4rem;
 }
 
 .skel {
 	width: 500px;
 	height: 700px;
-	/* margin: 1rem auto; */
+}
+
+.page {
+	font-size: 1.0rem;
+	width: 30px;
+	/* margin-left: 1rem; */
+	text-align: right;
+	&:focus {
+		background: #fff;
+	}
+}
+.pages {
+	margin-left: .3rem;
 }
 </style>
