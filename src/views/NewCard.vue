@@ -42,14 +42,12 @@
 			v-tab Подчиненные задания
 			v-tab История
 			v-tab-item(key="1")
-				v-row
-					v-col(cols="12" lg="3" md="4" sm="12" order="1")
-						table(:class="$vuetify.breakpoint.smAndDown ? 'big' : '' ").attributes
-							tr(v-for="item in attr" :key="item.id")
-								td.attr {{ item.attr }}
-								td {{ item.value }}
-					v-col
-						.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+				.myrow
+					table.attributes
+						tr(v-for="item in attr" :key="item.id")
+							td.attr {{ item.attr }}
+							td {{ item.value }}
+					.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
 				Files1
 				Hod.mt-3
 
@@ -132,15 +130,9 @@ export default {
 	display: flex;
 	margin-top: 2rem;
 	align-items: flex-start;
-	div {
-		/* background: #eee; */
-	}
 	.cardd {
 		flex-grow: 1;
-		min-width: 300px;
-		width: 300px;
-		height: 333px;
-		margin-left: 1rem;
+		margin-left: 2rem;
 	}
 	.right {
 		width: 150px;
@@ -219,14 +211,11 @@ export default {
 	right: 0;
 	background: red;
 }
-.lay > div:first-child {
-	/* min-width: 240px; */
-	/* border-right: 1px solid #ccc; */
-}
 .attributes {
-	width: 100%;
+	padding-right: 1rem;
 	font-size: .9rem;
-	margin: 0 auto;
+	margin-right: 2rem;
+	border-right: 1px solid #ccc;
 	&.big {
 		font-size: 1.1rem;
 	}
@@ -240,5 +229,10 @@ export default {
 }
 .attr {
 	opacity: .6;
+}
+.myrow {
+	display: flex;
+	justify-content: flex-start;
+	padding: 1rem 0;
 }
 </style>
