@@ -3,18 +3,13 @@ v-navigation-drawer(v-model="drawer" clipped app :mini-variant.sync="mini" dark 
 	v-list
 		v-list-item(link @click="goTo('/')")
 			v-list-item-icon
-				v-icon mdi-home-roof
+				i(style="font-size: 1.6rem").icon-home-roof
 			v-list-item-content
 				v-list-item-title Главная
 		v-list-item( v-for="(item, i) in menu" :key="i" link  @click="goTo(item.url)")
 			v-list-item-icon
-				i(:class="item.icon")
+				i(:class="item.icon").ic
 
-			//- v-list-item-icon
-			//- 	i(v-if="!mini" :class="item.icon")
-			//- 	span(v-else).min {{ item.mini }}
-				//- v-avatar(v-else color="indigo" size="36")
-				//- 	span.min {{ item.mini }}
 			v-list-item-content
 				v-list-item-title {{ item.text }}
 	.mini(@click="toggleMini")
@@ -39,12 +34,13 @@ export default {
 			},
 			menu: [
 				{ url: '/folder', mini: 'Вход.', icon: 'icon-inbox', text: 'Входящие' },
-				{ url: '/folder', mini: 'Исх.', icon: 'icon-oubox', text: 'Исходящие' },
-				{ url: '', mini: 'Папки', icon: 'icon-folder-o', text: 'Мои папки' },
-				{ url: '', mini: 'Зад.', icon: 'icon-tasks', text: 'Задания' },
-				{ url: '', mini: 'Док.', icon: 'icon-documents', text: 'Документы' },
+				{ url: '/folder', mini: 'Исх.', icon: 'icon-outbox', text: 'Исходящие' },
+				{ url: '', mini: 'Папки', icon: 'icon-folder-open-outline', text: 'Мои папки' },
+				{ url: '', mini: 'Зад.', icon: 'icon-task', text: 'Задания' },
+				{ url: '', mini: 'Док.', icon: 'icon-document', text: 'Документы' },
 				{ url: '/trips', mini: 'Ком.', icon: 'icon-airplane', text: 'Командировки' },
-				{ url: '/newcard', mini: 'Ком.', icon: 'icon-document', text: 'Preview' }
+				{ url: '/newcard', mini: 'icon-numeric-1-box', icon: 'icon-numeric-1-box', text: 'Inline file preview' },
+				{ url: '/cards/2', mini: 'icon-numeric-1-box', icon: 'icon-numeric-2-box', text: 'Panel file preview' }
 			]
 		}
 	},
@@ -93,5 +89,16 @@ export default {
 }
 .min {
 	font-size: .9rem;
+}
+.ic {
+	font-size: 1.3rem;
+}
+.v-application--is-ltr .v-list-item__icon:first-child {
+	margin-right: 1rem;
+}
+.v-navigation-drawer--mini-variant .v-list-item > *:first-child {
+	margin-left: 0;
+	margin-right: 0;
+
 }
 </style>

@@ -30,8 +30,8 @@
 		.btgroup
 			v-btn(color="primary" depressed) В работу
 			v-btn(color="primary" depressed) Согласовать
-			v-btn(color="primary" depressed) Делегировать
-			v-btn(color="primary" depressed) Отказать
+			v-btn(color="primary" depressed outlined) Делегировать
+			v-btn(color="pink darken-4" depressed outlined) Отказать
 		.status
 			span {{ item[0].status }}
 		br
@@ -42,12 +42,17 @@
 			v-tab Подчиненные задания
 			v-tab История
 			v-tab-item(key="1")
-				.myrow
-					table.attributes
-						tr(v-for="item in attr" :key="item.id")
-							td.attr {{ item.attr }}
-							td {{ item.value }}
-					.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+				v-expansion-panels(hover tile v-model="a" flat)
+					v-expansion-panel
+						v-expansion-panel-header
+							.blockhd.rel Информация
+						v-expansion-panel-content
+							.myrow
+								table.attributes
+									tr(v-for="item in attr" :key="item.id")
+										td.attr {{ item.attr }}
+										td {{ item.value }}
+								.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
 				Files1
 				Hod.mt-3
 

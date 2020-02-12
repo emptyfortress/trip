@@ -1,6 +1,6 @@
 <template lang="pug">
 .files.mt-4
-	v-expansion-panels(hover tile v-model="panel")
+	v-expansion-panels(v-model="panel")
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Файлы (4)
@@ -72,15 +72,6 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
-.theme--light.v-expansion-panels .v-expansion-panel {
-	border-bottom: 1px solid #ccc;
-	&::before {
-		box-shadow: none;
-	}
-}
-.v-expansion-panel--active > .v-expansion-panel-header {
-	min-height: 44px;
-}
 .plus {
 	position: absolute;
 	bottom: -.5rem;
