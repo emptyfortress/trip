@@ -25,7 +25,9 @@ v-navigation-drawer(v-model="preview" app right :width="fullWindow ? '100%' : '5
 			span.pages / 3
 			v-spacer
 			v-btn(icon @click="toggleChat" :color="chat ? '#00ff00' : 'white' ").ml-4
-				v-icon mdi-message-outline
+				.rel
+					v-icon mdi-message-outline
+					.dot
 			v-btn(icon)
 				v-icon mdi-download
 			v-btn(icon)
@@ -67,7 +69,6 @@ export default {
 	data () {
 		return {
 			color: '#405e82',
-			chat: false,
 			content: [
 				{ title: 'Справочник сотрудников', icon: 'mdi-account-tie' },
 				{ title: 'Справочник контрагентов', icon: 'mdi-account-details' },
@@ -102,6 +103,9 @@ export default {
 		}
 	},
 	computed: {
+		chat () {
+			return this.$store.getters.chat
+		},
 		previewMode () {
 			return this.$store.getters.previewMode
 		},
@@ -123,7 +127,7 @@ export default {
 	},
 	methods: {
 		toggleChat () {
-			this.chat = !this.chat
+			this.$store.commit('toggleChat')
 		},
 		showPreview () {
 			this.$store.commit('togglePreview')
@@ -138,16 +142,6 @@ export default {
 				this.$store.commit('setFullWindow', true)
 			}
 		}
-		// onResize: function (x, y, width, height) {
-		// 	this.x = x
-		// 	this.y = y
-		// 	this.width = width
-		// 	this.height = height
-		// },
-		// onDrag: function (x, y) {
-		// 	this.x = x
-		// 	this.y = y
-		// }
 	}
 }
 
@@ -221,5 +215,14 @@ export default {
 		font-size: 1.2rem;
 		font-weight: 300;
 	}
+}
+.dot {
+	width: 9px;
+	height: 9px;
+	border-radius: 4px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: red;
 }
 </style>

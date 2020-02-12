@@ -1,5 +1,7 @@
 <template lang="pug">
-	vue-draggable-resizable(:x="myx" :y="myy" :w="300" :h="280" @dragging="onDrag" @resizing="onResize" :parent="true" class-name="drag" )
+	vue-draggable-resizable(:x="myx" :y="myy" :w="300" :h="280" @dragging="onDrag" @resizing="onResize" :parent="true" class-name="drag" ).elevation-5
+		v-btn(icon small @click="toggleChat").cl
+			v-icon mdi-close
 		.overline Комментарии к файлу
 		v-list( three-line ).scr
 			template( v-for="(item, index) in comm" )
@@ -43,6 +45,9 @@ export default {
 		VueDraggableResizable
 	},
 	methods: {
+		toggleChat () {
+			this.$store.commit('toggleChat')
+		},
 		onResize: function (x, y, width, height) {
 			this.x = x
 			this.y = y
@@ -81,5 +86,10 @@ export default {
 	border: 1px solid #ccc;
 	padding: 1rem;
 	border-radius: 5px;
+}
+.cl {
+	position: absolute;
+	top: .5rem;
+	right: .5rem;
 }
 </style>

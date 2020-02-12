@@ -36,10 +36,16 @@ export default new Vuex.Store({
 		searchMode: false,
 		dialog: false,
 		changing: false,
-		previewMode: 0
+		lo: true,
+		overlay: false,
+		previewMode: 0,
+		file: 0,
+		chat: false
 	},
 	getters: {
 		changing: state => { return state.changing },
+		lo: state => { return state.lo },
+		overlay: state => { return state.overlay },
 		preview: state => { return state.preview },
 		previewMode: state => { return state.previewMode },
 		fullWindow: state => { return state.fullWindow },
@@ -51,7 +57,9 @@ export default new Vuex.Store({
 		grouping: state => { return state.grouping },
 		selectMode: state => { return state.selectMode },
 		searchMode: state => { return state.searchMode },
-		dialog: state => { return state.dialog }
+		dialog: state => { return state.dialog },
+		file: state => { return state.file },
+		chat: state => { return state.chat }
 	},
 	mutations: {
 		togglePreview (state) { state.preview = !state.preview },
@@ -71,7 +79,11 @@ export default new Vuex.Store({
 		offDrawer (state) { state.drawer = false },
 		setHeaders (state, payload) { state.headers = payload },
 		setMini (state, payload) { state.mini = payload },
-		setChanging (state, payload) { state.changing = payload }
+		setChanging (state, payload) { state.changing = payload },
+		setLo (state, payload) { state.lo = payload },
+		setFile (state, payload) { state.file = payload },
+		setOverlay (state, payload) { state.overlay = payload },
+		toggleChat (state) { state.chat = !state.chat }
 	},
 	actions: {},
 	modules: {}
