@@ -1,12 +1,13 @@
 <template lang="pug">
 v-row(justify="center").mx-3
 	v-col(md="12" lg="9")
-		v-row(justify="space-between")
+		v-row(justify="space-between" align="center")
+			v-col(cols="12" md="2").status.text-md-right.text-sm-left.order-md-last
+				span Не начато
 			v-col
 				.zag
 					span Согласование:
 					|  командировка
-			v-col(cols="2").status Не начато
 		v-tabs.mytab
 			v-tab Главная
 			v-tab Подчиненные задания

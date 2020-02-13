@@ -5,8 +5,8 @@
 			.buttonsrow
 				v-btn(depressed color="primary") В работу
 				v-btn(depressed color="primary") Согласовать
-				v-btn(depressed) Делегировать
-				v-btn(depressed) Отклонить
+				v-btn(depressed outlined color="primary") Делегировать
+				v-btn(color="pink darken-4" depressed outlined) Отклонить
 			.d-flex.flex-row
 				table.attributes
 					tr(v-for="item in attr" :key="item.id")
