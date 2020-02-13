@@ -24,7 +24,16 @@
 						v-btn(icon @click="" )
 							i.icon-up
 					.doc
-						v-img(:src="require(`@/assets/img/img${file}.jpg`)" contain lazy-src)
+						v-img(:src="require(`@/assets/img/img${file}.jpg`)" contain lazy-src v-if="file > 0")
+						.empty(v-else)
+							i.icon-empty
+							h3 Просмотр недоступен
+							p Данный файл недоступен для просмотра в браузере.
+								br
+								|Пожалуйста, скачайте его и откройте обычным образом.
+							p
+								v-btn(color="primary" depressed outlined) Скачать
+
 						v-overlay(:value="overlay" absolute)
 							v-progress-circular(indeterminate size="64")
 
@@ -41,24 +50,54 @@
 				v-btn(color="pink darken-4" depressed outlined) Отклонить
 			.zag {{ item[0].title }}
 			br
-			v-tabs.mytab
-				v-tab Главная
-				v-tab Подчиненные задания
-				v-tab История
-				v-tab-item(key="1")
-					v-expansion-panels(hover tile v-model="a" flat)
-						v-expansion-panel
-							v-expansion-panel-header
-								.blockhd.rel Информация
-							v-expansion-panel-content
-								.myrow
-									table.attributes
-										tr(v-for="item in attr" :key="item.id")
-											td.attr {{ item.attr }}
-											td {{ item.value }}
-									.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
-					Files1
-					Hod.mt-3
+			v-expansion-panels(hover tile v-model="a" flat)
+				v-expansion-panel
+					v-expansion-panel-header
+						.blockhd.rel Информация
+					v-expansion-panel-content
+						.myrow
+							table.attributes
+								tr(v-for="item in attr" :key="item.id")
+									td.attr {{ item.attr }}
+									td {{ item.value }}
+							.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+			//- v-tabs.mytab
+			//- 	v-tab Главная
+			//- 	v-tab Подчиненные задания
+			//- 	v-tab История
+			//- 	v-tab-item(key="1")
+			//- 		v-expansion-panels(hover tile v-model="a" flat)
+			//- 			v-expansion-panel
+			//- 				v-expansion-panel-header
+			//- 					.blockhd.rel Информация
+			//- 				v-expansion-panel-content
+			//- 					.myrow
+			//- 						table.attributes
+			//- 							tr(v-for="item in attr" :key="item.id")
+			//- 								td.attr {{ item.attr }}
+			//- 								td {{ item.value }}
+			//- 						.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+			Files1
+			Hod.mt-3
+			v-expansion-panels(hover tile v-model="a" flat)
+				v-expansion-panel
+					v-expansion-panel-header
+						.blockhd.rel Подчиненные задания
+					v-expansion-panel-content
+						p Здесь подчиненные задания
+						p Здесь подчиненные задания
+						p Здесь подчиненные задания
+						p Здесь подчиненные задания
+						p Здесь подчиненные задания
+				v-expansion-panel
+					v-expansion-panel-header
+						.blockhd.rel История
+					v-expansion-panel-content
+						p Здесь
+						p Здесь
+						p Здесь
+						p Здесь
+						p Здесь
 
 	v-scale-transition(origin="top left")
 		Comments(v-show="chat" :myx="20" :myy="60" style="z-index: 100")
@@ -239,12 +278,31 @@ export default {
 }
 .one {
 	width: 50%;
-	/* height: 100%; */
 	position: relative;
 }
 .all {
 	width: 100%;
 	height: calc(100vh - 120px);
-	/* background: #ccc; */
+}
+.empty {
+	text-align: center;
+	height: 100%;
+	color: #aaa;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	h3 {
+		font-weight: 400;
+		font-size: 1.7rem;
+	}
+	i {
+		font-size: 6.0rem;
+	}
+	p {
+		margin: 1rem 5rem;
+	}
+	.v-btn {
+		display: inline-block;
+	}
 }
 </style>

@@ -39,8 +39,8 @@ export default {
 				{ url: '', mini: 'Зад.', icon: 'icon-task', text: 'Задания' },
 				{ url: '', mini: 'Док.', icon: 'icon-document', text: 'Документы' },
 				{ url: '/trips', mini: 'Ком.', icon: 'icon-airplane', text: 'Командировки' },
-				{ url: '/newcard', mini: 'icon-numeric-1-box', icon: 'icon-numeric-1-box', text: 'Inline file preview' },
-				{ url: '/cards/2', mini: 'icon-numeric-1-box', icon: 'icon-numeric-2-box', text: 'Panel file preview' }
+				{ url: '/newcard', mini: '', icon: 'icon-numeric-1-box-outline', text: 'Inline file preview' },
+				{ url: '/cards/2', mini: '', icon: 'icon-numeric-2-box-outline', text: 'Panel file preview' }
 			]
 		}
 	},
