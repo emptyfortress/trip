@@ -1,7 +1,7 @@
 <template lang="pug">
 .newcard
 	v-slide-y-transition(mode="out-in")
-		v-skeleton-loader(v-if="lo" height="700" width="500" type="image" ).skel
+		v-skeleton-loader(v-if="lo" :height="height" width="700" type="image" ).skel
 		div(v-if="!lo")
 			v-app-bar(dense flat :color="color").mb-1
 				v-btn(icon small)
@@ -22,8 +22,9 @@
 				v-btn(icon @click="" )
 					i.icon-up
 			.doc
+				v-img(:src="require(`@/assets/img/img${file}.jpg`)" contain lazy-src)
 				.pull-tab
-				img(:src="require(`@/assets/img/img${file}.jpg`)")
+				//- v-img(src="@/assets/img/img0.jpg" contain lazy-src)
 				v-overlay(:value="overlay" absolute)
 					v-progress-circular(indeterminate size="64")
 	.cardd
@@ -31,7 +32,7 @@
 			v-btn(color="primary" depressed) В работу
 			v-btn(color="primary" depressed) Согласовать
 			v-btn(color="primary" depressed outlined) Делегировать
-			v-btn(color="pink darken-4" depressed outlined) Отказать
+			v-btn(color="pink darken-4" depressed outlined) Отклонить
 		.status
 			span {{ item[0].status }}
 		br
@@ -94,6 +95,9 @@ export default {
 		}
 	},
 	computed: {
+		height () {
+			return (window.innerHeight - 200)
+		},
 		chat () {
 			return this.$store.getters.chat
 		},
@@ -148,16 +152,13 @@ export default {
 	.doc {
 		position: relative;
 		min-width: 400px;
-		padding: .5rem;
-		width: 500px;
-		height: 700px;
-		resize: both;
+		/* padding: 1rem; */
+		width: 700px;
+		height: calc(100vh - 230px);
+		resize: horizontal;
 		box-shadow: 0px 0px 1px #777777aa;
 		overflow: auto;
 		background: #fff;
-		img {
-			width: 100%;
-		}
 	}
 	.btgroup {
 		margin-bottom: 1.5rem;
@@ -191,8 +192,8 @@ export default {
 }
 
 .skel {
-	width: 500px;
-	height: 700px;
+	/* width: 500px; */
+	/* height: 700px; */
 }
 
 .page {
