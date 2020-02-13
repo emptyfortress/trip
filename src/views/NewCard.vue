@@ -1,70 +1,139 @@
 <template lang="pug">
-.newcard
-	v-slide-y-transition(mode="out-in")
-		v-skeleton-loader(v-if="lo" :height="height" width="700" type="image" ).skel
-		div(v-if="!lo")
-			v-app-bar(dense flat :color="color").mb-1
-				v-btn(icon small)
-					v-icon mdi-chevron-left
-				input(type="text" value="1").page
-				span.pages / 3
-				v-btn(icon small).ml-3
-					v-icon mdi-chevron-right
-				v-spacer
-				v-btn(icon @click="toggleChat" :color="chat ? 'pink' : '' ").ml-4
-					.rel
-						v-icon mdi-message-outline
-						.dot
-				v-btn(icon)
-					v-icon mdi-download
-				v-btn(icon)
-					v-icon mdi-printer
-				v-btn(icon @click="" )
-					i.icon-up
-			.doc
-				v-img(:src="require(`@/assets/img/img${file}.jpg`)" contain lazy-src)
-				.pull-tab
-				//- v-img(src="@/assets/img/img0.jpg" contain lazy-src)
-				v-overlay(:value="overlay" absolute)
-					v-progress-circular(indeterminate size="64")
-	.cardd
-		.btgroup
-			v-btn(color="primary" depressed) В работу
-			v-btn(color="primary" depressed) Согласовать
-			v-btn(color="primary" depressed outlined) Делегировать
-			v-btn(color="pink darken-4" depressed outlined) Отклонить
-		.status
-			span {{ item[0].status }}
-		br
-		.zag {{ item[0].title }}
-		br
-		v-tabs.mytab
-			v-tab Главная
-			v-tab Подчиненные задания
-			v-tab История
-			v-tab-item(key="1")
-				v-expansion-panels(hover tile v-model="a" flat)
-					v-expansion-panel
-						v-expansion-panel-header
-							.blockhd.rel Информация
-						v-expansion-panel-content
-							.myrow
-								table.attributes
-									tr(v-for="item in attr" :key="item.id")
-										td.attr {{ item.attr }}
-										td {{ item.value }}
-								.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
-				Files1
-				Hod.mt-3
+.all
+	drag-zone.zone
+		drag-content.content.one
+			v-slide-y-transition(mode="out-in")
+				v-skeleton-loader(v-if="lo" height="100%" width="100%" type="image" ).skel
+				div(v-if="!lo")
+					v-app-bar(dense flat :color="color").mb-1
+						v-btn(icon small)
+							v-icon mdi-chevron-left
+						input(type="text" value="1").page
+						span.pages / 3
+						v-btn(icon small).ml-3
+							v-icon mdi-chevron-right
+						v-spacer
+						v-btn(icon @click="toggleChat" :color="chat ? 'pink' : '' ").ml-4
+							.rel
+								v-icon mdi-message-outline
+								.dot
+						v-btn(icon)
+							v-icon mdi-download
+						v-btn(icon)
+							v-icon mdi-printer
+						v-btn(icon @click="" )
+							i.icon-up
+					.doc
+						v-img(:src="require(`@/assets/img/img${file}.jpg`)" contain lazy-src)
+						//- .pull-tab
+						//- v-img(src="@/assets/img/img0.jpg" contain lazy-src)
+						v-overlay(:value="overlay" absolute)
+							v-progress-circular(indeterminate size="64")
 
-	v-scale-transition(origin="top left")
-		Comments(v-if="chat" :myx="0" :myy="50" style="z-index: 100")
+		drag-handle.hand
+			div
+		drag-content.cardd
+			.status
+				span {{ item[0].status }}
+			br
+			.btgroup
+				v-btn(color="primary" depressed) В работу
+				v-btn(color="primary" depressed) Согласовать
+				v-btn(color="primary" depressed outlined) Делегировать
+				v-btn(color="pink darken-4" depressed outlined) Отклонить
+			.zag {{ item[0].title }}
+			br
+			v-tabs.mytab
+				v-tab Главная
+				v-tab Подчиненные задания
+				v-tab История
+				v-tab-item(key="1")
+					v-expansion-panels(hover tile v-model="a" flat)
+						v-expansion-panel
+							v-expansion-panel-header
+								.blockhd.rel Информация
+							v-expansion-panel-content
+								.myrow
+									table.attributes
+										tr(v-for="item in attr" :key="item.id")
+											td.attr {{ item.attr }}
+											td {{ item.value }}
+									.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+					Files1
+					Hod.mt-3
+
+//- .newcard
+//- 	drag-zone.zone
+//- 		drag-content.content
+//- 			v-slide-y-transition(mode="out-in")
+//- 				v-skeleton-loader(v-if="lo" :height="height" width="700" type="image" ).skel
+//- 				div(v-if="!lo")
+//- 					v-app-bar(dense flat :color="color").mb-1
+//- 						v-btn(icon small)
+//- 							v-icon mdi-chevron-left
+//- 						input(type="text" value="1").page
+//- 						span.pages / 3
+//- 						v-btn(icon small).ml-3
+//- 							v-icon mdi-chevron-right
+//- 						v-spacer
+//- 						v-btn(icon @click="toggleChat" :color="chat ? 'pink' : '' ").ml-4
+//- 							.rel
+//- 								v-icon mdi-message-outline
+//- 								.dot
+//- 						v-btn(icon)
+//- 							v-icon mdi-download
+//- 						v-btn(icon)
+//- 							v-icon mdi-printer
+//- 						v-btn(icon @click="" )
+//- 							i.icon-up
+//- 					.doc
+//- 						v-img(:src="require(`@/assets/img/img${file}.jpg`)" contain lazy-src)
+//- 						//- .pull-tab
+//- 						//- v-img(src="@/assets/img/img0.jpg" contain lazy-src)
+//- 						v-overlay(:value="overlay" absolute)
+//- 							v-progress-circular(indeterminate size="64")
+//- 	drag-handle.handle
+//- 		div
+//- 	drag-content.content
+//- 		.cardd
+//- 			.btgroup
+//- 				v-btn(color="primary" depressed) В работу
+//- 				v-btn(color="primary" depressed) Согласовать
+//- 				v-btn(color="primary" depressed outlined) Делегировать
+//- 				v-btn(color="pink darken-4" depressed outlined) Отклонить
+//- 			.status
+//- 				span {{ item[0].status }}
+//- 			br
+//- 			.zag {{ item[0].title }}
+//- 			br
+//- 			v-tabs.mytab
+//- 				v-tab Главная
+//- 				v-tab Подчиненные задания
+//- 				v-tab История
+//- 				v-tab-item(key="1")
+//- 					v-expansion-panels(hover tile v-model="a" flat)
+//- 						v-expansion-panel
+//- 							v-expansion-panel-header
+//- 								.blockhd.rel Информация
+//- 							v-expansion-panel-content
+//- 								.myrow
+//- 									table.attributes
+//- 										tr(v-for="item in attr" :key="item.id")
+//- 											td.attr {{ item.attr }}
+//- 											td {{ item.value }}
+//- 									.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+//- 					Files1
+//- 					Hod.mt-3
+
+//- 	v-scale-transition(origin="top left")
+//- 		Comments(v-if="chat" :myx="0" :myy="50" style="z-index: 100")
 </template>
 
 <script>
 import Comments from '@/components/Comments'
 import Files1 from '@/components/Files1'
 import Hod from '@/components/Hod'
+import { dragZone, dragHandle, dragContent } from 'vue-drag-zone'
 
 export default {
 	data () {
@@ -114,7 +183,10 @@ export default {
 	components: {
 		Comments,
 		Files1,
-		Hod
+		Hod,
+		dragZone,
+		dragHandle,
+		dragContent
 	},
 	created () {
 		let that = this
@@ -134,66 +206,35 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
-.newcard {
-	position: relative;
-	display: flex;
-	margin-top: 2rem;
-	align-items: flex-start;
-	.cardd {
-		flex-grow: 1;
-		margin-left: 2rem;
+.btgroup {
+	margin-bottom: 1.5rem;
+	.v-btn {
+		margin-bottom: .25rem;
 	}
-	.right {
-		width: 150px;
-		.v-btn {
-			margin-bottom: .3rem;
-		}
-	}
-	.doc {
-		position: relative;
-		min-width: 400px;
-		/* padding: 1rem; */
-		width: 700px;
-		height: calc(100vh - 230px);
-		resize: horizontal;
-		box-shadow: 0px 0px 1px #777777aa;
-		overflow: auto;
-		background: #fff;
-	}
-	.btgroup {
-		margin-bottom: 1.5rem;
-		.v-btn {
-			margin-bottom: .25rem;
-
-		}
-		.v-btn:not(:last-child) {
-			margin-right: .25rem;
-		}
+	.v-btn:not(:last-child) {
+		margin-right: .25rem;
 	}
 }
-.pull-tab {
-		height: 0px;
-		width: 0px;
-		border-top: 20px solid $dark;
-		border-left: 20px solid transparent;
-		border-right: 20px solid transparent;
-		-webkit-transform: rotate(-45deg);
-		position: absolute;
-		bottom: -3px;
-		right: -15px;
-		pointer-events: none;
-		z-index: 2;
+.doc {
+	position: absolute;
+	top: 53px;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	overflow-y: auto;
+	background: #fff;
+	box-shadow: 0 0 3px #666666aa;
 }
 
+.cardd {
+	margin-left: 1rem;
+	height: 100%;
+	overflow: auto;
+}
 .zag {
 	color: black;
 	text-align: left;
 	font-size: 1.4rem;
-}
-
-.skel {
-	/* width: 500px; */
-	/* height: 700px; */
 }
 
 .page {
@@ -240,5 +281,33 @@ export default {
 	display: flex;
 	justify-content: flex-start;
 	padding: 1rem 0;
+}
+.zone {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+	display: flex;
+	.hand {
+		width: 20px;
+		div {
+			width:10px;
+			height: 100%;
+			transform: translateX(5px);
+		}
+		&:hover {
+			div { border-left: 3px dotted #333; }
+		}
+	}
+}
+.one {
+	width: 70%;
+	/* height: 100%; */
+	position: relative;
+}
+.all {
+	width: 100%;
+	height: calc(100vh - 120px);
+	/* background: #ccc; */
 }
 </style>
