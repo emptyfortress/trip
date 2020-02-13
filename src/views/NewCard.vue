@@ -25,8 +25,6 @@
 							i.icon-up
 					.doc
 						v-img(:src="require(`@/assets/img/img${file}.jpg`)" contain lazy-src)
-						//- .pull-tab
-						//- v-img(src="@/assets/img/img0.jpg" contain lazy-src)
 						v-overlay(:value="overlay" absolute)
 							v-progress-circular(indeterminate size="64")
 
@@ -62,71 +60,8 @@
 					Files1
 					Hod.mt-3
 
-//- .newcard
-//- 	drag-zone.zone
-//- 		drag-content.content
-//- 			v-slide-y-transition(mode="out-in")
-//- 				v-skeleton-loader(v-if="lo" :height="height" width="700" type="image" ).skel
-//- 				div(v-if="!lo")
-//- 					v-app-bar(dense flat :color="color").mb-1
-//- 						v-btn(icon small)
-//- 							v-icon mdi-chevron-left
-//- 						input(type="text" value="1").page
-//- 						span.pages / 3
-//- 						v-btn(icon small).ml-3
-//- 							v-icon mdi-chevron-right
-//- 						v-spacer
-//- 						v-btn(icon @click="toggleChat" :color="chat ? 'pink' : '' ").ml-4
-//- 							.rel
-//- 								v-icon mdi-message-outline
-//- 								.dot
-//- 						v-btn(icon)
-//- 							v-icon mdi-download
-//- 						v-btn(icon)
-//- 							v-icon mdi-printer
-//- 						v-btn(icon @click="" )
-//- 							i.icon-up
-//- 					.doc
-//- 						v-img(:src="require(`@/assets/img/img${file}.jpg`)" contain lazy-src)
-//- 						//- .pull-tab
-//- 						//- v-img(src="@/assets/img/img0.jpg" contain lazy-src)
-//- 						v-overlay(:value="overlay" absolute)
-//- 							v-progress-circular(indeterminate size="64")
-//- 	drag-handle.handle
-//- 		div
-//- 	drag-content.content
-//- 		.cardd
-//- 			.btgroup
-//- 				v-btn(color="primary" depressed) В работу
-//- 				v-btn(color="primary" depressed) Согласовать
-//- 				v-btn(color="primary" depressed outlined) Делегировать
-//- 				v-btn(color="pink darken-4" depressed outlined) Отклонить
-//- 			.status
-//- 				span {{ item[0].status }}
-//- 			br
-//- 			.zag {{ item[0].title }}
-//- 			br
-//- 			v-tabs.mytab
-//- 				v-tab Главная
-//- 				v-tab Подчиненные задания
-//- 				v-tab История
-//- 				v-tab-item(key="1")
-//- 					v-expansion-panels(hover tile v-model="a" flat)
-//- 						v-expansion-panel
-//- 							v-expansion-panel-header
-//- 								.blockhd.rel Информация
-//- 							v-expansion-panel-content
-//- 								.myrow
-//- 									table.attributes
-//- 										tr(v-for="item in attr" :key="item.id")
-//- 											td.attr {{ item.attr }}
-//- 											td {{ item.value }}
-//- 									.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
-//- 					Files1
-//- 					Hod.mt-3
-
-//- 	v-scale-transition(origin="top left")
-//- 		Comments(v-if="chat" :myx="0" :myy="50" style="z-index: 100")
+	v-scale-transition(origin="top left")
+		Comments(v-show="chat" :myx="20" :myy="60" style="z-index: 100")
 </template>
 
 <script>
@@ -227,6 +162,8 @@ export default {
 }
 
 .cardd {
+	/* display: none; */
+	width: 50%;
 	margin-left: 1rem;
 	height: 100%;
 	overflow: auto;
@@ -301,7 +238,7 @@ export default {
 	}
 }
 .one {
-	width: 70%;
+	width: 50%;
 	/* height: 100%; */
 	position: relative;
 }
