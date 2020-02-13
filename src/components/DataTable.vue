@@ -52,11 +52,11 @@ div
 			span Группы
 		//- hr
 		li(@click="toggleDialog")
-			i.icon-adjust
+			i.icon-setup
 			span Настройки
 			i.icon-next.next
 		li(@click="toggleGroup")
-			i.icon-excel
+			i.icon-xls
 			i.icon-next.next
 			span Экспорт в .xsl
 

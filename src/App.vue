@@ -24,7 +24,7 @@ v-app
 			//- v-icon(v-if="!preview") mdi-arrow-expand-left
 			//- v-icon(v-if="preview") mdi-arrow-expand-right
 			//- v-icon mdi-help-circle-outline
-	v-content(v-scroll="handleScroll" id="target")
+	v-content(v-scroll="handleScroll" id="target" :class="$route.name === 'home' ? 'bg' : ''")
 		v-container(fluid :class="drawer ? '' : 'leftmargin'").rel
 			transition(name="fade" mode="out-in")
 				v-btn(fab outlined color="#ccc" small v-show="$route.name === 'card' && !searchMode && !fullWindow" @click="back").back
@@ -238,4 +238,7 @@ export default {
 	height: 100%;
 }
 
+.bg {
+	background: url(https://images5.alphacoders.com/361/361914.jpg);
+};
 </style>
