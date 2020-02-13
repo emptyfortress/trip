@@ -1,7 +1,7 @@
 <template lang="pug">
 .all
 	drag-zone.zone
-		drag-content.content.one
+		drag-content(v-show="$vuetify.breakpoint.mdAndUp").content.one
 			v-slide-y-transition(mode="out-in")
 				v-skeleton-loader(v-if="lo" height="100%" width="100%" type="image" ).skel
 				div(v-if="!lo")
@@ -37,7 +37,7 @@
 						v-overlay(:value="overlay" absolute)
 							v-progress-circular(indeterminate size="64")
 
-		drag-handle.hand
+		drag-handle(v-show="$vuetify.breakpoint.mdAndUp").hand
 			div
 		drag-content.cardd
 			.status
@@ -201,11 +201,16 @@ export default {
 }
 
 .cardd {
-	/* display: none; */
 	width: 50%;
 	margin-left: 1rem;
 	height: 100%;
 	overflow: auto;
+}
+@media only screen and (max-width: 960px) {
+	.cardd {
+		width: 100%;
+		margin-right: 1rem;
+	}
 }
 .zag {
 	color: black;
