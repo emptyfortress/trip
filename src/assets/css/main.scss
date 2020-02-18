@@ -9,23 +9,32 @@
 	/* text-align: left; */
 	white-space: nowrap;
 	span {
-		transform: rotate(-3deg);
-		color: $info;
-		font-weight: 700;
-		/* border-top: 0.2rem solid $info; */
-		border-top: 4px double $info;
-		border-left: 1px solid $info;
-		border-right: 1px solid $info;
-		border-bottom: 0.2rem solid $info;
+		// transform: rotate(-3deg);
+		// color: $info;
+		// color: #fff;
+		// font-weight: 700;
+		// border: 1px dotted #000;
+		// border-radius: 3rem;
+		// background: #ccc;
+
+		letter-spacing: .5rem;
+		border-top: 0.1rem solid #ccc;
+		border-bottom: 0.1rem solid #ccc;
+		// border-top: 0.2rem solid $info;
+		// border-top: 4px double $info;
+		// border-left: 1px solid $info;
+		// border-right: 1px solid $info;
+		// border-bottom: 0.2rem solid $info;
 		display: inline-block;
-		padding: 0.20rem 0.9rem;
+		padding: .2rem 0;
+		// padding: 0.20rem 0.9rem;
 		text-transform: uppercase;
 		/* border-radius: .3rem; */
-		font-family: 'Courier';
+		// font-family: 'Courier';
 		/* -webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png'); */
-		-webkit-mask-image: url('../img/grunge.png');
-		-webkit-mask-size: 944px 604px;
-		mix-blend-mode: multiply;
+		// -webkit-mask-image: url('../img/grunge.png');
+		// -webkit-mask-size: 944px 604px;
+		// mix-blend-mode: multiply;
 		margin-top: .6rem;
 	}
 }

@@ -13,7 +13,7 @@
 					v-list-item-content
 						v-list-item-title( v-html="item.title" )
 						v-list-item-subtitle( v-html="item.subtitle" )
-			v-text-field(label="Комментировать" clearable hide-details)
+			v-text-field(label="Комментировать" clearable clear-icon="mdi-send" hide-details)
 
 </template>
 

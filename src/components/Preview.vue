@@ -223,6 +223,7 @@ export default {
 	position: absolute;
 	top: 0;
 	right: 0;
-	background: red;
+	background: $info;
+	border: 1px solid #fff;
 }
 </style>

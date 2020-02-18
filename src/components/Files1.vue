@@ -11,14 +11,14 @@
 				v-simple-table.filetable
 					thead
 						tr
-							th
+							//- th
 							th Имя
 							th Версия
 							th
 					tbody
 						tr(v-for="item in files" :key="item.name" :class="item.id === file ? 'act' : ''" @click="setFile(item.id)")
-							td(width="20").px-0
-								v-icon(v-if="item.id === file" color="primary") mdi-forward
+							//- td(width="20").px-0
+							//- 	v-icon(v-if="item.id === file" color="primary") mdi-forward
 							td
 								img(:src="iconPath(item.icon)")
 								.name {{ item.name }}

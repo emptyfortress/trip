@@ -17,7 +17,7 @@ v-row(justify="center" :key="$route.params.id").mx-3.mt-5
 						v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown") В работу
 						v-btn(depressed color="primary" :block="$vuetify.breakpoint.smAndDown") Согласовать
 						v-btn(outlined color="primary" :block="$vuetify.breakpoint.smAndDown") Делегировать
-						v-btn(outlined color="pink darken-4"  :block="$vuetify.breakpoint.smAndDown") Отклонить
+						v-btn(outlined color="primary"  :block="$vuetify.breakpoint.smAndDown") Отклонить
 
 				v-row.lay
 					v-col(cols="12" lg="3" md="4" sm="12" order="1")

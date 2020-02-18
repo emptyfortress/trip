@@ -6,6 +6,9 @@
 				v-skeleton-loader(v-if="lo" height="100%" width="100%" type="image" ).skel
 				div(v-if="!lo")
 					v-app-bar(dense flat :color="color").mb-1
+						v-col.mt-3
+							v-select(:items="files" value="Договор с ООО Ромашка.doc" ).sel
+						v-spacer
 						v-btn(icon small)
 							v-icon mdi-chevron-left
 						input(type="text" value="1").page
@@ -23,6 +26,7 @@
 							v-icon mdi-printer
 						v-btn(icon @click="" )
 							i.icon-up
+							//- v-icon mdi-arrow-expand
 					.doc
 						v-img(:src="require(`@/assets/img/img${file}.jpg`)" contain v-if="file > 0")
 						.empty(v-else)
@@ -47,7 +51,7 @@
 				v-btn(color="primary" depressed) В работу
 				v-btn(color="primary" depressed) Согласовать
 				v-btn(color="primary" depressed outlined) Делегировать
-				v-btn(color="pink darken-4" depressed outlined) Отклонить
+				v-btn(color="primary" depressed outlined) Отклонить
 			.zag {{ item[0].title }}
 			br
 			v-expansion-panels(hover tile v-model="a" flat)
@@ -120,6 +124,12 @@ export default {
 				{ id: 2, attr: 'Срок:', value: '31.01.2020' },
 				{ id: 3, attr: 'Аттрибут:', value: 'значение' },
 				{ id: 4, attr: 'Аттрибут:', value: 'значение' }
+			],
+			files: [
+				'Договор с ООО Ромашка.doc',
+				'Приложение к договору.doc',
+				'Расчет цены.xsl',
+				'План-график.xsl'
 			],
 			item: [
 				{
@@ -222,6 +232,7 @@ export default {
 .page {
 	font-size: 1.0rem;
 	width: 30px;
+	padding: .2rem;
 	/* margin-left: 1rem; */
 	text-align: right;
 	&:focus {
@@ -238,7 +249,7 @@ export default {
 	position: absolute;
 	top: 0;
 	right: 0;
-	background: red;
+	background: $info;
 }
 .attributes {
 	padding-right: 1rem;

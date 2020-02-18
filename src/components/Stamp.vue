@@ -1,20 +1,25 @@
 <template lang="pug">
-.stamp
-	.top
-		img(src="@/assets/img/shield.png" width="36")
-		.main Документ подписан
-			br
-			| электронной подписью
-	table.bottom
-		tr
-			td Сертификат:
-			td 192848191034920911445930
-		tr
-			td Владелец:
-			td Синицын Константин Семенович
-		tr
-			td Действителен:
-			td с 01.09.2019 до 31.12.2020
+div
+	.stamp
+			.top
+				img(src="@/assets/img/shield.png" width="36")
+				.main Документ подписан
+					br
+					| электронной подписью
+			table.bottom
+				tr
+					td Сертификат:
+					td 192848191034920911445930
+				tr
+					td Владелец:
+					td Синицын Константин Семенович
+				tr
+					td Действителен:
+					td с 01.09.2019 до 31.12.2020
+	br
+	br
+	br
+	img(src="@/assets/img/stamp1.svg" width="300")
 
 </template>
 
