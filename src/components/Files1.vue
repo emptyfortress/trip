@@ -53,8 +53,8 @@ export default {
 			this.$store.commit('setOverlay', true)
 			let that = this
 			setTimeout(function () {
-				that.$store.commit('setOverlay', false)
 				that.$store.commit('setFile', e)
+				that.$store.commit('setOverlay', false)
 			}, 500)
 		},
 		iconPath (e) {

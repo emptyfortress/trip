@@ -7,6 +7,7 @@ import Approve from '../views/Approve.vue'
 import Folder from '../views/Folder.vue'
 import Card from '../views/Card.vue'
 import NewCard from '../views/NewCard.vue'
+import Stamp from '../components/Stamp.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,11 @@ const routes = [
 		path: '/newcard',
 		name: 'newcard',
 		component: NewCard
+	},
+	{
+		path: '/stamp',
+		name: 'stamp',
+		component: Stamp
 	},
 	{
 		path: '/cards/:id',

@@ -24,7 +24,7 @@
 						v-btn(icon @click="" )
 							i.icon-up
 					.doc
-						v-img(:src="require(`@/assets/img/img${file}.jpg`)" contain lazy-src v-if="file > 0")
+						v-img(:src="require(`@/assets/img/img${file}.jpg`)" contain v-if="file > 0")
 						.empty(v-else)
 							i.icon-empty
 							h3 Просмотр недоступен
@@ -77,6 +77,7 @@
 			//- 								td.attr {{ item.attr }}
 			//- 								td {{ item.value }}
 			//- 						.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+
 			Files1
 			Hod.mt-3
 			v-expansion-panels(hover tile v-model="a" flat)
@@ -300,14 +301,9 @@ export default {
 		font-weight: 400;
 		font-size: 1.7rem;
 	}
-	i {
-		font-size: 6.0rem;
-	}
-	p {
-		margin: 1rem 5rem;
-	}
-	.v-btn {
-		display: inline-block;
-	}
+	i {font-size: 6.0rem;}
+	p {margin: 1rem 5rem;}
+	.v-btn {display: inline-block;}
 }
+
 </style>
