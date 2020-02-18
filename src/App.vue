@@ -239,6 +239,6 @@ export default {
 }
 
 .bg {
-	background: url(https://images5.alphacoders.com/361/361914.jpg);
-};
+	background: url(/beach.jpg);
+}
 </style>
