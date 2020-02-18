@@ -194,9 +194,8 @@ export default {
 		color: darken($accent, 30%);
 		.v-btn .v-btn__content .v-icon { color: darken($accent, 30%); }
 		&.drag {
-			/* background: red; */
 			background: darken($accent, 30%);
-			/* border-left: 9px solid darken($accent, 30%); */
+			border-bottom: 1px solid #eee !important;
 		}
 	}
 }
