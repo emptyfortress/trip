@@ -16,7 +16,7 @@
 						v-btn(icon small).ml-3
 							v-icon mdi-chevron-right
 						v-spacer
-						v-btn(icon @click="toggleChat" :color="chat ? 'pink' : '' ").ml-4
+						v-btn(icon @click="toggleChat" :color="chat ? 'green' : '' ").ml-4
 							.rel
 								v-icon mdi-message-outline
 								.dot
@@ -111,6 +111,7 @@
 <script>
 import Comments from '@/components/Comments'
 import Files1 from '@/components/Files1'
+
 import Hod from '@/components/Hod'
 import { dragZone, dragHandle, dragContent } from 'vue-drag-zone'
 

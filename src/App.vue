@@ -239,6 +239,6 @@ export default {
 }
 
 .bg {
-	background: url(/beach.jpg);
+	background: url(assets/img/beach.jpg);
 }
 </style>
