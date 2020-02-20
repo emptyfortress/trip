@@ -1,0 +1,40 @@
+<svg viewBox="0 0 314 134" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+	<image id="logo" xlink:href="shield1.png" x="17" y="5" height="37" width="98" />
+
+	<rect id="border" x="0.5" y="0.5" width="313" height="113" rx="7.5" stroke="#0029F8"/>
+
+	<line x1="9" y1="49.5" x2="302" y2="49.5" stroke="#0029F8" stroke-dasharray="1 2"/>
+
+	<text fill="#0029F8" style="white-space: pre" font-family="Arial" font-size="13" letter-spacing="0em">
+		<tspan x="128" y="20.9434">ДОКУМЕНТ ПОДПИСАН</tspan>
+		<tspan x="128" y="40.9434">ЭЛЕКТРОННОЙ ПОДПИСЬЮ</tspan>
+	</text>
+	<text fill="#0029F8" font-family="Arial" style="white-space: pre" font-size="10" letter-spacing="0em">
+		<tspan x="9" y="64.418">МЕТКА:</tspan>
+	</text>
+	<text fill="#0029F8" style="white-space: pre" font-family="Arial" font-size="10" letter-spacing="0.5em">
+		<tspan id="label" x="85" y="64.418">ПОДПИСАН</tspan>
+	</text>
+	<text fill="#0029F8" style="white-space: pre" font-family="Arial" font-size="10" letter-spacing="0em">
+		<tspan x="9" y="78.418">Сертификат:</tspan>
+	</text>
+	<text fill="#0029F8" style="white-space: pre" font-family="Arial" font-size="10" letter-spacing="0em">
+		<tspan x="9" y="92.418">Действителен:</tspan>
+	</text>
+	<text fill="#0029F8" style="white-space: pre" font-family="Arial" font-size="10" letter-spacing="0em">
+		<tspan id="number" x="85" y="78.418">3D0006008377D4979C9548284A000600060083</tspan>
+	</text>
+	<text fill="#0029F8" style="white-space: pre" font-family="Arial" font-size="10" letter-spacing="0em">
+		<tspan id="date" x="85" y="92.418">с 01.09.2019 0:10:17 по 31.12.2020 0:10:17</tspan>
+	</text>
+	<text fill="#0029F8" style="white-space: pre" font-family="Arial" font-size="10" font-weight="bold" letter-spacing="0em">
+		<tspan x="9" y="106.418">Владелец:</tspan>
+	</text>
+	<text fill="#0029F8" style="white-space: pre" font-family="Arial" font-size="10" font-weight="bold" letter-spacing="0em">
+		<tspan id="owner1" x="85" y="107.418">CN=Digital Design CA, DC=digdes, DC=com</tspan>
+	</text>
+	<text fill="#0029F8" class="hidden" style="white-space: pre; display: none" font-family="Arial" font-size="10" font-weight="bold" letter-spacing="0em">
+		<tspan id="owner2" x="85" y="120.418">Сюда вводим текст, который не влезает выше</tspan>
+	</text>
+</svg>
