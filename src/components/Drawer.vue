@@ -40,7 +40,8 @@ export default {
 				{ url: '', mini: 'Док.', icon: 'icon-document', text: 'Документы' },
 				{ url: '/trips', mini: 'Ком.', icon: 'icon-airplane', text: 'Командировки' },
 				{ url: '/newcard', mini: '', icon: 'icon-numeric-1-box-outline', text: 'Inline file preview' },
-				{ url: '/cards/2', mini: '', icon: 'icon-numeric-2-box-outline', text: 'Panel file preview' }
+				{ url: '/cards/2', mini: '', icon: 'icon-numeric-2-box-outline', text: 'Panel file preview' },
+				{ url: '/avatar', mini: '', icon: 'icon-user', text: 'Avatars' }
 			]
 		}
 	},

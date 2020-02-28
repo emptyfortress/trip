@@ -8,6 +8,7 @@ import Folder from '../views/Folder.vue'
 import Card from '../views/Card.vue'
 import NewCard from '../views/NewCard.vue'
 import Stamp from '../components/Stamp.vue'
+import Avatar from '../components/Avatar.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ const routes = [
 		path: '/trips',
 		name: 'trips',
 		component: Trips
+	},
+	{
+		path: '/avatar',
+		name: 'avatar',
+		component: Avatar
 	},
 	{
 		path: '/newcard',

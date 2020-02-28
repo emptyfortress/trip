@@ -15,10 +15,13 @@ v-app
 			i.icon-search-scan
 		v-btn( href="" icon  v-show="offsetTop" @click="toggleSearch")
 			i.icon-search
-		v-btn( href="" icon v-show="offsetTop")
-			.rel
-				img(src="@/assets/img/user.png" width="32")
-				.status
+		.pink
+			v-avatar(color="#5ba1cc" size="35" v-show="offsetTop" v-ripple)
+				img(src="@/assets/img/user0.svg" )
+		//- v-btn( href="" icon v-show="offsetTop")
+		//- 	.rel
+		//- 		img(src="@/assets/img/user.png" width="32")
+		//- 		.status
 		v-btn( href="" icon  v-show="offsetTop" @click="showPreview")
 			v-icon mdi-dock-right
 			//- v-icon(v-if="!preview") mdi-arrow-expand-left
@@ -242,4 +245,5 @@ export default {
 	background: url(assets/img/beach.jpg);
 	background-size: cover;
 }
+
 </style>
