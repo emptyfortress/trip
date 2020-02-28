@@ -240,5 +240,6 @@ export default {
 
 .bg {
 	background: url(assets/img/beach.jpg);
+	background-size: cover;
 }
 </style>
