@@ -20,11 +20,12 @@
 				v-list-item
 					v-list-item-avatar.av
 						img( src="@/assets/img/volkov.jpeg" )
+						.status
 					v-list-item-content
 						v-list-item-title Воробьев Г.А.
 						v-list-item-subtitle.it Отдел, должность
 				v-divider
-				v-list-item(dark).gr
+				v-list-item(dark).gree
 					v-list-item-avatar.av
 						img( src="@/assets/img/volkov.jpeg" )
 						.status
@@ -32,8 +33,8 @@
 						v-list-item-title Воробьев Г.А.
 						v-list-item-subtitle.it Отдел, должность
 				v-divider
-				v-list-item
-					v-list-item-avatar.av.rel
+				v-list-item(dark).gr
+					v-list-item-avatar
 						img( src="@/assets/img/volkov.jpeg" )
 						.status
 					v-list-item-content
@@ -69,11 +70,12 @@
 				v-list-item
 					v-list-item-avatar.av
 						img( src="@/assets/img/volkov.jpeg" )
+						.status1
 					v-list-item-content
 						v-list-item-title Воробьев Г.А.
 						v-list-item-subtitle.it Отдел, должность
 				v-divider
-				v-list-item(dark).gr
+				v-list-item(dark).gree
 					v-list-item-avatar.av
 						img( src="@/assets/img/volkov.jpeg" )
 						.status1
@@ -81,7 +83,7 @@
 						v-list-item-title Воробьев Г.А.
 						v-list-item-subtitle.it Отдел, должность
 				v-divider
-				v-list-item
+				v-list-item(dark).gr
 					v-list-item-avatar.av.rel
 						img( src="@/assets/img/volkov.jpeg" )
 						.status1
@@ -118,11 +120,12 @@
 				v-list-item
 					v-list-item-avatar.av
 						img( src="@/assets/img/volkov.jpeg" )
+						.status2
 					v-list-item-content
 						v-list-item-title Воробьев Г.А.
 						v-list-item-subtitle.it Отдел, должность
 				v-divider
-				v-list-item(dark).gr
+				v-list-item(dark).gree
 					v-list-item-avatar.av
 						img( src="@/assets/img/volkov.jpeg" )
 						.status2
@@ -130,7 +133,7 @@
 						v-list-item-title Воробьев Г.А.
 						v-list-item-subtitle.it Отдел, должность
 				v-divider
-				v-list-item
+				v-list-item(dark).gr
 					v-list-item-avatar.av.rel
 						img( src="@/assets/img/volkov.jpeg" )
 						.status2
@@ -172,7 +175,7 @@
 						v-list-item-title Воробьев Г.А.
 						v-list-item-subtitle.it Отдел, должность
 				v-divider
-				v-list-item(dark).gr
+				v-list-item(dark).gree
 					v-list-item-avatar.av
 						img( src="@/assets/img/volkov.jpeg" )
 					v-list-item-content
@@ -181,7 +184,7 @@
 							span Воробьев Г.А.
 						v-list-item-subtitle.it Отдел, должность
 				v-divider
-				v-list-item
+				v-list-item(dark).gr
 					v-list-item-avatar.av.rel
 						img( src="@/assets/img/volkov.jpeg" )
 					v-list-item-content
@@ -275,7 +278,7 @@ export default {
 	position: absolute;
 	top: 0;
 	left: 0;
-	border: 3px solid orange;
+	border: 2px solid orange;
 	border-radius: 50px;
 }
 
@@ -314,5 +317,8 @@ export default {
 }
 .gr {
 	background: $dark;
+}
+.gree {
+	background: #76B65A;
 }
 </style>
