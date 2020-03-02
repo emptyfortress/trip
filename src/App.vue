@@ -15,18 +15,11 @@ v-app
 			i.icon-search-scan
 		v-btn( href="" icon  v-show="offsetTop" @click="toggleSearch")
 			i.icon-search
-		.pink
+		.pinkk
 			v-avatar(color="#5ba1cc" size="35" v-show="offsetTop" v-ripple)
-				img(src="@/assets/img/user0.svg" )
-		//- v-btn( href="" icon v-show="offsetTop")
-		//- 	.rel
-		//- 		img(src="@/assets/img/user.png" width="32")
-		//- 		.status
+				img(src="@/assets/img/volkov.jpeg" )
 		v-btn( href="" icon  v-show="offsetTop" @click="showPreview")
 			v-icon mdi-dock-right
-			//- v-icon(v-if="!preview") mdi-arrow-expand-left
-			//- v-icon(v-if="preview") mdi-arrow-expand-right
-			//- v-icon mdi-help-circle-outline
 	v-content(v-scroll="handleScroll" id="target" :class="$route.name === 'home' ? 'bg' : ''")
 		v-container(fluid :class="drawer ? '' : 'leftmargin'").rel
 			transition(name="fade" mode="out-in")
