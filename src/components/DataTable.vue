@@ -50,6 +50,9 @@ div
 		li(@click="toggleGroup")
 			i.icon-multi
 			span Группы
+		li(@click="toggleGroup")
+			i.icon-search-1
+			span Поиск в таблице
 		//- hr
 		li(@click="toggleDialog")
 			i.icon-setup
