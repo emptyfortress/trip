@@ -278,7 +278,7 @@ export default {
 	position: absolute;
 	top: 0;
 	left: 0;
-	border: 2px solid orange;
+	border: 2px solid #ff7f50;
 	border-radius: 50px;
 }
 
@@ -288,7 +288,7 @@ export default {
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	background: orange;
+	background: #ff7f50;
 	border: 2px solid #fff;
 }
 .status2 {
@@ -297,12 +297,12 @@ export default {
 	position: absolute;
 	bottom: 0;
 	left: -5px;
-	background: orange;
+	background: #ff7f50;
 }
 .status3 {
 	width: 9px;
 	height: 9px;
-	background: orange;
+	background: #ff7f50;
 	display: inline-block;
 	margin-right: .3rem;
 	border-radius: 5px;
@@ -310,7 +310,7 @@ export default {
 .status4 {
 	width: 9px;
 	height: 9px;
-	background: orange;
+	background: #ff7f50;
 	display: inline-block;
 	margin-right: .3rem;
 	border-radius: 5px;
