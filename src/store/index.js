@@ -35,6 +35,7 @@ export default new Vuex.Store({
 		selectMode: false,
 		searchMode: false,
 		dialog: false,
+		tableSearch: false,
 		changing: false,
 		lo: true,
 		overlay: false,
@@ -58,6 +59,7 @@ export default new Vuex.Store({
 		selectMode: state => { return state.selectMode },
 		searchMode: state => { return state.searchMode },
 		dialog: state => { return state.dialog },
+		tableSearch: state => { return state.tableSearch },
 		file: state => { return state.file },
 		chat: state => { return state.chat }
 	},
@@ -71,6 +73,7 @@ export default new Vuex.Store({
 		toggleAdd (state) { state.add = !state.add },
 		toggleGrouping (state) { state.grouping = !state.grouping },
 		toggleDialog (state) { state.dialog = !state.dialog },
+		toggleTableSearch (state) { state.tableSearch = !state.tableSearch },
 		setGrouping (state, payload) { state.grouping = payload },
 		setSelectMode (state, payload) { state.selectMode = payload },
 		toggleSelectMode (state) { state.selectMode = !state.selectMode },

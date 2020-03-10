@@ -8,18 +8,21 @@ div
 	ul
 		li(v-for="n in 50") Некоторый текст
 	Dialog
+	GridSearch
 </template>
 
 <script>
 // @ is an alias to /src
 import Grid from '@/components/Grid.vue'
 import Dialog from '@/components/Dialog.vue'
+import GridSearch from '@/components/GridSearch.vue'
 
 export default {
 	name: 'home',
 	components: {
 		Grid,
-		Dialog
+		Dialog,
+		GridSearch
 	}
 }
 </script>

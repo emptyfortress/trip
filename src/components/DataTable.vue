@@ -50,7 +50,7 @@ div
 		li(@click="toggleGroup")
 			i.icon-multi
 			span Группы
-		li(@click="toggleGroup")
+		li(@click="toggleTableSearch")
 			i.icon-search-1
 			span Поиск в таблице
 		//- hr
@@ -107,6 +107,9 @@ export default {
 		},
 		toggleDialog () {
 			this.$store.commit('toggleDialog')
+		},
+		toggleTableSearch () {
+			this.$store.commit('toggleTableSearch')
 		},
 		doNothing (evt) {
 			evt.stopPropagation()
