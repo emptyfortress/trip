@@ -49,7 +49,7 @@ div
 			span Фильтры
 		li(@click="toggleGroup")
 			i.icon-multi
-			span Группы
+			span Группировка
 		li(@click="toggleTableSearch")
 			i.icon-search-1
 			span Поиск в таблице
