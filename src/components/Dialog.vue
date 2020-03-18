@@ -21,6 +21,7 @@ div
 							v-radio-group( v-model="radioGroup" )
 								v-radio( label="Ленивая подгрузка" )
 								v-radio( label="Постраничный просмотр" )
+								v-select(:items="pages" label="Строк на странице" v-show="radioGroup === 1" v-model="twenty").mt-5
 							br
 							h3.mb-4 Строки:
 							v-radio-group( v-model="radioGroup1" )
@@ -41,7 +42,9 @@ export default {
 	data () {
 		return {
 			radioGroup: 0,
-			radioGroup1: 0
+			radioGroup1: 0,
+			pages: [ 10, 20, 40, 50, 100, 'Все' ],
+			twenty: 20
 		}
 	},
 	computed: {
