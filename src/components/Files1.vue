@@ -50,6 +50,7 @@ export default {
 	},
 	methods: {
 		setFile (e) {
+			this.$store.commit('openInlinePreview')
 			this.$store.commit('setOverlay', true)
 			let that = this
 			setTimeout(function () {

@@ -8,6 +8,7 @@ export default new Vuex.Store({
 		drawer: true,
 		add: false,
 		preview: false,
+		inlinePreview: true,
 		fullWindow: false,
 		headers: [
 			{ id: 0, class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
@@ -48,6 +49,7 @@ export default new Vuex.Store({
 		lo: state => { return state.lo },
 		overlay: state => { return state.overlay },
 		preview: state => { return state.preview },
+		inlinePreview: state => { return state.inlinePreview },
 		previewMode: state => { return state.previewMode },
 		fullWindow: state => { return state.fullWindow },
 		drawer: state => { return state.drawer },
@@ -65,7 +67,9 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		togglePreview (state) { state.preview = !state.preview },
+		toggleInlinePreview (state) { state.inlinePreview = !state.inlinePreview },
 		openPreview (state) { state.preview = true },
+		openInlinePreview (state) { state.inlinePreview = true },
 		setPreviewMode (state, payload) { state.previewMode = payload },
 		toggleFullWindow (state) { state.fullWindow = !state.fullWindow },
 		setFullWindow (state, payload) { state.fullWindow = payload },

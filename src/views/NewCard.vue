@@ -1,7 +1,7 @@
 <template lang="pug">
 .all
 	drag-zone.zone
-		drag-content(v-show="$vuetify.breakpoint.mdAndUp").content.one
+		drag-content(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview").content.one
 			v-slide-y-transition(mode="out-in")
 				v-skeleton-loader(v-if="lo" height="100%" width="100%" type="image" ).skel
 				div(v-if="!lo")
@@ -26,7 +26,8 @@
 							v-icon mdi-printer
 						v-btn(icon @click="" )
 							i.icon-up
-							//- v-icon mdi-arrow-expand
+						v-btn(icon @click="closePreview" )
+							v-icon mdi-close
 					.doc
 						v-img(:src="require(`@/assets/img/img${file}.jpg`)" contain v-if="file > 0")
 						.empty(v-else)
@@ -54,7 +55,7 @@
 				v-btn(color="primary" depressed outlined) Отклонить
 			.zag {{ item[0].title }}
 			br
-			v-expansion-panels(hover tile v-model="a" flat)
+			v-expansion-panels(hover tile flat)
 				v-expansion-panel
 					v-expansion-panel-header
 						.blockhd.rel Информация
@@ -84,7 +85,7 @@
 
 			Files1
 			Hod.mt-3
-			v-expansion-panels(hover tile v-model="a" flat)
+			v-expansion-panels(hover tile flat)
 				v-expansion-panel
 					v-expansion-panel-header
 						.blockhd.rel Подчиненные задания
@@ -150,6 +151,9 @@ export default {
 		}
 	},
 	computed: {
+		inlinePreview () {
+			return this.$store.getters.inlinePreview
+		},
 		height () {
 			return (window.innerHeight - 200)
 		},
@@ -181,6 +185,9 @@ export default {
 		}, 600)
 	},
 	methods: {
+		closePreview () {
+			this.$store.commit('toggleInlinePreview')
+		},
 		toggleChat () {
 			this.$store.commit('toggleChat')
 		}
