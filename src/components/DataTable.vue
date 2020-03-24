@@ -1,13 +1,13 @@
 <template lang="pug">
 div
-	v-data-table(:headers="headers" :items="items" :search="search" hide-default-header  hide-default-footer :items-per-page="per" :show-select="selectMode" item-key="id").tab
+	v-data-table(:headers="headers" :items="dataItems" :search="search" hide-default-header  hide-default-footer :items-per-page="per" :show-select="selectMode" item-key="id").tab
 		template(v-slot:header="{ props: {headers}}")
 			thead(@contextmenu.prevent="$refs.ctxMenu.open")
 				tr(v-stickto).stick
 					th.zero
 					th(v-show="selectMode")
 						v-checkbox(v-model="selectAll" primary hide-details @click.native="toggleAll" :indeterminate="check").checkhd
-					th(v-for="header in headers" v-if="header.active")
+					th(v-for="header in headers" v-if="header.active" @click="filtrr")
 						drag(:transfer-data="header").drag1
 							span {{ header.text }}
 		template(v-slot:body="{ items }")
@@ -74,6 +74,7 @@ export default {
 	data () {
 		return {
 			selectAll: false,
+			smallTable: false,
 			form: {
 				filter: []
 			},
@@ -83,6 +84,13 @@ export default {
 		}
 	},
 	computed: {
+		dataItems () {
+			if (this.smallTable) {
+				return this.items.filter(item => item.id < 6)
+			} else {
+				return this.items
+			}
+		},
 		search () {
 			return this.filter
 		},
@@ -102,6 +110,9 @@ export default {
 		}
 	},
 	methods: {
+		filtrr () {
+			this.smallTable = !this.smallTable
+		},
 		readAll () {
 			this.items.map(item => { item.unread = false })
 		},
