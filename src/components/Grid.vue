@@ -28,7 +28,7 @@
 
 	.d-flex
 		v-slide-x-transition(mode="out-in")
-			v-flex(xs2 v-show="group.length && grouping")
+			div(xs2 v-show="group.length && grouping").sticky.elevation-5
 				.group
 					h3(@click="removeFilter") Группы
 						span {{par}}
@@ -36,7 +36,9 @@
 						span(slot-scope="{node}").treenode
 							span.text {{ node.text }}
 							span.num {{ node.data.number }}
-		v-flex(:class="group.length ? 'xs10' : 'xs12'").tabl
+				v-btn(icon @click="reset").clo
+					v-icon mdi-close
+		v-flex(:class="group.length ? 'groupon' : ''").tabl
 			.canva
 				v-slide-y-transition(mode="out-in")
 					DataTable( v-if="renderComponent" :filter="filter" :headers="headers" :items="items")
@@ -106,12 +108,10 @@ export default {
 			selection.unselect()
 		},
 		handleGroup (data) {
-			console.log(data)
 			let obj = {}
 			obj.text = data.text
 			obj.children = []
 			this.group.push(obj)
-			console.log(this.group)
 			this.handleItems(data)
 			setTimeout(() => this.$refs.tree.tree.setModel(this.list), 200)
 			this.hideColumn(data)
@@ -127,7 +127,6 @@ export default {
 					item.state = {}
 					// item.state.expanded = true
 				})
-				// console.log(this.list)
 				this.list[0].state.expanded = true
 				this.$refs.tree.tree.setModel(this.list)
 			}
@@ -155,7 +154,6 @@ export default {
 		hideColumn (e) {
 			let col = this.headers.filter(item => item.text === e.text)[0]
 			col.active = false
-			// console.log(col)
 		},
 		uniqList (data, arr) {
 			let child = []
@@ -189,8 +187,6 @@ export default {
 		},
 		onNodeSelected (node) {
 			this.filter = node.text
-			console.log(this.filter)
-			console.log(this.list)
 		}
 
 	},
@@ -225,6 +221,7 @@ export default {
 
 .group {
 	margin-top: .6rem;
+	/* background: #ccc; */
 	h3 {
 		background: white;
 		padding: .5rem 1rem;
@@ -292,5 +289,22 @@ export default {
 }
 .zag {
 	/* color: red; */
+}
+.sticky {
+	width: 250px;
+	height: 50%;
+	background: #fff;
+	position: fixed;
+	top: 16rem;
+	overflow: auto;
+	z-index: 10;
+}
+.groupon {
+	margin-left: 260px;
+}
+.clo {
+	position: absolute;
+	top: .6rem;
+	right: .6rem;
 }
 </style>

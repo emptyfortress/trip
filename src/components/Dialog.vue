@@ -19,7 +19,7 @@ div
 						v-col(cols="6")
 							h3.mb-4 Страницы:
 							v-radio-group( v-model="radioGroup" )
-								v-radio( label="Ленивая подгрузка" )
+								v-radio(label="Ленивая подгрузка" )
 								v-radio( label="Постраничный просмотр" )
 								v-select(:items="pages" label="Строк на странице" v-show="radioGroup === 1" v-model="twenty").mt-5
 							br
