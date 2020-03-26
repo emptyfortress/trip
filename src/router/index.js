@@ -6,6 +6,7 @@ import NewTrip from '../views/NewTrip.vue'
 import Approve from '../views/Approve.vue'
 import Folder from '../views/Folder.vue'
 import Folder1 from '../views/Folder1.vue'
+import Sticky from '../views/Sticky.vue'
 import Card from '../views/Card.vue'
 import NewCard from '../views/NewCard.vue'
 import Stamp from '../components/Stamp.vue'
@@ -28,6 +29,11 @@ const routes = [
 		path: '/folder1',
 		name: 'folder1',
 		component: Folder1
+	},
+	{
+		path: '/sticky',
+		name: 'sticky',
+		component: Sticky
 	},
 	{
 		path: '/trips',
