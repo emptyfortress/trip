@@ -32,7 +32,7 @@ export default new Vuex.Store({
 
 		],
 		mini: false,
-		grouping: true,
+		grouping: false,
 		selectMode: false,
 		searchMode: false,
 		dialog: false,

@@ -1,10 +1,25 @@
 <template lang="pug">
 div
-	v-data-table(:headers="headers" :items="dataItems" :search="search" hide-default-header  hide-default-footer :items-per-page="per" :show-select="selectMode" item-key="id")
+	v-data-table(v-if="renderComponent" :headers="headers" :items="dataItems" :search="search" hide-default-header  hide-default-footer :items-per-page="per" :show-select="selectMode" item-key="id").tab
 		template(v-slot:header="{ props: {headers}}")
 			thead(@contextmenu.prevent="$refs.ctxMenu.open")
 				tr(v-stickto).stick
 					th.zero
+						div(v-show="group.length && grouping").group
+							h3(@click="") Группы
+								span {{par}}
+							v-list
+								v-list-item-group( color="primary" )
+									v-list-item(v-for="(node, i) in nodes" :key="i")
+										v-list-item-content
+											v-list-item-title {{ node.title }}
+							//- tree(ref="tree" :data="list" :options="treeOptions" @node:selected="").tree-group
+							//- 	span(slot-scope="{node}").treenode
+							//- 		span.text {{ node.text }}
+							//- 		span.num {{ node.data.number }}
+							v-btn(icon @click="reset").clo
+								v-icon mdi-close
+
 					th(v-show="selectMode")
 						v-checkbox(v-model="selectAll" primary hide-details @click.native="toggleAll" :indeterminate="check").checkhd
 					th(v-for="header in headers" v-if="header.active" @click="filtrr")
@@ -67,23 +82,47 @@ div
 
 <script>
 import { SlickList, SlickItem } from 'vue-slicksort'
+// import data from '@/data.js'
 import contextMenu from 'vue-context-menu'
 
 export default {
-	props: [ 'filter', 'headers', 'items' ],
+	props: [ 'filter', 'headers', 'items', 'group' ],
 	data () {
 		return {
 			selectAll: false,
 			smallTable: false,
+			renderComponent: true,
+			list: [],
+			list2: [],
+			treeOptions: {
+				checkbox: false,
+				parentSelect: true,
+				dnd: true,
+				multiple: false,
+				filter: {
+					emptyText: 'Aaaaa! Где мои папки?!!',
+					plainList: 0
+				}
+			},
 			form: {
 				filter: []
 			},
-			group: [],
 			filters: false,
-			per: 30
+			per: 30,
+			nodes: [
+				{ title: 'Орлов' },
+				{ title: 'Петров' },
+				{ title: 'Воробьева' },
+				{ title: 'Грачев' },
+				{ title: 'Синицын' },
+				{ title: 'Гусева' }
+			]
 		}
 	},
 	computed: {
+		par () {
+			return this.list2.length ? this.list.length * this.list2.length : this.list.length
+		},
 		dataItems () {
 			if (this.smallTable) {
 				return this.items.filter(item => item.id < 6)
@@ -125,6 +164,26 @@ export default {
 		doNothing (evt) {
 			evt.stopPropagation()
 		},
+		// reset () {
+		// 	const myheaders = [
+		// 		{ id: 0, class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
+		// 		{ id: 1, class: 'text-no-wrap', value: 'executor', width: '400', active: true, sortable: true, align: 'start', text: 'Исполнитель' },
+		// 		{ id: 2, class: '', value: 'author', width: '160', active: true, sortable: true, align: 'start', text: 'Автор' },
+		// 		{ id: 3, class: 'text-no-wrap', value: 'deadline', width: '150', active: true, sortable: true, align: 'start', text: 'Срок' },
+		// 		{ id: 4, class: 'text-no-wrap', value: 'created', width: '150', active: true, sortable: true, align: 'start', text: 'Дата' },
+		// 		{ id: 5, class: 'text-right', value: 'files', width: '90', active: true, sortable: true, align: 'end', text: 'Файлы' },
+		// 		{ id: 6, class: 'text-no-wrap', value: 'status', width: '130', active: true, sortable: true, align: 'start', text: 'Статус' }
+		// 	]
+		// 	this.group = []
+		// 	this.list = []
+		// 	this.list2 = []
+		// 	this.filter = ''
+		// 	this.$store.commit('setHeaders', myheaders)
+		// 	this.renderComponent = false
+		// 	this.$nextTick(() => {
+		// 		this.renderComponent = true
+		// 	})
+		// },
 		reset () {
 			const myheaders = [
 				{ id: 0, class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
@@ -137,6 +196,9 @@ export default {
 			]
 			this.$store.commit('setGrouping', false)
 			this.group = []
+			this.list = []
+			this.list2 = []
+			this.filter = ''
 			this.filters = false
 			this.$store.commit('setHeaders', myheaders)
 		},
@@ -164,7 +226,6 @@ export default {
 				this.$store.commit('setSelectMode', false)
 			} else {
 				this.$router.push('/cards/' + e.id.toString())
-				// e.item.unread = false
 			}
 		}
 	},
@@ -204,6 +265,7 @@ export default {
 }
 .v-data-table td.zero, .v-data-table th.zero {
 	padding: 0;
+	position: relative;
 }
 .unread {
 	td {
@@ -232,5 +294,56 @@ export default {
 }
 .sortableRow {
 	user-select: none;
+}
+.sticky {
+	position: absolute;
+	top: 0;
+	left: -260px;
+	width: 250px;
+	height: 50vh;
+	/* background: #fff; */
+	overflow: auto;
+	z-index: 10;
+}
+.group {
+	position: absolute;
+	top: 0;
+	left: -260px;
+	width: 250px;
+	height: 50vh;
+	background: #fff;
+	overflow: auto;
+	/* z-index: 10; */
+	margin-top: .6rem;
+	border: 1px solid #ccc;
+	h3 {
+		padding: .5rem 1rem;
+		cursor: pointer;
+		font-size: 1.2rem;
+		span {
+			margin-left: 1rem;
+			font-size: .9rem;
+			background: $info;
+			/* color: white; */
+			padding: .1rem .5rem;
+			border-radius: 3rem;
+		}
+		.v-icon {
+			margin-left: 2rem;
+			vertical-align: bottom;
+			color: $info;
+		}
+	}
+}
+.clo {
+	position: absolute;
+	top: .6rem;
+	right: .6rem;
+}
+.treenode {
+	width: 100%;
+}
+.tree-node.selected {
+	background: $yellow !important;
 }
 </style>

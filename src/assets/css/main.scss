@@ -1,4 +1,9 @@
 @import '@/assets/css/colors';
+
+.tab .v-data-table__wrapper {
+	overflow: visible;
+}
+
 .zag {
 	font-size: 2.0rem;
 	color: #999;

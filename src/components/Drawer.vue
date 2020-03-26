@@ -33,6 +33,8 @@ export default {
 				height: 24
 			},
 			menu: [
+				{ url: '/folder', mini: 'Вход.', icon: 'icon-inbox', text: 'Грид' },
+				{ url: '/folder1', mini: 'Вход.', icon: 'icon-inbox', text: 'Грид 1' },
 				{ url: '/folder', mini: 'Вход.', icon: 'icon-inbox', text: 'Входящие' },
 				{ url: '/folder', mini: 'Исх.', icon: 'icon-outbox', text: 'Исходящие' },
 				{ url: '', mini: 'Папки', icon: 'icon-folder-open-outline', text: 'Мои папки' },

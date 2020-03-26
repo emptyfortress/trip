@@ -2,8 +2,7 @@
 .grid
 	br
 	br
-	.zag Прототип грида
-
+	.zag Проверка залипания
 	.txt настройки доступны по контекстному меню на заголовок. Shift-click переводит в режим Select
 	v-slide-y-transition(mode="out-in")
 		.btn-panel(v-show="selectMode")
@@ -27,28 +26,17 @@
 					v-icon(@click="reset") mdi-close
 
 	.d-flex
-		v-slide-x-transition(mode="out-in")
-			div(xs2 v-show="group.length && grouping").sticky.elevation-5
-				.group
-					h3(@click="removeFilter") Группы
-						span {{par}}
-					tree(ref="tree" :data="list" :options="treeOptions" @node:selected="onNodeSelected").tree-group
-						span(slot-scope="{node}").treenode
-							span.text {{ node.text }}
-							span.num {{ node.data.number }}
-				v-btn(icon @click="reset").clo
-					v-icon mdi-close
 		v-flex(:class="group.length ? 'groupon' : ''").tabl
 			.canva
 				v-slide-y-transition(mode="out-in")
-					DataTable( v-if="renderComponent" :filter="filter" :headers="headers" :items="items")
+					DataTable1( v-if="renderComponent" :filter="filter" :headers="headers" :items="items" :group="group")
 
 </template>
 
 <script>
 import { SlickList, SlickItem } from 'vue-slicksort'
 import data from '@/data.js'
-import DataTable from '@/components/DataTable'
+import DataTable1 from '@/components/DataTable1'
 
 export default {
 	data () {
@@ -193,9 +181,7 @@ export default {
 	components: {
 		SlickList,
 		SlickItem,
-		DataTable
-		// Icon,
-		// Icon1
+		DataTable1
 	}
 }
 
