@@ -165,13 +165,12 @@ export default {
 	width: 250px;
 	margin-right: .5rem;
 	.test {
-		height: 500px;
+		height: 100vh;
 		position: sticky;
 		top: 0;
 		background: white;
 		box-shadow: 0 1px 3px #00000055;
 		overflow: auto;
-		/* padding: 1rem; */
 	}
 }
 h3 {
