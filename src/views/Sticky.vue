@@ -160,6 +160,16 @@ export default {
 			border-bottom: 1px solid #eee;
 		}
 	}
+}
+.group {
+	width: 250px;
+	margin-right: .5rem;
+	.test {
+		height: 500px;
+		position: sticky;
+		top: 0;
+		background: white;
+		box-shadow: 0 1px 3px #00000055;
 		overflow: auto;
 		/* padding: 1rem; */
 	}
@@ -191,15 +201,5 @@ h3 {
 }
 .tree-children {
 	padding-left: -24px !important;
-.group {
-	width: 250px;
-	margin-right: .5rem;
-	.test {
-		height: 500px;
-		position: sticky;
-		top: 0;
-		background: white;
-		box-shadow: 0 1px 3px #00000055;
-	}
 }
 </style>
