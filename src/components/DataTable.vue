@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-	v-data-table(:headers="headers" :items="dataItems" :search="search" hide-default-header  hide-default-footer :items-per-page="per" :show-select="selectMode" item-key="id")
+	v-data-table(:headers="headers" :items="dataItems" :search="search" hide-default-header hide-default-footer :items-per-page="per" :show-select="selectMode" item-key="id")
 		template(v-slot:header="{ props: {headers}}")
 			thead(@contextmenu.prevent="$refs.ctxMenu.open")
 				tr(v-stickto).stick

@@ -5,6 +5,7 @@ import Trips from '../views/Trips.vue'
 import NewTrip from '../views/NewTrip.vue'
 import Approve from '../views/Approve.vue'
 import Folder from '../views/Folder.vue'
+import Scroll from '../views/Scroll.vue'
 import Folder1 from '../views/Folder1.vue'
 import Sticky from '../views/Sticky.vue'
 import Card from '../views/Card.vue'
@@ -19,6 +20,11 @@ const routes = [
 		path: '/',
 		name: 'home',
 		component: Home
+	},
+	{
+		path: '/scroll',
+		name: 'scroll',
+		component: Scroll
 	},
 	{
 		path: '/folder',
