@@ -22,7 +22,7 @@
 					th(v-for="n in 5") One
 			tbody
 				tr(v-for="(item, i) in num" :key="i").ro
-					td(v-for="n in 5") Content
+					td(v-for="n in 5") Тут некоторые данные
 	br
 	br
 	table.full
@@ -67,6 +67,18 @@ export default {
 					children: [
 						{ id: 13, text: 'Item 9.1' },
 						{ id: 14, text: 'Item 9.2' }
+					] },
+				{ id: 15,
+					text: 'Item  10',
+					children: [
+						{ id: 16, text: 'Item 10.1' },
+						{ id: 17, text: 'Item 10.2' }
+					] },
+				{ id: 18,
+					text: 'Item  11',
+					children: [
+						{ id: 19, text: 'Item 11.1' },
+						{ id: 20, text: 'Item 11.2' }
 					] }
 			],
 			treeOptions: {
@@ -109,19 +121,31 @@ export default {
 				this.num = 6
 				break
 			case 9:
-				this.num = 6
+				this.num = 12
 				break
 			case 10:
 				this.num = 6
 				break
 			case 11:
-				this.num = 6
+				this.num = 8
 				break
 			case 12:
 				this.num = 6
 				break
 			case 13:
 				this.num = 6
+				break
+			case 14:
+				this.num = 6
+				break
+			case 15:
+				this.num = 2
+				break
+			case 16:
+				this.num = 20
+				break
+			case 17:
+				this.num = 11
 				break
 			default:
 				this.num = 50
@@ -165,14 +189,17 @@ export default {
 	width: 250px;
 	margin-right: .5rem;
 	.test {
-		height: 100vh;
 		position: sticky;
 		top: 0;
 		background: white;
 		box-shadow: 0 1px 3px #00000055;
-		overflow: auto;
+		.tree-group {
+			height: 500px;
+			overflow: auto;
+		}
 	}
 }
+
 h3 {
 	cursor: pointer;
 	padding: 1rem;
