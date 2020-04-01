@@ -1,5 +1,5 @@
 const list = [
-	{ id: 0, text: 'Все' },
+	{ id: 100, text: 'Все' },
 	{ id: 1, text: 'Item 2' },
 	{ id: 2,
 		text: 'Item 3',

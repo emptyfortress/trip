@@ -4,9 +4,9 @@ div
 	v-btn(depressed color="info" @click="group = !group").mr-2 Группировка
 	v-btn(depressed color="info" @click="filter = !filter") Фильтры
 	br
-	.zag Скролл внутри грида
+	.zag Вариант 1. Скролл внутри грида
 	p.text-center.
-		Грид фиксированной высоты, скролл происходит внутри<br>Ниже есть еще контент и еще один грид.
+		Грид фиксированной высоты, скролл происходит внутри<br><span class="strong">Ниже есть еще контент и еще один грид</span>
 
 	.d-flex
 		v-slide-x-transition(mode="out-in")
@@ -22,36 +22,38 @@ div
 			template(v-slot:default)
 				thead
 					tr
-						th(v-for="n in 4" :key="n") Name
+						th(v-for="n in 4" :key="n") One
 					tr(v-show="filter")
 						th(v-for="n in 4" :key="n").filtr
 							v-text-field
 				tbody
-					tr(v-for="n in 150" :key="n")
+					tr(v-for="n in num" :key="n")
 						td(v-for="n in 4" :key="n") Some data here
 	br
 	p Здесь еще какой-то контент. Предмет деятельности непредвзято заполняет примитивный даосизм. Освобождение выводит примитивный смысл жизни. Гедонизм заполняет дедуктивный метод. Отвечая на вопрос о взаимоотношении идеального ли и материального ци, Дай Чжень заявлял, что интеллект преобразует бабувизм.
 	br
+	h3.text-center Второй грид
 	v-simple-table(fixed-header :height="height").ftable
 		template(v-slot:default)
 			thead
 				tr
-					th(v-for="n in 4" :key="n") Name
+					th(v-for="n in 4" :key="n") Secone
 			tbody
 				tr(v-for="n in 150" :key="n")
 					td(v-for="n in 4" :key="n") Some data here
-	</tr>
-</tbody>
-</template>
+	br
+	p Здесь еще какой-то контент. Предмет деятельности непредвзято заполняет примитивный даосизм. Освобождение выводит примитивный смысл жизни. Гедонизм заполняет дедуктивный метод. Отвечая на вопрос о взаимоотношении идеального ли и материального ци, Дай Чжень заявлял, что интеллект преобразует бабувизм.
 
 </template>
 
 <script>
 import list from '@/list.js'
+import mixin from '@/mixin.js'
 
 export default {
 	data () {
 		return {
+			num1: 50,
 			group: false,
 			filter: false,
 			list: list
@@ -61,7 +63,8 @@ export default {
 		height () {
 			return (window.innerHeight - 290)
 		}
-	}
+	},
+	mixins: [mixin]
 }
 
 </script>
@@ -151,5 +154,9 @@ h3 {
 .v-text-field {
 	margin-top: .2rem;
 	padding-top: 0;
+}
+.strong {
+	font-weight: bold;
+	color: darkred;
 }
 </style>
