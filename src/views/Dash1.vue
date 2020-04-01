@@ -39,14 +39,14 @@ div
 					span( class="caption font-weight-light" ) Обновлено 6 мин назад
 
 		v-col.ava
-			v-avatar(color="#ccc" size="64" v-ripple v-for="(n, i) in 6").cursor
+			v-avatar(color="#ccc" size="64" v-ripple v-for="(n, i) in 6" :key="i").cursor
 				img(:src=`"@/assets/img/user" + n + ".svg"` )
 				.badge {{rand[i]}}
 
 	v-row(justify-around)
 		v-col
 			v-card.pa-3
-				.overline.mb-2 Первый грид
+				.overline.mb-2 Алроса
 				v-card-title Входящие
 				v-card-content
 					v-simple-table(fixed-header :height="height").ftable
@@ -61,7 +61,7 @@ div
 		v-col
 			v-card
 				v-card.pa-3
-					.overline.mb-2 Второй грид
+					.overline.mb-2 Суэк
 					v-card-title Исходящие
 					v-card-content
 						v-simple-table(fixed-header :height="height").ftable
@@ -75,7 +75,7 @@ div
 	p.ma-3 Еще до момента заключения договора новация вознаграждает валютный бытовой подряд, исключая принцип презумпции невиновности. Движимое имущество законодательно подтверждает кредитор.
 
 	v-card.pa-3
-		.overline.mb-2 Третий грид
+		.overline.mb-2 Банк "Пойдем"
 		v-card-title Архив
 		v-card-content
 			v-simple-table(fixed-header :height="height1").ftable

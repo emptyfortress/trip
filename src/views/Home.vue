@@ -1,76 +1,55 @@
 <template lang="pug">
 div
-	.headline.text-center.mt-9.white--text Доброе утро, username !
-	br
-	//- grid-layout(:layout.sync="layout" :col-num="12" :row-height="30" :is-draggable="true" :is-resizable="true" :is-mirrored="false" :vertical-compact="true" :margin="[10, 10]" :use-css-transforms="true" )
-	//- 	grid-item( v-for="item in layout" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :key="item.i" )
-	//- 		.hd Widget {{ item.i }}
+	//- .headline.text-center.mt-9.white--text Доброе утро, username !
+	v-card(elevation="8").centr.pa-5
+		.overline.mb-2 Фокус-группа
+		.tit Примите участие в опросе
+		.descr Пожалуйста, сравните два варианта исполнения скролла в таблицах и на дашборде:
+		ol.descr
+			li внутри самого грида
+			li общий скролл на страницу и липкий заголовок
+		v-divider( class="my-2")
+		.descr Выберите вариант, который вам нравится больше и отправьте отзыв. Не меняйте тему письма. В теле письма можно написать подробнее.
+		v-radio-group(v-model="grid")
+			v-radio(value="scroll" label="Вариант 1")
+			v-radio(value="sticky" label="Вариант 2")
+			v-radio(value="non" label="Ни один не нравится")
+		v-card-actions
+			v-spacer
+			a(href="mailto:volkov.al@docsvision.com") laksjd
 
 </template>
 
 <script>
-import VueGridLayout from 'vue-grid-layout'
 
 export default {
 	data () {
 		return {
-			layout: [
-				{ 'x': 0, 'y': 0, 'w': 2, 'h': 2, 'i': '0' },
-				{ 'x': 2, 'y': 0, 'w': 2, 'h': 4, 'i': '1' },
-				{ 'x': 4, 'y': 0, 'w': 2, 'h': 5, 'i': '2' },
-				{ 'x': 6, 'y': 0, 'w': 2, 'h': 3, 'i': '3' },
-				{ 'x': 8, 'y': 0, 'w': 2, 'h': 3, 'i': '4' },
-				{ 'x': 10, 'y': 0, 'w': 2, 'h': 3, 'i': '5' },
-				{ 'x': 0, 'y': 5, 'w': 2, 'h': 5, 'i': '6' },
-				{ 'x': 2, 'y': 5, 'w': 2, 'h': 5, 'i': '7' },
-				{ 'x': 4, 'y': 5, 'w': 2, 'h': 5, 'i': '8' },
-				{ 'x': 6, 'y': 3, 'w': 2, 'h': 4, 'i': '9' },
-				{ 'x': 8, 'y': 4, 'w': 2, 'h': 4, 'i': '10' },
-				{ 'x': 10, 'y': 4, 'w': 2, 'h': 4, 'i': '11' },
-				{ 'x': 0, 'y': 10, 'w': 2, 'h': 5, 'i': '12' },
-				{ 'x': 2, 'y': 10, 'w': 2, 'h': 5, 'i': '13' },
-				{ 'x': 4, 'y': 8, 'w': 2, 'h': 4, 'i': '14' },
-				{ 'x': 6, 'y': 8, 'w': 2, 'h': 4, 'i': '15' },
-				{ 'x': 8, 'y': 10, 'w': 2, 'h': 5, 'i': '16' },
-				{ 'x': 10, 'y': 4, 'w': 2, 'h': 2, 'i': '17' },
-				{ 'x': 0, 'y': 9, 'w': 2, 'h': 3, 'i': '18' },
-				{ 'x': 2, 'y': 6, 'w': 2, 'h': 2, 'i': '19' }
-			]
 
 		}
-	},
-	components: {
-		GridLayout: VueGridLayout.GridLayout,
-		GridItem: VueGridLayout.GridItem
 	}
 }
 
 </script>
-
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
-.second {
-	font-size: 1.2rem;
-	padding: .5rem;
-	background: #ccc;
+.v-card {
+	max-width: 600px;
 }
-.second.stickto-auto-generated-sticker {
-	color: #fff;
-	background: $info;
-	width: 100%;
-	box-shadow: 0 4px 5px #33333355;
-	border-bottom: 1px solid #fff;
-}
-
-.vue-grid-item {
-	background: #ffffffcc;
-	/* border: 1px solid #ccc; */
-	border-radius: .4rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: #333;
-
+.centr {
+	max-width: 600px;
+	min-height: 400px;
+	margin: 4rem auto;
+	background: rgba(255,255,255,.8);
+	color: #000;
+	.tit {
+		font-size: 1.3rem;
+		margin-top: 2rem;
+	}
+	.descr {
+		font-size: 0.9rem;
+		margin-top: .5rem;
+	}
 }
 </style>
