@@ -16,7 +16,7 @@ div
 			v-radio(value="non" label="Ни один не нравится")
 		v-card-actions
 			v-spacer
-			a(href="mailto:volkov.al@docsvision.com") laksjd
+			a(href="mailto:volkov.al@docsvision.com").bat Отправить
 
 </template>
 
@@ -50,6 +50,19 @@ export default {
 	.descr {
 		font-size: 0.9rem;
 		margin-top: .5rem;
+	}
+}
+.bat {
+	display: inline-block;
+	padding: 4px 20px;
+	background: $dark;
+	border-radius: 4px;
+	color: #fff;
+	&:link, &:visited {
+		text-decoration: none;
+		&:hover {
+			background: lighten($dark, 10%);
+		}
 	}
 }
 </style>
