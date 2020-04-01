@@ -1,9 +1,7 @@
 <template lang="pug">
 div
-	br
 	v-btn(depressed color="info" @click="group = !group").mr-2 Группировка
 	v-btn(depressed color="info" @click="filter = !filter") Фильтры
-	br
 	.zag Вариант 1. Скролл внутри грида
 	p.text-center.
 		Грид фиксированной высоты, скролл происходит внутри<br><span class="strong">Ниже есть еще контент и еще один грид</span>
@@ -37,7 +35,7 @@ div
 		template(v-slot:default)
 			thead
 				tr
-					th(v-for="n in 4" :key="n") Secone
+					th(v-for="n in 4" :key="n") Second
 			tbody
 				tr(v-for="n in 150" :key="n")
 					td(v-for="n in 4" :key="n") Some data here
@@ -61,7 +59,7 @@ export default {
 	},
 	computed: {
 		height () {
-			return (window.innerHeight - 290)
+			return (window.innerHeight - 280)
 		}
 	},
 	mixins: [mixin]

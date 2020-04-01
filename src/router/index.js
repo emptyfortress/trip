@@ -1,17 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Trips from '../views/Trips.vue'
-import NewTrip from '../views/NewTrip.vue'
-import Approve from '../views/Approve.vue'
-import Folder from '../views/Folder.vue'
 import Scroll from '../views/Scroll.vue'
-import Folder1 from '../views/Folder1.vue'
 import Sticky from '../views/Sticky.vue'
-import Card from '../views/Card.vue'
-import NewCard from '../views/NewCard.vue'
-import Stamp from '../components/Stamp.vue'
-import Avatar from '../components/Avatar.vue'
+import Dash1 from '../views/Dash1.vue'
+import Dash2 from '../views/Dash2.vue'
 
 Vue.use(VueRouter)
 
@@ -27,71 +20,24 @@ const routes = [
 		component: Scroll
 	},
 	{
-		path: '/folder',
-		name: 'folder',
-		component: Folder
-	},
-	{
-		path: '/folder1',
-		name: 'folder1',
-		component: Folder1
-	},
-	{
 		path: '/sticky',
 		name: 'sticky',
 		component: Sticky
 	},
 	{
-		path: '/trips',
-		name: 'trips',
-		component: Trips
+		path: '/dash1',
+		name: 'dash1',
+		component: Dash1
 	},
 	{
-		path: '/avatar',
-		name: 'avatar',
-		component: Avatar
-	},
-	{
-		path: '/newcard',
-		name: 'newcard',
-		component: NewCard
-	},
-	{
-		path: '/stamp',
-		name: 'stamp',
-		component: Stamp
-	},
-	{
-		path: '/cards/:id',
-		name: 'card',
-		component: Card,
-		props: true
-	},
-	{
-		path: '/approve/:id',
-		name: 'approve',
-		component: Approve,
-		props: true
-	},
-	{
-		path: '/newtrip/:id',
-		name: 'newtrip',
-		component: NewTrip,
-		props: true
-	},
-	{
-		path: '/about',
-		name: 'about',
-		// component: About
-		// route level code-splitting
-		// this generates a separate chunk (about.[hash].js) for this route
-		// which is lazy-loaded when the route is visited.
-		component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+		path: '/dash2',
+		name: 'dash2',
+		component: Dash2
 	}
 ]
 
 const router = new VueRouter({
-	// mode: 'history',
+	mode: 'history',
 	routes
 })
 

@@ -1,9 +1,7 @@
 <template lang="pug">
 .sticky
-	br
 	v-btn(depressed color="info" @click="group = !group").mr-2 Группировка
 	v-btn(depressed color="info" @click="filter = !filter") Фильтры
-	br
 	.zag Вариант 2. Липкий заголовок таблицы
 
 	p.text-center Скролл общий для страницы<br><span class="strong">Ниже есть еще контент и еще один грид</span>

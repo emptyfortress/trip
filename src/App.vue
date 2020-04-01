@@ -17,10 +17,10 @@ v-app
 			i.icon-search
 		.pinkk
 			v-avatar(color="#5ba1cc" size="35" v-show="offsetTop" v-ripple)
-				img(src="@/assets/img/volkov.jpeg" )
+				img(src="@/assets/img/user0.svg" )
 		v-btn( href="" icon  v-show="offsetTop" @click="showPreview")
 			v-icon mdi-dock-right
-	v-content(v-scroll="handleScroll" id="target" :class="$route.name === 'home' ? 'bg' : ''")
+	v-content(v-scroll="handleScroll" id="target" :class="$route.name === 'home' ? 'bg' : 'bgg'")
 		v-container(fluid :class="drawer ? '' : 'leftmargin'").rel
 			transition(name="fade" mode="out-in")
 				v-btn(fab outlined color="#ccc" small v-show="$route.name === 'card' && !searchMode && !fullWindow" @click="back").back
@@ -237,6 +237,9 @@ export default {
 .bg {
 	background: url(assets/img/beach.jpg);
 	background-size: cover;
+}
+.bgg {
+	background: $light;
 }
 
 </style>
