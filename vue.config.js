@@ -1,6 +1,6 @@
 module.exports = {
 	publicPath: process.env.NODE_ENV === 'production'
-		? '/trip/'
+		? '/focus/'
 		: '/',
 	chainWebpack: config => {
 		config.module.rule('eslint').use('eslint-loader').options({
