@@ -15,7 +15,7 @@ div
 			v-radio(value="variant 3" label="Ни один не нравится")
 		v-card-actions
 			v-spacer
-			a(:href="grid").bat Отправить
+			a(:href="variant ? grid : '#'" :class="variant ? '' : 'disable'").bat Отправить
 
 </template>
 
@@ -67,6 +67,9 @@ export default {
 		&:hover {
 			background: lighten($success, 10%);
 		}
+	}
+	&.disable {
+		opacity: .5;
 	}
 }
 .grup {
