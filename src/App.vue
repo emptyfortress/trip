@@ -35,7 +35,7 @@ v-app
 						router-view
 				SearchPanel(v-else key="search")
 
-	Footer
+	Footer(:info="info" :card="card")
 	Dialog
 	v-alert(v-show="!preview" transition="scale-transition").plus
 		v-btn(dark fab large color="pink" @click="toggleAdd" :class="add ? 'active' : '' ")
@@ -68,6 +68,38 @@ export default {
 		logo: true
 	}),
 	computed: {
+		card () {
+			switch (this.$route.name) {
+			case 'home':
+				return 'Опрос фокус-группы'
+			case 'scroll':
+				return 'Вариант 1'
+			case 'sticky':
+				return 'Вариант 2'
+			case 'dash1':
+				return 'Вариант 1'
+			case 'dash2':
+				return 'Вариант 2'
+			default:
+				return ''
+			}
+		},
+		info () {
+			switch (this.$route.name) {
+			case 'home':
+				return 'Опрос фокус-группы'
+			case 'scroll':
+				return 'Вариант 1'
+			case 'sticky':
+				return 'Вариант 2'
+			case 'dash1':
+				return 'Вариант 1'
+			case 'dash2':
+				return 'Вариант 2'
+			default:
+				return ''
+			}
+		},
 		fullWindow () {
 			return this.$store.getters.fullWindow
 		},
@@ -241,5 +273,4 @@ export default {
 .bgg {
 	background: $light;
 }
-
 </style>

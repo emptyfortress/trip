@@ -46,7 +46,7 @@ div
 	v-row(justify-around)
 		v-col
 			v-card.pa-3
-				.overline.mb-2 Алроса
+				.overline.mb-2 Таблица 1
 				v-card-title Входящие
 				v-card-content
 					v-simple-table(fixed-header :height="height").ftable
@@ -61,7 +61,7 @@ div
 		v-col
 			v-card
 				v-card.pa-3
-					.overline.mb-2 Суэк
+					.overline.mb-2 Таблица 2
 					v-card-title Исходящие
 					v-card-content
 						v-simple-table(fixed-header :height="height").ftable
@@ -75,7 +75,7 @@ div
 	p.ma-3 Еще до момента заключения договора новация вознаграждает валютный бытовой подряд, исключая принцип презумпции невиновности. Движимое имущество законодательно подтверждает кредитор.
 
 	v-card.pa-3
-		.overline.mb-2 Банк "Пойдем"
+		.overline.mb-2 Таблица 3
 		v-card-title Архив
 		v-card-content
 			v-simple-table(fixed-header :height="height1").ftable

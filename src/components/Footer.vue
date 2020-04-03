@@ -1,18 +1,26 @@
 <template lang="pug">
 v-footer(app inset).justify-space-between
-	.copy Карточек: 133 /
+	.copy(v-if="sh") Карточек 133 /
 		span.count Посчитать?
-	.copy.gr Здесь некая полезная информация
-	.copy.gr Веб-клиент v.14.2
+	.copy(v-else) Docsvision
+	.copy.gr {{ info }}
+	.copy.gr Веб-клиент v.00000.1
 
 </template>
 
 <script>
 
 export default {
+	props: ['info', 'card'],
 	data () {
 		return {
-
+		}
+	},
+	computed: {
+		sh () {
+			if (this.$route.name === 'scroll' || this.$route.name === 'sticky') {
+				return true
+			} else return false
 		}
 	}
 }
@@ -38,8 +46,5 @@ export default {
 		cursor: pointer;
 		margin-left: .5rem;
 	}
-}
-.gr {
-	/* color: #999; */
 }
 </style>

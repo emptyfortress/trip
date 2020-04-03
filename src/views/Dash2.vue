@@ -46,7 +46,7 @@ div
 	v-row(justify-around)
 		v-col
 			v-card.pa-3
-				.overline.mb-2 Docsvision
+				.overline.mb-2 Таблица 1
 				v-card-title Входящие
 				v-card-content
 					table.full
@@ -63,7 +63,7 @@ div
 		v-col
 			v-card
 				v-card.pa-3
-					.overline.mb-2 Digital design
+					.overline.mb-2 Таблица 2
 					v-card-title Исходящие
 					v-card-content
 						v-rating(v-model="star")
@@ -81,13 +81,13 @@ div
 	p.ma-3 Еще до момента заключения договора новация вознаграждает валютный бытовой подряд, исключая принцип презумпции невиновности. Движимое имущество законодательно подтверждает кредитор.
 
 	v-card.pa-3
-		.overline.mb-2 Docsvision
+		.overline.mb-2 Таблица 3
 		v-card-title Архив
 		v-card-content
 			table.full
 				thead
 					tr
-						th(v-for="n in 6") Two
+						th(v-for="n in 6") Three
 					tr(v-show="filter")
 						th(v-for="n in 6").lip
 							v-text-field
