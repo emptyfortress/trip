@@ -28,14 +28,14 @@
 					td(v-for="n in 5") Тут некоторые данные
 	br
 	br
-	h3.text-center Второй грид
-	table.full
-		thead
-			tr
-				th(v-for="n in 5") Second
-		tbody
-			tr(v-for="(item, i) in num1" :key="i").ro
-				td(v-for="n in 5") Content
+	//- h3.text-center Второй грид
+	//- table.full
+	//- 	thead
+	//- 		tr
+	//- 			th(v-for="n in 5") Second
+	//- 	tbody
+	//- 		tr(v-for="(item, i) in num1" :key="i").ro
+	//- 			td(v-for="n in 5") Content
 
 </template>
 
