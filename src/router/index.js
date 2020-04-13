@@ -8,6 +8,7 @@ import Folder from '../views/Folder.vue'
 import Folder1 from '../views/Folder1.vue'
 import Sticky from '../views/Sticky.vue'
 import Card from '../views/Card.vue'
+import Delo from '../views/Delo.vue'
 import NewCard from '../views/NewCard.vue'
 import Stamp from '../components/Stamp.vue'
 import Avatar from '../components/Avatar.vue'
@@ -34,6 +35,11 @@ const routes = [
 		path: '/sticky',
 		name: 'sticky',
 		component: Sticky
+	},
+	{
+		path: '/delo',
+		name: 'delo',
+		component: Delo
 	},
 	{
 		path: '/trips',

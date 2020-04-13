@@ -34,7 +34,7 @@
 export default {
 	data () {
 		return {
-			panel: 0,
+			panel: '',
 			files: [
 				{ id: 0, icon: 'word', name: 'Договор с ООО Ромашка.doc', v: '1.1', cl: 'act' },
 				{ id: 1, icon: 'word', name: 'Приложение к договору.doc', v: '1.0' },

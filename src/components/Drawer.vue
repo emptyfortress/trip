@@ -36,12 +36,8 @@ export default {
 				{ url: '/folder', mini: 'Вход.', icon: 'icon-inbox', text: 'Грид' },
 				{ url: '/folder1', mini: 'Вход.', icon: 'icon-inbox', text: 'Грид 1' },
 				{ url: '/sticky', mini: 'Вход.', icon: 'icon-table', text: 'Sticky table' },
-				// { url: '/folder', mini: 'Вход.', icon: 'icon-inbox', text: 'Входящие' },
-				// { url: '/folder', mini: 'Исх.', icon: 'icon-outbox', text: 'Исходящие' },
-				// { url: '', mini: 'Папки', icon: 'icon-folder-open-outline', text: 'Мои папки' },
-				// { url: '', mini: 'Зад.', icon: 'icon-task', text: 'Задания' },
-				// { url: '', mini: 'Док.', icon: 'icon-document', text: 'Документы' },
 				{ url: '/trips', mini: 'Ком.', icon: 'icon-airplane', text: 'Командировки' },
+				{ url: '/delo', mini: 'Дело', icon: 'icon-dp', text: 'Делопроизводство' },
 				{ url: '/newcard', mini: '', icon: 'icon-numeric-1-box-outline', text: 'Inline file preview' },
 				{ url: '/cards/2', mini: '', icon: 'icon-numeric-2-box-outline', text: 'Panel file preview' },
 				{ url: '/avatar', mini: '', icon: 'icon-user', text: 'Avatars' }

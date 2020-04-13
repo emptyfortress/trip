@@ -9,28 +9,31 @@
 		drag-handle(v-show="$vuetify.breakpoint.mdAndUp").hand
 			div
 		drag-content.cardd
-			.status
-				span {{ item[0].status }}
+			.type
+				v-chip(color="#ccc" small) Входящий
+				Status(title="не начато")
 			br
+			.zag.mb-4 {{ item[0].title }}
 			.btgroup
-				v-btn(color="primary" depressed) В работу
-				v-btn(color="primary" depressed) Согласовать
-				v-btn(color="primary" depressed outlined) Делегировать
-				v-btn(color="primary" depressed outlined) Отклонить
-			.zag {{ item[0].title }}
-			br
-			v-expansion-panels(hover tile flat)
-				v-expansion-panel
-					v-expansion-panel-header
-						.blockhd.rel Информация
-					v-expansion-panel-content
-						.myrow
-							table.attributes
-								tr(v-for="item in attr" :key="item.id")
-									td.attr {{ item.attr }}
-									td {{ item.value }}
-							.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+				v-btn(color="primary" depressed) Зарегистрировать
+				v-btn(color="primary" depressed) Действие 1
+				v-btn(color="primary" depressed) Действие 2
 
+				v-menu( offset-y transition="slide-y-transition" )
+					template( v-slot:activator="{ on }" )
+						v-btn(icon v-on="on")
+							v-icon mdi-dots-horizontal
+					v-list
+						v-list-item( v-for="(item, index) in actions" :key="index" @click="" )
+							v-list-item-title {{ item.title }}
+
+			v-tabs.mytab
+				v-tab Главная
+				v-tab Обсуждение
+				v-tab История
+				v-tab-item(key="1")
+					.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+					MainTab
 			Files1
 			Hod.mt-3
 			v-expansion-panels(hover tile flat)
@@ -55,12 +58,15 @@
 
 	v-scale-transition(origin="top left")
 		Comments(v-show="chat" :myx="20" :myy="60" style="z-index: 100")
+
 </template>
 
 <script>
 import Comments from '@/components/Comments'
 import Files1 from '@/components/Files1'
 import FilePreview from '@/components/FilePreview'
+import Status from '@/components/Status'
+import MainTab from '@/components/MainTab'
 
 import Hod from '@/components/Hod'
 import { dragZone, dragHandle, dragContent } from 'vue-drag-zone'
@@ -68,12 +74,11 @@ import { dragZone, dragHandle, dragContent } from 'vue-drag-zone'
 export default {
 	data () {
 		return {
-			attr: [
-				{ id: 0, attr: 'Инициатор:', value: 'Волков А.В.' },
-				{ id: 1, attr: 'Исполнитель:', value: 'Воробьев С.В.' },
-				{ id: 2, attr: 'Срок:', value: '31.01.2020' },
-				{ id: 3, attr: 'Аттрибут:', value: 'значение' },
-				{ id: 4, attr: 'Аттрибут:', value: 'значение' }
+			color: '#dedede',
+			actions: [
+				{ title: 'Действие 3' },
+				{ title: 'Действие 4' },
+				{ title: 'Действие 5' }
 			],
 			item: [
 				{
@@ -116,7 +121,9 @@ export default {
 		Comments,
 		Files1,
 		FilePreview,
+		Status,
 		Hod,
+		MainTab,
 		dragZone,
 		dragHandle,
 		dragContent
@@ -143,11 +150,24 @@ export default {
 		margin-right: .25rem;
 	}
 }
+.doc {
+	position: absolute;
+	top: 53px;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	overflow-y: auto;
+	background: #fff;
+	box-shadow: 0 0 3px #666666aa;
+}
 
 .cardd {
 	width: 50%;
+	margin-top: 1rem;
 	margin-left: 1rem;
+	margin-right: 1rem;
 	height: 100%;
+
 	overflow: auto;
 }
 @media only screen and (max-width: 960px) {
@@ -162,29 +182,27 @@ export default {
 	font-size: 1.4rem;
 }
 
-.attributes {
-	padding-right: 1rem;
-	font-size: .9rem;
-	margin-right: 2rem;
-	border-right: 1px solid #ccc;
-	&.big {
-		font-size: 1.1rem;
-	}
-	td {
-		padding: 0 0.9rem;
-		white-space: nowrap;
-		&.attr {
-			text-align: right;
-		}
+.page {
+	font-size: 1.0rem;
+	width: 30px;
+	padding: .2rem;
+	/* margin-left: 1rem; */
+	text-align: right;
+	&:focus {
+		background: #fff;
 	}
 }
-.attr {
-	opacity: .6;
+.pages {
+	margin-left: .3rem;
 }
-.myrow {
-	display: flex;
-	justify-content: flex-start;
-	padding: 1rem 0;
+.dot {
+	width: 9px;
+	height: 9px;
+	border-radius: 4px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: $info;
 }
 .zone {
 	width: 100%;
@@ -212,5 +230,48 @@ export default {
 	width: 100%;
 	height: calc(100vh - 120px);
 }
-
+.empty {
+	text-align: center;
+	height: 100%;
+	color: #aaa;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	h3 {
+		font-weight: 400;
+		font-size: 1.7rem;
+	}
+	i {font-size: 6.0rem;}
+	p {margin: 1rem 5rem;}
+	.v-btn {display: inline-block;}
+}
+.bar {
+	overflow: hidden;
+}
+.type {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.statu {
+	font-size: 1.1rem;
+	white-space: nowrap;
+	text-align: center;
+	padding: .5rem;
+	cursor: pointer;
+	span {
+		letter-spacing: .5rem;
+		border-top: 0.1rem solid #ccc;
+		border-bottom: 0.1rem solid #ccc;
+		display: inline-block;
+		padding: .2rem 0;
+		text-transform: uppercase;
+	}
+	&:hover {
+		background: #ddf0ff;
+	}
+}
+.descr {
+	margin: 1rem auto;
+}
 </style>
