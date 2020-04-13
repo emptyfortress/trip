@@ -1,6 +1,7 @@
 <template lang="pug">
 .maintab
 	v-expansion-panels(hover tile flat v-model="panels" multiple)
+
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Информация
@@ -23,6 +24,15 @@
 								td.attr {{ item.attr }}
 								td.link
 									span(v-for="link in item.value").mr-2 {{ link }}
+
+		v-expansion-panel
+			v-expansion-panel-header
+				.blockhd.rel Информация (вариант)
+			v-expansion-panel-content
+				.list
+					.item(v-for="item in attr")
+						.label {{ item.attr }}
+						.value {{ item.value }}
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Файлы (4)
@@ -54,7 +64,22 @@ import Hod from '@/components/Hod'
 export default {
 	data () {
 		return {
-			panels: [1],
+			panels: [2],
+			attr: [
+				{ id: 0, attr: 'Вид:', value: 'Входящий' },
+				{ id: 1, attr: 'Состояние:', value: 'Не начато' },
+				{ id: 2, attr: 'Подготовил:', value: 'Порхачева Н.' },
+				{ id: 3, attr: 'Рег.№:', icon: 'mdi-plus' },
+				{ id: 4, attr: 'Дата регистрации:', icon: 'mdi-calendar-blank' },
+				{ id: 5, attr: 'Инициатор:', value: 'Волков А.В.' },
+				{ id: 6, attr: 'Исполнитель:', value: 'Воробьев С.В.' },
+				{ id: 7, attr: 'Срок:', value: '31.01.2020' },
+				{ id: 8, attr: 'Атрибут:', value: 'значение' },
+				{ id: 9, attr: 'Атрибут:', value: 'значение' },
+				{ id: 10, attr: 'Согласующие:', value: 'Волков А., Карачева O., Скворцов Г.' },
+				{ id: 1, attr: 'Подписывает:', value: 'Воробьев С.В.' },
+				{ id: 2, attr: 'Получатели:', value: 'Гусев П., Уткин А., Скворцов Г., Смирнов С.' }
+			],
 			attr0: [
 				{ id: 0, attr: 'Вид:', value: 'Входящий' },
 				{ id: 1, attr: 'Состояние:', value: 'Не начато' },
@@ -99,7 +124,6 @@ export default {
 	td {
 		vertical-align: top;
 		padding: 0 0.9rem;
-		/* white-space: nowrap; */
 		&.attr {
 			text-align: right;
 		}
@@ -135,5 +159,16 @@ export default {
 		text-decoration: underline;
 	}
 	}
+}
+.list {
+	columns: 3 220px;
+	font-size: 0.9rem;
+	.item {
+		display: flex;
+	}
+}
+.label {
+	opacity: .6;
+	margin-right: .5rem;
 }
 </style>
