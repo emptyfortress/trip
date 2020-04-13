@@ -1,12 +1,12 @@
 <template lang="pug">
 .all
-	drag-zone.zone
-		drag-content(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview").content.one
+	drag-zone(v-if="inlinePreview").zone
+		drag-content(v-show="$vuetify.breakpoint.mdAndUp").content.one
 			v-slide-y-transition(mode="out-in")
 				v-skeleton-loader(v-if="lo" height="100%" width="100%" type="image" ).skel
 				FilePreview(:file="file" v-if="!lo")
 
-		drag-handle(v-show="$vuetify.breakpoint.mdAndUp").hand
+		drag-handle(v-show="$vuetify.breakpoint.mdAndUp" ).hand
 			div
 		drag-content.cardd
 			.type
@@ -34,27 +34,49 @@
 				v-tab-item(key="1")
 					.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
 					MainTab
-			Files1
-			Hod.mt-3
-			v-expansion-panels(hover tile flat)
-				v-expansion-panel
-					v-expansion-panel-header
-						.blockhd.rel Подчиненные задания
-					v-expansion-panel-content
-						p Здесь подчиненные задания
-						p Здесь подчиненные задания
-						p Здесь подчиненные задания
-						p Здесь подчиненные задания
-						p Здесь подчиненные задания
-				v-expansion-panel
-					v-expansion-panel-header
-						.blockhd.rel История
-					v-expansion-panel-content
-						p Здесь
-						p Здесь
-						p Здесь
-						p Здесь
-						p Здесь
+				v-tab-item(key="2")
+					.zag.mt-7 Здесь обсуждение
+					ul
+						li(v-for="n in 15") Some chat entry
+				v-tab-item(key="3")
+					.zag.mt-7 Здесь история
+					ul
+						li(v-for="n in 10") Some history entry
+
+	.pa-4(v-else)
+		.type
+			v-chip(color="#ccc" small) Входящий
+			Status(title="не начато")
+		br
+		.zag.mb-4 {{ item[0].title }}
+		.btgroup
+			v-btn(color="primary" depressed) Зарегистрировать
+			v-btn(color="primary" depressed) Действие 1
+			v-btn(color="primary" depressed) Действие 2
+
+			v-menu( offset-y transition="slide-y-transition" )
+				template( v-slot:activator="{ on }" )
+					v-btn(icon v-on="on")
+						v-icon mdi-dots-horizontal
+				v-list
+					v-list-item( v-for="(item, index) in actions" :key="index" @click="" )
+						v-list-item-title {{ item.title }}
+
+		v-tabs.mytab
+			v-tab Главная
+			v-tab Обсуждение
+			v-tab История
+			v-tab-item(key="1")
+				.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+				MainTab
+			v-tab-item(key="2")
+				.zag.mt-7 Здесь обсуждение
+				ul
+					li(v-for="n in 15") Some chat entry
+			v-tab-item(key="3")
+				.zag.mt-7 Здесь история
+				ul
+					li(v-for="n in 10") Some history entry
 
 	v-scale-transition(origin="top left")
 		Comments(v-show="chat" :myx="20" :myy="60" style="z-index: 100")
@@ -63,12 +85,9 @@
 
 <script>
 import Comments from '@/components/Comments'
-import Files1 from '@/components/Files1'
 import FilePreview from '@/components/FilePreview'
 import Status from '@/components/Status'
 import MainTab from '@/components/MainTab'
-
-import Hod from '@/components/Hod'
 import { dragZone, dragHandle, dragContent } from 'vue-drag-zone'
 
 export default {
@@ -119,10 +138,8 @@ export default {
 	},
 	components: {
 		Comments,
-		Files1,
 		FilePreview,
 		Status,
-		Hod,
 		MainTab,
 		dragZone,
 		dragHandle,
@@ -162,18 +179,16 @@ export default {
 }
 
 .cardd {
-	width: 50%;
-	margin-top: 1rem;
-	margin-left: 1rem;
-	margin-right: 1rem;
+	width: 100%;
+	padding: 2rem;
 	height: 100%;
-
 	overflow: auto;
 }
 @media only screen and (max-width: 960px) {
 	.cardd {
 		width: 100%;
 		margin-right: 1rem;
+		background: #ccc;
 	}
 }
 .zag {

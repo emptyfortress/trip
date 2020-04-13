@@ -1,25 +1,22 @@
 <template lang="pug">
-v-expansion-panels(flat value="0").mt-1.fl
-	v-expansion-panel(value="true")
-		v-expansion-panel-header.blockhd Ход согласования
-		v-expansion-panel-content(value="true")
-			hr(color="#eee")
-			v-breadcrumbs(:items="crumbs" @click="doNothing")
-			.etap Этап 1. Согласование (последовательно)
-			v-simple-table
-				template(v-slot:default)
-					thead
-						tr.myhead
-							th(v-for="item in headers").text-left {{ item.text}}
-					tbody
-						tr(v-for="item in table" :key="item.fio").my
-							td(width="150").nowrap.bl {{ item.fio }}
-							td(width="250")
-								v-icon(small :color="item.color") {{ item.icon }}
-								span.ml-2 {{ item.decision }}
-							td.nowrap {{ item.date }}
-							td {{ item.comment }}
-							td
+div
+	hr(color="#ccc")
+	v-breadcrumbs(:items="crumbs" @click="doNothing")
+	.etap Этап 1. Согласование (последовательно)
+	v-simple-table
+		template(v-slot:default)
+			thead
+				tr.myhead
+					th(v-for="item in headers").text-left {{ item.text}}
+			tbody
+				tr(v-for="item in table" :key="item.fio").my
+					td(width="150").nowrap.bl {{ item.fio }}
+					td(width="250")
+						v-icon(small :color="item.color") {{ item.icon }}
+						span.ml-2 {{ item.decision }}
+					td.nowrap {{ item.date }}
+					td {{ item.comment }}
+					td
 
 </template>
 

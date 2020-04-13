@@ -203,6 +203,7 @@ export default {
 	bottom: 2rem;
 	left: 50%;
 	background: transparent;
+	z-index: 20;
 }
 .searchbox {
 	box-shadow: none;
