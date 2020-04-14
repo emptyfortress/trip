@@ -4,7 +4,7 @@ div
 	v-btn(depressed color="info" @click="filter = !filter") Фильтры
 	.zag Вариант 1. Скролл внутри грида
 	p.text-center.
-		Грид фиксированной высоты, скролл происходит внутри<br><span class="strong">Ниже есть еще контент и еще один грид</span>
+		Грид фиксированной высоты, скролл происходит внутри
 
 	.d-flex
 		v-slide-x-transition(mode="out-in")

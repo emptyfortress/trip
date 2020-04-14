@@ -1,11 +1,13 @@
 <template lang="pug">
-.sticky
+.sticky(v-scroll="onScroll")
 	v-btn(depressed color="info" @click="group = !group").mr-2 Группировка
 	v-btn(depressed color="info" @click="filter = !filter") Фильтры
 	.zag Вариант 2. Липкий заголовок таблицы
 
-	p.text-center Скролл общий для страницы<br><span class="strong">Ниже есть еще контент и еще один грид</span>
+	p.text-center Скролл общий для страницы
 	br
+	.page Страницы:
+		span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''").pag {{ index + 1 }}
 	.d-flex
 		v-slide-x-transition(mode="out-in")
 			.group(v-show="group")
@@ -28,14 +30,6 @@
 					td(v-for="n in 5") Тут некоторые данные
 	br
 	br
-	//- h3.text-center Второй грид
-	//- table.full
-	//- 	thead
-	//- 		tr
-	//- 			th(v-for="n in 5") Second
-	//- 	tbody
-	//- 		tr(v-for="(item, i) in num1" :key="i").ro
-	//- 			td(v-for="n in 5") Content
 
 </template>
 
@@ -47,6 +41,7 @@ export default {
 	data () {
 		return {
 			group: false,
+			offsetTop: 0,
 			num1: 50,
 			list: list,
 			filter: false,
@@ -56,6 +51,23 @@ export default {
 				dnd: true,
 				multiple: false
 			}
+		}
+	},
+	methods: {
+		onScroll (e) {
+			this.offsetTop = window.pageYOffset
+			console.log(this.current)
+		}
+	},
+	computed: {
+		windHeight () {
+			return (document.documentElement.clientHeight - 114)
+		},
+		pages () {
+			return Math.ceil(this.num * 48 / this.windHeight)
+		},
+		current () {
+			return Math.floor(this.pages / ((this.num * 48 - this.windHeight) / this.offsetTop))
 		}
 	},
 	mixins: [mixin]
@@ -73,16 +85,27 @@ export default {
 	width: 100%;
 	background: #fff;
 	transition: all .3s ease;
+	tr {
+		background: #fff;
+	}
 	th {
 		background: #dedede;
 		height: 2.5rem;
 		position: sticky;
-		top: 0;
+		top: 42px;
 		font-weight: 600;
 		font-size: .75rem;
 		color: #666;
+		&.page {
+			top: 0;
+			background: #dedede;
+			text-align: right;
+			padding-right: 2rem;
+			font-size: 1rem;
+			font-weight: 400;
+		}
 		&.lip {
-			top: 39px;
+			top: 84px;
 			background: lighten($yellow, 20%);
 			padding: 0 1rem;
 		}
@@ -147,5 +170,28 @@ h3 {
 .strong {
 	font-weight: bold;
 	color: darkred;
+}
+.page {
+	position: sticky;
+	top: 0;
+	text-align: right;
+	font-size: 1rem;
+	font-weight: 400;
+	background: #e4e4e0;
+	line-height: 41px;
+	height: 41px;
+}
+.pag {
+	font-size: .8rem;
+	border: 1px solid #ccc;
+	margin-right: 3px;
+	padding: 4px 5px;
+	cursor: pointer;
+	&:first-child {
+		margin-left: 1rem;
+	}
+	&.active {
+		background: #fff;
+	}
 }
 </style>
