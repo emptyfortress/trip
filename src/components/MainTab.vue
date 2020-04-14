@@ -1,7 +1,6 @@
 <template lang="pug">
 .maintab
 	v-expansion-panels(hover tile flat v-model="panels" multiple)
-
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Информация
@@ -24,7 +23,6 @@
 								td.attr {{ item.attr }}
 								td.link
 									span(v-for="link in item.value").mr-2 {{ link }}
-
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Информация (вариант)
