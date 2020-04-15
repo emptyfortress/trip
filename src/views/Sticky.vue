@@ -1,13 +1,17 @@
 <template lang="pug">
 .sticky(v-scroll="onScroll")
-	v-btn(depressed color="info" @click="group = !group").mr-2 Группировка
-	v-btn(depressed color="info" @click="filter = !filter") Фильтры
-	.zag Вариант 2. Липкий заголовок таблицы
+	v-row(justify="space-between")
+		div
+			v-btn(depressed color="info" @click="group = !group").mr-2 Группировка
+			v-btn(depressed color="info" @click="filter = !filter") Фильтры
+		v-switch(v-model="lazy" label="Ленивая подгрузка")
 
+	.zag Вариант 2. Липкий заголовок таблицы
 	p.text-center Скролл общий для страницы
 	br
+
 	.page Страницы:
-		span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''").pag {{ index + 1 }}
+		span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''" @click="topage(index)").pag {{ index + 1 }}
 	.d-flex
 		v-slide-x-transition(mode="out-in")
 			.group(v-show="group")
@@ -27,7 +31,10 @@
 						v-text-field
 			tbody
 				tr(v-for="(item, i) in num" :key="i").ro
-					td(v-for="n in 5") Тут некоторые данные
+					td(v-for="n in 5")
+						v-lazy(:options="{threshold: .5}"  transition="fade-transition" v-if="lazy")
+							span Тут некоторые данные
+						span(v-else) Тут некоторые данные
 	br
 	br
 
@@ -40,6 +47,7 @@ import mixin from '@/mixin.js'
 export default {
 	data () {
 		return {
+			lazy: false,
 			group: false,
 			offsetTop: 0,
 			num1: 50,
@@ -56,7 +64,9 @@ export default {
 	methods: {
 		onScroll (e) {
 			this.offsetTop = window.pageYOffset
-			console.log(this.current)
+		},
+		topage (e) {
+			this.$vuetify.goTo(e * this.windHeight)
 		}
 	},
 	computed: {
@@ -92,18 +102,10 @@ export default {
 		background: #dedede;
 		height: 2.5rem;
 		position: sticky;
-		top: 42px;
+		top: 45px;
 		font-weight: 600;
 		font-size: .75rem;
 		color: #666;
-		&.page {
-			top: 0;
-			background: #dedede;
-			text-align: right;
-			padding-right: 2rem;
-			font-size: 1rem;
-			font-weight: 400;
-		}
 		&.lip {
 			top: 84px;
 			background: lighten($yellow, 20%);
@@ -178,8 +180,9 @@ h3 {
 	font-size: 1rem;
 	font-weight: 400;
 	background: #e4e4e0;
-	line-height: 41px;
-	height: 41px;
+	line-height: 44px;
+	height: 44px;
+	border-bottom: 1px solid #fff;
 }
 .pag {
 	font-size: .8rem;
@@ -187,11 +190,15 @@ h3 {
 	margin-right: 3px;
 	padding: 4px 5px;
 	cursor: pointer;
+	border-radius: 2px;
 	&:first-child {
 		margin-left: 1rem;
 	}
 	&.active {
 		background: #fff;
+		font-size: 1.0rem;
+		padding: 5px 7px;
+		border-color: #aaa;
 	}
 }
 </style>
