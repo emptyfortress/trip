@@ -10,8 +10,8 @@
 	p.text-center Скролл общий для страницы
 	br
 
-	.page Страницы:
-		span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''" @click="topage(index)").pag {{ index + 1 }}
+	//- .page Страницы:
+	//- 	span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''" @click="topage(index)").pag {{ index + 1 }}
 	.d-flex
 		v-slide-x-transition(mode="out-in")
 			.group(v-show="group")
@@ -51,6 +51,9 @@
 						span(v-else) Тут некоторые данные
 	br
 	br
+	v-alert(v-show="showPage" transition="scale-transition").up
+		.page Страницы:
+			span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''" @click="topage(index)").pag {{ index + 1 }}
 </template>
 
 <script>
@@ -78,11 +81,6 @@ export default {
 			}
 		}
 	},
-	watch: {
-		filterByIndex: (val, oldVal) => {
-			console.log(val)
-		}
-	},
 	methods: {
 		onScroll (e) {
 			this.offsetTop = window.pageYOffset
@@ -92,6 +90,9 @@ export default {
 		}
 	},
 	computed: {
+		showPage () {
+			return this.$store.getters.showPage
+		},
 		windHeight () {
 			return (document.documentElement.clientHeight - 114)
 		},
@@ -122,10 +123,12 @@ export default {
 	}
 	th {
 		cursor: pointer;
-		background: #dedede;
+		/* background: #dedede; */
+		background: #ccc;
 		height: 2.5rem;
 		position: sticky;
-		top: 45px;
+		/* top: 45px; */
+		top: 0;
 		font-weight: 600;
 		font-size: .75rem;
 		color: #666;
@@ -148,7 +151,6 @@ export default {
 	}
 }
 .v-text-field {
-	/* margin-top: .2rem; */
 	font-weight: 500;
 	padding-top: 0;
 }
@@ -200,15 +202,13 @@ h3 {
 	color: darkred;
 }
 .page {
-	position: sticky;
-	top: 0;
-	text-align: right;
 	font-size: 1rem;
 	font-weight: 400;
 	background: #e4e4e0;
-	line-height: 44px;
-	height: 44px;
 	border-bottom: 1px solid #fff;
+	padding: 10px 25px;
+	border-radius: 5px;
+	box-shadow: 2px 2px 10px rgba(0,0,0,.5);
 }
 .pag {
 	font-size: .8rem;
@@ -257,5 +257,12 @@ h3 {
 .sort {
 	font-size: 14px;
 	margin-right: 5px;
+}
+.up {
+	position: fixed;
+	bottom: 1.0rem;
+	left: 50%;
+	transform: translateX(40px);
+	background: transparent;
 }
 </style>

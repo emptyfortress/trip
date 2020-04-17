@@ -10,6 +10,7 @@ export default new Vuex.Store({
 		preview: false,
 		inlinePreview: true,
 		fullWindow: false,
+		showPage: false,
 		headers: [
 			{ id: 0, class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
 			{ id: 1, class: 'text-no-wrap', value: 'executor', width: '400', active: true, sortable: true, align: 'start', text: 'Исполнитель' },
@@ -49,6 +50,7 @@ export default new Vuex.Store({
 		lo: state => { return state.lo },
 		overlay: state => { return state.overlay },
 		preview: state => { return state.preview },
+		showPage: state => { return state.showPage },
 		inlinePreview: state => { return state.inlinePreview },
 		previewMode: state => { return state.previewMode },
 		fullWindow: state => { return state.fullWindow },
@@ -90,6 +92,7 @@ export default new Vuex.Store({
 		setLo (state, payload) { state.lo = payload },
 		setFile (state, payload) { state.file = payload },
 		setOverlay (state, payload) { state.overlay = payload },
+		setShowPage (state, payload) { state.showPage = payload },
 		toggleChat (state) { state.chat = !state.chat }
 	},
 	actions: {},

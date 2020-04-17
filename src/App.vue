@@ -161,8 +161,9 @@ export default {
 			this.$store.commit('toggleDrawer')
 		},
 		handleScroll () {
-			if (window.pageYOffset > 300) {
+			if (window.pageYOffset > 200) {
 				this.scroll = true
+				this.$store.commit('setShowPage', true)
 			} else if (window.pageYOffset > 0 && !this.drawer) {
 				this.offsetTop = false
 				this.logo = false
@@ -176,6 +177,7 @@ export default {
 				this.offsetTop = true
 				this.scroll = false
 				this.logo = true
+				this.$store.commit('setShowPage', false)
 			}
 		}
 	}
@@ -232,7 +234,7 @@ export default {
 }
 .up {
 	position: fixed;
-	bottom: 2rem;
+	bottom: 0.7rem;
 	left: 50%;
 	background: transparent;
 }
