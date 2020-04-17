@@ -4,7 +4,7 @@
 	p.text-center Поведение кнопок в разных ситуациях
 	br
 	form
-		v-slider(label="Ширина" v-model="w" :max="max" :min="min" hide-details)
+		v-slider(label="Ширина блока" v-model="w" :max="max" :min="min" hide-details)
 		v-text-field(v-model="input" label="Button text").mt-4
 		.d-flex
 			v-checkbox(label="Block buttons" v-model="block").mr-3
@@ -15,6 +15,10 @@
 		.mybt( v-for="item in buttons"
 			v-ripple :class="compClass") {{ item.text }}
 		.mybt(v-ripple :class="compClass") {{ input }}
+	br
+	.table(:style="`width: ${w}px`" :class="blClass")
+		.my(v-for="item in buttons") {{ item.text }}
+		//- .my.grow Тест
 
 </template>
 
@@ -49,18 +53,6 @@ export default {
 						this.wrap ? 'wr' : '' ||
 						this.word ? 'word' : '' ||
 						this.block ? 'bl' : ''
-			// if (this.block) {
-			// 	return 'bl'
-			// } else if (this.block && this.wrap) {
-			// 	return 'bl wr'
-			// } else if (this.wrap) {
-			// 	return 'wr'
-			// } else return ''
-		},
-		blClass () {
-			if (this.wrap) {
-				return ''
-			} else return ''
 		}
 	}
 }
@@ -70,6 +62,15 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
+.table {
+	margin-top: 1rem;
+	width: 400px;
+	background: #fff;
+	border: 1px solid #ccc;
+	margin: 0 auto;
+	padding: .5rem;
+	display: flex;
+}
 .cont {
 	width: 400px;
 	background: #fff;
@@ -117,6 +118,21 @@ form {
 	width: 700px;
 	margin: 0 auto;
 	margin-bottom: 2rem;
+}
+.my {
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 500;
+	letter-spacing: 1.25px;
+	background: #ccc;
+	text-transform: uppercase;
+	margin-right:  2px;
+	overflow: hidden;
+	align-items: center;
+	padding: 8px 20px;
+	border-radius: 5px;
+	text-align: center;
+	flex-grow: 1;
 }
 
 </style>
