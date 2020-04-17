@@ -18,7 +18,7 @@
 	br
 	.table(:style="`width: ${w}px`" :class="blClass")
 		.my(v-for="item in buttons") {{ item.text }}
-		//- .my.grow Тест
+		.my {{ input }}
 
 </template>
 
@@ -70,6 +70,7 @@ export default {
 	margin: 0 auto;
 	padding: .5rem;
 	display: flex;
+	flex-wrap: wrap;
 }
 .cont {
 	width: 400px;
@@ -96,12 +97,10 @@ export default {
 		padding: 8px 20px;
 		border-radius: 5px;
 		text-align: center;
-		/* max-width: 315px; */
 		overflow: hidden;
 		&.bl {
 			display: block;
 			margin-bottom: 2px;
-			/* max-width: none; */
 		}
 		&.wr {
 			max-width: 220px;
@@ -133,6 +132,7 @@ form {
 	border-radius: 5px;
 	text-align: center;
 	flex-grow: 1;
+	margin-bottom: 2px;
 }
 
 </style>
