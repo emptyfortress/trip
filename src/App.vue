@@ -35,7 +35,7 @@ v-app
 						router-view
 				SearchPanel(v-else key="search")
 
-	Footer(:info="info" :card="card")
+	Footer(:info="info" :card="card" v-if="$route.path !== '/sticky'")
 	Dialog
 	v-alert(v-show="!preview" transition="scale-transition").plus
 		v-btn(dark fab large color="pink" @click="toggleAdd" :class="add ? 'active' : '' ")

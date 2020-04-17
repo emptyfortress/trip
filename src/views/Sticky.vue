@@ -3,7 +3,7 @@
 	v-row(justify="space-between")
 		div
 			v-btn(depressed color="info" @click="group = !group").mr-2 Группировка
-			v-btn(depressed color="info" @click="filter = !filter") Фильтры
+			v-btn(depressed color="info" @click="filter = !filter") Toolbar
 		v-switch(v-model="lazy" label="Ленивая подгрузка")
 
 	.zag Вариант 2. Липкий заголовок таблицы
@@ -28,16 +28,21 @@
 					th(v-for="(item,index) in 5"
 						@mouseover="showByIndex = index" @mouseout="showByIndex = null"
 						)
-						span(v-show="showByIndex !== index") One
+						v-icon(v-if="sortByIndex === index").sort mdi-arrow-down
+						span One
+						v-icon(v-if="index === smallFilter" color="#8b0000").sort.ml-2 mdi-filter
 						.over(v-show="showByIndex === index")
-							v-icon mdi-arrow-down
-							v-icon mdi-filter-outline
+							v-icon(@click="sortByIndex = index") mdi-arrow-down
+							v-icon(@click="filterByIndex = index") mdi-filter-outline
 							v-icon mdi-pin-outline
+							v-icon mdi-eye-off
 
-						//- .quick(v-show="filter")
-				//- tr(v-show="filter")
-				//- 	th(v-for="n in 5").lip
-				//- 		v-text-field
+						v-card.quick.elevation-3(v-show="filterByIndex === index")
+							v-text-field(autofocus clearable)
+							v-card-actions
+								v-btn(text color="primary" @click="filterByIndex = null; smallFilter = null") Отмена
+								v-spacer
+								v-btn(text color="primary" @click="filterByIndex = null; smallFilter = index") Применить
 			tbody
 				tr(v-for="(item, i) in num" :key="i").ro
 					td(v-for="n in 5")
@@ -61,7 +66,10 @@ export default {
 			num1: 50,
 			list: list,
 			filter: false,
+			smallFilter: null,
 			showByIndex: null,
+			filterByIndex: null,
+			sortByIndex: null,
 			treeOptions: {
 				checkbox: false,
 				parentSelect: true,
@@ -70,31 +78,17 @@ export default {
 			}
 		}
 	},
+	watch: {
+		filterByIndex: (val, oldVal) => {
+			console.log(val)
+		}
+	},
 	methods: {
-		high (el, event) {
-			let t = this.$refs['key' + el]
-
-			console.log(t)
-			console.log(el)
-
-			// let t = this.$el
-			// t.style.backgroundColor = color
-		},
-		prop (item, event) {
-			console.log(item)
-			console.log(event)
-		},
-		test (e) {
-			e.style.backgroundColor = 'red'
-		},
 		onScroll (e) {
 			this.offsetTop = window.pageYOffset
 		},
 		topage (e) {
 			this.$vuetify.goTo(e * this.windHeight)
-		},
-		showFilter () {
-			// this.filter = !this.filter
 		}
 	},
 	computed: {
@@ -127,6 +121,7 @@ export default {
 		background: #fff;
 	}
 	th {
+		cursor: pointer;
 		background: #dedede;
 		height: 2.5rem;
 		position: sticky;
@@ -134,6 +129,8 @@ export default {
 		font-weight: 600;
 		font-size: .75rem;
 		color: #666;
+		text-align: left;
+		padding: 0 1rem;
 		&.lip {
 			top: 84px;
 			background: lighten($yellow, 20%);
@@ -151,7 +148,8 @@ export default {
 	}
 }
 .v-text-field {
-	margin-top: .2rem;
+	/* margin-top: .2rem; */
+	font-weight: 500;
 	padding-top: 0;
 }
 .group {
@@ -230,13 +228,34 @@ h3 {
 	}
 }
 .quick {
-	background: red;
+	position: absolute;
+	top: 40px;
+	left: 0;
+	width: 100%;
+	min-width: 200px;
+	padding: 0 1rem;
+	padding-top: 1rem;
+}
+.over {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
+	text-align: right;
+	margin-right: .5rem;
+	background: rgba(255,255,255, .6);
+	line-height: 41px;
+	i {
+		margin-right: 4px;
+		color: #999;
+		&:hover {
+			color: black;
+		}
+	}
 }
-.over {
+.sort {
+	font-size: 14px;
+	margin-right: 5px;
 }
 </style>
