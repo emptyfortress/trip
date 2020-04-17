@@ -37,7 +37,6 @@
 						span(v-else) Тут некоторые данные
 	br
 	br
-
 </template>
 
 <script>

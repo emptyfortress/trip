@@ -5,6 +5,7 @@ import Scroll from '../views/Scroll.vue'
 import Sticky from '../views/Sticky.vue'
 import Dash1 from '../views/Dash1.vue'
 import Dash2 from '../views/Dash2.vue'
+import Buttons from '../components/Buttons.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
 		path: '/dash1',
 		name: 'dash1',
 		component: Dash1
+	},
+	{
+		path: '/btn',
+		name: 'btn',
+		component: Buttons
 	},
 	{
 		path: '/dash2',
