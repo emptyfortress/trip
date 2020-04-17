@@ -8,11 +8,13 @@
 		v-text-field(v-model="input" label="Button text").mt-4
 		.d-flex
 			v-checkbox(label="Block buttons" v-model="block").mr-3
-			v-checkbox(label="Переносы" v-model="wrap")
+			v-checkbox(label="Ограничить ширину" v-model="wrap").mr-3
+			v-checkbox(label="Запретить переносы в кнопках" v-model="word")
 
-	.cont(:style="`width: ${w}px`")
-		.mybt( v-for="item in buttons" v-ripple) {{ item.text }}
-		.mybt(v-ripple) {{ input }}
+	.cont(:style="`width: ${w}px`" :class="blClass")
+		.mybt( v-for="item in buttons"
+			v-ripple :class="compClass") {{ item.text }}
+		.mybt(v-ripple :class="compClass") {{ input }}
 
 </template>
 
@@ -21,9 +23,10 @@
 export default {
 	data () {
 		return {
-			min: 300,
+			min: 240,
 			max: 850,
 			wrap: false,
+			word: false,
 			buttonWidth: null,
 			input: 'Согласовать с замечаниями',
 			block: false,
@@ -35,6 +38,29 @@ export default {
 				{ text: 'Зарегистрировать' },
 				{ text: 'На согласование' }
 			]
+		}
+	},
+	computed: {
+		compClass () {
+			return (this.wrap && this.word && this.block) ? 'bl word wr' : '' ||
+						(this.block && this.word) ? 'bl word' : '' ||
+						(this.wrap && this.word) ? ['wr', 'word'] : '' ||
+						(this.wrap && this.block) ? 'bl wr' : '' ||
+						this.wrap ? 'wr' : '' ||
+						this.word ? 'word' : '' ||
+						this.block ? 'bl' : ''
+			// if (this.block) {
+			// 	return 'bl'
+			// } else if (this.block && this.wrap) {
+			// 	return 'bl wr'
+			// } else if (this.wrap) {
+			// 	return 'wr'
+			// } else return ''
+		},
+		blClass () {
+			if (this.wrap) {
+				return ''
+			} else return ''
 		}
 	}
 }
@@ -50,7 +76,10 @@ export default {
 	border: 1px solid #ccc;
 	margin: 0 auto;
 	padding: .5rem;
-	/* white-space: nowrap; */
+	line-height: 100%;
+	&.nowr {
+		white-space: nowrap;
+	}
 	.mybt {
 		cursor: pointer;
 		display: inline-block;
@@ -61,21 +90,33 @@ export default {
 		color: #fff;
 		text-transform: uppercase;
 		margin-right:  2px;
-		margin-bottom: 2px;
 		overflow: hidden;
 		white-space: wrap;
 		padding: 8px 20px;
 		border-radius: 5px;
+		text-align: center;
+		/* max-width: 315px; */
+		overflow: hidden;
+		&.bl {
+			display: block;
+			margin-bottom: 2px;
+			/* max-width: none; */
+		}
+		&.wr {
+			max-width: 220px;
+		}
+		&.word {
+			white-space: nowrap;
+		}
 		&:hover {
 			background: lighten($link, 5%);
 		}
 	}
 }
 form {
-	width: 600px;
+	width: 700px;
 	margin: 0 auto;
 	margin-bottom: 2rem;
-
 }
 
 </style>
