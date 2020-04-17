@@ -25,10 +25,19 @@
 		table.full
 			thead
 				tr
-					th(v-for="n in 5") One
-				tr(v-show="filter")
-					th(v-for="n in 5").lip
-						v-text-field
+					th(v-for="(item,index) in 5"
+						@mouseover="showByIndex = index" @mouseout="showByIndex = null"
+						)
+						span(v-show="showByIndex !== index") One
+						.over(v-show="showByIndex === index")
+							v-icon mdi-arrow-down
+							v-icon mdi-filter-outline
+							v-icon mdi-pin-outline
+
+						//- .quick(v-show="filter")
+				//- tr(v-show="filter")
+				//- 	th(v-for="n in 5").lip
+				//- 		v-text-field
 			tbody
 				tr(v-for="(item, i) in num" :key="i").ro
 					td(v-for="n in 5")
@@ -52,6 +61,7 @@ export default {
 			num1: 50,
 			list: list,
 			filter: false,
+			showByIndex: null,
 			treeOptions: {
 				checkbox: false,
 				parentSelect: true,
@@ -61,11 +71,30 @@ export default {
 		}
 	},
 	methods: {
+		high (el, event) {
+			let t = this.$refs['key' + el]
+
+			console.log(t)
+			console.log(el)
+
+			// let t = this.$el
+			// t.style.backgroundColor = color
+		},
+		prop (item, event) {
+			console.log(item)
+			console.log(event)
+		},
+		test (e) {
+			e.style.backgroundColor = 'red'
+		},
 		onScroll (e) {
 			this.offsetTop = window.pageYOffset
 		},
 		topage (e) {
 			this.$vuetify.goTo(e * this.windHeight)
+		},
+		showFilter () {
+			// this.filter = !this.filter
 		}
 	},
 	computed: {
@@ -199,5 +228,15 @@ h3 {
 		padding: 5px 7px;
 		border-color: #aaa;
 	}
+}
+.quick {
+	background: red;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.over {
 }
 </style>

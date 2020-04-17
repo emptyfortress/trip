@@ -1,7 +1,7 @@
 export default {
 	data () {
 		return {
-			num: 300,
+			num: 100,
 			treeOptions: {
 				checkbox: false,
 				parentSelect: true,
