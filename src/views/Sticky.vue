@@ -10,10 +10,13 @@
 	p.text-center Скролл общий для страницы
 	br
 	Toolbar(v-show="toolbar" :current="current" :group="group" @groupped="setGroup")
+	v-fade-transition
+		.group-top(v-show="group")
+			.inf Перетащите сюда заголовок колонки для группировки
 	.d-flex
 		v-slide-x-transition(mode="out-in")
-			.group(v-show="group")
-				.test
+			.group(v-show="group" )
+				.test(:class="!toolbar ? 'top' : ''")
 					h3 Группы
 						span 8
 					v-btn(icon @click="group = !group").clo
@@ -130,7 +133,6 @@ export default {
 	}
 	th {
 		cursor: pointer;
-		/* background: #dedede; */
 		background: #ccc;
 		height: 2.5rem;
 		position: sticky;
@@ -140,11 +142,6 @@ export default {
 		color: #666;
 		text-align: left;
 		padding: 0 1rem;
-		/* &.lip { */
-		/* 	top: 84px; */
-		/* 	background: lighten($yellow, 20%); */
-		/* 	padding: 0 1rem; */
-		/* } */
 		&.toolbar {
 			top: 45px;
 		}
@@ -168,9 +165,12 @@ export default {
 	margin-right: 0.5rem;
 	.test {
 		position: sticky;
-		top: 0;
+		top: 46px;
 		background: white;
 		box-shadow: 0 1px 3px #00000055;
+		&.top {
+			top: 0;
+		}
 		.tree-group {
 			height: 500px;
 			overflow: auto;
@@ -273,5 +273,20 @@ h3 {
 	left: 50%;
 	transform: translateX(40px);
 	background: transparent;
+}
+.group-top {
+	margin: 5px 0;
+	width: 100%;
+	display: block;
+	padding: 1rem;
+	border: 1px dashed $info;
+	&:hover {
+		background: #D9F9FF;
+	}
+}
+.inf {
+	font-style: italic;
+	color: #666;
+	font-size: .9rem;
 }
 </style>

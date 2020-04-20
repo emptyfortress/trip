@@ -10,16 +10,13 @@
 				i.icon-multi
 		.page Страницы:
 			span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''" @click="topage(index)").pag {{ index + 1 }}
-	v-fade-transition
-		.group-top(v-show="group")
-			.inf Перетащите сюда заголовок колонки для группировки
 
 </template>
 
 <script>
 
 export default {
-	props: ['current', 'group'],
+	props: ['current'],
 	data () {
 		return {
 			num: 100
@@ -73,13 +70,12 @@ export default {
 .all {
 	background: #e4e4e0;
 	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #fff;
+	position: sticky;
+	top: 0;
 }
 .tool {
 	display: flex;
 	justify-content: space-between;
-	position: sticky;
-	top: 0;
 	.toolcontent {
 		height: 44px;
 		line-height: 44px;
@@ -88,20 +84,5 @@ export default {
 			margin-left: -3px;
 		}
 	}
-}
-.group-top {
-	margin: 5px 0;
-	width: 100%;
-	display: block;
-	padding: 1rem;
-	border: 1px dashed $info;
-	&:hover {
-		background: #D9F9FF;
-	}
-}
-.inf {
-	font-style: italic;
-	color: #666;
-	font-size: .9rem;
 }
 </style>
