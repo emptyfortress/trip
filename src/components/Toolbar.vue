@@ -2,15 +2,14 @@
 .all
 	.tool
 		.toolcontent
-			v-btn(icon)
-				i.icon-select
-			v-btn(icon)
-				i.icon-read
-			v-btn(icon @click="$emit('groupped')")
-				i.icon-multi
+			template(v-for="(item, index) in buttons")
+				v-tooltip( bottom )
+					template(v-slot:activator="{ on }")
+						v-btn(icon v-on="on" @click="click(item.click)")
+							i(:class="item.icon")
+					span {{item.text}}
 		.page Страницы:
 			span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''" @click="topage(index)").pag {{ index + 1 }}
-
 </template>
 
 <script>
@@ -19,7 +18,17 @@ export default {
 	props: ['current'],
 	data () {
 		return {
-			num: 100
+			num: 100,
+			buttons: [
+				{ text: 'Выбрать', icon: 'icon-select', click: '' },
+				{ text: 'Выбрать', icon: 'icon-read', click: '' },
+				{ text: 'Выбрать', icon: 'icon-multi', click: 'groupped' },
+				{ text: 'Выбрать', icon: 'icon-search', click: '' },
+				{ text: 'Выбрать', icon: 'icon-refresh', click: '' },
+				{ text: 'Выбрать', icon: 'icon-empty', click: '' },
+				{ text: 'Выбрать', icon: 'icon-xls', click: '' },
+				{ text: 'Выбрать', icon: 'icon-setup', click: '' }
+			]
 		}
 	},
 	computed: {
@@ -33,6 +42,9 @@ export default {
 	methods: {
 		topage (e) {
 			this.$vuetify.goTo(e * this.windHeight)
+		},
+		click (e) {
+			this.$emit(e)
 		}
 	}
 }
