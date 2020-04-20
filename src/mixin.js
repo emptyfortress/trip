@@ -16,7 +16,7 @@ export default {
 		onNodeSelected (node) {
 			switch (node.id) {
 			case 100:
-				this.num = 300
+				this.num = 100
 				break
 			default:
 				this.num = this.getRandomInt(3, 16)
