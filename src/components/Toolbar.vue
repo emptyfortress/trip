@@ -1,5 +1,6 @@
 <template lang="pug">
 .all
+	hr.line
 	.tool
 		.toolcontent
 			template(v-for="(item, index) in buttons")
@@ -21,13 +22,13 @@ export default {
 			num: 100,
 			buttons: [
 				{ text: 'Выбрать', icon: 'icon-select', click: '' },
-				{ text: 'Выбрать', icon: 'icon-read', click: '' },
-				{ text: 'Выбрать', icon: 'icon-multi', click: 'groupped' },
-				{ text: 'Выбрать', icon: 'icon-search', click: '' },
-				{ text: 'Выбрать', icon: 'icon-refresh', click: '' },
-				{ text: 'Выбрать', icon: 'icon-empty', click: '' },
-				{ text: 'Выбрать', icon: 'icon-xls', click: '' },
-				{ text: 'Выбрать', icon: 'icon-setup', click: '' }
+				{ text: 'Прочитать все', icon: 'icon-read', click: '' },
+				{ text: 'Группировка', icon: 'icon-multi', click: 'groupped' },
+				{ text: 'Поиск', icon: 'icon-search', click: '' },
+				{ text: 'Обновить', icon: 'icon-refresh', click: '' },
+				{ text: 'Reset', icon: 'icon-empty', click: '' },
+				{ text: 'Экспорт', icon: 'icon-xls', click: '' },
+				{ text: 'Настройки', icon: 'icon-setup', click: '' }
 			]
 		}
 	},
@@ -81,7 +82,7 @@ export default {
 }
 .all {
 	background: #e4e4e0;
-	border-top: 1px solid #ccc;
+	/* border-top: 1px solid #ccc; */
 	position: sticky;
 	top: 0;
 }
@@ -91,10 +92,20 @@ export default {
 	.toolcontent {
 		height: 44px;
 		line-height: 44px;
+		.v-btn {
+			margin-right: .7rem;
+
+		}
 		i {
 			font-size: 1.2rem;
 			margin-left: -3px;
 		}
 	}
+}
+.line {
+	border: 0;
+	height: 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.23);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.6);
 }
 </style>

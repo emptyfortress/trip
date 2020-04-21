@@ -1,13 +1,21 @@
 <template lang="pug">
 .sticky(v-scroll="onScroll")
-	v-row(justify="space-between")
-		div
-			v-btn(depressed color="info" @click="group = !group").mr-2 Группировка
-			v-btn(depressed color="info" @click="toolbar = !toolbar") Toolbar
-		v-switch(v-model="lazy" label="Ленивая подгрузка")
-
 	.zag Вариант 2. Липкий заголовок таблицы
-	p.text-center Скролл общий для страницы
+	v-col(:md="8" :sm="12").c
+		v-expansion-panels(inset)
+			v-expansion-panel
+				v-expansion-panel-header Настройки
+				v-expansion-panel-content
+					v-row
+						v-col
+							v-switch(v-model="lazy" label="Ленивая подгрузка").mt-0
+							v-switch(v-model="group" label="Группировка").mt-0
+							v-switch(v-model="toolbar" label="Toolbar").mt-0
+						v-col
+							p При выключенном тулбаре пагинация показывается внизу таблицы.
+							p Не все кнопки в тулбаре работают.
+							p Группировка тоже не работает, а имитируется.
+
 	br
 	Toolbar(v-show="toolbar" :current="current" :group="group" @groupped="setGroup")
 	v-fade-transition
@@ -34,12 +42,12 @@
 						v-icon(v-if="index === smallFilter" color="#8b0000").sort.ml-2 mdi-filter
 						.over(v-show="showByIndex === index")
 							v-icon(@click="sortByIndex = index") mdi-arrow-down
-							v-icon(v-show="smallFilter === index" @click="smallFilter = null") mdi-filter-remove-outline
+							v-icon(v-show="smallFilter === index" @click="smallFilter = null" color="#8B0000") mdi-filter-remove-outline
 							v-icon(@click="filterByIndex = index") mdi-filter-outline
-							v-icon mdi-pin-outline
-							v-icon mdi-eye-off
+							v-icon(@click="filterByIndex = null") mdi-pin-outline
+							v-icon(@click="filterByIndex = null") mdi-eye-off
 						v-slide-y-transition
-							v-card.quick.elevation-3(v-show="filterByIndex === index" )
+							v-card.quick.elevation-3(v-show="filterByIndex === index")
 								v-text-field(autofocus clearable :key="index")
 								v-card-actions
 									v-btn(text color="primary" @click="filterByIndex = null; smallFilter = null") Отмена
@@ -62,6 +70,7 @@
 import list from '@/list.js'
 import mixin from '@/mixin.js'
 import Toolbar from '@/components/Toolbar'
+import ClickOutside from 'vue-click-outside'
 
 export default {
 	data () {
@@ -71,7 +80,7 @@ export default {
 			offsetTop: 0,
 			num1: 50,
 			list: list,
-			toolbar: true,
+			toolbar: false,
 			smallFilter: null,
 			showByIndex: null,
 			filterByIndex: null,
@@ -85,7 +94,8 @@ export default {
 		}
 	},
 	components: {
-		Toolbar
+		Toolbar,
+		ClickOutside
 	},
 	methods: {
 		setGroup () {
@@ -288,5 +298,12 @@ h3 {
 	font-style: italic;
 	color: #666;
 	font-size: .9rem;
+}
+.c {
+	margin: 0 auto;
+}
+.switch {
+	display: flex;
+	justify-content: space-between;
 }
 </style>
