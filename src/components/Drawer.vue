@@ -9,7 +9,6 @@ v-navigation-drawer(v-model="drawer" clipped app :mini-variant.sync="mini" dark 
 		v-list-item( v-for="(item, i) in menu" :key="i" link  @click="goTo(item.url)" :class="path === item.url ? 'active' : ''")
 			v-list-item-icon
 				i(:class="item.icon").ic
-
 			v-list-item-content
 				v-list-item-title {{ item.text }}
 	.mini(@click="toggleMini")

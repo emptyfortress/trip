@@ -12,8 +12,8 @@
 							v-switch(v-model="group" label="Группировка").mt-0
 							v-switch(v-model="toolbar" label="Toolbar").mt-0
 						v-col
-							p При выключенном тулбаре пагинация показывается внизу таблицы.
 							p Не все кнопки в тулбаре работают.
+							p При выключенном тулбаре пагинация показывается внизу таблицы.
 							p Группировка тоже не работает, а имитируется.
 
 	br
@@ -54,7 +54,7 @@
 									v-spacer
 									v-btn(text color="primary" @click="filterByIndex = null; smallFilter = index") Применить
 				tbody
-				tr(v-for="(item, i) in num" :key="i").ro
+				tr(v-for="(item, i) in num" :key="i" @contextmenu.prevent="$refs.ctxMenu.open").ro
 					td(v-for="n in 5")
 						v-lazy(:options="{threshold: .5}"  transition="fade-transition" v-if="lazy")
 							span Тут некоторые данные
@@ -64,13 +64,16 @@
 	v-alert(v-show="showPage && !toolbar" transition="scale-transition").up
 		.page Страницы:
 			span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''" @click="topage(index)").pag {{ index + 1 }}
+	context-menu(ref="ctxMenu")
+		myMenu(@showToolbar="toolbar = !toolbar" @showGroup="group = !group")
 </template>
 
 <script>
 import list from '@/list.js'
 import mixin from '@/mixin.js'
 import Toolbar from '@/components/Toolbar'
-import ClickOutside from 'vue-click-outside'
+import myMenu from '@/components/ContextMenu'
+import contextMenu from 'vue-context-menu'
 
 export default {
 	data () {
@@ -95,7 +98,8 @@ export default {
 	},
 	components: {
 		Toolbar,
-		ClickOutside
+		myMenu,
+		contextMenu
 	},
 	methods: {
 		setGroup () {
@@ -263,6 +267,7 @@ h3 {
 	height: 100%;
 	text-align: right;
 	margin-right: 0.5rem;
+	/* background: #333; */
 	background: rgba(255, 255, 255, 0.6);
 	line-height: 41px;
 	i {

@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'support';
-  src: url('../font/support.eot?94772513');
-  src: url('../font/support.eot?94772513#iefix') format('embedded-opentype'),
-       url('../font/support.woff2?94772513') format('woff2'),
-       url('../font/support.woff?94772513') format('woff'),
-       url('../font/support.ttf?94772513') format('truetype'),
-       url('../font/support.svg?94772513#support') format('svg');
+  src: url('../font/support.eot?42011639');
+  src: url('../font/support.eot?42011639#iefix') format('embedded-opentype'),
+       url('../font/support.woff2?42011639') format('woff2'),
+       url('../font/support.woff?42011639') format('woff'),
+       url('../font/support.ttf?42011639') format('truetype'),
+       url('../font/support.svg?42011639#support') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'support';
-    src: url('../font/support.svg?94772513#support') format('svg');
+    src: url('../font/support.svg?42011639#support') format('svg');
   }
 }
 */
@@ -57,30 +57,56 @@
  
 .icon-up:before { content: '\e800'; } /* '' */
 .icon-settings:before { content: '\e801'; } /* '' */
+.icon-faq-1:before { content: '\e802'; } /* '' */
 .icon-empty:before { content: '\e803'; } /* '' */
-.icon-smile:before { content: '\e804'; } /* '' */
+.icon-article:before { content: '\e804'; } /* '' */
 .icon-deadline:before { content: '\e805'; } /* '' */
-.icon-search-grid:before { content: '\e806'; } /* '' */
-.icon-table:before { content: '\e807'; } /* '' */
+.icon-bookmark:before { content: '\e806'; } /* '' */
+.icon-code:before { content: '\e807'; } /* '' */
 .icon-mail:before { content: '\e808'; } /* '' */
-.icon-send:before { content: '\e809'; } /* '' */
-.icon-loud:before { content: '\e80a'; } /* '' */
+.icon-download:before { content: '\e809'; } /* '' */
+.icon-arr-down:before { content: '\e80a'; } /* '' */
+.icon-new-window-1:before { content: '\e80b'; } /* '' */
 .icon-search-1:before { content: '\e80c'; } /* '' */
 .icon-filter:before { content: '\e80d'; } /* '' */
 .icon-close:before { content: '\e80e'; } /* '' */
-.icon-faq:before { content: '\e80f'; } /* '' */
+.icon-trash:before { content: '\e80f'; } /* '' */
 .icon-forum:before { content: '\e810'; } /* '' */
+.icon-arrow-down:before { content: '\e811'; } /* '' */
+.icon-tablet:before { content: '\e812'; } /* '' */
+.icon-arrow-up:before { content: '\e813'; } /* '' */
 .icon-eye1:before { content: '\e814'; } /* '' */
 .icon-star:before { content: '\e815'; } /* '' */
+.icon-phone:before { content: '\e816'; } /* '' */
+.icon-all-device:before { content: '\e817'; } /* '' */
 .icon-link:before { content: '\e818'; } /* '' */
 .icon-energy:before { content: '\e819'; } /* '' */
+.icon-big-device:before { content: '\e81a'; } /* '' */
 .icon-bell:before { content: '\e81b'; } /* '' */
 .icon-book:before { content: '\e81c'; } /* '' */
+.icon-arr-left:before { content: '\e81d'; } /* '' */
+.icon-semaphor:before { content: '\e81e'; } /* '' */
+.icon-slack:before { content: '\e81f'; } /* '' */
+.icon-layout:before { content: '\e820'; } /* '' */
+.icon-layout-view:before { content: '\e821'; } /* '' */
 .icon-prev:before { content: '\e822'; } /* '' */
 .icon-next:before { content: '\e823'; } /* '' */
+.icon-layout-add:before { content: '\e824'; } /* '' */
+.icon-layout-edit:before { content: '\e825'; } /* '' */
 .icon-info:before { content: '\e826'; } /* '' */
+.icon-if:before { content: '\e827'; } /* '' */
+.icon-edit:before { content: '\e828'; } /* '' */
+.icon-more:before { content: '\e829'; } /* '' */
+.icon-flow-cascade:before { content: '\e82a'; } /* '' */
+.icon-message:before { content: '\e82b'; } /* '' */
+.icon-star-empty-1:before { content: '\e82c'; } /* '' */
+.icon-plus:before { content: '\e82d'; } /* '' */
 .icon-hourglass:before { content: '\e82e'; } /* '' */
 .icon-bubble:before { content: '\e82f'; } /* '' */
+.icon-bubbles:before { content: '\e830'; } /* '' */
+.icon-done-1:before { content: '\e831'; } /* '' */
+.icon-counter:before { content: '\e832'; } /* '' */
+.icon-flow-tree:before { content: '\e833'; } /* '' */
 .icon-new-window:before { content: '\e834'; } /* '' */
 .icon-user:before { content: '\e835'; } /* '' */
 .icon-folder-o:before { content: '\e836'; } /* '' */
@@ -89,10 +115,17 @@
 .icon-doc:before { content: '\e839'; } /* '' */
 .icon-ham-d:before { content: '\e83a'; } /* '' */
 .icon-skrepka:before { content: '\e83b'; } /* '' */
+.icon-flow-branch:before { content: '\e83c'; } /* '' */
+.icon-send:before { content: '\e83d'; } /* '' */
 .icon-refresh:before { content: '\e83e'; } /* '' */
 .icon-multi:before { content: '\e83f'; } /* '' */
+.icon-loud:before { content: '\e840'; } /* '' */
 .icon-microphone:before { content: '\e841'; } /* '' */
+.icon-smile:before { content: '\e842'; } /* '' */
+.icon-lifering:before { content: '\e843'; } /* '' */
+.icon-signin:before { content: '\e844'; } /* '' */
 .icon-done:before { content: '\e845'; } /* '' */
+.icon-map:before { content: '\e846'; } /* '' */
 .icon-down:before { content: '\e848'; } /* '' */
 .icon-star-full:before { content: '\e84a'; } /* '' */
 .icon-star-empty:before { content: '\e84b'; } /* '' */
@@ -114,6 +147,7 @@
 .icon-numeric-2-box:before { content: '\e862'; } /* '' */
 .icon-magnify:before { content: '\e863'; } /* '' */
 .icon-search-scan:before { content: '\e864'; } /* '' */
+.icon-desktop:before { content: '\e866'; } /* '' */
 .icon-inbox:before { content: '\e867'; } /* '' */
 .icon-outbox:before { content: '\e868'; } /* '' */
 .icon-search:before { content: '\e869'; } /* '' */
@@ -125,5 +159,7 @@
 .icon-select:before { content: '\e86f'; } /* '' */
 .icon-setup:before { content: '\e870'; } /* '' */
 .icon-monitor-dashboard:before { content: '\e871'; } /* '' */
+.icon-toolbar-1:before { content: '\e8a3'; } /* '' */
 .icon-sort-alt-up:before { content: '\f160'; } /* '' */
 .icon-sort-alt-down:before { content: '\f161'; } /* '' */
+.icon-spread:before { content: '\f527'; } /* '' */
