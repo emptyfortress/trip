@@ -30,7 +30,6 @@ div
 		i.icon-xls
 		i.icon-next.next
 		span Экспорт в .xsl
-
 </template>
 
 <style scoped lang="scss">

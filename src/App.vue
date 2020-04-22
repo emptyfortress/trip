@@ -37,7 +37,7 @@ v-app
 
 	Footer(:info="info" :card="card" v-if="$route.path !== '/sticky'")
 	Dialog
-	v-alert(v-show="!preview" transition="scale-transition").plus
+	v-alert(v-show="!preview && $route.name !== 'create'" transition="scale-transition").plus
 		v-btn(dark fab large color="pink" @click="toggleAdd" :class="add ? 'active' : '' ")
 			v-icon(dark) mdi-plus
 	v-alert(v-show="scroll" transition="scale-transition").up
