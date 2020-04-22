@@ -2,6 +2,8 @@
 .create
 	.zag Создать документ
 	v-row(justify="center" align="stretch").myrow
+		v-col(cols="12" :md="5" v-show="preview" )
+			.preview
 		v-col(cols="12" :md="5")
 			v-card(flat).mycard
 				v-text-field(outlined label="Тема"  dense autofocus clearable)
@@ -12,13 +14,24 @@
 						v-date-picker(v-model="date" @input="menu2 = false")
 					v-text-field(outlined prepend-icon="mdi-account" label="Подготовил"  dense clearable).ml-8
 				v-text-field(outlined label="Описание"  dense clearable)
-				.fls
-					i.icon-skrepka
-					span Прикрепить файлы
+				.d-flex
+					.fls
+						i.icon-skrepka
+						span Прикрепить файлы
+					v-switch(label="Превью" v-model="preview")
+				br
+				v-expansion-panels
+					v-expansion-panel
+						v-expansion-panel-header.blockhd.rel Получатели
+							v-btn(icon).plus
+								v-icon mdi-plus
+						v-expansion-panel-content Данные отсутствуют.
 				v-card-actions.mt-5
+					v-switch(label="Превью" v-model="preview")
 					v-spacer
 					v-btn(text) Отмена
 					v-btn(depressed color="primary") Создать
+
 </template>
 
 <script>
@@ -27,6 +40,7 @@ export default {
 	data () {
 		return {
 			// date: new Date().toISOString().substr(0, 10),
+			preview: false,
 			date: '',
 			menu: false,
 			modal: false,
@@ -64,11 +78,22 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-grow: 1;
 	i {
 		font-size: 2.0rem;
 	}
 	&:hover {
 		background: #b7d2c0;
 	}
+}
+.plus {
+	position: absolute;
+	right: 3rem;
+}
+.preview {
+	width: 100%;
+	height: 100%;
+	/* height: 100%; */
+	background: #ccc;
 }
 </style>
