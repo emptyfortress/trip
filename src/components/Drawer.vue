@@ -6,7 +6,8 @@ v-navigation-drawer(v-model="drawer" clipped app :mini-variant.sync="mini" dark 
 				i(style="font-size: 1.6rem").icon-home-roof
 			v-list-item-content
 				v-list-item-title Главная
-		v-list-item( v-for="(item, i) in menu" :key="i" link  @click="goTo(item.url)" :class="path === item.url ? 'active' : ''")
+		//- v-list-item( v-for="(item, i) in menu" :key="i" link  @click="goTo(item.url)" :class="path === item.url ? 'active' : ''")
+		v-list-item( v-for="(item, i) in menu" :key="i" link  @click="goTo(item.url)" :class="classCompute(item)")
 			v-list-item-icon
 				i(:class="item.icon").ic
 			v-list-item-content
@@ -26,7 +27,6 @@ import icons from '@/components/svg.vue'
 export default {
 	data () {
 		return {
-			color: '#2C4159',
 			size: {
 				width: 50,
 				height: 24
@@ -37,7 +37,8 @@ export default {
 				{ url: '/dash1', mini: 'Вход.', icon: 'icon-monitor-dashboard', text: 'Дашборд 1' },
 				{ url: '/dash2', mini: 'Вход.', icon: 'icon-monitor-dashboard', text: 'Дашборд 2' },
 				{ url: '/btn', mini: 'Вход.', icon: 'icon-smile', text: 'Кнопки' },
-				{ url: '/create', mini: 'Вход.', icon: 'icon-plus', text: 'Создать документ' }
+				{ url: '/create', mini: 'Вход.', icon: 'icon-plus', text: 'Создать документ' },
+				{ url: '/delo', mini: 'Вход.', icon: 'icon-doc', text: 'Документ' }
 			]
 		}
 	},
@@ -50,9 +51,21 @@ export default {
 			if (this.mini === true) {
 				this.$store.commit('setMini', false)
 			} else this.$store.commit('setMini', true)
+		},
+		classCompute (item) {
+			if (this.path === item.url && this.path === '/delo') {
+				return 'active-delo'
+			} else if (this.path === item.url) {
+				return 'active'
+			} else return ''
 		}
 	},
 	computed: {
+		color () {
+			if (this.$route.name === 'delo') {
+				return 'doc'
+			} else return 'dark'
+		},
 		path () {
 			return this.$route.path
 		},
@@ -102,6 +115,9 @@ export default {
 	margin-right: 0;
 }
 .active {
-	background: lighten($dark, 6%);
+	background: lighten($dark, 5%);
+}
+.active-delo {
+	background: lighten($doc, 5%);
 }
 </style>

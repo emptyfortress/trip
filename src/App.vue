@@ -62,12 +62,17 @@ export default {
 		SearchPanel
 	},
 	data: () => ({
-		color: '#2C4159',
+		// color: '#2C4159',
 		offsetTop: true,
 		scroll: false,
 		logo: true
 	}),
 	computed: {
+		color () {
+			if (this.$route.name === 'delo') {
+				return 'doc'
+			} else return 'dark'
+		},
 		card () {
 			switch (this.$route.name) {
 			case 'home':
