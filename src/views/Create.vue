@@ -1,10 +1,10 @@
 <template lang="pug">
 .create
-	.zag Создать документ
+	.zag Новый документ
 	v-row(justify="center" align="stretch").myrow
-		v-col(cols="12" :md="5" v-show="preview" )
+		v-col(cols="12" :md="6" :sm="12" v-show="file" )
 			.preview
-		v-col(cols="12" :md="5")
+		v-col(cols="12" :md="6" :sm="12")
 			v-card(flat).mycard
 				v-text-field(outlined label="Тема"  dense autofocus clearable)
 				.d-flex
@@ -14,20 +14,31 @@
 						v-date-picker(v-model="date" @input="menu2 = false")
 					v-text-field(outlined prepend-icon="mdi-account" label="Подготовил"  dense clearable).ml-8
 				v-text-field(outlined label="Описание"  dense clearable)
-				.d-flex
-					.fls
-						i.icon-skrepka
-						span Прикрепить файлы
-					v-switch(label="Превью" v-model="preview")
-				br
-				v-expansion-panels
+				.fls
+					i.icon-skrepka
+					span Прикрепить файлы
+				//- br
+				v-expansion-panels(v-model="panel" multiple).mt-2
 					v-expansion-panel
-						v-expansion-panel-header.blockhd.rel Получатели
+						v-expansion-panel-header.blockhd Файлы ({{files.length}})
+						v-expansion-panel-content
+							v-simple-table(dense).full
+								tbody
+									tr(v-for="item in files" :key="item.id" :class="item.id === file ? 'act' : ''" @click="setFile(item.id)")
+										td.px-0
+											img(:src="iconPath(item.icon)").ic
+										td.pl-0 {{ item.name }}
+										td {{ item.size }}
+										td.text-right.px-0
+											v-btn(icon small @click.stop="deleteFile(item)")
+												i.icon-trash-line
+					v-expansion-panel
+						v-expansion-panel-header.blockhd.rel Получатели (0)
 							v-btn(icon).plus
 								v-icon mdi-plus
 						v-expansion-panel-content Данные отсутствуют.
 				v-card-actions.mt-5
-					v-switch(label="Превью" v-model="preview")
+					//- v-switch(label="Превью" v-model="preview")
 					v-spacer
 					v-btn(text) Отмена
 					v-btn(depressed color="primary") Создать
@@ -41,10 +52,30 @@ export default {
 		return {
 			// date: new Date().toISOString().substr(0, 10),
 			preview: false,
+			file: null,
 			date: '',
-			menu: false,
-			modal: false,
-			menu2: false
+			menu2: false,
+			panel: [0],
+			files: [
+				{ id: 1, icon: 'word', name: 'Договор с ООО Ромашка.doc', size: '23kB', cl: 'act' },
+				{ id: 2, icon: 'word', name: 'Приложение.doc', size: '11kB' },
+				{ id: 3, icon: 'xls', name: 'Смета расходов.xls', size: '34kB' }
+			]
+		}
+	},
+	methods: {
+		iconPath (e) {
+			if (e === 'word') {
+				return require(`@/assets/img/files/file-ext-word.png`)
+			} else if (e === 'xls') {
+				return require(`@/assets/img/files/file-ext-excel.png`)
+			}
+		},
+		setFile (e) {
+			this.file = e
+		},
+		deleteFile (e) {
+			this.file = null
 		}
 	}
 }
@@ -57,15 +88,21 @@ export default {
 .create {
 }
 .myrow {
+	transition: .3s ease all;
 }
 .col {
 	margin-right: 1rem;
 }
 .full {
+	width: 100%;
+	tr {
+		cursor: pointer;
+	}
 }
 .mycard {
 	padding: 2rem;
 	background: transparent;
+	padding-top: 1rem;
 }
 .v-input {
 	height: 52px;
@@ -80,7 +117,7 @@ export default {
 	align-items: center;
 	flex-grow: 1;
 	i {
-		font-size: 2.0rem;
+		font-size: 1.6rem;
 	}
 	&:hover {
 		background: #b7d2c0;
@@ -92,8 +129,22 @@ export default {
 }
 .preview {
 	width: 100%;
-	height: 100%;
-	/* height: 100%; */
+	height: calc(100vh - 200px);
 	background: #ccc;
+	margin-top: 1rem;
+	/* position: absolute; */
+}
+.icon-trash-line {
+	font-size: 1.0rem;
+}
+.ic {
+	height: 19px;
+	transform: translateY(3px);
+}
+.zag {
+	color: #333;
+}
+.act {
+	background: #d1e8fb;
 }
 </style>
