@@ -19,8 +19,14 @@
 				v-btn(color="docolor" outlined icon tile).round
 					v-icon mdi-dots-horizontal
 
+			v-tabs.mytab
+				v-tab Главная
+				v-tab Ход согласования
+				v-tab-item(key="1")
 			.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке. Государственная регистрация нормативных правовых актов осуществляется Минюстом России, которое ведет Государственный реестр нормативных правовых актов федеральных органов исполнительной власти.
 			MainTab
+				v-tab-item(key="2")
+					.mt-9 Здесь ход согласования
 
 	.cardd.no-scroll(v-else)
 		Status(title="не начато").mb-5
@@ -32,13 +38,18 @@
 			v-btn(color="docolor" dark depressed) На согласование
 			v-btn(color="docolor" outlined icon tile).round
 				v-icon mdi-dots-horizontal
-
+		v-tabs.mytab
+			v-tab Главная
+			v-tab Ход согласования
+			v-tab-item(key="1")
 		.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке. Государственная регистрация нормативных правовых актов осуществляется Минюстом России, которое ведет Государственный реестр нормативных правовых актов федеральных органов исполнительной власти.
 		MainTab
+			v-tab-item(key="2")
+				.mt-9 Здесь ход согласования
 
 	v-speed-dial(v-model="fab" fixed bottom right transition="slide-y-reverse-transition" direction="top").myfab
 		template(v-slot:activator)
-			v-btn(color="taskcolor" dark fab large)
+			v-btn(color="pink" dark fab large)
 				v-icon.my mdi-plus
 		v-tooltip(left)
 			template(v-slot:activator="{ on }")
@@ -46,16 +57,16 @@
 			span Группа заданий
 		v-tooltip(left)
 			template(v-slot:activator="{on}")
-				v-btn(color="taskcolor" dark fab small v-on="on") ЗИ
+				v-btn(color="taskcolor" dark fab small v-on="on") ИСП
 			span Задание на исполнение
 		v-tooltip(left)
 			template(v-slot:activator="{on}")
-				v-btn(color="taskcolor" dark fab small v-on="on") ЗО
+				v-btn(color="taskcolor" dark fab small v-on="on") ОЗН
 			span Задание на ознакомление
 		v-tooltip(left)
 			template(v-slot:activator="{on}")
-				v-btn(color="dark" dark fab small v-on="on")
-					v-icon mdi-plus
+				v-btn(color="pink" dark fab small v-on="on")
+					v-icon mdi-dots-horizontal
 			span Выбрать
 </template>
 
