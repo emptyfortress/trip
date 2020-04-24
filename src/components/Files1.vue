@@ -1,31 +1,23 @@
 <template lang="pug">
 .files.mt-4
-	v-expansion-panels(v-model="panel")
-		v-expansion-panel
-			v-expansion-panel-header
-				.blockhd.rel Файлы (4)
-					v-btn(icon small @click.stop="").plus
-						v-icon mdi-plus
-
-			v-expansion-panel-content
-				v-simple-table.filetable
-					thead
-						tr
-							//- th
-							th Имя
-							th Версия
-							th
-					tbody
-						tr(v-for="item in files" :key="item.name" :class="item.id === file ? 'act' : ''" @click="setFile(item.id)")
-							//- td(width="20").px-0
-							//- 	v-icon(v-if="item.id === file" color="primary") mdi-forward
-							td
-								img(:src="iconPath(item.icon)")
-								.name {{ item.name }}
-							td {{ item.v }}
-							td(width="30").px-0
-								v-btn(small icon)
-									v-icon mdi-dots-vertical
+	v-simple-table.filetable
+		thead
+			tr
+				//- th
+				th Имя
+				th Версия
+				th
+		tbody
+			tr(v-for="item in files" :key="item.name" :class="item.id === file ? 'act' : ''" @click="setFile(item.id)")
+				//- td(width="20").px-0
+				//- 	v-icon(v-if="item.id === file" color="primary") mdi-forward
+				td
+					img(:src="iconPath(item.icon)")
+					.name {{ item.name }}
+				td {{ item.v }}
+				td(width="30").px-0
+					v-btn(small icon @click.stop="")
+						v-icon mdi-dots-vertical
 
 </template>
 

@@ -22,7 +22,7 @@
 			.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
 			MainTab
 
-	.cardd(v-else)
+	.cardd.no-scroll(v-else)
 		Status(title="не начато").mb-5
 		br
 		.zag.mb-4 {{ item[0].title }}
@@ -147,6 +147,9 @@ export default {
 		background: #ccc;
 	}
 }
+.no-scroll {
+	height: auto;
+}
 .zag {
 	color: black;
 	text-align: left;
@@ -178,7 +181,7 @@ export default {
 .all {
 	width: 100%;
 	height: calc(100vh - 100px);
-	padding-top: 2rem;
+	/* padding-top: 2rem; */
 }
 .descr {
 	margin: 1rem auto;
