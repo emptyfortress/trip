@@ -68,7 +68,8 @@
 				v-btn(color="dark" dark fab small v-on="on")
 					v-icon mdi-dots-horizontal
 			span Выбрать
-	Comments(v-show="chat")
+	v-scale-transition(origin="top left")
+		Comments(v-show="chat" :myx="20" :myy="60" style="z-index: 100")
 </template>
 
 <script>
