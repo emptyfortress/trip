@@ -14,8 +14,8 @@
 			.zag.mb-4 {{ item[0].title }}
 			.btgroup
 				v-btn(color="docolor" outlined) Зарегистрировать
-				v-btn(color="docolor" dark depressed) На ознакомление
-				v-btn(color="docolor" dark depressed) На согласование
+				v-btn(color="docolor" dark ) На ознакомление
+				v-btn(color="docolor" dark ) На согласование
 				v-btn(color="docolor" outlined icon tile).round
 					v-icon mdi-dots-horizontal
 
@@ -34,8 +34,8 @@
 		.zag.mb-4 {{ item[0].title }}
 		.btgroup
 			v-btn(color="docolor" outlined) Зарегистрировать
-			v-btn(color="docolor" dark depressed ripple) На ознакомление
-			v-btn(color="docolor" dark depressed) На согласование
+			v-btn(color="docolor" dark ) На ознакомление
+			v-btn(color="docolor" dark ) На согласование
 			v-btn(color="docolor" outlined icon tile).round
 				v-icon mdi-dots-horizontal
 		v-tabs.mytab
@@ -49,7 +49,7 @@
 
 	v-speed-dial(v-model="fab" fixed bottom right transition="slide-y-reverse-transition" direction="top").myfab
 		template(v-slot:activator)
-			v-btn(color="pink" dark fab large)
+			v-btn(color="dark" dark fab large)
 				v-icon.my mdi-plus
 		v-tooltip(left)
 			template(v-slot:activator="{ on }")
@@ -65,7 +65,7 @@
 			span Задание на ознакомление
 		v-tooltip(left)
 			template(v-slot:activator="{on}")
-				v-btn(color="pink" dark fab small v-on="on")
+				v-btn(color="dark" dark fab small v-on="on")
 					v-icon mdi-dots-horizontal
 			span Выбрать
 </template>
