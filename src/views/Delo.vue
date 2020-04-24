@@ -36,6 +36,27 @@
 		.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке. Государственная регистрация нормативных правовых актов осуществляется Минюстом России, которое ведет Государственный реестр нормативных правовых актов федеральных органов исполнительной власти.
 		MainTab
 
+	v-speed-dial(v-model="fab" fixed bottom right transition="slide-y-reverse-transition" direction="top")
+		template(v-slot:activator)
+			v-btn(v-model="add" color="taskcolor" dark fab large)
+				v-icon mdi-plus
+		v-tooltip(left)
+			template(v-slot:activator="{on}")
+				v-btn(color="taskcolor" dark fab small v-on="on") ГЗ
+			span Группа заданий
+		v-tooltip(left)
+			template(v-slot:activator="{on}")
+				v-btn(color="taskcolor" dark fab small v-on="on") ЗИ
+			span Задание на исполнение
+		v-tooltip(left)
+			template(v-slot:activator="{on}")
+				v-btn(color="taskcolor" dark fab small v-on="on") ЗО
+			span Задание на ознакомление
+		v-tooltip(left)
+			template(v-slot:activator="{on}")
+				v-btn(color="dark" dark fab small v-on="on").mb-9
+					v-icon mdi-plus
+			span Выбрать
 </template>
 
 <script>
@@ -48,7 +69,7 @@ import { dragZone, dragHandle, dragContent } from 'vue-drag-zone'
 export default {
 	data () {
 		return {
-			color: '#dedede',
+			add: false,
 			actions: [
 				{ title: 'Действие 3' },
 				{ title: 'Действие 4' },
@@ -183,6 +204,7 @@ export default {
 .all {
 	width: 100%;
 	height: calc(100vh - 100px);
+	position: relative;
 }
 .descr {
 	margin: 1rem auto;
@@ -190,4 +212,5 @@ export default {
 .round {
 	border-radius: 4px;
 }
+
 </style>
