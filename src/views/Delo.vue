@@ -68,6 +68,7 @@
 				v-btn(color="dark" dark fab small v-on="on")
 					v-icon mdi-dots-horizontal
 			span Выбрать
+	Comments(v-show="chat")
 </template>
 
 <script>
