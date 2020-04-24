@@ -1,5 +1,5 @@
 <template lang="pug">
-.files.mt-4
+.files
 	v-simple-table.filetable
 		thead
 			tr
@@ -76,6 +76,9 @@ export default {
 	img {
 		vertical-align: middle;
 	}
+}
+.filetable th {
+	height: 26px;
 }
 .name {
 	display: inline;

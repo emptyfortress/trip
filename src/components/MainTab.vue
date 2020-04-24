@@ -13,7 +13,7 @@
 							td(v-else)
 								v-icon {{item.icon}}
 								span  ____________
-					table.attributes
+					table.attributes.shrink
 						tr(v-for="item in attr2" :key="item.id")
 							td.attr {{ item.attr }}
 							td.link
@@ -83,30 +83,24 @@ export default {
 @import '@/assets/css/colors.scss';
 
 .attributes {
-	/* background: #ccc; */
-	/* max-width: 50%; */
 	min-width: 200px;
 	padding-right: .5rem;
 	font-size: .95rem;
 	&:not(:last-child) {
 		margin-bottom: 2rem;
 	}
-	&.big {
-		font-size: 1.1rem;
-	}
 	td {
 		vertical-align: top;
 		padding-right: .5rem;
 		&.attr {
 			opacity: .6;
-			/* text-align: right; */
 		}
 	}
 	.v-icon {
 		font-size: 18px;
 	}
-	span {
-		opacity: .5;
+	&.shrink {
+		flex-shrink: 1;
 	}
 }
 .myrow {
@@ -123,6 +117,7 @@ export default {
 .link  {
 	span {
 	opacity: 1;
+	/* word-wrap:break-word; */
 	/* color: $link; */
 	/* cursor: pointer; */
 	/* display: block; */

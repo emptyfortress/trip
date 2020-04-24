@@ -28,7 +28,7 @@
 		.zag.mb-4 {{ item[0].title }}
 		.btgroup
 			v-btn(color="docolor" outlined) Зарегистрировать
-			v-btn(color="docolor" dark depressed) На ознакомление
+			v-btn(color="docolor" dark depressed ripple) На ознакомление
 			v-btn(color="docolor" dark depressed) На согласование
 			v-btn(color="docolor" outlined icon tile).round
 				v-icon mdi-dots-horizontal
@@ -36,12 +36,12 @@
 		.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке. Государственная регистрация нормативных правовых актов осуществляется Минюстом России, которое ведет Государственный реестр нормативных правовых актов федеральных органов исполнительной власти.
 		MainTab
 
-	v-speed-dial(v-model="fab" fixed bottom right transition="slide-y-reverse-transition" direction="top")
+	v-speed-dial(v-model="fab" fixed bottom right transition="slide-y-reverse-transition" direction="top").myfab
 		template(v-slot:activator)
-			v-btn(v-model="add" color="taskcolor" dark fab large)
-				v-icon mdi-plus
+			v-btn(color="taskcolor" dark fab large)
+				v-icon.my mdi-plus
 		v-tooltip(left)
-			template(v-slot:activator="{on}")
+			template(v-slot:activator="{ on }")
 				v-btn(color="taskcolor" dark fab small v-on="on") ГЗ
 			span Группа заданий
 		v-tooltip(left)
@@ -54,7 +54,7 @@
 			span Задание на ознакомление
 		v-tooltip(left)
 			template(v-slot:activator="{on}")
-				v-btn(color="dark" dark fab small v-on="on").mb-9
+				v-btn(color="dark" dark fab small v-on="on")
 					v-icon mdi-plus
 			span Выбрать
 </template>
@@ -213,4 +213,7 @@ export default {
 	border-radius: 4px;
 }
 
+.v-speed-dial--is-active i.my {
+	transform: rotate(45deg);
+}
 </style>
