@@ -1,6 +1,6 @@
 <template lang="pug">
 .maintab
-	v-expansion-panels(hover tile flat v-model="panels" multiple)
+	v-expansion-panels(hover tile flat v-model="panels" multiple inset)
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Информация
@@ -169,4 +169,8 @@ export default {
 	opacity: .6;
 	margin-right: .5rem;
 }
+.theme--light.v-expansion-panels .v-expansion-panel--active {
+	box-shadow: 0 1px 6px rgba(0,0,0,.2);
+}
+
 </style>

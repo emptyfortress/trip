@@ -1,34 +1,23 @@
 <template lang="pug">
-.statu
+.stat
 	span {{ title }}
 </template>
 
 <script>
 
 export default {
-	props: ['title'],
-	data () {
-		return {
-			items: [
-				{ title: 'Взять в работу' },
-				{ title: 'Отправить на согласование' },
-				{ title: 'Отправить на ознакомление' },
-				{ title: 'Делегировать' }
-			]
-		}
-	}
+	props: ['title']
 }
 
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/css/colors.scss';
 
-.statu {
-	display: inline-block;
+.stat {
+	/* display: inline-block; */
 	font-size: 1.1rem;
 	white-space: nowrap;
-	text-align: center;
+	/* text-align: left; */
 	padding: .5rem;
 	cursor: pointer;
 	/* color: $link; */
