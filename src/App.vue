@@ -37,7 +37,7 @@ v-app
 
 	Footer(:info="info" :card="card" v-if="showFooter")
 	Dialog
-	v-alert(v-show="!preview && ($route.name !== 'create') && ($route.name !== 'delo')" transition="scale-transition").plus
+	v-alert(v-show="!preview && ($route.name !== 'create')" transition="scale-transition").plus
 		v-btn(dark fab large color="pink" @click="toggleAdd" :class="add ? 'active' : '' ")
 			v-icon(dark) mdi-plus
 	v-alert(v-show="scroll" transition="scale-transition").up
@@ -70,8 +70,8 @@ export default {
 		chooseBg () {
 			if (this.$route.path === '/') {
 				return 'bg'
-			} else if (this.$route.path === '/delo') {
-				return ''
+			// } else if (this.$route.path === '/delo') {
+			// 	return ''
 			} else return 'bgg'
 		},
 		showFooter () {
@@ -205,6 +205,9 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
+.v-application {
+	/* font-family: "Arial" */
+}
 .lft {
 	margin-left: 18px;
 }
@@ -243,7 +246,7 @@ export default {
 	background: transparent;
 	position: fixed;
 	transition: all .2s ease;
-	bottom: 2rem;
+	bottom: 1rem;
 	right: 1rem;
 	z-index: 1000;
 	.active {

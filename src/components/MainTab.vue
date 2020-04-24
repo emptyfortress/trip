@@ -14,23 +14,10 @@
 								v-icon {{item.icon}}
 								span  ____________
 					table.attributes
-						tr(v-for="item in attr1" :key="item.id")
+						tr(v-for="item in attr2" :key="item.id")
 							td.attr {{ item.attr }}
-							td {{ item.value }}
-					div.max
-						table.attributes
-							tr(v-for="item in attr2" :key="item.id")
-								td.attr {{ item.attr }}
-								td.link
-									span(v-for="link in item.value").mr-2 {{ link }}
-		v-expansion-panel
-			v-expansion-panel-header
-				.blockhd.rel Информация (вариант)
-			v-expansion-panel-content
-				.list
-					.item(v-for="item in attr")
-						.label {{ item.attr }}
-						.value {{ item.value }}
+							td.link
+								span(v-for="link in item.value").mr-2 {{ link }}
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Файлы (4)
@@ -62,22 +49,7 @@ import Hod from '@/components/Hod'
 export default {
 	data () {
 		return {
-			panels: [2],
-			attr: [
-				{ id: 0, attr: 'Вид:', value: 'Входящий' },
-				{ id: 1, attr: 'Состояние:', value: 'Не начато' },
-				{ id: 2, attr: 'Подготовил:', value: 'Порхачева Н.' },
-				{ id: 3, attr: 'Рег.№:', icon: 'mdi-plus' },
-				{ id: 4, attr: 'Дата регистрации:', icon: 'mdi-calendar-blank' },
-				{ id: 5, attr: 'Инициатор:', value: 'Волков А.В.' },
-				{ id: 6, attr: 'Исполнитель:', value: 'Воробьев С.В.' },
-				{ id: 7, attr: 'Срок:', value: '31.01.2020' },
-				{ id: 8, attr: 'Атрибут:', value: 'значение' },
-				{ id: 9, attr: 'Атрибут:', value: 'значение' },
-				{ id: 10, attr: 'Согласующие:', value: 'Волков А., Карачева O., Скворцов Г.' },
-				{ id: 1, attr: 'Подписывает:', value: 'Воробьев С.В.' },
-				{ id: 2, attr: 'Получатели:', value: 'Гусев П., Уткин А., Скворцов Г., Смирнов С.' }
-			],
+			panels: [0],
 			attr0: [
 				{ id: 0, attr: 'Вид:', value: 'Входящий' },
 				{ id: 1, attr: 'Состояние:', value: 'Не начато' },
@@ -111,8 +83,11 @@ export default {
 @import '@/assets/css/colors.scss';
 
 .attributes {
-	padding-right: 1rem;
-	font-size: .9rem;
+	/* background: #ccc; */
+	/* max-width: 50%; */
+	min-width: 200px;
+	padding-right: .5rem;
+	font-size: .95rem;
 	&:not(:last-child) {
 		margin-bottom: 2rem;
 	}
@@ -121,9 +96,10 @@ export default {
 	}
 	td {
 		vertical-align: top;
-		padding: 0 0.9rem;
+		padding-right: .5rem;
 		&.attr {
-			text-align: right;
+			opacity: .6;
+			/* text-align: right; */
 		}
 	}
 	.v-icon {
@@ -133,13 +109,10 @@ export default {
 		opacity: .5;
 	}
 }
-.attr {
-	opacity: .6;
-}
 .myrow {
 	display: flex;
-	justify-content: space-around;
-	padding: 1rem 0;
+	justify-content: space-between;
+	padding: 0 0 1rem 0 ;
 	flex-wrap: wrap;
 }
 .plus {
@@ -150,12 +123,12 @@ export default {
 .link  {
 	span {
 	opacity: 1;
-	color: $link;
-	cursor: pointer;
-	display: block;
-	&:hover {
-		text-decoration: underline;
-	}
+	/* color: $link; */
+	/* cursor: pointer; */
+	/* display: block; */
+	/* &:hover { */
+	/* 	text-decoration: underline; */
+	/* } */
 	}
 }
 .list {

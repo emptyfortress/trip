@@ -1,6 +1,6 @@
 <template lang="pug">
 .all
-	drag-zone(v-if="inlinePreview").zone
+	drag-zone(v-if="inlinePreview").zone.pt-5
 		drag-content(v-show="$vuetify.breakpoint.mdAndUp").content.one
 			v-slide-y-transition(mode="out-in")
 				v-skeleton-loader(v-if="lo" height="100%" width="100%" type="image" ).skel
@@ -9,7 +9,7 @@
 		drag-handle(v-show="$vuetify.breakpoint.mdAndUp" ).hand
 			div
 		drag-content.cardd
-			Status(title="не начато").mb-5
+			Status(title="не начато")
 			br
 			.zag.mb-4 {{ item[0].title }}
 			.btgroup
@@ -19,7 +19,7 @@
 				v-btn(color="docolor" outlined icon tile).round
 					v-icon mdi-dots-horizontal
 
-			.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+			.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке. Государственная регистрация нормативных правовых актов осуществляется Минюстом России, которое ведет Государственный реестр нормативных правовых актов федеральных органов исполнительной власти.
 			MainTab
 
 	.cardd.no-scroll(v-else)
@@ -33,7 +33,7 @@
 			v-btn(color="docolor" outlined icon tile).round
 				v-icon mdi-dots-horizontal
 
-		.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+		.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке. Государственная регистрация нормативных правовых актов осуществляется Минюстом России, которое ведет Государственный реестр нормативных правовых актов федеральных органов исполнительной власти.
 		MainTab
 
 </template>
@@ -149,6 +149,8 @@ export default {
 }
 .no-scroll {
 	height: auto;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 .zag {
 	color: black;
@@ -181,7 +183,6 @@ export default {
 .all {
 	width: 100%;
 	height: calc(100vh - 100px);
-	/* padding-top: 2rem; */
 }
 .descr {
 	margin: 1rem auto;

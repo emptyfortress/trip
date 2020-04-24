@@ -45,7 +45,7 @@ export default {
 	props: ['file'],
 	data () {
 		return {
-			color: '#dedede',
+			color: '#ccc',
 			chat: false,
 			files: [
 				'Договор с ООО Ромашка.doc',
