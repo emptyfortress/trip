@@ -9,13 +9,11 @@
 		drag-handle(v-show="$vuetify.breakpoint.mdAndUp" ).hand
 			div
 		drag-content.cardd
-			.type
-				v-chip(color="#ccc" small) Входящий
-				Status(title="не начато")
+			Status(title="не начато").mb-5
 			br
 			.zag.mb-4 {{ item[0].title }}
 			.btgroup
-				v-btn(color="primary" depressed) Зарегистрировать
+				v-btn(color="docolor" outlined) Зарегистрировать
 				v-btn(color="primary" depressed) Действие 1
 				v-btn(color="primary" depressed) Действие 2
 
@@ -45,8 +43,8 @@
 
 	.pa-4(v-else)
 		.type
-			v-chip(color="#ccc" small) Входящий
-			//- Status(title="не начато")
+			//- v-chip(color="#ccc" small) Входящий
+			Status(title="не начато!!!")
 		br
 		.zag.mb-4 {{ item[0].title }}
 		.btgroup
@@ -181,6 +179,7 @@ export default {
 .cardd {
 	width: 100%;
 	padding: 2rem;
+	padding-top: 0;
 	height: 100%;
 	overflow: auto;
 }
@@ -243,7 +242,8 @@ export default {
 }
 .all {
 	width: 100%;
-	height: calc(100vh - 120px);
+	height: calc(100vh - 100px);
+	padding-top: 2rem;
 }
 .empty {
 	text-align: center;

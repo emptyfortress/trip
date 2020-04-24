@@ -20,7 +20,7 @@ v-app
 				img(src="@/assets/img/user0.svg" )
 		v-btn( href="" icon  v-show="offsetTop" @click="showPreview")
 			v-icon mdi-dock-right
-	v-content(v-scroll="handleScroll" id="target" :class="$route.name === 'home' ? 'bg' : 'bgg'")
+	v-content(v-scroll="handleScroll" id="target" :class="chooseBg")
 		v-container(fluid :class="drawer ? '' : 'leftmargin'").rel
 			transition(name="fade" mode="out-in")
 				v-btn(fab outlined color="#ccc" small v-show="$route.name === 'card' && !searchMode && !fullWindow" @click="back").back
@@ -35,9 +35,9 @@ v-app
 						router-view
 				SearchPanel(v-else key="search")
 
-	Footer(:info="info" :card="card" v-if="$route.path !== '/sticky'")
+	Footer(:info="info" :card="card" v-if="showFooter")
 	Dialog
-	v-alert(v-show="!preview && $route.name !== 'create'" transition="scale-transition").plus
+	v-alert(v-show="!preview && ($route.name !== 'create') && ($route.name !== 'delo')" transition="scale-transition").plus
 		v-btn(dark fab large color="pink" @click="toggleAdd" :class="add ? 'active' : '' ")
 			v-icon(dark) mdi-plus
 	v-alert(v-show="scroll" transition="scale-transition").up
@@ -62,15 +62,28 @@ export default {
 		SearchPanel
 	},
 	data: () => ({
-		// color: '#2C4159',
 		offsetTop: true,
 		scroll: false,
 		logo: true
 	}),
 	computed: {
+		chooseBg () {
+			if (this.$route.path === '/') {
+				return 'bg'
+			} else if (this.$route.path === '/delo') {
+				return ''
+			} else return 'bgg'
+		},
+		showFooter () {
+			if (this.$route.name === 'sticky') {
+				return false
+			} else if (this.$route.name === 'delo') {
+				return false
+			} else return true
+		},
 		color () {
 			if (this.$route.name === 'delo') {
-				return 'doc'
+				return 'docolor'
 			} else return 'dark'
 		},
 		card () {

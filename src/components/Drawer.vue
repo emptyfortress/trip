@@ -38,7 +38,7 @@ export default {
 				{ url: '/dash2', mini: 'Вход.', icon: 'icon-monitor-dashboard', text: 'Дашборд 2' },
 				{ url: '/btn', mini: 'Вход.', icon: 'icon-smile', text: 'Кнопки' },
 				{ url: '/create', mini: 'Вход.', icon: 'icon-plus', text: 'Создать документ' },
-				{ url: '/delo', mini: 'Вход.', icon: 'icon-doc', text: 'Документ' }
+				{ url: '/delo', mini: 'Вход.', icon: 'icon-doc', text: 'Документ на просмотр' }
 			]
 		}
 	},
@@ -63,7 +63,7 @@ export default {
 	computed: {
 		color () {
 			if (this.$route.name === 'delo') {
-				return 'doc'
+				return 'docolor'
 			} else return 'dark'
 		},
 		path () {
@@ -118,6 +118,6 @@ export default {
 	background: lighten($dark, 5%);
 }
 .active-delo {
-	background: lighten($doc, 5%);
+	background: lighten($docolor, 5%);
 }
 </style>
