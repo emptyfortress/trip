@@ -29,18 +29,40 @@
 				Files1
 		v-expansion-panel
 			v-expansion-panel-header
-				.blockhd.rel Ход согласования
+				.blockhd.rel Ссылки (2)
+					.plus1(@click.stop="")
+						i.icon-setup
 			v-expansion-panel-content
-				Hod
+				v-simple-table.filetable
+					thead
+						tr
+							th Вид
+							th Имя
+							th Тип
+							th
+					tbody
+						tr(v-for="item in links" :key="item.id")
+							td
+								i.icon-card
+							td {{ item.name }}
+							td {{ item.type }}
+							td.px-0.text-right
+								v-btn(icon)
+									v-icon(color="accent") mdi-information
+								v-btn(icon)
+									v-icon mdi-dots-vertical
+
+		//- v-expansion-panel
+		//- 	v-expansion-panel-header
+		//- 		.blockhd.rel Ход согласования
+		//- 	v-expansion-panel-content
+		//- 		Hod
 		v-expansion-panel
 			v-expansion-panel-header
-				.blockhd.rel Подчиненные задания
+				.blockhd.rel Задания
+					.plus.plus2(@click.stop="")
+						i.icon-plus
 			v-expansion-panel-content
-				p Здесь подчиненные задания
-				p Здесь подчиненные задания
-				p Здесь подчиненные задания
-				p Здесь подчиненные задания
-				p Здесь подчиненные задания
 
 </template>
 
@@ -51,7 +73,12 @@ import Hod from '@/components/Hod'
 export default {
 	data () {
 		return {
-			panels: [1],
+			panels: [3],
+			links: [
+				{ id: 0, name: 'О переходе на удаленную работу', type: 'В ответ на' },
+				{ id: 1, name: 'Закупка канцелярии', type: 'Исходящий' }
+
+			],
 			attr0: [
 				{ id: 0, attr: 'Вид:', value: 'Входящий' },
 				{ id: 1, attr: 'Состояние:', value: 'Не начато' },
@@ -118,6 +145,21 @@ export default {
 	color: black;
 	i {
 		font-size: 1.0rem;
+		color: #555;
+	}
+}
+.plus2 {
+	top: -3px;
+	right: .5rem;
+}
+.plus1 {
+	position: absolute;
+	right: .4rem;
+	top: 0px;
+	color: black;
+	i {
+		font-size: 1.1rem;
+		color: #555;
 	}
 }
 .scan {
@@ -127,19 +169,13 @@ export default {
 	color: black;
 	i {
 		font-size: 1.2rem;
+		color: #555;
 	}
 
 }
 .link  {
 	span {
 	opacity: 1;
-	/* word-wrap:break-word; */
-	/* color: $link; */
-	/* cursor: pointer; */
-	/* display: block; */
-	/* &:hover { */
-	/* 	text-decoration: underline; */
-	/* } */
 	}
 }
 .list {
@@ -156,5 +192,28 @@ export default {
 .theme--light.v-expansion-panels .v-expansion-panel--active {
 	box-shadow: 0 1px 6px rgba(0,0,0,.2);
 }
+.filetable th {
+	height: 26px;
+}
 
+.flhd {
+	font-size: .7rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: $link;
+	letter-spacing: 1px;
+}
+.theme--light.v-expansion-panels .nobdr.v-expansion-panel--active {
+	border: none;
+}
+.theme--light.v-expansion-panels .nobdr.v-expansion-panel {
+	border: none;
+}
+.filetable {
+	margin-left: -20px;
+	margin-right: -20px;
+}
+.nobdr .v-expansion-panel-header--active {
+	padding-bottom: 0;
+}
 </style>

@@ -63,7 +63,7 @@ import { dragZone, dragHandle, dragContent } from 'vue-drag-zone'
 export default {
 	data () {
 		return {
-			add: false,
+			fab: false,
 			actions: [
 				{ title: 'Действие 3' },
 				{ title: 'Действие 4' },
