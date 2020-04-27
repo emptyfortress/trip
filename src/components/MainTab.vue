@@ -6,17 +6,17 @@
 				.blockhd.rel Информация
 			v-expansion-panel-content
 				.myrow
-					table.attributes
+					table.mr-5.attributes
 						tr(v-for="item in attr0" :key="item.id")
 							td.attr {{ item.attr }}
 							td(v-if="item.value") {{ item.value }}
 							td(v-else)
 								v-icon {{item.icon}}
 								span  ____________
-					table.attributes.shrink
+					table.attributes
 						tr(v-for="item in attr2" :key="item.id")
 							td.attr {{ item.attr }}
-							td.link
+							td.fio
 								span(v-for="link in item.value").mr-2 {{ link }}
 		v-expansion-panel
 			v-expansion-panel-header
@@ -30,10 +30,12 @@
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Ссылки (2)
-					.plus1(@click.stop="")
+					v-btn.scan(@click.stop="" icon small)
+						v-icon mdi-plus
+					v-btn.plus(@click.stop="" icon small)
 						i.icon-setup
 			v-expansion-panel-content
-				v-simple-table.filetable
+				v-simple-table(dense).filetable
 					thead
 						tr
 							th Вид
@@ -47,22 +49,26 @@
 							td {{ item.name }}
 							td {{ item.type }}
 							td.px-0.text-right
-								v-btn(icon)
-									v-icon(color="accent") mdi-information
-								v-btn(icon)
+								v-btn(icon small)
+									v-icon(color="linkcolor") mdi-information
+								v-btn(icon small)
 									v-icon mdi-dots-vertical
 
-		//- v-expansion-panel
-		//- 	v-expansion-panel-header
-		//- 		.blockhd.rel Ход согласования
-		//- 	v-expansion-panel-content
-		//- 		Hod
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Задания
-					.plus.plus2(@click.stop="")
-						i.icon-plus
 			v-expansion-panel-content
+				.d-flex.wr
+					v-btn(color="#ddd" depressed x-small).mr-1 Свернуть все
+					v-btn(color="#ddd" depressed x-small).mr-1 Развернуть все
+					v-btn( outlined x-small color="#666").mr-1 Показать просроченные
+					v-btn( outlined x-small color="#666") Показать завершенные
+					v-spacer
+					v-btn-toggle(v-model="treetab" tile color="linkcolor")
+						v-btn(text x-small) Таблица
+						v-btn(text x-small) Дерево
+				.ttable
+					div Здесь таблица (дерево) исполнения
 
 </template>
 
@@ -73,7 +79,8 @@ import Hod from '@/components/Hod'
 export default {
 	data () {
 		return {
-			panels: [3],
+			panels: [0],
+			treetab: 0,
 			links: [
 				{ id: 0, name: 'О переходе на удаленную работу', type: 'В ответ на' },
 				{ id: 1, name: 'Закупка канцелярии', type: 'Исходящий' }
@@ -112,7 +119,7 @@ export default {
 @import '@/assets/css/colors.scss';
 
 .attributes {
-	min-width: 200px;
+	/* min-width: 200px; */
 	padding-right: .5rem;
 	font-size: .95rem;
 	&:not(:last-child) {
@@ -123,20 +130,17 @@ export default {
 		padding-right: .5rem;
 		&.attr {
 			opacity: .6;
+			/* text-align: right; */
 		}
 	}
 	.v-icon {
 		font-size: 18px;
 	}
 	&.shrink {
-		flex-shrink: 1;
+		background: pink;
+		flex-basis: 220px;
+		flex-grow: 1;
 	}
-}
-.myrow {
-	display: flex;
-	justify-content: space-between;
-	padding: 0 0 1rem 0 ;
-	flex-wrap: wrap;
 }
 .plus {
 	position: absolute;
@@ -192,15 +196,18 @@ export default {
 .theme--light.v-expansion-panels .v-expansion-panel--active {
 	box-shadow: 0 1px 6px rgba(0,0,0,.2);
 }
-.filetable th {
+.filetable th, .tasktable th {
 	height: 26px;
+}
+.tasktable tr {
+	cursor: pointer;
 }
 
 .flhd {
 	font-size: .7rem;
 	text-transform: uppercase;
 	font-weight: 600;
-	color: $link;
+	color: $linkcolor;
 	letter-spacing: 1px;
 }
 .theme--light.v-expansion-panels .nobdr.v-expansion-panel--active {
@@ -215,5 +222,42 @@ export default {
 }
 .nobdr .v-expansion-panel-header--active {
 	padding-bottom: 0;
+}
+.linked {
+	color: $linkcolor;
+}
+.ttable {
+	width: 100%;
+	height: 300px;
+	background: #cecece;
+	margin-top: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.wr {
+	flex-wrap: wrap;
+	.v-btn {
+		margin-bottom: 3px;
+
+	}
+}
+.myrow {
+	display: flex;
+	justify-content: space-around;
+	padding: 0 0 1rem 0 ;
+	flex-wrap: wrap;
+	/* background: yellow; */
+}
+.bl {
+	margin-right: 1rem;
+	background: pink;
+	flex-grow: 1;
+	/* flex-basis: 290px; */
+	.feat {
+		flex-grow: 2;
+	}
+}
+.fio {
 }
 </style>

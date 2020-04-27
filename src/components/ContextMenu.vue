@@ -36,7 +36,7 @@ div
 @import '@/assets/css/colors.scss';
 
 .ac {
-	color: $link;
+	color: $linkcolor;
 }
 
 </style>

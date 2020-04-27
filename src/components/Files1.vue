@@ -9,7 +9,7 @@
 			v-expansion-panel-header.px-0
 				.flhd Основные файлы (3)
 			v-expansion-panel-content.pb-0
-				v-simple-table.filetable
+				v-simple-table(dense).filetable
 					thead
 						tr
 							th Имя
@@ -28,7 +28,7 @@
 			v-expansion-panel-header.px-0
 				.flhd Дополнительные файлы (1)
 			v-expansion-panel-content.px-0
-				v-simple-table.filetable
+				v-simple-table(dense).filetable
 					thead
 						tr
 							th Имя
@@ -99,9 +99,10 @@ export default {
 }
 
 .filetable td {
-	color: $link;
+	color: $linkcolor;
 	img {
 		vertical-align: middle;
+		height: 22px;
 	}
 }
 .filetable th {
@@ -136,7 +137,7 @@ export default {
 	font-size: .7rem;
 	text-transform: uppercase;
 	font-weight: 600;
-	color: $link;
+	color: $linkcolor;
 	letter-spacing: 1px;
 }
 .theme--light.v-expansion-panels .nobdr.v-expansion-panel--active {

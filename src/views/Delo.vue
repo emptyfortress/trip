@@ -19,14 +19,14 @@
 				v-btn(color="docolor" outlined icon tile).round
 					v-icon mdi-dots-horizontal
 
-			v-tabs.mytab
+			v-tabs(v-model="tt").mytab
 				v-tab Главная
 				v-tab Ход согласования
 				v-tab-item(key="1")
 					.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке. Государственная регистрация нормативных правовых актов осуществляется Минюстом России, которое ведет Государственный реестр нормативных правовых актов федеральных органов исполнительной власти.
 					MainTab
 				v-tab-item(key="2")
-					.mt-9 Здесь ход согласования
+					Hod
 
 	v-speed-dial(v-model="fab" fixed bottom right transition="slide-y-reverse-transition" direction="top").myfab
 		template(v-slot:activator)
@@ -57,6 +57,7 @@
 import Comments from '@/components/Comments'
 import FilePreview from '@/components/FilePreview'
 import Status from '@/components/Status'
+import Hod from '@/components/Hod'
 import MainTab from '@/components/MainTab'
 import { dragZone, dragHandle, dragContent } from 'vue-drag-zone'
 
@@ -64,6 +65,7 @@ export default {
 	data () {
 		return {
 			fab: false,
+			tt: 0,
 			actions: [
 				{ title: 'Действие 3' },
 				{ title: 'Действие 4' },
@@ -111,6 +113,7 @@ export default {
 		FilePreview,
 		Status,
 		MainTab,
+		Hod,
 		dragZone,
 		dragHandle,
 		dragContent

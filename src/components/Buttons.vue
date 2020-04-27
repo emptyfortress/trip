@@ -88,7 +88,7 @@ export default {
 		font-size: 14px;
 		font-weight: 500;
 		letter-spacing: 1.25px;
-		background: $link;
+		background: $linkcolor;
 		color: #fff;
 		text-transform: uppercase;
 		margin-right:  2px;
@@ -109,7 +109,7 @@ export default {
 			white-space: nowrap;
 		}
 		&:hover {
-			background: lighten($link, 5%);
+			background: lighten($linkcolor, 5%);
 		}
 	}
 }

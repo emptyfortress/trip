@@ -1,7 +1,6 @@
 <template lang="pug">
-div
-	hr(color="#eee")
-	v-breadcrumbs(:items="crumbs" @click="doNothing")
+v-card.hod
+	v-breadcrumbs(:items="crumbs" @click.prevent="doNothing").mx-0.px-0
 	.etap Этап 1. Согласование (последовательно)
 	v-simple-table
 		template(v-slot:default)
@@ -33,9 +32,9 @@ export default {
 				{ text: 'Правки' }
 			],
 			crumbs: [
-				{ text: 'Циклы согласования:', disabled: true, link: true },
-				{ text: '1 цикл', disabled: true, href: '' },
-				{ text: '2 цикл', disabled: false, link: true }
+				{ text: 'Циклы согласования:', disabled: true },
+				{ text: '1 цикл', disabled: false, href: 'test' },
+				{ text: '2 цикл', disabled: false, href: 'test' }
 			],
 			table: [
 				{ icon: 'mdi-account-plus', color: 'primary', fio: 'Дроздова С.П.', decision: 'Добавить согласующих', date: '23.12.2020', comment: 'Требуется согласование юридического отдела. Указан доп.согласующий Петров Г.М.' },
@@ -57,12 +56,6 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/colors.scss';
 
-.theme--light.v-expansion-panels .v-expansion-panel {
-	border-bottom: 1px solid #ccc;
-	&::before {
-		box-shadow: none;
-	}
-}
 .nowrap {
 	white-space: nowrap;
 }
@@ -83,6 +76,11 @@ export default {
 	&.bl {
 		color: black;
 	}
+}
+.hod {
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+	padding: 2rem;
+	padding-top: 1rem;
 }
 
 </style>

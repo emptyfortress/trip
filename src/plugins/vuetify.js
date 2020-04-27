@@ -9,7 +9,8 @@ export default new Vuetify({
 			light: {
 				docolor: '#008AD1',
 				taskcolor: '#6DAE50',
-				dark: '#2C4159'
+				dark: '#2C4159',
+				linkcolor: '#0077CE'
 			}
 		}
 	}
