@@ -21,8 +21,10 @@
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Файлы (4)
-					v-btn(icon small @click.stop="").plus
-						v-icon mdi-plus
+					.plus(@click.stop="")
+						i.icon-folder-o
+					.scan(@click.stop="")
+						i.icon-scan
 			v-expansion-panel-content
 				Files1
 		v-expansion-panel
@@ -49,7 +51,7 @@ import Hod from '@/components/Hod'
 export default {
 	data () {
 		return {
-			panels: [0],
+			panels: [1],
 			attr0: [
 				{ id: 0, attr: 'Вид:', value: 'Входящий' },
 				{ id: 1, attr: 'Состояние:', value: 'Не начато' },
@@ -111,8 +113,22 @@ export default {
 }
 .plus {
 	position: absolute;
-	bottom: -.5rem;
 	right: 1rem;
+	top: -5px;
+	color: black;
+	i {
+		font-size: 1.0rem;
+	}
+}
+.scan {
+	position: absolute;
+	right: 3rem;
+	top: -5px;
+	color: black;
+	i {
+		font-size: 1.2rem;
+	}
+
 }
 .link  {
 	span {

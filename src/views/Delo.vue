@@ -1,14 +1,14 @@
 <template lang="pug">
-.all
-	drag-zone(v-if="inlinePreview").zone.pt-5
-		drag-content(v-show="$vuetify.breakpoint.mdAndUp").content.one
+.all(:class="inlinePreview ? '' : 'only'")
+	drag-zone.zone.pt-5
+		drag-content(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview").content.one
 			v-slide-y-transition(mode="out-in")
 				v-skeleton-loader(v-if="lo" height="100%" width="100%" type="image" ).skel
 				FilePreview(:file="file" v-if="!lo")
 
-		drag-handle(v-show="$vuetify.breakpoint.mdAndUp" ).hand
+		drag-handle(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview" ).hand
 			div
-		drag-content.cardd
+		drag-content.cardd(:class="inlinePreview ? '' : 'only'")
 			Status(title="не начато")
 			br
 			.zag.mb-4 {{ item[0].title }}
@@ -23,29 +23,10 @@
 				v-tab Главная
 				v-tab Ход согласования
 				v-tab-item(key="1")
-			.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке. Государственная регистрация нормативных правовых актов осуществляется Минюстом России, которое ведет Государственный реестр нормативных правовых актов федеральных органов исполнительной власти.
-			MainTab
+					.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке. Государственная регистрация нормативных правовых актов осуществляется Минюстом России, которое ведет Государственный реестр нормативных правовых актов федеральных органов исполнительной власти.
+					MainTab
 				v-tab-item(key="2")
 					.mt-9 Здесь ход согласования
-
-	.cardd.no-scroll(v-else)
-		Status(title="не начато").mb-5
-		br
-		.zag.mb-4 {{ item[0].title }}
-		.btgroup
-			v-btn(color="docolor" outlined) Зарегистрировать
-			v-btn(color="docolor" dark ) На ознакомление
-			v-btn(color="docolor" dark ) На согласование
-			v-btn(color="docolor" outlined icon tile).round
-				v-icon mdi-dots-horizontal
-		v-tabs.mytab
-			v-tab Главная
-			v-tab Ход согласования
-			v-tab-item(key="1")
-		.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке. Государственная регистрация нормативных правовых актов осуществляется Минюстом России, которое ведет Государственный реестр нормативных правовых актов федеральных органов исполнительной власти.
-		MainTab
-			v-tab-item(key="2")
-				.mt-9 Здесь ход согласования
 
 	v-speed-dial(v-model="fab" fixed bottom right transition="slide-y-reverse-transition" direction="top").myfab
 		template(v-slot:activator)
@@ -173,6 +154,11 @@ export default {
 	padding-top: 0;
 	height: 100%;
 	overflow: auto;
+	&.only {
+		height: auto;
+		width: 1200px;
+		margin: 0 auto;
+	}
 }
 @media only screen and (max-width: 960px) {
 	.cardd {
@@ -218,6 +204,11 @@ export default {
 	width: 100%;
 	height: calc(100vh - 100px);
 	position: relative;
+	&.only {
+		height: auto;
+		/* max-width: 1200px; */
+		/* margin: 0 auto; */
+	}
 }
 .descr {
 	margin: 1rem auto;
