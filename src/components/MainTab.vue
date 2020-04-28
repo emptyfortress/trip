@@ -1,14 +1,15 @@
 <template lang="pug">
 .maintab
 	.mybt
-		v-btn(@click="openAll"  x-small depressed).mr-1 Развернуть все
-		v-btn(@click="closeAll"  x-small depressed) Свернуть все
+		v-btn(@click="openAll"  x-small ).mr-1 Развернуть все
+		v-btn(@click="closeAll"  x-small) Свернуть все
 	v-expansion-panels(tile flat v-model="panels" multiple inset name="main")
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Информация
 			v-expansion-panel-content
-				.myrow
+				.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке. Государственная регистрация нормативных правовых актов осуществляется Минюстом России, которое ведет Государственный реестр нормативных правовых актов федеральных органов исполнительной власти.
+				.myrow.mt-4
 					table.mr-5.attributes
 						tr(v-for="item in attr0" :key="item.id")
 							td.attr {{ item.attr }}
@@ -23,7 +24,7 @@
 								span(v-for="link in item.value").mr-2 {{ link }}
 				.otpr Документ отправлен получателям:
 					span нет
-		v-expansion-panel
+		v-expansion-panel(value="1")
 			v-expansion-panel-header
 				.blockhd.rel Файлы (4)
 					.plus(@click.stop="")
@@ -76,7 +77,7 @@
 				.ttable
 					div Здесь таблица (дерево) исполнения
 
-		v-expansion-panel()
+		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Обсуждение
 					v-btn.up(@click.stop="" icon v-show="exp")
@@ -94,7 +95,7 @@ import Discuss from '@/components/Discuss'
 export default {
 	data () {
 		return {
-			panels: [4],
+			panels: [1, 2],
 			treetab: 0,
 			links: [
 				{ id: 0, name: 'О переходе на удаленную работу', type: 'В ответ на' },
@@ -123,14 +124,14 @@ export default {
 	},
 	computed: {
 		exp () {
-			if (this.panels.includes(4)) {
+			if (this.panels.includes(6)) {
 				return true
 			} else return false
 		}
 	},
 	methods: {
 		openAll () {
-			this.panels = [0, 1, 2, 3, 4, 5]
+			this.panels = [0, 1, 2, 3, 4, 5, 6]
 		},
 		closeAll () {
 			this.panels = []
@@ -304,7 +305,7 @@ export default {
 }
 .mybt {
 	text-align: center;
-	margin-bottom: .5rem;
+	margin-bottom: .7rem;
 
 }
 </style>

@@ -4,7 +4,7 @@
 		drag-content(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview").content.one
 			v-slide-y-transition(mode="out-in")
 				v-skeleton-loader(v-if="lo" height="100%" width="100%" type="image" ).skel
-				FilePreview(:file="file" v-if="!lo")
+			FilePreview(:file="file" v-show="!lo")
 
 		drag-handle(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview" ).hand
 			div
@@ -13,17 +13,16 @@
 			br
 			.zag.mb-4 {{ item[0].title }}
 			.btgroup
-				v-btn(color="docolor" outlined) Зарегистрировать
+				v-btn.elevation-1 Зарегистрировать
 				v-btn(color="docolor" dark ) На ознакомление
 				v-btn(color="docolor" dark ) На согласование
-				v-btn(color="docolor" outlined icon tile).round
+				v-btn(icon).round.elevation-1
 					v-icon mdi-dots-horizontal
 
 			v-tabs(v-model="tt").mytab
 				v-tab Главная
 				v-tab Ход согласования
 				v-tab-item(key="1")
-					.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке. Государственная регистрация нормативных правовых актов осуществляется Минюстом России, которое ведет Государственный реестр нормативных правовых актов федеральных органов исполнительной власти.
 					MainTab
 				v-tab-item(key="2")
 					Hod
@@ -159,15 +158,16 @@ export default {
 	overflow: auto;
 	&.only {
 		height: auto;
+		width: 1300px;
 		max-width: 1200px;
 		margin: 0 auto;
+		/* background: #ccc; */
 	}
 }
 @media only screen and (max-width: 960px) {
 	.cardd {
 		width: 100%;
 		margin-right: 1rem;
-		/* background: #ccc; */
 	}
 }
 .no-scroll {
@@ -207,6 +207,7 @@ export default {
 	width: 100%;
 	height: calc(100vh - 100px);
 	position: relative;
+	/* background: yellow; */
 	&.only {
 		height: auto;
 	}
@@ -216,6 +217,7 @@ export default {
 }
 .round {
 	border-radius: 4px;
+	background: #fff;
 }
 
 .v-speed-dial--is-active i.my {
