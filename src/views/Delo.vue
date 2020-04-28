@@ -159,7 +159,7 @@ export default {
 	overflow: auto;
 	&.only {
 		height: auto;
-		width: 1200px;
+		max-width: 1200px;
 		margin: 0 auto;
 	}
 }
@@ -167,7 +167,7 @@ export default {
 	.cardd {
 		width: 100%;
 		margin-right: 1rem;
-		background: #ccc;
+		/* background: #ccc; */
 	}
 }
 .no-scroll {
@@ -209,8 +209,6 @@ export default {
 	position: relative;
 	&.only {
 		height: auto;
-		/* max-width: 1200px; */
-		/* margin: 0 auto; */
 	}
 }
 .descr {

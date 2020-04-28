@@ -206,7 +206,7 @@ export default {
 @import '@/assets/css/colors.scss';
 
 .v-application {
-	/* font-family: "Arial" */
+	/* font-family: Helvetica; */
 }
 .lft {
 	margin-left: 18px;

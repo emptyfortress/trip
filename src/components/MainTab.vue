@@ -1,6 +1,9 @@
 <template lang="pug">
 .maintab
-	v-expansion-panels(hover tile flat v-model="panels" multiple inset)
+	.mybt
+		v-btn(@click="openAll"  x-small depressed).mr-1 Развернуть все
+		v-btn(@click="closeAll"  x-small depressed) Свернуть все
+	v-expansion-panels(tile flat v-model="panels" multiple inset name="main")
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Информация
@@ -13,11 +16,13 @@
 							td(v-else)
 								v-icon {{item.icon}}
 								span  ____________
-					table.attributes
+					table.attributes.mb-2
 						tr(v-for="item in attr2" :key="item.id")
 							td.attr {{ item.attr }}
 							td.fio
 								span(v-for="link in item.value").mr-2 {{ link }}
+				.otpr Документ отправлен получателям:
+					span нет
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Файлы (4)
@@ -27,6 +32,7 @@
 						i.icon-scan
 			v-expansion-panel-content
 				Files1
+
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Ссылки (2)
@@ -70,21 +76,29 @@
 				.ttable
 					div Здесь таблица (дерево) исполнения
 
+		v-expansion-panel()
+			v-expansion-panel-header
+				.blockhd.rel Обсуждение
+					v-btn.up(@click.stop="" icon v-show="exp")
+						i.icon-up
+			v-expansion-panel-content
+				Discuss.restrict
+				v-text-field(label="Комментировать" append-icon="mdi-send")
 </template>
 
 <script>
 import Files1 from '@/components/Files1'
 import Hod from '@/components/Hod'
+import Discuss from '@/components/Discuss'
 
 export default {
 	data () {
 		return {
-			panels: [0],
+			panels: [4],
 			treetab: 0,
 			links: [
 				{ id: 0, name: 'О переходе на удаленную работу', type: 'В ответ на' },
 				{ id: 1, name: 'Закупка канцелярии', type: 'Исходящий' }
-
 			],
 			attr0: [
 				{ id: 0, attr: 'Вид:', value: 'Входящий' },
@@ -107,9 +121,25 @@ export default {
 			]
 		}
 	},
+	computed: {
+		exp () {
+			if (this.panels.includes(4)) {
+				return true
+			} else return false
+		}
+	},
+	methods: {
+		openAll () {
+			this.panels = [0, 1, 2, 3, 4, 5]
+		},
+		closeAll () {
+			this.panels = []
+		}
+	},
 	components: {
 		Files1,
-		Hod
+		Hod,
+		Discuss
 	}
 }
 
@@ -150,6 +180,15 @@ export default {
 	i {
 		font-size: 1.0rem;
 		color: #555;
+	}
+}
+.up {
+	position: absolute;
+	right: 1rem;
+	top: -11px;
+	i {
+		font-size: 1.0rem;
+		color: #888;
 	}
 }
 .plus2 {
@@ -239,25 +278,33 @@ export default {
 	flex-wrap: wrap;
 	.v-btn {
 		margin-bottom: 3px;
-
 	}
 }
 .myrow {
 	display: flex;
 	justify-content: space-around;
-	padding: 0 0 1rem 0 ;
+	/* padding: 0 0 1rem 0 ; */
+	padding: 0;
 	flex-wrap: wrap;
-	/* background: yellow; */
 }
-.bl {
-	margin-right: 1rem;
-	background: pink;
-	flex-grow: 1;
-	/* flex-basis: 290px; */
-	.feat {
-		flex-grow: 2;
+.otpr {
+	text-align: center;
+	font-size: .95rem;
+	background: #eee;
+	border: 1px solid #ccc;
+	span {
+		margin-left: 1rem;
+		font-weight: 600;
 	}
 }
-.fio {
+.restrict {
+	max-height: 500px;
+	overflow: auto;
+	margin-bottom: 2rem;
+}
+.mybt {
+	text-align: center;
+	margin-bottom: .5rem;
+
 }
 </style>

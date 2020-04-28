@@ -4,7 +4,7 @@
 		i.icon-skrepka
 		span Прикрепить
 
-	v-expansions-panels(tile flat v-model="filetab" accordion)
+	v-expansions-panels(tile flat v-model="panels" multiple name="inner")
 		v-expansion-panel.nobdr
 			v-expansion-panel-header.px-0
 				.flhd Основные файлы (3)
@@ -51,7 +51,8 @@
 export default {
 	data () {
 		return {
-			panel: 0,
+			// panel: 1,
+			panels: [0],
 			files: [
 				{ id: 0, icon: 'word', name: 'Договор с ООО Ромашка.doc', v: '1.1', cl: 'act' },
 				{ id: 1, icon: 'word', name: 'Приложение к договору.doc', v: '1.0' },
