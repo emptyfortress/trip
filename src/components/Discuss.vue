@@ -26,7 +26,7 @@
 			.hid
 				i.icon-edit.mr-3
 				i.icon-trash-line
-	div(v-else)
+	.old(v-else)
 		.bigdate 27 апреля 2020
 		.message1(v-for="item in filters")
 			.d-flex.attr1
@@ -131,15 +131,20 @@ export default {
 	right: 9rem;
 }
 .message1 {
-	max-width: 300px;
 	margin-bottom: 1rem;
 	display: flex;
 	flex-direction: column;
+	max-width: 60%;
 	.text {
 		padding: 1rem;
 		background: #B0EBFC;
 		border-radius: 10px;
 	}
+}
+.old {
+	/* max-width: 300px; */
+	margin: 0 auto;
+	/* background: #ccc; */
 }
 
 </style>

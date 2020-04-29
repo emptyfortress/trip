@@ -42,19 +42,20 @@
 					v-btn.plus(@click.stop="" icon small)
 						i.icon-setup
 			v-expansion-panel-content
-				v-simple-table(dense).filetable
+				v-simple-table(dense).nopad
 					thead
 						tr
 							th Вид
-							th Имя
-							th Тип
+							th Автор
+							th Название
 							th
 					tbody
 						tr(v-for="item in links" :key="item.id")
 							td
-								i.icon-card
+								i.icon-card.mr-2
+								span {{ item.type }}
+							td {{ item.fio }}
 							td {{ item.name }}
-							td {{ item.type }}
 							td.px-0.text-right
 								v-btn(icon small)
 									v-icon(color="linkcolor") mdi-information
@@ -63,7 +64,7 @@
 
 		v-expansion-panel
 			v-expansion-panel-header
-				.blockhd.rel Задания
+				.blockhd.rel Задания (6)
 			v-expansion-panel-content
 				.d-flex.wr
 					v-btn(color="#ddd" depressed x-small).mr-1 Свернуть все
@@ -98,8 +99,8 @@ export default {
 			panels: [1, 2],
 			treetab: 0,
 			links: [
-				{ id: 0, name: 'О переходе на удаленную работу', type: 'В ответ на' },
-				{ id: 1, name: 'Закупка канцелярии', type: 'Исходящий' }
+				{ id: 0, fio: 'Иванов Г.', name: 'О переходе на удаленную работу', type: 'Исходящий, №564-3' },
+				{ id: 1, fio: 'Кац П.', name: 'Закупка канцелярии', type: 'Договор, №98Д-2' }
 			],
 			attr0: [
 				{ id: 0, attr: 'Вид:', value: 'Входящий' },
@@ -238,6 +239,15 @@ export default {
 }
 .filetable th, .tasktable th {
 	height: 26px;
+}
+.nopad {
+	th {
+		text-align: left;
+		padding: 0 3px;
+	}
+	td {
+		padding: 0 3px;
+	}
 }
 .tasktable tr {
 	cursor: pointer;

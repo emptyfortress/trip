@@ -9,7 +9,7 @@
 			v-expansion-panel-header.px-0
 				.flhd Основные файлы (3)
 			v-expansion-panel-content.pb-0
-				v-simple-table(dense).filetable
+				v-simple-table(:dense="dense").filetable
 					thead
 						tr
 							th Имя
@@ -24,6 +24,7 @@
 							td(width="30").px-0
 								v-btn(small icon @click.stop="")
 									v-icon mdi-dots-vertical
+				.dense(@click="dense = !dense") small
 		v-expansion-panel.nobdr.mt-0
 			v-expansion-panel-header.px-0
 				.flhd Дополнительные файлы (1)
@@ -52,6 +53,7 @@ export default {
 	data () {
 		return {
 			// panel: 1,
+			dense: true,
 			panels: [0],
 			files: [
 				{ id: 0, icon: 'word', name: 'Договор с ООО Ромашка.doc', v: '1.1', cl: 'act' },
@@ -153,5 +155,12 @@ export default {
 }
 .nobdr .v-expansion-panel-header--active {
 	padding-bottom: 0;
+}
+.dense {
+	/* margin-left: 3rem; */
+	margin-top: .5rem;
+	font-size: .8rem;
+	color: $linkcolor;
+	cursor: pointer;
 }
 </style>
