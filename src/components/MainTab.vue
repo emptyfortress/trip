@@ -46,16 +46,15 @@
 					thead
 						tr
 							th Вид
-							th Автор
-							th Название
+							th Имя
+							th Тип
 							th
 					tbody
 						tr(v-for="item in links" :key="item.id")
 							td
 								i.icon-card.mr-2
-								span {{ item.type }}
-							td {{ item.fio }}
 							td {{ item.name }}
+							td {{ item.type }}
 							td.px-0.text-right
 								v-btn(icon small)
 									v-icon(color="linkcolor") mdi-information
@@ -96,11 +95,12 @@ import Discuss from '@/components/Discuss'
 export default {
 	data () {
 		return {
-			panels: [1, 2],
+			// panels: [1, 2],
+			panels: [2],
 			treetab: 0,
 			links: [
-				{ id: 0, fio: 'Иванов Г.', name: 'О переходе на удаленную работу', type: 'Исходящий, №564-3' },
-				{ id: 1, fio: 'Кац П.', name: 'Закупка канцелярии', type: 'Договор, №98Д-2' }
+				{ id: 0, fio: 'Иванов Г.', name: 'Исходящее письмо №564-3/3, Иванов Г.И. О пряниках', type: 'В ответ на' },
+				{ id: 1, fio: 'Кац П.', name: 'Входящее письмо №098(45.3), отправитель: ООО Лучик', type: 'Входящий' }
 			],
 			attr0: [
 				{ id: 0, attr: 'Вид:', value: 'Входящий' },
@@ -247,6 +247,7 @@ export default {
 	}
 	td {
 		padding: 0 3px;
+		vertical-align: top;
 	}
 }
 .tasktable tr {
