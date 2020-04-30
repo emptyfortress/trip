@@ -95,8 +95,8 @@ import Discuss from '@/components/Discuss'
 export default {
 	data () {
 		return {
-			// panels: [1, 2],
-			panels: [2],
+			panels: [1, 2],
+			// panels: [2],
 			treetab: 0,
 			links: [
 				{ id: 0, fio: 'Иванов Г.', name: 'Исходящее письмо №564-3/3, Иванов Г.И. О пряниках', type: 'В ответ на' },
@@ -247,7 +247,7 @@ export default {
 	}
 	td {
 		padding: 0 3px;
-		vertical-align: top;
+		/* vertical-align: top; */
 	}
 }
 .tasktable tr {

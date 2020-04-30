@@ -2,9 +2,10 @@
 .all(:class="inlinePreview ? '' : 'only'")
 	drag-zone.zone.pt-5
 		drag-content(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview").content.one
-			v-slide-y-transition(mode="out-in")
-				v-skeleton-loader(v-if="lo" height="100%" width="100%" type="image" ).skel
-			FilePreview(:file="file" v-show="!lo")
+			div(v-show="left")
+				v-slide-y-transition(mode="out-in")
+					v-skeleton-loader(v-if="lo" height="100%" width="100%" type="image" ).skel
+				FilePreview(:file="file" v-show="!lo")
 
 		drag-handle(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview" ).hand
 			div
@@ -64,6 +65,7 @@ export default {
 	data () {
 		return {
 			fab: false,
+			left: true,
 			tt: 0,
 			actions: [
 				{ title: 'Действие 3' },
