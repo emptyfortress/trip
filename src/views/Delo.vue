@@ -17,26 +17,26 @@
 			.zag.mb-4 {{ item[0].title }}
 			.btgroup
 				v-speed-dial(v-model="fab" transition="slide-y-transition" direction="bottom").myfab
-		template(v-slot:activator)
+					template(v-slot:activator)
 						v-btn(color="dark" dark fab)
-				v-icon.my mdi-plus
-		v-tooltip(left)
-			template(v-slot:activator="{ on }")
-				v-btn(color="taskcolor" dark fab small v-on="on") ГЗ
-			span Группа заданий
-		v-tooltip(left)
-			template(v-slot:activator="{on}")
-				v-btn(color="taskcolor" dark fab small v-on="on") ИСП
-			span Задание на исполнение
-		v-tooltip(left)
-			template(v-slot:activator="{on}")
-				v-btn(color="taskcolor" dark fab small v-on="on") ОЗН
-			span Задание на ознакомление
-		v-tooltip(left)
-			template(v-slot:activator="{on}")
-				v-btn(color="dark" dark fab small v-on="on")
-					v-icon mdi-dots-horizontal
-			span Выбрать
+							v-icon.my mdi-plus
+					v-tooltip(left)
+						template(v-slot:activator="{ on }")
+							v-btn(color="taskcolor" dark fab small v-on="on") ГЗ
+						span Группа заданий
+					v-tooltip(left)
+						template(v-slot:activator="{on}")
+							v-btn(color="taskcolor" dark fab small v-on="on") ИСП
+						span Задание на исполнение
+					v-tooltip(left)
+						template(v-slot:activator="{on}")
+							v-btn(color="taskcolor" dark fab small v-on="on") ОЗН
+						span Задание на ознакомление
+					v-tooltip(left)
+						template(v-slot:activator="{on}")
+							v-btn(color="dark" dark fab small v-on="on")
+								v-icon mdi-dots-horizontal
+						span Выбрать
 
 				v-btn(color="docolor" dark ).elevation-1 Зарегистрировать
 				v-btn(color="docolor" dark ) На ознакомление
