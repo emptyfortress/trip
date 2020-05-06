@@ -309,5 +309,6 @@ export default {
 }
 .bgg {
 	background: $light;
+	/* background: #fff; */
 }
 </style>

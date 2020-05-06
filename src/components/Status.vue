@@ -15,16 +15,16 @@ export default {
 
 .stat {
 	/* display: inline-block; */
-	font-size: 1.1rem;
+	font-size: 1.0rem;
 	white-space: nowrap;
 	/* text-align: left; */
-	padding: .5rem;
+	/* padding: .5rem; */
 	cursor: pointer;
 	/* color: $link; */
 	span {
 		letter-spacing: .5rem;
-		border-top: 0.1rem solid #aaa;
-		border-bottom: 0.1rem solid #aaa;
+		/* border-top: 0.1rem solid #aaa; */
+		/* border-bottom: 0.1rem solid #aaa; */
 		display: inline-block;
 		padding: .2rem 0;
 		text-transform: uppercase;

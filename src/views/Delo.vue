@@ -1,5 +1,5 @@
 <template lang="pug">
-.all(:class="inlinePreview ? '' : 'only'")
+.all(:class="changeBg")
 	drag-zone.zone.pt-5
 		drag-content(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview").content.one
 			div(v-show="left")
@@ -10,7 +10,11 @@
 		drag-handle(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview" ).hand
 			div
 		drag-content.cardd(:class="inlinePreview ? '' : 'only'")
-			Status(title="не начато")
+			.d-flex
+				v-btn(text small color="#aaa" @click.stop="setWhite") white
+				v-btn(text small color="#aaa" @click.stop="setGrey") grey
+				v-spacer
+				Status(title="Подготовка")
 			br
 			.zag.mb-4 {{ item[0].title }}
 			.btgroup
@@ -66,6 +70,8 @@ export default {
 		return {
 			fab: false,
 			left: true,
+			white: false,
+			grey: false,
 			tt: 0,
 			actions: [
 				{ title: 'Действие 3' },
@@ -90,6 +96,15 @@ export default {
 		}
 	},
 	computed: {
+		changeBg () {
+			if (this.white) {
+				return 'wh'
+			} else if (this.grey) {
+				return 'gr'
+			} else if (!this.inlinePreview) {
+				return 'only'
+			} else return null
+		},
 		inlinePreview () {
 			return this.$store.getters.inlinePreview
 		},
@@ -124,6 +139,16 @@ export default {
 		setTimeout(function () {
 			that.$store.commit('setLo', false)
 		}, 600)
+	},
+	methods: {
+		setWhite () {
+			this.grey = false
+			this.white = !this.white
+		},
+		setGrey () {
+			this.white = false
+			this.grey = !this.grey
+		}
 	}
 }
 
@@ -209,9 +234,14 @@ export default {
 	width: 100%;
 	height: calc(100vh - 100px);
 	position: relative;
-	/* background: yellow; */
 	&.only {
 		height: auto;
+	}
+	&.wh {
+		background: #fff;
+	}
+	&.gr {
+		background: #e5f6ff;
 	}
 }
 .descr {
