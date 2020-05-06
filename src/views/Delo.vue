@@ -2,39 +2,26 @@
 .all(:class="changeBg")
 	drag-zone.zone.pt-5
 		drag-content(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview").content.one
-			div(v-show="left")
-				v-slide-y-transition(mode="out-in")
-					v-skeleton-loader(v-if="lo" height="100%" width="100%" type="image" ).skel
-				FilePreview(:file="file" v-show="!lo")
+			div(v-show="left").forpdf
+				img(src="@/assets/img/pdf.png").pdf
+				//- v-slide-y-transition(mode="out-in")
+				//- 	v-skeleton-loader(v-if="lo" height="100%" width="100%" type="image" ).skel
+				//- FilePreview(:file="file" v-show="!lo")
 
 		drag-handle(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview" ).hand
 			div
 		drag-content.cardd(:class="inlinePreview ? '' : 'only'")
 			.d-flex
 				v-btn(text small color="#aaa" @click.stop="setWhite") white
-				v-btn(text small color="#aaa" @click.stop="setGrey") grey
+				v-btn(text small color="#aaa" @click.stop="setGrey") blue
 				v-spacer
 				Status(title="Подготовка")
 			br
 			.zag.mb-4 {{ item[0].title }}
 			.btgroup
-				v-btn.elevation-1 Зарегистрировать
-				v-btn(color="docolor" dark ) На ознакомление
-				v-btn(color="docolor" dark ) На согласование
-				v-btn(icon).round.elevation-1
-					v-icon mdi-dots-horizontal
-
-			v-tabs(v-model="tt").mytab
-				v-tab Главная
-				v-tab Ход согласования
-				v-tab-item(key="1")
-					MainTab
-				v-tab-item(key="2")
-					Hod
-
-	v-speed-dial(v-model="fab" fixed bottom right transition="slide-y-reverse-transition" direction="top").myfab
+				v-speed-dial(v-model="fab" transition="slide-y-transition" direction="bottom").myfab
 		template(v-slot:activator)
-			v-btn(color="dark" dark fab large)
+						v-btn(color="dark" dark fab)
 				v-icon.my mdi-plus
 		v-tooltip(left)
 			template(v-slot:activator="{ on }")
@@ -53,6 +40,42 @@
 				v-btn(color="dark" dark fab small v-on="on")
 					v-icon mdi-dots-horizontal
 			span Выбрать
+
+				v-btn(color="docolor" dark ).elevation-1 Зарегистрировать
+				v-btn(color="docolor" dark ) На ознакомление
+				v-btn(color="docolor" dark ) На согласование
+				v-btn(color="docolor" dark ).round.elevation-1
+					v-icon mdi-dots-horizontal
+
+			v-tabs(v-model="tt").mytab
+				v-tab Главная
+				v-tab Ход согласования
+				v-tab-item(key="1")
+					MainTab
+				v-tab-item(key="2")
+					Hod
+
+	//- v-speed-dial(v-model="fab" fixed bottom right transition="slide-y-reverse-transition" direction="top").myfab
+	//- 	template(v-slot:activator)
+	//- 		v-btn(color="dark" dark fab large)
+	//- 			v-icon.my mdi-plus
+	//- 	v-tooltip(left)
+	//- 		template(v-slot:activator="{ on }")
+	//- 			v-btn(color="taskcolor" dark fab small v-on="on") ГЗ
+	//- 		span Группа заданий
+	//- 	v-tooltip(left)
+	//- 		template(v-slot:activator="{on}")
+	//- 			v-btn(color="taskcolor" dark fab small v-on="on") ИСП
+	//- 		span Задание на исполнение
+	//- 	v-tooltip(left)
+	//- 		template(v-slot:activator="{on}")
+	//- 			v-btn(color="taskcolor" dark fab small v-on="on") ОЗН
+	//- 		span Задание на ознакомление
+	//- 	v-tooltip(left)
+	//- 		template(v-slot:activator="{on}")
+	//- 			v-btn(color="dark" dark fab small v-on="on")
+	//- 				v-icon mdi-dots-horizontal
+	//- 		span Выбрать
 	v-scale-transition(origin="top left")
 		Comments(v-show="chat" :myx="20" :myy="60" style="z-index: 100")
 </template>
@@ -252,7 +275,18 @@ export default {
 	background: #fff;
 }
 
+.myfab {
+	display: inline-block;
+	z-index: 10;
+}
 .v-speed-dial--is-active i.my {
 	transform: rotate(45deg);
+}
+.forpdf {
+	height: 100%;
+	overflow: auto;
+}
+.pdf {
+	width: 100%;
 }
 </style>
