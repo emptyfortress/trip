@@ -54,28 +54,6 @@
 					MainTab
 				v-tab-item(key="2")
 					Hod
-
-	//- v-speed-dial(v-model="fab" fixed bottom right transition="slide-y-reverse-transition" direction="top").myfab
-	//- 	template(v-slot:activator)
-	//- 		v-btn(color="dark" dark fab large)
-	//- 			v-icon.my mdi-plus
-	//- 	v-tooltip(left)
-	//- 		template(v-slot:activator="{ on }")
-	//- 			v-btn(color="taskcolor" dark fab small v-on="on") ГЗ
-	//- 		span Группа заданий
-	//- 	v-tooltip(left)
-	//- 		template(v-slot:activator="{on}")
-	//- 			v-btn(color="taskcolor" dark fab small v-on="on") ИСП
-	//- 		span Задание на исполнение
-	//- 	v-tooltip(left)
-	//- 		template(v-slot:activator="{on}")
-	//- 			v-btn(color="taskcolor" dark fab small v-on="on") ОЗН
-	//- 		span Задание на ознакомление
-	//- 	v-tooltip(left)
-	//- 		template(v-slot:activator="{on}")
-	//- 			v-btn(color="dark" dark fab small v-on="on")
-	//- 				v-icon mdi-dots-horizontal
-	//- 		span Выбрать
 	v-scale-transition(origin="top left")
 		Comments(v-show="chat" :myx="20" :myy="60" style="z-index: 100")
 </template>
