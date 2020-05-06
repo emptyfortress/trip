@@ -8,7 +8,7 @@
 			v-expansion-panel-header
 				.blockhd.rel Информация
 			v-expansion-panel-content
-				.descr Вам поступило задание на согласование командировки. Детали ниже или по ссылке.
+				.descr Детальный план ввода в эксплуатацию автоматизированной информационной системы государственного заказа Санкт-Петербурга на периода март-май 2020 г.
 				.myrow.mt-4
 					table.mr-5.attributes
 						tr(v-for="item in attr0" :key="item.id")
