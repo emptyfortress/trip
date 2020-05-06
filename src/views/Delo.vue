@@ -4,9 +4,6 @@
 		drag-content(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview").content.one
 			div(v-show="left").forpdf
 				img(src="@/assets/img/pdf.png").pdf
-				//- v-slide-y-transition(mode="out-in")
-				//- 	v-skeleton-loader(v-if="lo" height="100%" width="100%" type="image" ).skel
-				//- FilePreview(:file="file" v-show="!lo")
 
 		drag-handle(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview" ).hand
 			div
