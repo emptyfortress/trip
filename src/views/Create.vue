@@ -1,15 +1,18 @@
 <template lang="pug">
 .create
 	v-row(justify="center" align="stretch").myrow
-		v-col(cols="12" :md="6" :sm="12" )
+		v-col(cols="12" :md="6" :sm="12" v-if="file")
 			.preview
 				v-img(src="@/assets/img/pdf.png")
 		v-col(cols="12" :md="6" :sm="12")
 			.zag Новый документ
 			v-card(flat).mycard
 				v-card(flat).mycard1
+					.mb-5 Вид:
+						span.ml-3 На ознакомление
 					v-text-field(label="Тема"  dense autofocus clearable)
 					.d-flex
+						v-text-field(label="Рег.номер" dense prepend-icon="mdi-cached").mr-8
 						v-menu(v-model="menu2" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y min-width="290px")
 							template(v-slot:activator="{ on }")
 								v-text-field(v-model="date" dense prepend-icon="mdi-calendar" label="Дата регистрации" readonly v-on="on" clearable)
@@ -140,7 +143,6 @@ export default {
 	background: #ccc;
 	margin-top: 1rem;
 	overflow: auto;
-	/* position: absolute; */
 }
 .icon-trash-line {
 	font-size: 1.0rem;
