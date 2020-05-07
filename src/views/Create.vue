@@ -16,13 +16,13 @@
 							v-date-picker(v-model="date" @input="menu2 = false")
 						v-text-field(prepend-icon="mdi-account" label="Подготовил"  dense clearable).ml-8
 					v-text-field(label="Описание"  dense clearable)
-				.fls
-					i.icon-skrepka
-					span Прикрепить файлы
 				v-expansion-panels(v-model="panel" multiple).mt-4
 					v-expansion-panel
 						v-expansion-panel-header.blockhd Файлы ({{files.length}})
 						v-expansion-panel-content
+							.fls
+								i.icon-skrepka
+								span Прикрепить файлы
 							v-simple-table(dense).full
 								tbody
 									tr(v-for="item in files" :key="item.id" :class="item.id === file ? 'act' : ''" @click="setFile(item.id)")
@@ -122,7 +122,7 @@ export default {
 	justify-content: center;
 	align-items: center;
 	flex-grow: 1;
-	margin-top: 1rem;
+	margin-bottom: 1rem;
 	i {
 		font-size: 1.6rem;
 	}
