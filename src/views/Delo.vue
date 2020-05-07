@@ -9,6 +9,8 @@
 			div
 		drag-content.cardd(:class="inlinePreview ? '' : 'only'")
 			.d-flex
+				.num Вх-123/3055
+				v-spacer
 				v-btn(text small color="#aaa" @click.stop="setWhite") white
 				v-btn(text small color="#aaa" @click.stop="setGrey") blue
 				v-spacer
@@ -176,7 +178,8 @@ export default {
 }
 
 .cardd {
-	width: 100%;
+	/* width: 100%; */
+	width: 50%;
 	padding: 1.5rem;
 	padding-top: 0;
 	height: 100%;
@@ -263,5 +266,8 @@ export default {
 }
 .pdf {
 	width: 100%;
+}
+.num {
+	font-size: 1.1rem;
 }
 </style>
