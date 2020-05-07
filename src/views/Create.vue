@@ -1,24 +1,25 @@
 <template lang="pug">
 .create
-	.zag Новый документ
 	v-row(justify="center" align="stretch").myrow
-		v-col(cols="12" :md="6" :sm="12" v-show="file" )
+		v-col(cols="12" :md="6" :sm="12" )
 			.preview
+				v-img(src="@/assets/img/pdf.png")
 		v-col(cols="12" :md="6" :sm="12")
+			.zag Новый документ
 			v-card(flat).mycard
-				v-text-field(outlined label="Тема"  dense autofocus clearable)
-				.d-flex
-					v-menu(v-model="menu2" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y min-width="290px")
-						template(v-slot:activator="{ on }")
-							v-text-field(v-model="date" outlined dense prepend-icon="mdi-calendar" label="Дата регистрации" readonly v-on="on" clearable)
-						v-date-picker(v-model="date" @input="menu2 = false")
-					v-text-field(outlined prepend-icon="mdi-account" label="Подготовил"  dense clearable).ml-8
-				v-text-field(outlined label="Описание"  dense clearable)
+				v-card(flat).mycard1
+					v-text-field(label="Тема"  dense autofocus clearable)
+					.d-flex
+						v-menu(v-model="menu2" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y min-width="290px")
+							template(v-slot:activator="{ on }")
+								v-text-field(v-model="date" dense prepend-icon="mdi-calendar" label="Дата регистрации" readonly v-on="on" clearable)
+							v-date-picker(v-model="date" @input="menu2 = false")
+						v-text-field(prepend-icon="mdi-account" label="Подготовил"  dense clearable).ml-8
+					v-text-field(label="Описание"  dense clearable)
 				.fls
 					i.icon-skrepka
 					span Прикрепить файлы
-				//- br
-				v-expansion-panels(v-model="panel" multiple).mt-2
+				v-expansion-panels(v-model="panel" multiple).mt-4
 					v-expansion-panel
 						v-expansion-panel-header.blockhd Файлы ({{files.length}})
 						v-expansion-panel-content
@@ -104,6 +105,11 @@ export default {
 	background: transparent;
 	padding-top: 1rem;
 }
+.mycard1 {
+	padding: 2rem;
+	box-shadow: 0 1px 6px rgba(0,0,0,.2);
+	padding-bottom: 1rem;
+}
 .v-input {
 	height: 52px;
 }
@@ -116,6 +122,7 @@ export default {
 	justify-content: center;
 	align-items: center;
 	flex-grow: 1;
+	margin-top: 1rem;
 	i {
 		font-size: 1.6rem;
 	}
@@ -129,9 +136,10 @@ export default {
 }
 .preview {
 	width: 100%;
-	height: calc(100vh - 200px);
+	height: calc(100vh - 170px);
 	background: #ccc;
 	margin-top: 1rem;
+	overflow: auto;
 	/* position: absolute; */
 }
 .icon-trash-line {
@@ -143,8 +151,13 @@ export default {
 }
 .zag {
 	color: #333;
+	text-align: left;
+	margin-left: 2rem;
 }
 .act {
 	background: #d1e8fb;
+}
+.theme--light.v-expansion-panels .v-expansion-panel--active {
+	box-shadow: 0 1px 6px rgba(0,0,0,.2);
 }
 </style>
