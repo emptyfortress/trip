@@ -38,7 +38,8 @@ export default {
 				{ url: '/dash2', mini: 'Вход.', icon: 'icon-monitor-dashboard', text: 'Дашборд 2' },
 				{ url: '/btn', mini: 'Вход.', icon: 'icon-smile', text: 'Кнопки' },
 				{ url: '/create', mini: 'Вход.', icon: 'icon-plus', text: 'Создать документ' },
-				{ url: '/delo', mini: 'Вход.', icon: 'icon-doc', text: 'Документ на просмотр' }
+				{ url: '/delo', mini: 'Вход.', icon: 'icon-doc', text: 'Документ на просмотр' },
+				{ url: '/delobt', mini: 'Вход.', icon: 'icon-doc', text: 'Тулбар для кнопок' }
 			]
 		}
 	},
@@ -53,7 +54,7 @@ export default {
 			} else this.$store.commit('setMini', true)
 		},
 		classCompute (item) {
-			if (this.path === item.url && this.path === '/delo') {
+			if (this.path === item.url && (this.path === '/delo' || this.path === '/delobt')) {
 				return 'active-delo'
 			} else if (this.path === item.url) {
 				return 'active'
@@ -62,7 +63,7 @@ export default {
 	},
 	computed: {
 		color () {
-			if (this.$route.name === 'delo') {
+			if (this.$route.name === 'delo' || this.$route.name === 'delobt') {
 				return 'docolor'
 			} else return 'dark'
 		},

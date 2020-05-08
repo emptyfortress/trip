@@ -7,6 +7,7 @@ import Dash1 from '../views/Dash1.vue'
 import Dash2 from '../views/Dash2.vue'
 import Create from '../views/Create.vue'
 import Delo from '../views/Delo.vue'
+import Delo1 from '../views/Delo1.vue'
 import Buttons from '../components/Buttons.vue'
 
 Vue.use(VueRouter)
@@ -46,6 +47,11 @@ const routes = [
 		path: '/delo',
 		name: 'delo',
 		component: Delo
+	},
+	{
+		path: '/delobt',
+		name: 'delobt',
+		component: Delo1
 	},
 	{
 		path: '/dash2',

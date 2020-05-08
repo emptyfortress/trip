@@ -37,7 +37,7 @@ v-app
 
 	Footer(:info="info" :card="card" v-if="showFooter")
 	Dialog
-	v-alert(v-show="!preview && ($route.name !== 'create') && ($route.name !== 'delo')" transition="scale-transition").plus
+	v-alert(v-show="!preview && ($route.name !== 'create') && $route.name !== 'delo' && $route.name !== 'delobt'" transition="scale-transition").plus
 		v-btn(dark fab large color="pink" @click="toggleAdd" :class="add ? 'active' : '' ")
 			v-icon(dark) mdi-plus
 	v-alert(v-show="scroll" transition="scale-transition").up
@@ -79,10 +79,12 @@ export default {
 				return false
 			} else if (this.$route.name === 'delo') {
 				return false
+			} else if (this.$route.name === 'delobt') {
+				return false
 			} else return true
 		},
 		color () {
-			if (this.$route.name === 'delo') {
+			if (this.$route.name === 'delo' || this.$route.name === 'delobt') {
 				return 'docolor'
 			} else return 'dark'
 		},

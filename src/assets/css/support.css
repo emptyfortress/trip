@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'support';
-  src: url('../font/support.eot?29712574');
-  src: url('../font/support.eot?29712574#iefix') format('embedded-opentype'),
-       url('../font/support.woff2?29712574') format('woff2'),
-       url('../font/support.woff?29712574') format('woff'),
-       url('../font/support.ttf?29712574') format('truetype'),
-       url('../font/support.svg?29712574#support') format('svg');
+  src: url('../font/support.eot?86157008');
+  src: url('../font/support.eot?86157008#iefix') format('embedded-opentype'),
+       url('../font/support.woff2?86157008') format('woff2'),
+       url('../font/support.woff?86157008') format('woff'),
+       url('../font/support.ttf?86157008') format('truetype'),
+       url('../font/support.svg?86157008#support') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'support';
-    src: url('../font/support.svg?29712574#support') format('svg');
+    src: url('../font/support.svg?86157008#support') format('svg');
   }
 }
 */
@@ -122,7 +122,6 @@
 .icon-loud:before { content: '\e840'; } /* '' */
 .icon-microphone:before { content: '\e841'; } /* '' */
 .icon-smile:before { content: '\e842'; } /* '' */
-.icon-lifering:before { content: '\e843'; } /* '' */
 .icon-signin:before { content: '\e844'; } /* '' */
 .icon-done:before { content: '\e845'; } /* '' */
 .icon-map:before { content: '\e846'; } /* '' */
@@ -162,6 +161,14 @@
 .icon-monitor-dashboard:before { content: '\e871'; } /* '' */
 .icon-trash-line:before { content: '\e886'; } /* '' */
 .icon-user-solid:before { content: '\e887'; } /* '' */
+.icon-number:before { content: '\e888'; } /* '' */
+.icon-isp:before { content: '\e889'; } /* '' */
+.icon-ozn:before { content: '\e88a'; } /* '' */
+.icon-gz:before { content: '\e88b'; } /* '' */
+.icon-sign:before { content: '\e88c'; } /* '' */
+.icon-approve:before { content: '\e88d'; } /* '' */
+.icon-look:before { content: '\e88e'; } /* '' */
+.icon-archive:before { content: '\e88f'; } /* '' */
 .icon-toolbar:before { content: '\e8a2'; } /* '' */
 .icon-toolbar-1:before { content: '\e8a3'; } /* '' */
 .icon-sort-alt-up:before { content: '\f160'; } /* '' */
