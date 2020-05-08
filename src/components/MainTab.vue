@@ -1,8 +1,8 @@
 <template lang="pug">
 .maintab
 	.mybt
-		v-btn(@click="openAll"  x-small ).mr-1 Развернуть все
-		v-btn(@click="closeAll"  x-small) Свернуть все
+		v-btn(@click="openAll"  x-small outlined color="docolor" ).mr-1 Развернуть все
+		v-btn(@click="closeAll"  x-small outlined color="docolor" ) Свернуть все
 	v-expansion-panels(tile flat v-model="panels" multiple inset name="main")
 		v-expansion-panel
 			v-expansion-panel-header
@@ -234,9 +234,6 @@ export default {
 	opacity: .6;
 	margin-right: .5rem;
 }
-.theme--light.v-expansion-panels .v-expansion-panel--active {
-	box-shadow: 0 1px 6px rgba(0,0,0,.2);
-}
 .filetable th, .tasktable th {
 	height: 26px;
 }
@@ -247,7 +244,6 @@ export default {
 	}
 	td {
 		padding: 0 3px;
-		/* vertical-align: top; */
 	}
 }
 .tasktable tr {
@@ -261,11 +257,8 @@ export default {
 	color: $linkcolor;
 	letter-spacing: 1px;
 }
-.theme--light.v-expansion-panels .nobdr.v-expansion-panel--active {
-	border: none;
-}
-.theme--light.v-expansion-panels .nobdr.v-expansion-panel {
-	border: none;
+.theme--light.v-expansion-panels .v-expansion-panel--active {
+	box-shadow: 0 3px 9px rgba(0,0,0,.2);
 }
 .filetable {
 	margin-left: -20px;

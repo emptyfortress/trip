@@ -185,3 +185,15 @@
 // .v-application--is-ltr .myrow .v-text-field--outlined fieldset {
 // 	background: #fff;
 // }
+
+.v-overflow-btn .v-select__slot {
+	height: 36px;
+	background: $docolor;
+	border-radius: 4px;
+	.v-label.theme--light {
+		color: #fff;
+	}
+	.v-btn__content, .v-icon.v-icon {
+		color: white;
+	}
+}

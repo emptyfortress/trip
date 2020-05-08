@@ -308,7 +308,7 @@ export default {
 	background-size: cover;
 }
 .bgg {
-	background: $light;
-	/* background: #fff; */
+	/* background: $light; */
+	background: #f5f5f5;
 }
 </style>

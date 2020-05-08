@@ -78,9 +78,10 @@ export default {
 	}
 }
 .hod {
-	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 3px 9px rgba(0,0,0,.2);
 	padding: 2rem;
 	padding-top: 1rem;
+	border: 1px solid #ccc;
 }
 
 </style>

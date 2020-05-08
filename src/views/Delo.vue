@@ -1,5 +1,5 @@
 <template lang="pug">
-.all(:class="changeBg")
+.all
 	drag-zone.zone.pt-5
 		drag-content(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview").content.one
 			div(v-show="left").forpdf
@@ -10,35 +10,15 @@
 		drag-content.cardd(:class="inlinePreview ? '' : 'only'")
 			.d-flex
 				.num Вх-123/3055
-				v-spacer
-				v-btn(text small color="#aaa" @click.stop="setWhite") white
-				v-btn(text small color="#aaa" @click.stop="setGrey") blue
+				//- v-spacer
+				//- v-btn(text small color="#aaa" @click.stop="setWhite") white
+				//- v-btn(text small color="#aaa" @click.stop="setGrey") blue
 				v-spacer
 				Status(title="Подготовка")
 			br
 			.zag.mb-4 {{ item[0].title }}
 			.btgroup
-				v-speed-dial(v-model="fab" transition="slide-y-transition" direction="bottom").myfab
-					template(v-slot:activator)
-						v-btn(color="dark" dark fab)
-							v-icon.my mdi-plus
-					v-tooltip(left)
-						template(v-slot:activator="{ on }")
-							v-btn(color="taskcolor" dark fab small v-on="on") ГЗ
-						span Группа заданий
-					v-tooltip(left)
-						template(v-slot:activator="{on}")
-							v-btn(color="taskcolor" dark fab small v-on="on") ИСП
-						span Задание на исполнение
-					v-tooltip(left)
-						template(v-slot:activator="{on}")
-							v-btn(color="taskcolor" dark fab small v-on="on") ОЗН
-						span Задание на ознакомление
-					v-tooltip(left)
-						template(v-slot:activator="{on}")
-							v-btn(color="dark" dark fab small v-on="on")
-								v-icon mdi-dots-horizontal
-						span Выбрать
+				v-overflow-btn(label="Создать..." segmented :items="create" target="#dropdown-example" ).seg
 
 				v-btn(color="docolor" dark ).elevation-1 Зарегистрировать
 				v-btn(color="docolor" dark ) На ознакомление
@@ -52,7 +32,7 @@
 				v-tab-item(key="1")
 					MainTab
 				v-tab-item(key="2")
-					Hod
+					Hod.mt-3
 	v-scale-transition(origin="top left")
 		Comments(v-show="chat" :myx="20" :myy="60" style="z-index: 100")
 </template>
@@ -70,9 +50,12 @@ export default {
 		return {
 			fab: false,
 			left: true,
-			white: false,
-			grey: false,
 			tt: 0,
+			create: [
+				{ text: '+Группа заданий', callback: () => console.log('list') },
+				{ text: '+Задание на ознакомл.', callback: () => console.log('favorite') },
+				{ text: '+Задание на исполн.', callback: () => console.log('delete') }
+			],
 			actions: [
 				{ title: 'Действие 3' },
 				{ title: 'Действие 4' },
@@ -96,15 +79,15 @@ export default {
 		}
 	},
 	computed: {
-		changeBg () {
-			if (this.white) {
-				return 'wh'
-			} else if (this.grey) {
-				return 'gr'
-			} else if (!this.inlinePreview) {
-				return 'only'
-			} else return null
-		},
+		// changeBg () {
+		// 	if (this.white) {
+		// 		return 'wh'
+		// 	} else if (this.grey) {
+		// 		return 'gr'
+		// 	} else if (!this.inlinePreview) {
+		// 		return 'only'
+		// 	} else return null
+		// },
 		inlinePreview () {
 			return this.$store.getters.inlinePreview
 		},
@@ -269,5 +252,12 @@ export default {
 }
 .num {
 	font-size: 1.1rem;
+}
+.seg {
+	width: 260px;
+	display: inline-block;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	height: 38px;
 }
 </style>
