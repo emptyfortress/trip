@@ -18,13 +18,17 @@
 			br
 			.zag.mb-4 {{ item[0].title }}
 			.btgroup
-				v-overflow-btn(label="Создать..." segmented :items="create" target="#dropdown-example" ).seg
 
-				v-btn(color="docolor" dark ).elevation-1 Зарегистрировать
-				v-btn(color="docolor" dark ) На ознакомление
-				v-btn(color="docolor" dark ) На согласование
+				v-btn(color="docolor" dark ) Зарегистрировать
+				v-btn(color="docolor" dark ) Действует
 				v-btn(color="docolor" dark ).round.elevation-1
 					v-icon mdi-dots-horizontal
+
+				br
+				//- v-btn(color="docolor" dark ) На ознакомление
+				v-btn(color="docolor" dark ) На согласование
+				br
+				v-overflow-btn(label="Создать..." segmented :items="create" target="#dropdown-example" ).seg
 
 			v-tabs(v-model="tt").mytab
 				v-tab Главная
@@ -256,6 +260,7 @@ export default {
 .seg {
 	width: 260px;
 	display: inline-block;
+	margin-top: 0;
 	margin-right: 5px;
 	margin-bottom: 5px;
 	height: 38px;
