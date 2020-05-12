@@ -42,7 +42,7 @@
 					v-btn.plus(@click.stop="" icon small)
 						i.icon-setup
 			v-expansion-panel-content
-				v-simple-table(dense).nopad
+				v-simple-table(dense).nopad.lin
 					thead
 						tr
 							th Вид
@@ -53,7 +53,7 @@
 						tr(v-for="item in links" :key="item.id")
 							td
 								i.icon-card.mr-2
-							td {{ item.name }}
+							td.lin {{ item.name }}
 							td {{ item.type }}
 							td.px-0.text-right
 								v-btn(icon small)
@@ -244,6 +244,9 @@ export default {
 	}
 	td {
 		padding: 0 3px;
+		&.lin {
+			color: $linkcolor;
+		}
 	}
 }
 .tasktable tr {
