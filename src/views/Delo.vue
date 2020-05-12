@@ -19,14 +19,14 @@
 			.zag.mb-4 {{ item[0].title }}
 			.btgroup
 
-				v-btn(color="docolor" dark ) Зарегистрировать
-				v-btn(color="docolor" dark ) Действует
-				v-btn(color="docolor" dark ).round.elevation-1
+				v-btn(color="taskcolor" dark ) Зарегистрировать
+				v-btn(color="taskcolor" dark ) Действует
+				v-btn(color="taskcolor" dark ).round.elevation-1
 					v-icon mdi-dots-horizontal
 
 				br
 				//- v-btn(color="docolor" dark ) На ознакомление
-				v-btn(color="docolor" dark ) На согласование
+				v-btn(color="taskcolor" dark ) На согласование
 				br
 				v-overflow-btn(label="Создать..." segmented :items="create" target="#dropdown-example" ).seg
 
