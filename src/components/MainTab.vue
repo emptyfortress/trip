@@ -1,8 +1,8 @@
 <template lang="pug">
 .maintab
 	.mybt
-		v-btn(@click="openAll"  x-small outlined color="docolor" ).mr-1 Развернуть все
-		v-btn(@click="closeAll"  x-small outlined color="docolor" ) Свернуть все
+		v-icon(@click="toggleAll") mdi-unfold-more-horizontal
+		span Свернуть / развернуть все
 	v-expansion-panels(tile flat v-model="panels" multiple inset name="main")
 		v-expansion-panel
 			v-expansion-panel-header
@@ -96,6 +96,7 @@ export default {
 	data () {
 		return {
 			panels: [1, 2],
+			expanded: false,
 			// panels: [2],
 			treetab: 0,
 			links: [
@@ -131,6 +132,15 @@ export default {
 		}
 	},
 	methods: {
+		toggleAll () {
+			if (!this.expanded) {
+				this.expanded = true
+				this.panels = [0, 1, 2, 3, 4, 5, 6]
+			} else {
+				this.expanded = false
+				this.panels = []
+			}
+		},
 		openAll () {
 			this.panels = [0, 1, 2, 3, 4, 5, 6]
 		},
@@ -220,7 +230,7 @@ export default {
 }
 .link  {
 	span {
-	opacity: 1;
+		opacity: 1;
 	}
 }
 .list {
@@ -311,8 +321,48 @@ export default {
 	margin-bottom: 2rem;
 }
 .mybt {
-	text-align: center;
-	margin-bottom: .7rem;
+	margin-bottom: .5rem;
+	margin-top: .5rem;
+	margin-left: 1.4rem;
+	.v-icon {
+		color: #999;
+		cursor: pointer;
+		&:hover {
+			color: black;
+		}
+	}
+	span {
+		font-size: 0.8rem;
+		margin-left: .5rem;
+		color: #999;
+	}
 
+}
+.theme--light.v-expansion-panels .v-expansion-panel--active {
+	border-radius: 5px;
+}
+.chevron-arrow {
+	--col: #999;
+	display: block;
+	border-right: 2px solid var(--col);
+	border-bottom: 2px solid var(--col);
+	width: 10px;
+	height: 10px;
+	cursor: pointer;
+	&.double::after {
+		content: '';
+		display: inline-block;
+		border-right: 2px solid var(--col);
+		border-bottom: 2px solid var(--col);
+		width: 10px;
+		height: 10px;
+		transform: translate(3px, -4px);
+	}
+	&:hover {
+		border-color: black;
+	}
+	&.down {
+		transform: rotate(45deg);
+}
 }
 </style>
