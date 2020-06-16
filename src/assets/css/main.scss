@@ -201,4 +201,8 @@
 .v-application--is-ltr .v-expansion-panel-header__icon {
 	order: -1;
 	margin-right: .5rem;
+	flex-shrink: 1;
+}
+.v-expansion-panel-header > *:not(.v-expansion-panel-header__icon) {
+	flex: 0 0 auto;
 }

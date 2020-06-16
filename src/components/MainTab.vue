@@ -1,12 +1,14 @@
 <template lang="pug">
 .maintab
-	.mybt
-		v-icon(@click="toggleAll") mdi-unfold-more-horizontal
-		span Свернуть / развернуть все
 	v-expansion-panels(tile flat v-model="panels" multiple inset name="main")
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Информация
+				v-tooltip( top )
+					template(v-slot:activator="{ on }")
+						v-btn(icon v-on="on" @click.stop="toggleAll").test
+							v-icon mdi-unfold-more-horizontal
+					span Свернуть/развернуть все
 			v-expansion-panel-content
 				.descr Детальный план ввода в эксплуатацию автоматизированной информационной системы государственного заказа Санкт-Петербурга на периода март-май 2020 г.
 				.myrow.mt-4
@@ -323,7 +325,7 @@ export default {
 .mybt {
 	margin-bottom: .5rem;
 	margin-top: .5rem;
-	margin-left: 1.4rem;
+	margin-left: 1.8rem;
 	.v-icon {
 		color: #999;
 		cursor: pointer;
@@ -332,7 +334,7 @@ export default {
 		}
 	}
 	span {
-		font-size: 0.8rem;
+		font-size: 0.7rem;
 		margin-left: .5rem;
 		color: #999;
 	}
@@ -341,28 +343,10 @@ export default {
 .theme--light.v-expansion-panels .v-expansion-panel--active {
 	border-radius: 5px;
 }
-.chevron-arrow {
-	--col: #999;
-	display: block;
-	border-right: 2px solid var(--col);
-	border-bottom: 2px solid var(--col);
-	width: 10px;
-	height: 10px;
-	cursor: pointer;
-	&.double::after {
-		content: '';
-		display: inline-block;
-		border-right: 2px solid var(--col);
-		border-bottom: 2px solid var(--col);
-		width: 10px;
-		height: 10px;
-		transform: translate(3px, -4px);
-	}
-	&:hover {
-		border-color: black;
-	}
-	&.down {
-		transform: rotate(45deg);
+.v-expansion-panel-header .blockhd {
+	flex-grow: 1;
 }
+.test {
+	flex-shrink: 1;
 }
 </style>
