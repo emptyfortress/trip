@@ -6,7 +6,7 @@
 				.blockhd.rel Информация
 				v-tooltip( top )
 					template(v-slot:activator="{ on }")
-						v-btn(icon v-on="on" @click.stop="toggleAll").test
+						v-btn(icon v-on="on" @click.stop="toggleAll" small).test
 							v-icon mdi-unfold-more-horizontal
 					span Свернуть/развернуть все
 			v-expansion-panel-content
@@ -348,5 +348,8 @@ export default {
 }
 .test {
 	flex-shrink: 1;
+	margin-right: .8rem;
+	margin-top: -1rem;
+	margin-bottom: -1rem;
 }
 </style>

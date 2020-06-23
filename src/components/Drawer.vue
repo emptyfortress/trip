@@ -39,6 +39,7 @@ export default {
 				{ url: '/btn', mini: 'Вход.', icon: 'icon-smile', text: 'Кнопки' },
 				{ url: '/create', mini: 'Вход.', icon: 'icon-plus', text: 'Создать документ' },
 				{ url: '/delo', mini: 'Вход.', icon: 'icon-doc', text: 'Документ на просмотр' },
+				{ url: '/task', mini: 'Вход.', icon: 'icon-task', text: 'Задание с превью' },
 				{ url: '/delobt', mini: 'Вход.', icon: 'icon-doc', text: 'Тулбар для кнопок' }
 			]
 		}
@@ -56,6 +57,8 @@ export default {
 		classCompute (item) {
 			if (this.path === item.url && (this.path === '/delo' || this.path === '/delobt')) {
 				return 'active-delo'
+			} else if (this.path === item.url && this.path === '/task') {
+				return 'active-task'
 			} else if (this.path === item.url) {
 				return 'active'
 			} else return ''
@@ -65,6 +68,8 @@ export default {
 		color () {
 			if (this.$route.name === 'delo' || this.$route.name === 'delobt') {
 				return 'docolor'
+			} else if (this.$route.name === 'task') {
+				return 'taskcolor'
 			} else return 'dark'
 		},
 		path () {
@@ -120,5 +125,8 @@ export default {
 }
 .active-delo {
 	background: lighten($docolor, 5%);
+}
+.active-task {
+	background: lighten($taskcolor, 10%);
 }
 </style>

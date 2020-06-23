@@ -15,7 +15,7 @@ v-app
 			i.icon-search-scan
 		v-btn( href="" icon  v-show="offsetTop" @click="toggleSearch")
 			i.icon-search
-		.pinkk
+		.pink
 			v-avatar(color="#5ba1cc" size="35" v-show="offsetTop" v-ripple)
 				img(src="@/assets/img/user0.svg" )
 		v-btn( href="" icon  v-show="offsetTop" @click="showPreview")
@@ -37,7 +37,7 @@ v-app
 
 	Footer(:info="info" :card="card" v-if="showFooter")
 	Dialog
-	v-alert(v-show="!preview && ($route.name !== 'create') && $route.name !== 'delo' && $route.name !== 'delobt'" transition="scale-transition").plus
+	v-alert(v-show="!preview && ($route.name !== 'create') && $route.name !== 'delo' && $route.name !== 'delobt' && $route.name !== 'task' " transition="scale-transition").plus
 		v-btn(dark fab large color="pink" @click="toggleAdd" :class="add ? 'active' : '' ")
 			v-icon(dark) mdi-plus
 	v-alert(v-show="scroll" transition="scale-transition").up
@@ -81,11 +81,15 @@ export default {
 				return false
 			} else if (this.$route.name === 'delobt') {
 				return false
+			} else if (this.$route.name === 'task') {
+				return false
 			} else return true
 		},
 		color () {
 			if (this.$route.name === 'delo' || this.$route.name === 'delobt') {
 				return 'docolor'
+			} else if (this.$route.name === 'task') {
+				return 'taskcolor'
 			} else return 'dark'
 		},
 		card () {
