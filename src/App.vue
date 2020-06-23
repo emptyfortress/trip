@@ -15,9 +15,9 @@ v-app
 			i.icon-search-scan
 		v-btn( href="" icon  v-show="offsetTop" @click="toggleSearch")
 			i.icon-search
-		.pink
-			v-avatar(color="#5ba1cc" size="35" v-show="offsetTop" v-ripple)
-				img(src="@/assets/img/user0.svg" )
+		<!-- .pink -->
+		v-avatar(color="#5ba1cc" size="35" v-show="offsetTop" v-ripple)
+			img(src="@/assets/img/user0.svg" )
 		v-btn( href="" icon  v-show="offsetTop" @click="showPreview")
 			v-icon mdi-dock-right
 	v-content(v-scroll="handleScroll" id="target" :class="chooseBg")
