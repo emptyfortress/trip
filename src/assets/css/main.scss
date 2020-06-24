@@ -206,3 +206,7 @@
 .v-expansion-panel-header > *:not(.v-expansion-panel-header__icon) {
 	flex: 0 0 auto;
 }
+
+.norightmargin .v-expansion-panel-content__wrap {
+	padding: 0 0 16px 24px;
+}

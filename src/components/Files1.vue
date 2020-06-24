@@ -7,8 +7,8 @@
 	v-expansions-panels(tile flat v-model="panels" multiple name="inner")
 		v-expansion-panel.nobdr
 			v-expansion-panel-header.px-0
-				.flhd Основные файлы (3)
-			v-expansion-panel-content.pb-0
+				.flhd.noflex Основные файлы (3)
+			v-expansion-panel-content.pb-0.norightmargin
 				v-simple-table(:dense="dense").filetable
 					thead
 						tr
@@ -27,8 +27,8 @@
 				.dense(@click="dense = !dense") small
 		v-expansion-panel.nobdr.mt-0
 			v-expansion-panel-header.px-0
-				.flhd Дополнительные файлы (1)
-			v-expansion-panel-content.px-0
+				.flhd.noflex Дополнительные файлы (1)
+			v-expansion-panel-content.px-0.norightmargin
 				v-simple-table(dense).filetable
 					thead
 						tr
@@ -162,5 +162,11 @@ export default {
 	font-size: .8rem;
 	color: $linkcolor;
 	cursor: pointer;
+}
+.v-expansion-panel-header > *:not(.v-expansion-panel-header__icon).noflex {
+		flex: 1 0 auto;
+}
+.norightmargin .v-expansion-panel-content__wrap {
+	padding: 0 0 16px 24px;
 }
 </style>
