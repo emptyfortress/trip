@@ -2,37 +2,40 @@
 .task
 	v-row
 		v-col(cols="2")
-			h2 one
+			h2 Задание
+			p здесь атрибуты задания
+			p здесь атрибуты задания
+			p здесь атрибуты задания
+			p здесь атрибуты задания
 		v-col(cols="10")
 			.all
-				drag-zone.zone.pt-5
-					drag-content(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview").content.one
-						div(v-show="left").forpdf
-							img(src="@/assets/img/pdf.png").pdf
+				v-expansion-panels(v-model="docpanel")
+					v-expansion-panel.docu
+						v-expansion-panel-header
+							.blockhd.noflex Документ
+						v-expansion-panel-content
+							drag-zone.zone.pt-5
+								drag-content(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview").content.one
+									div(v-show="left").forpdf
+										img(src="@/assets/img/pdf.png").pdf
 
-					drag-handle(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview" ).hand
-						div
-					drag-content.cardd(:class="inlinePreview ? '' : 'only'")
-						.d-flex
-							.num Вх-123/3055
-							v-spacer
-							Status(title="Подготовка")
-						br
-						.zag.mb-4 {{ item[0].title }}
-						.btgroup
+								drag-handle(v-show="$vuetify.breakpoint.mdAndUp && inlinePreview" ).hand
+									div
+								drag-content.cardd(:class="inlinePreview ? '' : 'only'")
+									.d-flex
+										.num Вх-123/3055
+										v-spacer
+										Status(title="Подготовка")
+									br
+									.zag.mb-4 {{ item[0].title }}
+									.btgroup
 
-							v-btn(color="docolor" dark ) Зарегистрировать
-							v-btn(color="docolor" dark ) Действует
-							v-btn(color="docolor" dark ).round.elevation-1
-								v-icon mdi-dots-horizontal
+										v-btn(color="docolor" dark ) Зарегистрировать
+										v-btn(color="docolor" dark ) Действует
+										v-btn(color="docolor" dark ).round.elevation-1
+											v-icon mdi-dots-horizontal
 
-						v-tabs(v-model="tt").mytab
-							v-tab Главная
-							v-tab Ход согласования
-							v-tab-item(key="1")
-								MainTab
-							v-tab-item(key="2")
-								Hod.mt-3
+									MainTab
 				v-scale-transition(origin="top left")
 					Comments(v-show="chat" :myx="20" :myy="60" style="z-index: 100")
 </template>
@@ -51,6 +54,7 @@ export default {
 			fab: false,
 			left: true,
 			tt: 0,
+			docpanel: 0,
 			create: [
 				{ text: '+Группа заданий', callback: () => console.log('list') },
 				{ text: '+Задание на ознакомл.', callback: () => console.log('favorite') },
@@ -141,104 +145,104 @@ export default {
 @import '@/assets/css/colors.scss';
 
 .btgroup {
-	margin-bottom: 1.5rem;
-	.v-btn {
-		margin-bottom: .25rem;
-	}
-	.v-btn:not(:last-child) {
-		margin-right: .25rem;
-	}
+		margin-bottom: 1.5rem;
+		.v-btn {
+				margin-bottom: .25rem;
+		}
+		.v-btn:not(:last-child) {
+				margin-right: .25rem;
+		}
 }
 .doc {
-	position: absolute;
-	top: 53px;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	overflow-y: auto;
-	background: #fff;
-	box-shadow: 0 0 3px #666666aa;
+		position: absolute;
+		top: 53px;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		overflow-y: auto;
+		background: #fff;
+		box-shadow: 0 0 3px #666666aa;
 }
 
 .cardd {
-	/* width: 100%; */
-	width: 50%;
-	padding: 1.5rem;
-	padding-top: 0;
-	height: 100%;
-	overflow: auto;
-	&.only {
-		height: auto;
-		width: 1300px;
-		max-width: 1200px;
-		margin: 0 auto;
-		/* background: #ccc; */
-	}
+		/* width: 100%; */
+		width: 50%;
+		padding: 1.5rem;
+		padding-top: 0;
+		height: 100%;
+		overflow: auto;
+		&.only {
+				height: auto;
+				width: 1300px;
+				max-width: 1200px;
+				margin: 0 auto;
+				/* background: #ccc; */
+		}
 }
 @media only screen and (max-width: 960px) {
-	.cardd {
-		width: 100%;
-		margin-right: 1rem;
-	}
+		.cardd {
+				width: 100%;
+				margin-right: 1rem;
+		}
 }
 .no-scroll {
-	height: auto;
-	max-width: 1200px;
-	margin: 0 auto;
+		height: auto;
+		max-width: 1200px;
+		margin: 0 auto;
 }
 .zag {
-	color: black;
-	text-align: left;
-	font-size: 1.4rem;
+		color: black;
+		text-align: left;
+		font-size: 1.4rem;
 }
 
 .zone {
-	width: 100%;
-	height: 100%;
-	margin: 0 auto;
-	position: relative;
-	display: flex;
-	.hand {
-		width: 20px;
-		div {
-			width:10px;
-			height: 100%;
-			transform: translateX(5px);
+		width: 100%;
+		height: 100%;
+		margin: 0 auto;
+		position: relative;
+		display: flex;
+		.hand {
+				width: 20px;
+				div {
+						width:10px;
+						height: 100%;
+						transform: translateX(5px);
+				}
+				&:hover {
+						div { border-left: 3px dotted #333; }
+				}
 		}
-		&:hover {
-			div { border-left: 3px dotted #333; }
-		}
-	}
 }
 .one {
-	width: 50%;
-	position: relative;
+		width: 50%;
+		position: relative;
 }
 .all {
-	width: 100%;
-	height: calc(100vh - 100px);
-	position: relative;
-	&.only {
-		height: auto;
-	}
-	&.wh {
-		background: #fff;
-	}
-	&.gr {
-		background: #e5f6ff;
-	}
+		width: 100%;
+		height: calc(100vh - 100px);
+		position: relative;
+		&.only {
+				height: auto;
+		}
+		&.wh {
+				background: #fff;
+		}
+		&.gr {
+				background: #e5f6ff;
+		}
 }
 .descr {
-	margin: 1rem auto;
+		margin: 1rem auto;
 }
 .round {
-	border-radius: 4px;
-	background: #fff;
+		border-radius: 4px;
+		background: #fff;
 }
 
 .myfab {
-	display: inline-block;
-	z-index: 10;
+		display: inline-block;
+		z-index: 10;
 }
 .v-speed-dial--is-active i.my {
 	transform: rotate(45deg);
@@ -260,5 +264,14 @@ export default {
 	margin-right: 5px;
 	margin-bottom: 5px;
 	height: 38px;
+}
+.v-expansion-panel-header > *:not(.v-expansion-panel-header__icon).noflex {
+	flex: 1 0 auto;
+}
+.theme--light.v-expansion-panels .v-expansion-panel--active.docu {
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	border-left: 10px solid #ddd;
 }
 </style>
