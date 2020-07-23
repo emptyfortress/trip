@@ -64,6 +64,8 @@
 	v-alert(v-show="showPage && !toolbar" transition="scale-transition").up
 		.page Страницы:
 			span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''" @click="topage(index)").pag {{ index + 1 }}
+			span.mx-2 ...
+			span.pag.mr-2 100
 	context-menu(ref="ctxMenu")
 		myMenu(@showToolbar="toolbar = !toolbar" @showGroup="group = !group")
 </template>
