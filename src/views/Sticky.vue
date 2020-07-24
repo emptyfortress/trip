@@ -62,10 +62,9 @@
 	br
 	br
 	v-alert(v-show="showPage && !toolbar" transition="scale-transition").up
-		.page Страницы:
-			span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''" @click="topage(index)").pag {{ index + 1 }}
-			span.mx-2 ...
-			span.pag.mr-2 100
+		.pagescroll
+			v-slider(v-model="slider" :thumb-size="24" thumb-label)
+
 	context-menu(ref="ctxMenu")
 		myMenu(@showToolbar="toolbar = !toolbar" @showGroup="group = !group")
 </template>
@@ -95,7 +94,8 @@ export default {
 				parentSelect: true,
 				dnd: true,
 				multiple: false
-			}
+			},
+			slider: 0
 		}
 	},
 	components: {
@@ -251,6 +251,18 @@ h3 {
 		padding: 5px 7px;
 		border-color: #aaa;
 	}
+}
+.pagescroll {
+	width: 400px;
+	font-size: 1rem;
+	font-weight: 400;
+	background: #e4e4e0;
+	border-bottom: 1px solid #fff;
+	/* padding: 10px 25px; */
+	padding-left: 4rem;
+	padding-right: 1rem;
+	border-radius: 5px;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 .quick {
 	position: absolute;

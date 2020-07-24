@@ -42,9 +42,9 @@ v-app
 			v-icon(dark) mdi-plus
 
 	v-alert(v-show="scroll" transition="scale-transition").up
-		v-btn(fab color="grey lighten-2" @click="$vuetify.goTo(0)")
-			v-icon(dark) mdi-arrow-up
-		v-btn(x-small dark fab color="grey darken-1" @click="$vuetify.goTo(9999)").down
+		v-btn(fab color="white" @click="$vuetify.goTo(0)")
+			v-icon() mdi-arrow-up
+		v-btn(x-small fab color="white" @click="$vuetify.goTo(9999)").down
 			v-icon mdi-arrow-down
 </template>
 
