@@ -94,7 +94,7 @@
 		&:hover {
 			background: #eee;
 		}
-		&:nth-last-child(2) {
+		&.first {
 			border-top: 1px dotted #666;
 		}
 		i {

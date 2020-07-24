@@ -9,6 +9,8 @@
 						v-btn(icon v-on="on" @click="click(item.click)")
 							i(:class="item.icon")
 					span {{item.text}}
+		.view
+			v-select(:items="views" dense value="Настроено в УД")
 		.page Страницы:
 			span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''" @click="topage(index)").pag {{ index + 1 }}
 			span.mx-2 ...
@@ -31,6 +33,12 @@ export default {
 				{ text: 'Reset', icon: 'icon-empty', click: '' },
 				{ text: 'Экспорт', icon: 'icon-xls', click: '' },
 				{ text: 'Настройки', icon: 'icon-setup', click: '' }
+			],
+			views: [
+				'Это представление',
+				'Просрочено',
+				'Все скопром',
+				'Настроено в УД'
 			]
 		}
 	},
@@ -102,6 +110,12 @@ export default {
 			font-size: 1.2rem;
 			margin-left: -3px;
 		}
+	}
+	.view {
+		height: 44px;
+		width: 300px;
+		transform: translateY(5px);
+		/* background: red; */
 	}
 }
 .line {

@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'support';
-  src: url('../font/support.eot?86157008');
-  src: url('../font/support.eot?86157008#iefix') format('embedded-opentype'),
-       url('../font/support.woff2?86157008') format('woff2'),
-       url('../font/support.woff?86157008') format('woff'),
-       url('../font/support.ttf?86157008') format('truetype'),
-       url('../font/support.svg?86157008#support') format('svg');
+  src: url('../font/support.eot?26532477');
+  src: url('../font/support.eot?26532477#iefix') format('embedded-opentype'),
+       url('../font/support.woff2?26532477') format('woff2'),
+       url('../font/support.woff?26532477') format('woff'),
+       url('../font/support.ttf?26532477') format('truetype'),
+       url('../font/support.svg?26532477#support') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'support';
-    src: url('../font/support.svg?86157008#support') format('svg');
+    src: url('../font/support.svg?26532477#support') format('svg');
   }
 }
 */
@@ -24,7 +24,7 @@
   font-family: "support";
   font-style: normal;
   font-weight: normal;
-  speak: none;
+  speak: never;
  
   display: inline-block;
   text-decoration: inherit;
@@ -122,11 +122,13 @@
 .icon-loud:before { content: '\e840'; } /* '' */
 .icon-microphone:before { content: '\e841'; } /* '' */
 .icon-smile:before { content: '\e842'; } /* '' */
+.icon-foo:before { content: '\e843'; } /* '' */
 .icon-signin:before { content: '\e844'; } /* '' */
 .icon-done:before { content: '\e845'; } /* '' */
 .icon-map:before { content: '\e846'; } /* '' */
 .icon-card:before { content: '\e847'; } /* '' */
 .icon-down:before { content: '\e848'; } /* '' */
+.icon-lookma:before { content: '\e849'; } /* '' */
 .icon-star-full:before { content: '\e84a'; } /* '' */
 .icon-star-empty:before { content: '\e84b'; } /* '' */
 .icon-absentfile:before { content: '\e851'; } /* '' */
@@ -147,6 +149,7 @@
 .icon-numeric-2-box:before { content: '\e862'; } /* '' */
 .icon-magnify:before { content: '\e863'; } /* '' */
 .icon-search-scan:before { content: '\e864'; } /* '' */
+.icon-coolma:before { content: '\e865'; } /* '' */
 .icon-desktop:before { content: '\e866'; } /* '' */
 .icon-inbox:before { content: '\e867'; } /* '' */
 .icon-outbox:before { content: '\e868'; } /* '' */
@@ -169,6 +172,8 @@
 .icon-approve:before { content: '\e88d'; } /* '' */
 .icon-look:before { content: '\e88e'; } /* '' */
 .icon-archive:before { content: '\e88f'; } /* '' */
+.icon-translate:before { content: '\e890'; } /* '' */
+.icon-view:before { content: '\e891'; } /* '' */
 .icon-toolbar:before { content: '\e8a2'; } /* '' */
 .icon-toolbar-1:before { content: '\e8a3'; } /* '' */
 .icon-sort-alt-up:before { content: '\f160'; } /* '' */

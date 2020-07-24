@@ -63,6 +63,9 @@
 	br
 	v-alert(v-show="showPage && !toolbar" transition="scale-transition").up
 		.pagescroll
+			.total
+				|Всего:
+				span 448
 			v-slider(v-model="slider" :thumb-size="24" thumb-label)
 
 	context-menu(ref="ctxMenu")
@@ -259,7 +262,7 @@ h3 {
 	background: #e4e4e0;
 	border-bottom: 1px solid #fff;
 	/* padding: 10px 25px; */
-	padding-left: 4rem;
+	padding-left: 7rem;
 	padding-right: 1rem;
 	border-radius: 5px;
 	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
@@ -300,7 +303,6 @@ h3 {
 	position: fixed;
 	bottom: 1rem;
 	left: 50%;
-	transform: translateX(40px);
 	background: transparent;
 }
 .group-top {
@@ -324,5 +326,15 @@ h3 {
 .switch {
 	display: flex;
 	justify-content: space-between;
+}
+.total {
+	font-size: .8rem;
+	text-align: center;
+	color: #777;
+	margin-bottom: -.6rem;
+	span {
+		margin-left: .5rem;
+		color: #000;
+	}
 }
 </style>
