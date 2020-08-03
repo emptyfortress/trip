@@ -66,7 +66,9 @@
 			.total
 				|Всего:
 				span 448
-			v-slider(v-model="slider" :thumb-size="24" thumb-label)
+			v-slider(v-model="slider" :thumb-size="32" thumb-label)
+				template(v-slot:thumb-label="{ value }")
+					span.thum {{ value }}%
 
 	context-menu(ref="ctxMenu")
 		myMenu(@showToolbar="toolbar = !toolbar" @showGroup="group = !group")
@@ -336,5 +338,8 @@ h3 {
 		margin-left: .5rem;
 		color: #000;
 	}
+}
+.thum {
+	padding: 1rem;
 }
 </style>
