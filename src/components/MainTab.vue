@@ -29,9 +29,9 @@
 		v-expansion-panel(value="1")
 			v-expansion-panel-header
 				.blockhd.rel Файлы (4)
-					.plus(@click.stop="")
+					v-btn.plus(icon @click.stop="")
 						i.icon-folder-o
-					.scan(@click.stop="")
+					v-btn.scan(icon @click.stop="")
 						i.icon-scan
 			v-expansion-panel-content
 				Files1
@@ -39,9 +39,9 @@
 		v-expansion-panel
 			v-expansion-panel-header
 				.blockhd.rel Ссылки (2)
-					v-btn.scan(@click.stop="" icon small)
+					v-btn.scan(@click.stop="" icon )
 						v-icon mdi-plus
-					v-btn.plus(@click.stop="" icon small)
+					v-btn.plus(@click.stop="" icon )
 						i.icon-setup
 			v-expansion-panel-content
 				v-simple-table(dense).nopad.lin
@@ -189,7 +189,7 @@ export default {
 .plus {
 	position: absolute;
 	right: 1rem;
-	top: -5px;
+	top: -13px;
 	color: black;
 	i {
 		font-size: 1.0rem;
@@ -222,7 +222,7 @@ export default {
 .scan {
 	position: absolute;
 	right: 3rem;
-	top: -5px;
+	top: -13px;
 	color: black;
 	i {
 		font-size: 1.2rem;
