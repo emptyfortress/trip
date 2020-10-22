@@ -33,19 +33,23 @@
 					tree(ref="tree" :data="list" :options="treeOptions" @node:selected="onNodeSelected").tree-group
 		table.full
 			thead
-				tr
+				tr(:class="{'toolbar' : toolbar}")
 					th(v-for="(item,index) in 5"
 						@mouseover="showByIndex = index" @mouseout="showByIndex = null"
-						:class="toolbar ? 'toolbar' : '' ")
-						v-icon(v-if="sortByIndex === index").sort mdi-arrow-down
+						:class="{'sorting' : sortByIndex === index}")
+						v-icon(v-if="sortByIndex === index" :class="{'sortup' : up}").sort mdi-arrow-down
 						span One
 						v-icon(v-if="index === smallFilter" color="#8b0000").sort.ml-2 mdi-filter
 						.over(v-show="showByIndex === index")
-							v-icon(@click="sortByIndex = index") mdi-arrow-down
-							v-icon(v-show="smallFilter === index" @click="smallFilter = null" color="#8B0000") mdi-filter-remove-outline
-							v-icon(@click="filterByIndex = index") mdi-filter-outline
-							v-icon(@click="filterByIndex = null") mdi-pin-outline
-							v-icon(@click="filterByIndex = null") mdi-eye-off
+							v-btn(icon small @click="sort(index)")
+								v-icon(:class="{'sortup' : up}") mdi-arrow-down
+
+							v-btn(icon small v-show="smallFilter === index" @click="smallFilter = null")
+								v-icon(color="#8B0000") mdi-filter-remove-outline
+							v-btn(icon small @click="filterByIndex = index")
+								v-icon mdi-filter-outline
+							v-btn(icon small @click="filterByIndex = null")
+								v-icon mdi-eye-off
 						v-slide-y-transition
 							v-card.quick.elevation-3(v-show="filterByIndex === index")
 								v-text-field(autofocus clearable :key="index")
@@ -94,6 +98,7 @@ export default {
 			showByIndex: null,
 			filterByIndex: null,
 			sortByIndex: null,
+			up: false,
 			treeOptions: {
 				checkbox: false,
 				parentSelect: true,
@@ -109,6 +114,15 @@ export default {
 		contextMenu
 	},
 	methods: {
+		thead (e) {
+			// if (this.toolbar) {
+			// 	return 'toolbar'
+			// }
+		},
+		sort (e) {
+			this.up = !this.up
+			this.sortByIndex = e
+		},
 		setGroup () {
 			this.group = !this.group
 		},
@@ -151,20 +165,24 @@ export default {
 	transition: all 0.3s ease;
 	tr {
 		background: #fff;
+		&.toolbar th {
+			top: 45px;
+		}
 	}
 	th {
 		cursor: pointer;
-		background: #ccc;
+		background: #dadada;
 		height: 2.5rem;
 		position: sticky;
 		top: 0;
-		font-weight: 600;
+		font-weight: 400;
 		font-size: 0.75rem;
-		color: #666;
+		color: #555;
 		text-align: left;
 		padding: 0 1rem;
-		&.toolbar {
-			top: 45px;
+		&.sorting {
+			font-weight: 600;
+			color: #000;
 		}
 	}
 	.ro {
@@ -285,17 +303,19 @@ h3 {
 	width: 100%;
 	height: 100%;
 	text-align: right;
-	margin-right: 0.5rem;
-	/* background: #333; */
+	padding-right: .5rem;
 	background: rgba(255, 255, 255, 0.6);
 	line-height: 41px;
 	i {
-		margin-right: 4px;
 		color: #999;
+		transition: .2s ease all;
 		&:hover {
 			color: black;
 		}
 	}
+}
+.sortup {
+	transform: rotate(180deg);
 }
 .sort {
 	font-size: 14px;
