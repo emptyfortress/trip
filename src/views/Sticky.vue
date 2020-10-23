@@ -41,15 +41,30 @@
 						span One
 						v-icon(v-if="index === smallFilter" color="#8b0000").sort.ml-2 mdi-filter
 						.over(v-show="showByIndex === index")
-							v-btn(icon small @click="sort(index)")
-								v-icon(:class="{'sortup' : up}") mdi-arrow-down
+							v-tooltip(top)
+								template(v-slot:activator="{ on, attrs }")
+									v-btn(icon small @click="sort(index)" v-bind="attrs" v-on="on")
+										v-icon(:class="{'sortup' : up}") mdi-arrow-down
+								span Сортировка
 
-							v-btn(icon small v-show="smallFilter === index" @click="smallFilter = null")
-								v-icon(color="#8B0000") mdi-filter-remove-outline
-							v-btn(icon small @click="filterByIndex = index")
-								v-icon mdi-filter-outline
-							v-btn(icon small @click="filterByIndex = null")
-								v-icon mdi-eye-off
+							v-tooltip(top)
+								template(v-slot:activator="{ on, attrs }")
+									v-btn(icon small v-show="smallFilter === index" @click="smallFilter = null" v-bind="attrs" v-on="on")
+										v-icon(color="#8B0000") mdi-filter-remove-outline
+								span Сбросить фильтр
+
+							v-tooltip(top)
+								template(v-slot:activator="{ on, attrs }")
+									v-btn(icon small @click="filterByIndex = index" v-bind="attrs" v-on="on")
+										v-icon mdi-filter-outline
+								span Фильтр
+
+							v-tooltip(top)
+								template(v-slot:activator="{ on, attrs }")
+									v-btn(icon small @click="filterByIndex = null" v-bind="attrs" v-on="on")
+										v-icon mdi-eye-off
+								span Скрыть
+
 						v-slide-y-transition
 							v-card.quick.elevation-3(v-show="filterByIndex === index")
 								v-text-field(autofocus clearable :key="index")
