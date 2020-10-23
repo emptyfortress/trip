@@ -34,6 +34,8 @@
 		table.full
 			thead
 				tr(:class="{'toolbar' : toolbar}")
+					th.sm
+						v-simple-checkbox(:value="all" @input="setAll" :indeterminate="indeterminate" v-ripple).check
 					th(v-for="(item,index) in 5"
 						@mouseover="showByIndex = index" @mouseout="showByIndex = null"
 						:class="{'sorting' : sortByIndex === index}")
@@ -74,6 +76,8 @@
 									v-btn(text color="primary" @click="filterByIndex = null; smallFilter = index") Применить
 				tbody
 				tr(v-for="(item, i) in num" :key="i" @contextmenu.prevent="$refs.ctxMenu.open").ro
+					td.sm
+						v-simple-checkbox(v-model="test" color="primary" v-ripple).check
 					td(v-for="n in 5")
 						v-lazy(:options="{threshold: .5}"  transition="fade-transition" v-if="lazy")
 							span Тут некоторые данные
@@ -114,6 +118,8 @@ export default {
 			filterByIndex: null,
 			sortByIndex: null,
 			up: false,
+			all: false,
+			test: false,
 			treeOptions: {
 				checkbox: false,
 				parentSelect: true,
@@ -373,5 +379,8 @@ h3 {
 		margin-left: .5rem;
 		color: #000;
 	}
+}
+.sm {
+	text-align: center;
 }
 </style>

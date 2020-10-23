@@ -2,6 +2,7 @@
 .all
 	hr.line
 	.tool
+		.groupoperation
 		.toolcontent
 			template(v-for="(item, index) in buttons")
 				v-tooltip( bottom )
@@ -9,12 +10,12 @@
 						v-btn(icon v-on="on" @click="click(item.click)")
 							i(:class="item.icon")
 					span {{item.text}}
-		.view
-			v-select(:items="views" dense value="Настроено в УД")
-		.page Страницы:
-			span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''" @click="topage(index)").pag {{ index + 1 }}
-			span.mx-2 ...
-			span.pag.mr-2 100
+		//- .view
+		//- 	v-select(:items="views" dense value="Настроено в УД")
+		//- .page Страницы:
+		//- 	span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''" @click="topage(index)").pag {{ index + 1 }}
+		//- 	span.mx-2 ...
+		//- 	span.pag.mr-2 100
 </template>
 
 <script>
@@ -25,13 +26,13 @@ export default {
 		return {
 			num: 100,
 			buttons: [
-				{ text: 'Выбрать', icon: 'icon-select', click: '' },
+				// { text: 'Выбрать', icon: 'icon-select', click: '' },
 				{ text: 'Прочитать все', icon: 'icon-read', click: '' },
 				{ text: 'Группировка', icon: 'icon-multi', click: 'groupped' },
-				{ text: 'Поиск', icon: 'icon-search', click: '' },
+				// { text: 'Поиск', icon: 'icon-search', click: '' },
 				{ text: 'Обновить', icon: 'icon-refresh', click: '' },
-				{ text: 'Reset', icon: 'icon-empty', click: '' },
 				{ text: 'Экспорт', icon: 'icon-xls', click: '' },
+				{ text: 'Reset', icon: 'icon-empty', click: '' },
 				{ text: 'Настройки', icon: 'icon-setup', click: '' }
 			],
 			views: [
