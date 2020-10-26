@@ -3,6 +3,18 @@
 	hr.line
 	.tool
 		.groupoperation
+			v-slide-x-transition(mode="out-in")
+				.total(v-if="selected > 0")
+					span Выбрано:
+					v-btn(icon small).mx-3
+						v-icon mdi-close
+					span.big {{ selected }}
+					.ml-6
+						v-btn(depressed small) Прочитать
+						v-btn(depressed small).ml-2 В работу
+						v-btn(depressed small).ml-2 Делегировать
+						v-btn(icon small).ml-4
+							v-icon mdi-dots-vertical
 		.toolcontent
 			template(v-for="(item, index) in buttons")
 				v-tooltip( bottom )
@@ -10,29 +22,21 @@
 						v-btn(icon v-on="on" @click="click(item.click)")
 							i(:class="item.icon")
 					span {{item.text}}
-		//- .view
-		//- 	v-select(:items="views" dense value="Настроено в УД")
-		//- .page Страницы:
-		//- 	span(v-for="(item, index) in pages" :class="current === index ? 'active' : ''" @click="topage(index)").pag {{ index + 1 }}
-		//- 	span.mx-2 ...
-		//- 	span.pag.mr-2 100
 </template>
 
 <script>
 
 export default {
-	props: ['current'],
+	props: ['current', 'selected'],
 	data () {
 		return {
 			num: 100,
 			buttons: [
-				// { text: 'Выбрать', icon: 'icon-select', click: '' },
 				{ text: 'Прочитать все', icon: 'icon-read', click: '' },
 				{ text: 'Группировка', icon: 'icon-multi', click: 'groupped' },
-				// { text: 'Поиск', icon: 'icon-search', click: '' },
 				{ text: 'Обновить', icon: 'icon-refresh', click: '' },
 				{ text: 'Экспорт', icon: 'icon-xls', click: '' },
-				{ text: 'Reset', icon: 'icon-empty', click: '' },
+				{ text: 'Reset', icon: 'icon-kill-setup', click: '' },
 				{ text: 'Настройки', icon: 'icon-setup', click: '' }
 			],
 			views: [
@@ -124,5 +128,14 @@ export default {
 	height: 0;
 	border-top: 1px solid rgba(0, 0, 0, 0.23);
 	border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+.total {
+	line-height: 42px;
+	padding: 0 1rem;
+	display: flex;
+	align-items: center;
+}
+.big {
+	font-size: 1.3rem;
 }
 </style>

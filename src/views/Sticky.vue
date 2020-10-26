@@ -17,7 +17,7 @@
 							p Группировка тоже не работает, а имитируется.
 
 	br
-	Toolbar(v-show="toolbar" :current="current" :group="group" @groupped="setGroup")
+	Toolbar(v-show="toolbar || selectedItems > 0" :current="current" :group="group" @groupped="setGroup" :selected="selectedItems")
 	v-fade-transition
 		.group-top(v-show="group")
 			.inf Перетащите сюда заголовок колонки для группировки
@@ -75,9 +75,9 @@
 									v-spacer
 									v-btn(text color="primary" @click="filterByIndex = null; smallFilter = index") Применить
 				tbody
-				tr(v-for="(item, i) in num" :key="i" @contextmenu.prevent="$refs.ctxMenu.open").ro
-					td.sm
-						v-simple-checkbox(v-model="test" color="primary" v-ripple).check
+				tr(v-for="(item, i) in items" :key="i" @contextmenu.prevent="$refs.ctxMenu.open").ro
+					td(v-ripple).sm
+						v-simple-checkbox(v-model="item.selected" color="primary").check
 					td(v-for="n in 5")
 						v-lazy(:options="{threshold: .5}"  transition="fade-transition" v-if="lazy")
 							span Тут некоторые данные
@@ -109,6 +109,8 @@ export default {
 		return {
 			lazy: false,
 			group: false,
+			items: [],
+			all: false,
 			offsetTop: 0,
 			num1: 50,
 			list: list,
@@ -118,8 +120,6 @@ export default {
 			filterByIndex: null,
 			sortByIndex: null,
 			up: false,
-			all: false,
-			test: false,
 			treeOptions: {
 				checkbox: false,
 				parentSelect: true,
@@ -129,16 +129,28 @@ export default {
 			slider: 0
 		}
 	},
+	created () {
+		for (let i = 0; i < 50; i++) {
+			this.items.push({
+				id: i,
+				selected: false
+			})
+		}
+	},
 	components: {
 		Toolbar,
 		myMenu,
 		contextMenu
 	},
 	methods: {
-		thead (e) {
-			// if (this.toolbar) {
-			// 	return 'toolbar'
-			// }
+		setAll () {
+			if (this.all) {
+				this.items.map((item) => { item.selected = false })
+				this.all = false
+			} else {
+				this.items.map((item) => { item.selected = true })
+				this.all = true
+			}
 		},
 		sort (e) {
 			this.up = !this.up
@@ -155,6 +167,19 @@ export default {
 		}
 	},
 	computed: {
+		selectedItems () {
+			return this.items.filter(item => item.selected).length
+		},
+		indeterminate () {
+			let sel = this.items.reduce((total, item) => {
+				if (item.selected === true) {
+					return total + 1
+				} else return total
+			}, 0)
+			if (sel > 0 && !this.all) {
+				return true
+			} else return false
+		},
 		showPage () {
 			return this.$store.getters.showPage
 		},
