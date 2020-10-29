@@ -2,13 +2,17 @@
 .all
 	hr.line
 	.tool
-		.groupoperation
-			v-slide-x-transition(mode="out-in")
+		.d-flex
+			v-slide-x-transition(mode="out-in" hide-on-leave)
+				.total(v-if="selected === 0")
+					span Всего:
+					span.font-weight-bold.ml-3 438
+			v-slide-x-reverse-transition(mode="out-in")
 				.total(v-if="selected > 0")
 					span Выбрано:
 					v-btn(icon small).mx-3
 						v-icon mdi-close
-					span.big {{ selected }}
+					span.font-weight-bold {{ selected }}
 					.ml-6
 						v-btn(depressed small) Прочитать
 						v-btn(depressed small).ml-2 В работу
