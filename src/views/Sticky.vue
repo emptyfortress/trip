@@ -17,7 +17,7 @@
 							p Группировка тоже не работает, а имитируется.
 
 	br
-	Toolbar(v-show="toolbar || selectedItems > 0" :current="current" :group="group" @groupped="setGroup" :selected="selectedItems")
+	Toolbar(v-show="toolbar || selectedItems > 0" :smallFilter="smallFilter" :current="current" :group="group" @groupped="setGroup" :selected="selectedItems" @reset="smallFilter = null")
 	v-fade-transition
 		.group-top(v-show="group")
 			.inf Перетащите сюда заголовок колонки для группировки

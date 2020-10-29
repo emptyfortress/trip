@@ -6,7 +6,11 @@
 			v-slide-x-transition(mode="out-in" hide-on-leave)
 				.total(v-if="selected === 0")
 					span Всего:
-					span.font-weight-bold.ml-3 438
+					span(:class="but" @click="$emit('reset')").font-weight-bold.ml-3 438
+					v-slide-x-transition(mode="out-in" hide-on-leave)
+						span.ml-5(v-if="smallFilter") Показано:
+					v-slide-x-transition(mode="out-in" hide-on-leave)
+						span(v-if="smallFilter").font-weight-bold.ml-3 48
 			v-slide-x-reverse-transition(mode="out-in")
 				.total(v-if="selected > 0")
 					span Выбрано:
@@ -31,7 +35,7 @@
 <script>
 
 export default {
-	props: ['current', 'selected'],
+	props: ['current', 'selected', 'smallFilter'],
 	data () {
 		return {
 			num: 100,
@@ -52,6 +56,11 @@ export default {
 		}
 	},
 	computed: {
+		but () {
+			if (this.smallFilter) {
+				return 'click'
+			} else return ''
+		},
 		pages () {
 			return Math.floor((this.num * 48) / this.windHeight)
 		},
@@ -141,5 +150,20 @@ export default {
 }
 .big {
 	font-size: 1.3rem;
+}
+.click {
+	padding: 2px 5px;
+	line-height: 20px;
+	border: 1px dotted $info;
+	color: $linkcolor;
+	border-radius: 5px;
+	cursor: pointer;
+	background: #f6f6f4;
+	&:hover {
+		background: #fff;
+	}
+	&:active {
+		background: #f3f4f4;
+	}
 }
 </style>
