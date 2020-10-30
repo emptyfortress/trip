@@ -1,7 +1,7 @@
 <template lang="pug">
-.all
+.all(:class="{ edit : editMode}")
 	hr.line
-	.tool
+	.tool(v-if="!editMode")
 		.d-flex
 			v-slide-x-transition(mode="out-in" hide-on-leave)
 				.total(v-if="selected === 0")
@@ -30,6 +30,11 @@
 						v-btn(icon v-on="on" @click="click(item.click)")
 							i(:class="item.icon")
 					span {{item.text}}
+	.tool(v-if="editMode").pr-3
+		.total.text-uppercase Редактирование таблицы
+		.toolcontent
+			v-btn(depressed text @click="$emit('edit')") Отмена
+			v-btn(depressed text @click="$emit('edit')") Сохранить
 </template>
 
 <script>
@@ -57,6 +62,9 @@ export default {
 		}
 	},
 	computed: {
+		editMode () {
+			return this.$store.getters.editMode
+		},
 		but () {
 			if (this.smallFilter) {
 				return 'click'
@@ -115,6 +123,9 @@ export default {
 	position: sticky;
 	z-index: 200;
 	top: 0;
+	&.edit {
+		background: pink;
+	}
 }
 .tool {
 	display: flex;
@@ -124,7 +135,6 @@ export default {
 		line-height: 44px;
 		.v-btn {
 			margin-right: .7rem;
-
 		}
 		i {
 			font-size: 1.2rem;

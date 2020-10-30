@@ -84,10 +84,10 @@
 						span(v-else) Тут некоторые данные
 					td.rel
 						span данные
-						span.action
+						span(v-if="editMode").action
 							v-btn(icon)
 								v-icon mdi-plus-circle-outline
-							v-btn(icon)
+							v-btn(icon @click="deleteRow(i)")
 								v-icon mdi-trash-can-outline
 
 	br
@@ -151,6 +151,9 @@ export default {
 		contextMenu
 	},
 	methods: {
+		deleteRow (e) {
+			this.items.splice(e, 1)
+		},
 		toEdit () {
 			this.$store.commit('toggleEdit')
 		},
