@@ -34,7 +34,7 @@
 		table.full
 			thead
 				tr(:class="{'toolbar' : toolbar}")
-					th.sm
+					th(v-if="!editMode").sm
 						v-simple-checkbox(:value="all" @input="setAll" :indeterminate="indeterminate" v-ripple).check
 					th(v-for="(item,index) in 5"
 						@mouseover="showByIndex = index" @mouseout="showByIndex = null"
@@ -74,9 +74,9 @@
 									v-btn(text color="primary" @click="filterByIndex = null; smallFilter = null") Отмена
 									v-spacer
 									v-btn(text color="primary" @click="filterByIndex = null; smallFilter = index") Применить
-				tbody
-				tr(v-for="(item, i) in items" :key="i" @contextmenu.prevent="$refs.ctxMenu.open").ro
-					td(v-ripple).sm
+			tbody(is="transition-group" name="list" )
+				tr( v-for="(item, i) in items" :key="item" @contextmenu.prevent="$refs.ctxMenu.open").ro
+					td(v-ripple v-if="!editMode").sm
 						v-simple-checkbox(v-model="item.selected" color="primary").check
 					td(v-for="n in 4")
 						v-lazy(:options="{threshold: .5}"  transition="fade-transition" v-if="lazy")
@@ -85,7 +85,7 @@
 					td.rel
 						span данные
 						span(v-if="editMode").action
-							v-btn(icon)
+							v-btn(icon @click="addRow(i)")
 								v-icon mdi-plus-circle-outline
 							v-btn(icon @click="deleteRow(i)")
 								v-icon mdi-trash-can-outline
@@ -138,7 +138,7 @@ export default {
 		}
 	},
 	created () {
-		for (let i = 0; i < 50; i++) {
+		for (let i = 0; i < 5; i++) {
 			this.items.push({
 				id: i,
 				selected: false
@@ -151,6 +151,9 @@ export default {
 		contextMenu
 	},
 	methods: {
+		addRow (e) {
+			this.items.splice(e + 1, 0, { selected: false })
+		},
 		deleteRow (e) {
 			this.items.splice(e, 1)
 		},
@@ -446,5 +449,13 @@ span.action {
 }
 tr:hover span.action {
 	display: block;
+}
+/* animation  */
+.list-enter-active, .list-leave-active {
+	transition: all .3s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+	opacity: 0;
+	transform: translateX(-60px);
 }
 </style>
