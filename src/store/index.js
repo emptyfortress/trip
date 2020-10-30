@@ -11,6 +11,7 @@ export default new Vuex.Store({
 		inlinePreview: true,
 		fullWindow: false,
 		showPage: false,
+		editMode: false,
 		headers: [
 			{ id: 0, class: '', value: 'title', width: '', active: true, sortable: true, align: 'start', text: 'Название' },
 			{ id: 1, class: 'text-no-wrap', value: 'executor', width: '400', active: true, sortable: true, align: 'start', text: 'Исполнитель' },
@@ -65,7 +66,8 @@ export default new Vuex.Store({
 		dialog: state => { return state.dialog },
 		tableSearch: state => { return state.tableSearch },
 		file: state => { return state.file },
-		chat: state => { return state.chat }
+		chat: state => { return state.chat },
+		editMode: state => { return state.editMode }
 	},
 	mutations: {
 		togglePreview (state) { state.preview = !state.preview },
@@ -93,7 +95,8 @@ export default new Vuex.Store({
 		setFile (state, payload) { state.file = payload },
 		setOverlay (state, payload) { state.overlay = payload },
 		setShowPage (state, payload) { state.showPage = payload },
-		toggleChat (state) { state.chat = !state.chat }
+		toggleChat (state) { state.chat = !state.chat },
+		toggleEdit (state) { state.editMode = !state.editMode }
 	},
 	actions: {},
 	modules: {}

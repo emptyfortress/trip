@@ -14,7 +14,7 @@
 			v-slide-x-reverse-transition(mode="out-in")
 				.total(v-if="selected > 0")
 					span Выбрано:
-					v-btn(icon small).mx-3
+					v-btn(icon small @click="$emit('reset2')").mx-3
 						v-icon mdi-close
 					span.font-weight-bold {{ selected }}
 					.ml-6
@@ -45,7 +45,8 @@ export default {
 				{ text: 'Обновить', icon: 'icon-refresh', click: '' },
 				{ text: 'Экспорт', icon: 'icon-xls', click: '' },
 				{ text: 'Reset', icon: 'icon-kill-setup', click: '' },
-				{ text: 'Настройки', icon: 'icon-setup', click: '' }
+				{ text: 'Настройки', icon: 'icon-setup', click: '' },
+				{ text: 'Редактировать', icon: 'icon-edit', click: 'edit' }
 			],
 			views: [
 				'Это представление',
@@ -112,6 +113,7 @@ export default {
 	background: #e4e4e0;
 	/* border-top: 1px solid #ccc; */
 	position: sticky;
+	z-index: 200;
 	top: 0;
 }
 .tool {

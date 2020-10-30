@@ -17,7 +17,7 @@
 							p Группировка тоже не работает, а имитируется.
 
 	br
-	Toolbar(v-show="toolbar || selectedItems > 0" :smallFilter="smallFilter" :current="current" :group="group" @groupped="setGroup" :selected="selectedItems" @reset="smallFilter = null")
+	Toolbar(v-show="toolbar || selectedItems > 0" :smallFilter="smallFilter" :current="current" :group="group" @groupped="setGroup" :selected="selectedItems" @reset="smallFilter = null" @reset2="setNone" @edit="toEdit").test
 	v-fade-transition
 		.group-top(v-show="group")
 			.inf Перетащите сюда заголовок колонки для группировки
@@ -40,7 +40,7 @@
 						@mouseover="showByIndex = index" @mouseout="showByIndex = null"
 						:class="{'sorting' : sortByIndex === index}")
 						v-icon(v-if="sortByIndex === index" :class="{'sortup' : up}").sort mdi-arrow-down
-						span One
+						span Заголовок
 						v-icon(v-if="index === smallFilter" color="#8b0000").sort.ml-2 mdi-filter
 						.over(v-show="showByIndex === index")
 							v-tooltip(top)
@@ -78,10 +78,18 @@
 				tr(v-for="(item, i) in items" :key="i" @contextmenu.prevent="$refs.ctxMenu.open").ro
 					td(v-ripple).sm
 						v-simple-checkbox(v-model="item.selected" color="primary").check
-					td(v-for="n in 5")
+					td(v-for="n in 4")
 						v-lazy(:options="{threshold: .5}"  transition="fade-transition" v-if="lazy")
 							span Тут некоторые данные
 						span(v-else) Тут некоторые данные
+					td.rel
+						span данные
+						span.action
+							v-btn(icon)
+								v-icon mdi-plus-circle-outline
+							v-btn(icon)
+								v-icon mdi-trash-can-outline
+
 	br
 	br
 	v-alert(v-show="showPage && !toolbar" transition="scale-transition").up
@@ -114,7 +122,7 @@ export default {
 			offsetTop: 0,
 			num1: 50,
 			list: list,
-			toolbar: false,
+			toolbar: true,
 			smallFilter: null,
 			showByIndex: null,
 			filterByIndex: null,
@@ -143,6 +151,12 @@ export default {
 		contextMenu
 	},
 	methods: {
+		toEdit () {
+			this.$store.commit('toggleEdit')
+		},
+		setNone () {
+			this.items.map(item => { item.selected = false })
+		},
 		setAll () {
 			if (this.all) {
 				this.items.map((item) => { item.selected = false })
@@ -167,6 +181,9 @@ export default {
 		}
 	},
 	computed: {
+		editMode () {
+			return this.$store.getters.editMode
+		},
 		selectedItems () {
 			return this.items.filter(item => item.selected).length
 		},
@@ -220,6 +237,7 @@ export default {
 		background: #dadada;
 		height: 2.5rem;
 		position: sticky;
+		z-index: 200;
 		top: 0;
 		font-weight: 400;
 		font-size: 0.75rem;
@@ -233,11 +251,13 @@ export default {
 	}
 	.ro {
 		height: 3rem;
+		position: relative;
 		&:hover {
 			background: #eee;
 		}
 		td {
 			border-bottom: 1px solid #eee;
+			/* position: relative; */
 		}
 	}
 }
@@ -407,5 +427,21 @@ h3 {
 }
 .sm {
 	text-align: center;
+}
+span.action {
+	display: none;
+	width: 150px;
+	height: 100%;
+	position: absolute;
+	right: 0px;
+	top: 0;
+	text-align: right;
+	padding-right: 1rem;
+	line-height: 45px;
+	font-size: 1.2rem;
+	cursor: pointer;
+}
+tr:hover span.action {
+	display: block;
 }
 </style>
