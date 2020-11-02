@@ -74,15 +74,24 @@
 									v-btn(text color="primary" @click="filterByIndex = null; smallFilter = null") Отмена
 									v-spacer
 									v-btn(text color="primary" @click="filterByIndex = null; smallFilter = index") Применить
-			tbody(is="transition-group" name="list" )
-				tr( v-for="(item, i) in items" :key="item" @contextmenu.prevent="$refs.ctxMenu.open").ro
+			tbody(is="transition-group" name="list")
+				tr( v-for="(item, i) in items" :key="item.id").ro
 					td(v-ripple v-if="!editMode").sm
 						v-simple-checkbox(v-model="item.selected" color="primary").check
-					td(v-for="n in 4").px-3
-						v-lazy(:options="{threshold: .5}"  transition="fade-transition" v-if="lazy")
-							span Тут некоторые данные
-						span(v-else) Тут некоторые данные
-					td.rel.px-3
+					td.px-3
+						.line(:contenteditable="editMode ? true : false") Это просто строка
+					td.rel
+						.block(:class="{edit : editMode}")
+							.editor(v-show="editMode && showByRow === i")
+								v-btn(icon dark v-for="icon in icons")
+									v-icon {{ icon.name }}
+
+							.edit(v-if="editMode && showByRow === i" v-click-outside="hide") {{ i }}
+							.view(v-else @click="showByRow = i") {{ i }}
+
+					td
+					td
+					td.rel
 						span данные
 						span(v-if="editMode").action
 							v-btn(icon @click="addRow(i)")
@@ -101,8 +110,8 @@
 				template(v-slot:thumb-label="{ value }")
 					span {{ value }}%
 
-	context-menu(ref="ctxMenu")
-		myMenu(@showToolbar="toolbar = !toolbar" @showGroup="group = !group")
+	//- editModecontext-menu(ref="ctxMenu")
+	//- 	myMenu(@showToolbar="toolbar = !toolbar" @showGroup="group = !group")
 </template>
 
 <script>
@@ -111,6 +120,8 @@ import mixin from '@/mixin.js'
 import Toolbar from '@/components/Toolbar'
 import myMenu from '@/components/ContextMenu'
 import contextMenu from 'vue-context-menu'
+import ClickOutside from 'vue-click-outside'
+import uniqueid from 'lodash.uniqueid'
 
 export default {
 	data () {
@@ -125,6 +136,7 @@ export default {
 			toolbar: true,
 			smallFilter: null,
 			showByIndex: null,
+			showByRow: null,
 			filterByIndex: null,
 			sortByIndex: null,
 			up: false,
@@ -134,13 +146,27 @@ export default {
 				dnd: true,
 				multiple: false
 			},
-			slider: 0
+			slider: 0,
+			icons: [
+				{ name: 'mdi-format-text' },
+				{ name: 'mdi-format-size' },
+				{ name: 'mdi-format-bold' },
+				{ name: 'mdi-format-italic' },
+				{ name: 'mdi-format-list-bulleted' },
+				{ name: 'mdi-format-list-numbered' },
+				{ name: 'mdi-format-align-left' },
+				{ name: 'mdi-format-align-center' },
+				{ name: 'mdi-format-align-right' }
+			]
 		}
+	},
+	directives: {
+		ClickOutside
 	},
 	created () {
 		for (let i = 0; i < 5; i++) {
 			this.items.push({
-				id: i,
+				id: uniqueid('i'),
 				selected: false
 			})
 		}
@@ -151,8 +177,11 @@ export default {
 		contextMenu
 	},
 	methods: {
+		hide () {
+			this.showByRow = null
+		},
 		addRow (e) {
-			this.items.splice(e + 1, 0, { selected: false })
+			this.items.splice(e + 1, 0, { selected: false, id: uniqueid('i') })
 		},
 		deleteRow (e) {
 			this.items.splice(e, 1)
@@ -187,6 +216,9 @@ export default {
 		}
 	},
 	computed: {
+		id () {
+			return `input-${this.uid}` // e.g. input-1
+		},
 		editMode () {
 			return this.$store.getters.editMode
 		},
@@ -263,6 +295,7 @@ export default {
 		}
 		td {
 			border-bottom: 1px solid #eee;
+			padding: 6px 1rem;
 			/* position: relative; */
 		}
 	}
@@ -450,6 +483,33 @@ span.action {
 }
 tr:hover span.action {
 	display: block;
+}
+.block {
+		.editor {
+			display: block;
+			width: 100%;
+			min-width: 350px;
+			height: 34px;
+			background: #666;
+			position: absolute;
+			top: -36px;
+			left: 0;
+			z-index: 300;
+			border-radius:  6px 6px 0 0;
+			pointer-events: none;
+			pointer-events: none;
+		}
+	.edit {
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: #fff;
+		width: 100%;
+		height: 100%;
+		padding: 10px 1rem;
+		box-shadow: 0 2px 6px rgba(0,0,0, .2);
+		border: 1px solid #666;
+	}
 }
 /* animation  */
 .list-enter-active, .list-leave-active {
