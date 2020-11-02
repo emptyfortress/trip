@@ -82,14 +82,20 @@
 						.line(:contenteditable="editMode ? true : false") Это просто строка
 					td.rel
 						.block(:class="{edit : editMode}")
-							.editor(v-show="editMode && showByRow === i")
-								v-btn(icon dark v-for="icon in icons")
+							.editor(v-show="editMode && showByRow === i" @click="showByRow = i")
+								v-btn(icon dark v-for="icon in icons" :key="icon")
 									v-icon {{ icon.name }}
 
-							.edit(v-if="editMode && showByRow === i" v-click-outside="hide") {{ i }}
-							.view(v-else @click="showByRow = i") {{ i }}
+							.edit(v-if="editMode && showByRow === i" contenteditable v-click-outside="hide") {{ item.text }}
 
-					td
+							.view(v-else @click="showByRow = i") {{ item.text }}
+
+					td( @click="showByFio = i")
+						.fi(v-if="editMode && showByFio === i")
+							input(:value="item.fio")
+							v-btn(icon)
+								i.icon-book
+						.fio(v-else) {{ item.fio }}
 					td
 					td.rel
 						span данные
@@ -137,6 +143,7 @@ export default {
 			smallFilter: null,
 			showByIndex: null,
 			showByRow: null,
+			showByFio: null,
 			filterByIndex: null,
 			sortByIndex: null,
 			up: false,
@@ -167,7 +174,9 @@ export default {
 		for (let i = 0; i < 5; i++) {
 			this.items.push({
 				id: uniqueid('i'),
-				selected: false
+				selected: false,
+				text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec hendrerit tempor tellus.',
+				fio: 'Орлов П.С.'
 			})
 		}
 	},
@@ -181,7 +190,7 @@ export default {
 			this.showByRow = null
 		},
 		addRow (e) {
-			this.items.splice(e + 1, 0, { selected: false, id: uniqueid('i') })
+			this.items.splice(e + 1, 0, { selected: false, id: uniqueid('i'), text: 'this is text' })
 		},
 		deleteRow (e) {
 			this.items.splice(e, 1)
@@ -511,6 +520,14 @@ tr:hover span.action {
 		border: 1px solid #666;
 	}
 }
+.fi {
+	input {
+	}
+	.icon-book {
+		font-size: 1.0rem;
+		margin-left: -7px;
+	}
+}
 /* animation  */
 .list-enter-active, .list-leave-active {
 	transition: all .3s;
@@ -519,4 +536,5 @@ tr:hover span.action {
 	opacity: 0;
 	transform: translateX(-60px);
 }
+
 </style>
