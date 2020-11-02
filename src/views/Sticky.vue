@@ -36,7 +36,7 @@
 				tr(:class="{'toolbar' : toolbar}")
 					th(v-if="!editMode").sm
 						v-simple-checkbox(:value="all" @input="setAll" :indeterminate="indeterminate" v-ripple).check
-					th(v-for="(item,index) in 5"
+					th(v-for="(item,index) in 4"
 						@mouseover="showByIndex = index" @mouseout="showByIndex = null"
 						:class="{'sorting' : sortByIndex === index}")
 						v-icon(v-if="sortByIndex === index" :class="{'sortup' : up}").sort mdi-arrow-down
@@ -83,20 +83,19 @@
 					td.rel
 						.block(:class="{edit : editMode}")
 							.editor(v-show="editMode && showByRow === i" @click="showByRow = i")
-								v-btn(icon dark v-for="icon in icons" :key="icon")
+								v-btn(icon dark v-for="icon in icons" :key="icon.id")
 									v-icon {{ icon.name }}
 
 							.edit(v-if="editMode && showByRow === i" contenteditable v-click-outside="hide") {{ item.text }}
 
 							.view(v-else @click="showByRow = i") {{ item.text }}
 
-					td( @click="showByFio = i")
-						.fi(v-if="editMode && showByFio === i")
-							input(:value="item.fio")
+					td
+						.fi(v-if="editMode && showByFio === i" v-click-outside="hide")
+							input(:value="item.fio" ref="test" id="tes")
 							v-btn(icon)
 								i.icon-book
-						.fio(v-else) {{ item.fio }}
-					td
+						.fio(v-else @click="fio(i)") {{ item.fio }}
 					td.rel
 						span данные
 						span(v-if="editMode").action
@@ -155,15 +154,15 @@ export default {
 			},
 			slider: 0,
 			icons: [
-				{ name: 'mdi-format-text' },
-				{ name: 'mdi-format-size' },
-				{ name: 'mdi-format-bold' },
-				{ name: 'mdi-format-italic' },
-				{ name: 'mdi-format-list-bulleted' },
-				{ name: 'mdi-format-list-numbered' },
-				{ name: 'mdi-format-align-left' },
-				{ name: 'mdi-format-align-center' },
-				{ name: 'mdi-format-align-right' }
+				{ id: 0, name: 'mdi-format-text' },
+				{ id: 1, name: 'mdi-format-size' },
+				{ id: 2, name: 'mdi-format-bold' },
+				{ id: 3, name: 'mdi-format-italic' },
+				{ id: 4, name: 'mdi-format-list-bulleted' },
+				{ id: 5, name: 'mdi-format-list-numbered' },
+				{ id: 6, name: 'mdi-format-align-left' },
+				{ id: 7, name: 'mdi-format-align-center' },
+				{ id: 8, name: 'mdi-format-align-right' }
 			]
 		}
 	},
@@ -186,11 +185,19 @@ export default {
 		contextMenu
 	},
 	methods: {
+		fio (e) {
+			this.showByFio = e
+			this.$nextTick(() => {
+				document.getElementById('tes').focus()
+				document.getElementById('tes').select()
+			})
+		},
 		hide () {
 			this.showByRow = null
+			this.showByFio = null
 		},
 		addRow (e) {
-			this.items.splice(e + 1, 0, { selected: false, id: uniqueid('i'), text: 'this is text' })
+			this.items.splice(e + 1, 0, { selected: false, id: uniqueid('i'), text: 'this is text', fio: 'пусто' })
 		},
 		deleteRow (e) {
 			this.items.splice(e, 1)
@@ -522,6 +529,7 @@ tr:hover span.action {
 }
 .fi {
 	input {
+		width: 50%;
 	}
 	.icon-book {
 		font-size: 1.0rem;
