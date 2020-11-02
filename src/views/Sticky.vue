@@ -78,11 +78,11 @@
 				tr( v-for="(item, i) in items" :key="item" @contextmenu.prevent="$refs.ctxMenu.open").ro
 					td(v-ripple v-if="!editMode").sm
 						v-simple-checkbox(v-model="item.selected" color="primary").check
-					td(v-for="n in 4")
+					td(v-for="n in 4").px-3
 						v-lazy(:options="{threshold: .5}"  transition="fade-transition" v-if="lazy")
 							span Тут некоторые данные
 						span(v-else) Тут некоторые данные
-					td.rel
+					td.rel.px-3
 						span данные
 						span(v-if="editMode").action
 							v-btn(icon @click="addRow(i)")
@@ -436,7 +436,8 @@ h3 {
 }
 span.action {
 	display: none;
-	width: 150px;
+	background: #eee;
+	width: 100px;
 	height: 100%;
 	position: absolute;
 	right: 0px;
