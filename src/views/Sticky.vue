@@ -49,11 +49,11 @@
 										v-icon(:class="{'sortup' : up}") mdi-arrow-down
 								span Сортировка
 
-							v-tooltip(top)
-								template(v-slot:activator="{ on, attrs }")
-									v-btn(icon small v-show="smallFilter === index" @click="smallFilter = null" v-bind="attrs" v-on="on")
-										v-icon(color="#8B0000") mdi-filter-remove-outline
-								span Сбросить фильтр
+							//- v-tooltip(top)
+							//- 	template(v-slot:activator="{ on, attrs }")
+							//- 		v-btn(icon small v-show="smallFilter === index" @click="smallFilter = null" v-bind="attrs" v-on="on")
+							//- 			v-icon(color="#8B0000") mdi-filter-remove-outline
+							//- 	span Сбросить фильтр
 
 							v-tooltip(top)
 								template(v-slot:activator="{ on, attrs }")
@@ -69,11 +69,14 @@
 
 						v-slide-y-transition
 							v-card.quick.elevation-3(v-show="filterByIndex === index")
-								v-text-field(autofocus clearable :key="index")
+								v-text-field(clearable :key="index" v-model="filt").mx-3
 								v-card-actions
-									v-btn(text color="primary" @click="filterByIndex = null; smallFilter = null") Отмена
+									v-btn(icon small color="primary" @click="filterByIndex = null; smallFilter = null")
+										v-icon mdi-trash-can-outline
+									v-btn(icon small color="primary" @click="addFilter(index, filt)")
+										v-icon mdi-plus-circle-outline
 									v-spacer
-									v-btn(text color="primary" @click="filterByIndex = null; smallFilter = index") Применить
+									v-btn(text small color="primary" @click="filterByIndex = null; smallFilter = index") Применить
 			tbody(is="transition-group" name="list")
 				tr( v-for="(item, i) in items" :key="item.id").ro
 					td(v-ripple v-if="!editMode").sm
@@ -144,6 +147,8 @@ export default {
 			showByRow: null,
 			showByFio: null,
 			filterByIndex: null,
+			addMode: false,
+			filt: [],
 			sortByIndex: null,
 			up: false,
 			treeOptions: {
@@ -153,6 +158,9 @@ export default {
 				multiple: false
 			},
 			slider: 0,
+			columns: [
+				{ id: 0, name: 'Заголовок', filter: false }
+			],
 			icons: [
 				{ id: 0, name: 'mdi-format-text' },
 				{ id: 1, name: 'mdi-format-size' },
@@ -170,7 +178,7 @@ export default {
 		ClickOutside
 	},
 	created () {
-		for (let i = 0; i < 5; i++) {
+		for (let i = 0; i < 30; i++) {
 			this.items.push({
 				id: uniqueid('i'),
 				selected: false,
@@ -185,6 +193,13 @@ export default {
 		contextMenu
 	},
 	methods: {
+		addFilter (e, filter) {
+			this.filterByIndex = null
+			this.addMode = true
+			console.log(filter)
+			this.filt.push(filter)
+			// this.smallFilter = e
+		},
 		fio (e) {
 			this.showByFio = e
 			this.$nextTick(() => {
@@ -414,7 +429,6 @@ h3 {
 	left: 0;
 	width: 100%;
 	min-width: 200px;
-	padding: 0 1rem;
 	padding-top: 1rem;
 }
 .over {

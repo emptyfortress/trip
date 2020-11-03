@@ -8,9 +8,9 @@
 					span Всего:
 					span(:class="but" @click="$emit('reset')").font-weight-bold.ml-3 438
 					v-slide-x-transition(mode="out-in" hide-on-leave)
-						span.ml-5(v-if="smallFilter") Показано:
+						span.ml-5(v-if="smallFilter !== null") Показано:
 					v-slide-x-transition(mode="out-in" hide-on-leave)
-						span(v-if="smallFilter").font-weight-bold.ml-3 48
+						span(v-if="smallFilter !== null").font-weight-bold.ml-3 48
 			v-slide-x-reverse-transition(mode="out-in")
 				.total(v-if="selected > 0")
 					span Выбрано:
@@ -66,7 +66,7 @@ export default {
 			return this.$store.getters.editMode
 		},
 		but () {
-			if (this.smallFilter) {
+			if (this.smallFilter !== null) {
 				return 'click'
 			} else return ''
 		},
