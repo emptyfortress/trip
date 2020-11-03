@@ -37,12 +37,11 @@
 					th(v-if="!editMode").sm
 						v-simple-checkbox(:value="all" @input="setAll" :indeterminate="indeterminate" v-ripple).check
 					th(v-for="column in columns"
-						@mouseover="columnactive = true" @mouseout="columnactive = false"
 						:class="{'sorting' : sortByIndex === column.id}")
 						v-icon(v-if="sortByIndex === column.id" :class="{'sortup' : up}").sort mdi-arrow-down
 						span Заголовок
-						v-icon(v-if="column.id === smallFilter" color="#8b0000").sort.ml-2 mdi-filter
-						.over(v-show="columnactive")
+						v-icon(v-if="column.id === smallFilter" :class="adding").sort.ml-2 mdi-filter
+						.over
 							v-tooltip(top)
 								template(v-slot:activator="{ on, attrs }")
 									v-btn(icon small @click="sort(column.id)" v-bind="attrs" v-on="on")
@@ -73,7 +72,7 @@
 								v-card-actions
 									v-btn(icon small color="primary" @click="filterByIndex = null; smallFilter = null")
 										v-icon mdi-trash-can-outline
-									v-btn(icon small color="primary" @click="addFilter(column.id, filt)")
+									v-btn(icon small color="primary" @click="addFilter(column.id)")
 										v-icon mdi-plus-circle-outline
 									v-spacer
 									v-btn(text small color="primary" @click="filterByIndex = null; smallFilter = column.id") Применить
@@ -182,7 +181,7 @@ export default {
 		ClickOutside
 	},
 	created () {
-		for (let i = 0; i < 3; i++) {
+		for (let i = 0; i < 30; i++) {
 			this.items.push({
 				id: uniqueid('i'),
 				selected: false,
@@ -197,12 +196,11 @@ export default {
 		contextMenu
 	},
 	methods: {
-		addFilter (e, filter) {
-			this.filterByIndex = null
+		addFilter (e) {
 			this.addMode = true
-			console.log(filter)
-			// this.filt.push(filter)
-			// this.smallFilter = e
+			this.filterByIndex = null
+			this.smallFilter = e
+			console.log(this.addMode)
 		},
 		fio (e) {
 			this.showByFio = e
@@ -251,6 +249,11 @@ export default {
 		}
 	},
 	computed: {
+		adding () {
+			if (this.addMode) {
+				return 'adding'
+			} else return ''
+		},
 		id () {
 			return `input-${this.uid}` // e.g. input-1
 		},
@@ -320,6 +323,11 @@ export default {
 		&.sorting {
 			font-weight: 600;
 			color: #000;
+		}
+		&:hover {
+			.over {
+				display: block;
+			}
 		}
 	}
 	.ro {
@@ -436,6 +444,7 @@ h3 {
 	padding-top: 1rem;
 }
 .over {
+	display: none;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -561,6 +570,26 @@ tr:hover span.action {
 .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
 	opacity: 0;
 	transform: translateX(-60px);
+}
+@keyframes pulse-blue {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(52, 172, 224, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(52, 172, 224, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(52, 172, 224, 0);
+	}
+}
+.adding {
+	color: #0088ff;
+	animation: pulse-blue 2s infinite;
 }
 
 </style>
