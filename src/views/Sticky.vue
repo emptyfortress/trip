@@ -49,12 +49,6 @@
 										v-icon(:class="{'sortup' : up}") mdi-arrow-down
 								span Сортировка
 
-							//- v-tooltip(top)
-							//- 	template(v-slot:activator="{ on, attrs }")
-							//- 		v-btn(icon small v-show="smallFilter === index" @click="smallFilter = null" v-bind="attrs" v-on="on")
-							//- 			v-icon(color="#8B0000") mdi-filter-remove-outline
-							//- 	span Сбросить фильтр
-
 							v-tooltip(top)
 								template(v-slot:activator="{ on, attrs }")
 									v-btn(icon small @click="filterByIndex = index" v-bind="attrs" v-on="on")
@@ -69,7 +63,7 @@
 
 						v-slide-y-transition
 							v-card.quick.elevation-3(v-show="filterByIndex === index")
-								v-text-field(clearable :key="index" v-model="filt").mx-3
+								v-text-field(clearable :key="index").mx-3
 								v-card-actions
 									v-btn(icon small color="primary" @click="filterByIndex = null; smallFilter = null")
 										v-icon mdi-trash-can-outline
