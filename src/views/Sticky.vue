@@ -36,16 +36,16 @@
 				tr(:class="{'toolbar' : toolbar}")
 					th(v-if="!editMode").sm
 						v-simple-checkbox(:value="all" @input="setAll" :indeterminate="indeterminate" v-ripple).check
-					th(v-for="(item,index) in 4"
-						@mouseover="showByIndex = index" @mouseout="showByIndex = null"
-						:class="{'sorting' : sortByIndex === index}")
-						v-icon(v-if="sortByIndex === index" :class="{'sortup' : up}").sort mdi-arrow-down
+					th(v-for="column in columns"
+						@mouseover="columnactive = true" @mouseout="columnactive = false"
+						:class="{'sorting' : sortByIndex === column.id}")
+						v-icon(v-if="sortByIndex === column.id" :class="{'sortup' : up}").sort mdi-arrow-down
 						span Заголовок
-						v-icon(v-if="index === smallFilter" color="#8b0000").sort.ml-2 mdi-filter
-						.over(v-show="showByIndex === index")
+						v-icon(v-if="column.id === smallFilter" color="#8b0000").sort.ml-2 mdi-filter
+						.over(v-show="columnactive")
 							v-tooltip(top)
 								template(v-slot:activator="{ on, attrs }")
-									v-btn(icon small @click="sort(index)" v-bind="attrs" v-on="on")
+									v-btn(icon small @click="sort(column.id)" v-bind="attrs" v-on="on")
 										v-icon(:class="{'sortup' : up}") mdi-arrow-down
 								span Сортировка
 
@@ -57,7 +57,7 @@
 
 							v-tooltip(top)
 								template(v-slot:activator="{ on, attrs }")
-									v-btn(icon small @click="filterByIndex = index" v-bind="attrs" v-on="on")
+									v-btn(icon small @click="filterByIndex = column.id" v-bind="attrs" v-on="on")
 										v-icon mdi-filter-outline
 								span Фильтр
 
@@ -68,15 +68,15 @@
 								span Скрыть
 
 						v-slide-y-transition
-							v-card.quick.elevation-3(v-show="filterByIndex === index")
-								v-text-field(clearable :key="index" v-model="filt").mx-3
+							v-card.quick.elevation-3(v-show="filterByIndex === column.id")
+								v-text-field(clearable :key="column.id").mx-3
 								v-card-actions
 									v-btn(icon small color="primary" @click="filterByIndex = null; smallFilter = null")
 										v-icon mdi-trash-can-outline
-									v-btn(icon small color="primary" @click="addFilter(index, filt)")
+									v-btn(icon small color="primary" @click="addFilter(column.id, filt)")
 										v-icon mdi-plus-circle-outline
 									v-spacer
-									v-btn(text small color="primary" @click="filterByIndex = null; smallFilter = index") Применить
+									v-btn(text small color="primary" @click="filterByIndex = null; smallFilter = column.id") Применить
 			tbody(is="transition-group" name="list")
 				tr( v-for="(item, i) in items" :key="item.id").ro
 					td(v-ripple v-if="!editMode").sm
@@ -142,13 +142,14 @@ export default {
 			num1: 50,
 			list: list,
 			toolbar: true,
+			columnactive: false,
 			smallFilter: null,
 			showByIndex: null,
 			showByRow: null,
 			showByFio: null,
 			filterByIndex: null,
 			addMode: false,
-			filt: [],
+			// filt: [],
 			sortByIndex: null,
 			up: false,
 			treeOptions: {
@@ -159,7 +160,10 @@ export default {
 			},
 			slider: 0,
 			columns: [
-				{ id: 0, name: 'Заголовок', filter: false }
+				{ id: 0, name: 'Заголовок', filter: false },
+				{ id: 1, name: 'Заголовок', filter: false },
+				{ id: 2, name: 'Заголовок', filter: false },
+				{ id: 3, name: 'Заголовок', filter: false }
 			],
 			icons: [
 				{ id: 0, name: 'mdi-format-text' },
@@ -178,7 +182,7 @@ export default {
 		ClickOutside
 	},
 	created () {
-		for (let i = 0; i < 30; i++) {
+		for (let i = 0; i < 3; i++) {
 			this.items.push({
 				id: uniqueid('i'),
 				selected: false,
@@ -197,7 +201,7 @@ export default {
 			this.filterByIndex = null
 			this.addMode = true
 			console.log(filter)
-			this.filt.push(filter)
+			// this.filt.push(filter)
 			// this.smallFilter = e
 		},
 		fio (e) {
