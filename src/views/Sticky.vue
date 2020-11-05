@@ -64,7 +64,7 @@
 							v-card.quick.elevation-3(v-show="filterByIndex === column.id")
 								v-text-field(clearable :key="column.id").mx-3
 								v-card-actions
-									v-btn(icon small color="primary" @click="filterByIndex = null")
+									v-btn(icon small color="primary" @click="removeFilter(column.id)")
 										v-icon mdi-trash-can-outline
 									v-btn(icon small color="primary" @click="addFilter(column.id)")
 										v-icon mdi-plus-circle-outline
@@ -238,7 +238,10 @@ export default {
 			this.$store.commit('toggleEdit')
 		},
 		removeFilter () {
-			this.columns.map(item => { item.filter = false })
+			this.columns.map(item => {
+				item.filter = false
+				item.addF = false
+			})
 		},
 		setNone () {
 			this.items.map(item => { item.selected = false })
