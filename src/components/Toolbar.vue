@@ -5,12 +5,18 @@
 		.d-flex
 			v-slide-x-transition(mode="out-in" hide-on-leave)
 				.total(v-if="selected === 0")
-					span Всего:
-					span(:class="but" @click="$emit('reset')").font-weight-bold.ml-3 438
 					v-slide-x-transition(mode="out-in" hide-on-leave)
-						span.ml-5(v-if="smallFilter !== null") Показано:
+						span(v-if="!filtered") Всего:
 					v-slide-x-transition(mode="out-in" hide-on-leave)
-						span(v-if="smallFilter !== null").font-weight-bold.ml-3 48
+						span(v-if="filtered && !addMode")
+							span Показано:
+							span.font-weight-bold.mx-3 48
+							span из
+					span.font-weight-bold.ml-3 438
+					v-slide-x-transition(mode="out-in" hide-on-leave)
+						v-btn(depressed small v-if="filtered && !addMode" @click="$emit('reset')").ml-5 Показать все
+					v-slide-x-transition(mode="out-in" hide-on-leave)
+						v-btn(depressed small v-if="addMode" @click="$emit('app')").ml-5 Применить фильтры
 			v-slide-x-reverse-transition(mode="out-in")
 				.total(v-if="selected > 0")
 					span Выбрано:
@@ -40,7 +46,7 @@
 <script>
 
 export default {
-	props: ['current', 'selected', 'smallFilter'],
+	props: ['selected', 'filtered', 'addMode'],
 	data () {
 		return {
 			num: 100,

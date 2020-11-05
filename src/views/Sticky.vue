@@ -17,7 +17,7 @@
 							p Группировка тоже не работает, а имитируется.
 
 	br
-	Toolbar(v-show="toolbar || selectedItems > 0" :smallFilter="smallFilter" :current="current" :group="group" @groupped="setGroup" :selected="selectedItems" @reset="smallFilter = null" @reset2="setNone" @edit="toEdit").test
+	Toolbar(v-show="toolbar || selectedItems > 0" :group="group" @groupped="setGroup" :selected="selectedItems" :filtered="filteredColumns" :addMode="addMode" @reset="removeFilter" @app="applyFilter" @reset2="setNone" @edit="toEdit").test
 	v-fade-transition
 		.group-top(v-show="group")
 			.inf Перетащите сюда заголовок колонки для группировки
@@ -36,22 +36,21 @@
 				tr(:class="{'toolbar' : toolbar}")
 					th(v-if="!editMode").sm
 						v-simple-checkbox(:value="all" @input="setAll" :indeterminate="indeterminate" v-ripple).check
-					th(v-for="(item,index) in 4"
-						@mouseover="showByIndex = index" @mouseout="showByIndex = null"
-						:class="{'sorting' : sortByIndex === index}")
-						v-icon(v-if="sortByIndex === index" :class="{'sortup' : up}").sort mdi-arrow-down
-						span Заголовок
-						v-icon(v-if="index === smallFilter" color="#8b0000").sort.ml-2 mdi-filter
-						.over(v-show="showByIndex === index")
+					th(v-for="column in columns"
+						:class="{'sorting' : sortByIndex === column.id}")
+						v-icon(v-if="sortByIndex === column.id" :class="{'sortup' : up}").sort mdi-arrow-down
+						span {{ column.name }}
+						v-icon(v-show="column.filter || column.addF" :class="adding").sort.ml-2 mdi-filter
+						.over
 							v-tooltip(top)
 								template(v-slot:activator="{ on, attrs }")
-									v-btn(icon small @click="sort(index)" v-bind="attrs" v-on="on")
+									v-btn(icon small @click="sort(column.id)" v-bind="attrs" v-on="on")
 										v-icon(:class="{'sortup' : up}") mdi-arrow-down
 								span Сортировка
 
 							v-tooltip(top)
 								template(v-slot:activator="{ on, attrs }")
-									v-btn(icon small @click="filterByIndex = index" v-bind="attrs" v-on="on")
+									v-btn(icon small @click="filterByIndex = column.id" v-bind="attrs" v-on="on")
 										v-icon mdi-filter-outline
 								span Фильтр
 
@@ -62,15 +61,15 @@
 								span Скрыть
 
 						v-slide-y-transition
-							v-card.quick.elevation-3(v-show="filterByIndex === index")
-								v-text-field(clearable :key="index").mx-3
+							v-card.quick.elevation-3(v-show="filterByIndex === column.id")
+								v-text-field(clearable :key="column.id").mx-3
 								v-card-actions
-									v-btn(icon small color="primary" @click="filterByIndex = null; smallFilter = null")
+									v-btn(icon small color="primary" @click="filterByIndex = null")
 										v-icon mdi-trash-can-outline
-									v-btn(icon small color="primary" @click="addFilter(index, filt)")
+									v-btn(icon small color="primary" @click="addFilter(column.id)")
 										v-icon mdi-plus-circle-outline
 									v-spacer
-									v-btn(text small color="primary" @click="filterByIndex = null; smallFilter = index") Применить
+									v-btn(text small color="primary" @click="setFilter(column.id)") Применить
 			tbody(is="transition-group" name="list")
 				tr( v-for="(item, i) in items" :key="item.id").ro
 					td(v-ripple v-if="!editMode").sm
@@ -136,13 +135,12 @@ export default {
 			num1: 50,
 			list: list,
 			toolbar: true,
-			smallFilter: null,
 			showByIndex: null,
 			showByRow: null,
 			showByFio: null,
 			filterByIndex: null,
 			addMode: false,
-			filt: [],
+			// filt: [],
 			sortByIndex: null,
 			up: false,
 			treeOptions: {
@@ -153,7 +151,10 @@ export default {
 			},
 			slider: 0,
 			columns: [
-				{ id: 0, name: 'Заголовок', filter: false }
+				{ id: 0, name: 'Заголовок 1', filter: false, addF: false },
+				{ id: 1, name: 'Заголовок 2', filter: false, addF: false },
+				{ id: 2, name: 'Заголовок 3', filter: false, addF: false },
+				{ id: 3, name: 'Заголовок 4', filter: false, addF: false }
 			],
 			icons: [
 				{ id: 0, name: 'mdi-format-text' },
@@ -187,12 +188,34 @@ export default {
 		contextMenu
 	},
 	methods: {
-		addFilter (e, filter) {
+		applyFilter () {
+			console.log(2222)
+			this.addMode = false
+			this.columns.map(item => {
+				if (item.addF) {
+					item.filter = true
+					item.addF = false
+				}
+			})
+		},
+		setFilter (e) {
+			this.addMode = false
 			this.filterByIndex = null
+			this.columns.map(item => {
+				if (item.id === e) {
+					item.addF = false
+					item.filter = true
+				}
+			})
+		},
+		addFilter (e) {
 			this.addMode = true
-			console.log(filter)
-			this.filt.push(filter)
-			// this.smallFilter = e
+			this.filterByIndex = null
+			this.columns.map(item => {
+				if (item.id === e) {
+					item.addF = true
+				}
+			})
 		},
 		fio (e) {
 			this.showByFio = e
@@ -213,6 +236,9 @@ export default {
 		},
 		toEdit () {
 			this.$store.commit('toggleEdit')
+		},
+		removeFilter () {
+			this.columns.map(item => { item.filter = false })
 		},
 		setNone () {
 			this.items.map(item => { item.selected = false })
@@ -235,17 +261,22 @@ export default {
 		},
 		onScroll (e) {
 			this.offsetTop = window.pageYOffset
-		},
-		topage (e) {
-			this.$vuetify.goTo(e * this.windHeight)
 		}
 	},
 	computed: {
+		adding () {
+			if (this.addMode) {
+				return 'adding'
+			} else return 'add'
+		},
 		id () {
 			return `input-${this.uid}` // e.g. input-1
 		},
 		editMode () {
 			return this.$store.getters.editMode
+		},
+		filteredColumns () {
+			return this.columns.filter(item => item.filter).length
 		},
 		selectedItems () {
 			return this.items.filter(item => item.selected).length
@@ -265,14 +296,6 @@ export default {
 		},
 		windHeight () {
 			return document.documentElement.clientHeight - 114
-		},
-		pages () {
-			return Math.ceil((this.num * 48) / this.windHeight)
-		},
-		current () {
-			return Math.floor(
-				this.pages / ((this.num * 48 - this.windHeight) / this.offsetTop)
-			)
 		}
 	},
 	mixins: [mixin]
@@ -310,6 +333,11 @@ export default {
 		&.sorting {
 			font-weight: 600;
 			color: #000;
+		}
+		&:hover {
+			.over {
+				display: block;
+			}
 		}
 	}
 	.ro {
@@ -426,6 +454,7 @@ h3 {
 	padding-top: 1rem;
 }
 .over {
+	display: none;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -551,6 +580,29 @@ tr:hover span.action {
 .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
 	opacity: 0;
 	transform: translateX(-60px);
+}
+@keyframes pulse-blue {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(52, 172, 224, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(52, 172, 224, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(52, 172, 224, 0);
+	}
+}
+.adding {
+	color: #0088ff;
+	animation: pulse-blue 2s infinite;
+}
+.add {
+	color: #b00;
 }
 
 </style>
