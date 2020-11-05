@@ -39,20 +39,14 @@
 					th(v-for="column in columns"
 						:class="{'sorting' : sortByIndex === column.id}")
 						v-icon(v-if="sortByIndex === column.id" :class="{'sortup' : up}").sort mdi-arrow-down
-						span Заголовок
-						v-icon(v-if="column.id === smallFilter" :class="adding").sort.ml-2 mdi-filter
+						span {{ column.name }}
+						v-icon(v-show="column.filter" :class="adding").sort.ml-2 mdi-filter
 						.over
 							v-tooltip(top)
 								template(v-slot:activator="{ on, attrs }")
 									v-btn(icon small @click="sort(column.id)" v-bind="attrs" v-on="on")
 										v-icon(:class="{'sortup' : up}") mdi-arrow-down
 								span Сортировка
-
-							//- v-tooltip(top)
-							//- 	template(v-slot:activator="{ on, attrs }")
-							//- 		v-btn(icon small v-show="smallFilter === index" @click="smallFilter = null" v-bind="attrs" v-on="on")
-							//- 			v-icon(color="#8B0000") mdi-filter-remove-outline
-							//- 	span Сбросить фильтр
 
 							v-tooltip(top)
 								template(v-slot:activator="{ on, attrs }")
@@ -75,7 +69,7 @@
 									v-btn(icon small color="primary" @click="addFilter(column.id)")
 										v-icon mdi-plus-circle-outline
 									v-spacer
-									v-btn(text small color="primary" @click="filterByIndex = null; smallFilter = column.id") Применить
+									v-btn(text small color="primary" @click="filterByIndex = null; column.filter = true") Применить
 			tbody(is="transition-group" name="list")
 				tr( v-for="(item, i) in items" :key="item.id").ro
 					td(v-ripple v-if="!editMode").sm
@@ -141,7 +135,6 @@ export default {
 			num1: 50,
 			list: list,
 			toolbar: true,
-			columnactive: false,
 			smallFilter: null,
 			showByIndex: null,
 			showByRow: null,
@@ -159,10 +152,10 @@ export default {
 			},
 			slider: 0,
 			columns: [
-				{ id: 0, name: 'Заголовок', filter: false },
-				{ id: 1, name: 'Заголовок', filter: false },
-				{ id: 2, name: 'Заголовок', filter: false },
-				{ id: 3, name: 'Заголовок', filter: false }
+				{ id: 0, name: 'Заголовок 1', filter: false, addF: false },
+				{ id: 1, name: 'Заголовок 2', filter: false, addF: false },
+				{ id: 2, name: 'Заголовок 3', filter: false, addF: false },
+				{ id: 3, name: 'Заголовок 4', filter: false, addF: false }
 			],
 			icons: [
 				{ id: 0, name: 'mdi-format-text' },
@@ -252,7 +245,7 @@ export default {
 		adding () {
 			if (this.addMode) {
 				return 'adding'
-			} else return ''
+			} else return 'add'
 		},
 		id () {
 			return `input-${this.uid}` // e.g. input-1
@@ -590,6 +583,9 @@ tr:hover span.action {
 .adding {
 	color: #0088ff;
 	animation: pulse-blue 2s infinite;
+}
+.add {
+	color: #b00;
 }
 
 </style>
