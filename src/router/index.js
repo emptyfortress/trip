@@ -10,6 +10,7 @@ import Delo from '../views/Delo.vue'
 import Task from '../views/Task.vue'
 import Delo1 from '../views/Delo1.vue'
 import Buttons from '../components/Buttons.vue'
+import Edit from '../components/Edit.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
 		path: '/sticky',
 		name: 'sticky',
 		component: Sticky
+	},
+	{
+		path: '/edit',
+		name: 'edit',
+		component: Edit
 	},
 	{
 		path: '/dash1',

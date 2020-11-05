@@ -34,6 +34,7 @@ export default {
 			menu: [
 				{ url: '/scroll', mini: 'Вход.', icon: 'icon-folder', text: 'Вариант 1' },
 				{ url: '/sticky', mini: 'Вход.', icon: 'icon-folder', text: 'Вариант 2' },
+				{ url: '/edit', mini: 'Вход.', icon: 'icon-folder', text: 'table edit-in-place' },
 				{ url: '/dash1', mini: 'Вход.', icon: 'icon-monitor-dashboard', text: 'Дашборд 1' },
 				{ url: '/dash2', mini: 'Вход.', icon: 'icon-monitor-dashboard', text: 'Дашборд 2' },
 				{ url: '/btn', mini: 'Вход.', icon: 'icon-smile', text: 'Кнопки' },
